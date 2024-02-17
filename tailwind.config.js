@@ -17,10 +17,12 @@ export default {
         'putih-polteka': '#FFFFFF', 
         'abu-polteka': '#F3F3F4', 
       },
+      fontFamily: {
+        'polteka': ['Rubik'],
+        PlayfairDisplay: ['Playfair Display', 'serif'],
+      },
     },
-    fontFamily: {
-      'polteka': ['Rubik'],
-    },
+    
   },
   plugins: [],
 }
