@@ -28,12 +28,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-screen xl:h-auto lg:h-auto flex py-0 xl:py-0 lg:py-0 my-0 xl:my-0 lg:my-0">
-                    <div class="xl:bg-none xl:shadow-none xl:mt-20 xl:w-[400px] lg:bg-none lg:shadow-none lg:mt-20 lg:w-[400px] w-[360px] sm:w-[500px] md:w-[650px] bg-white rounded-3xl shadow-md shadow-black mx-auto my-auto ">
-                        <img alt="Logo" class="hidden xl:block xl:w-[80px] xl:mx-auto xl:mt-2 lg:block lg:w-[80px] lg:mx-auto lg:mt-2" src="logo.png">
+                <div class="h-screen lg:h-auto flex py-0 xl:py-0 lg:py-0 my-0 xl:my-auto lg:my-0">
+                    <div class="xl:bg-none xl:shadow-none xl:mt-0 xl:w-[400px] lg:bg-none lg:shadow-none lg:mt-20 lg:w-[400px] w-[360px] sm:w-[500px] md:w-[650px] bg-white rounded-3xl shadow-md shadow-black mx-auto my-auto ">
+                        <img alt="Logo" class="hidden xl:block xl:w-[80px] xl:mx-auto xl:mt-0 lg:block lg:w-[80px] lg:mx-auto lg:mt-2" src="logo.png">
                         <div class="xl:mt-14">
                             <img alt="Logo" class="xl:hidden lg:hidden w-[80px] mx-auto mt-10 " src="logo.png">
-                            <h2 class="font-polteka font-bold text-biru160-polteka xl:text-3xl xl:text-left xl:mt-0 lg:text-3xl lg:text-left lg:mt-0 text-center text-[24px] mt-10">
+                            <h2 class="font-polteka font-bold text-biru160-polteka xl:text-3xl xl:text-left xl:mt-0 lg:text-3xl lg:text-left lg:mt-10 text-center text-[24px] mt-10">
                                 Masuk
                             </h2>
                             <div class="hidden xl:block xl:mt-2 xl:text-sm xl:mb-1 lg:block lg:mt-2 lg:text-sm lg:mb-1 text-biru160-polteka font-polteka text-opacity-50">
@@ -67,7 +67,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="xl:mt-32 xl:text-[12px] xl:mx-auto xl:text-center xl:mb-0 xl:px-0 lg:mt-24 lg:text-[12px] lg:mx-auto lg:text-center lg:mb-0 lg:px-0 mt-14 text-xs text-center mb-10 px-10 text-biru160-polteka font-polteka">
+                        <div class="xl:mt-24 xl:text-[12px] xl:mx-auto xl:text-center xl:mb-0 xl:px-0 lg:mt-24 lg:text-[12px] lg:mx-auto lg:text-center lg:mb-0 lg:px-0 mt-14 text-xs text-center mb-10 px-10 text-biru160-polteka font-polteka">
                                 © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
                         </div>
                     </div>
