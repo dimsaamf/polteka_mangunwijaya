@@ -49,6 +49,7 @@ Route::get('/ubahppwadir', function () {
     return view('ubahppwadir');
 });
 
+<<<<<<< HEAD
 Route::get('/dashboardsuperadmin', function () {
     return view('dashboardsuperadmin');
 });
@@ -63,4 +64,8 @@ Route::get('/dashboardkoorkimia', function () {
 
 Route::get('/dashboardadminkimia', function () {
     return view('dashboardadminkimia');
+=======
+Route::get('/notfound', function () {
+    return view('notfound');
+>>>>>>> ce65a38a8987bd1d46d763221cd1cc1c47405275
 });
