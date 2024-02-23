@@ -12,7 +12,7 @@
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
-    <body class="xl:bg-putih-polteka lg:bg-putih-polteka bg-biru160-polteka">
+    <body class="login xl:bg-putih-polteka lg:bg-putih-polteka bg-biru160-polteka">
         <section>
             <div class="xl:grid xl:px-20 xl:grid-cols-2 xl:gap-10 lg:grid lg:px-20 lg:grid-cols-2 lg:gap-10">
                 <div class="hidden xl:flex xl:flex-col lg:flex lg:flex-col min-h-screen">

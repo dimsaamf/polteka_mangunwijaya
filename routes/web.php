@@ -48,3 +48,7 @@ Route::get('/ubahpasswadir', function () {
 Route::get('/ubahppwadir', function () {
     return view('ubahppwadir');
 });
+
+Route::get('/notfound', function () {
+    return view('notfound');
+});
