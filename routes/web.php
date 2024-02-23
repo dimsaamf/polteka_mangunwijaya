@@ -48,3 +48,19 @@ Route::get('/ubahpasswadir', function () {
 Route::get('/ubahppwadir', function () {
     return view('ubahppwadir');
 });
+
+Route::get('/dashboardsuperadmin', function () {
+    return view('dashboardsuperadmin');
+});
+
+Route::get('/dashboardprodikimia', function () {
+    return view('dashboardprodikimia');
+});
+
+Route::get('/dashboardkoorkimia', function () {
+    return view('dashboardkoorkimia');
+});
+
+Route::get('/dashboardadminkimia', function () {
+    return view('dashboardadminkimia');
+});

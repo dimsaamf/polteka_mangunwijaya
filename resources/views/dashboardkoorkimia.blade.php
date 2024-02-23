@@ -5,8 +5,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
-        <title>Dashboard Wadir</title>
+        <title>Dashboard Koor Lab Kimia</title>
         <link rel="stylesheet" href="dist/css/app.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <!-- END: Head -->
     <body class="py-5 bg-merah200-polteka text-putih-polteka font-polteka">
@@ -141,34 +142,178 @@
                         <a href="javascript:;" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
                             <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
-                                Pengajuan Barang
+                                Lab Kimia Analisa
                                 <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                             </div>
                         </a>
                     </li>
-                    <li class="side-nav__devider my-8"></li>
                     <li>
-                        <a class="side-menu side-menu--active flex">
-                            <div class="ml-8 mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" viewBox="0 0 24 24"><path fill="currentColor" d="m16 11.78l4.24-7.33l1.73 1l-5.23 9.05l-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg>
-                            </div>
-                            <div class="side-menu__title ml-2 mb-3 font-semibold">Laporan</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="side-menu">
-                            <div class="side-menu__icon"> <i data-lucide="sidebar"></i> </div>
-                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
-                                Laporan Laboratorium
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="side-menu-light-inbox.html" class="side-menu">
+                        <a href="javascript:;" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
-                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5"> Laporan Prodi </div>
+                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Lab Kimia Fisika
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
                         </a>
                     </li>
+                    <li>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Lab Operasi Teknik Kimia
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                    </li>    
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Lab Mikrobiologi
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>   
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Lab Kimia Terapan
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                    </li>
+                    
+                    
+   
+                    <!-- <li>    
+                    <button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Lab Kimia Organik
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        </button>
+                        <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-putih-polteka transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+                            </li>
+                        </ul>
+                    </li> -->
+
+                    
+
+                    <div>
+                    <li>
+					<button type="button" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" onclick="dropDown()">
+                  <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>E-commerce</span>
+                  <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+					<ul id="dropdown-example" class="hidden py-2 space-y-2">
+						<li>
+							<a href="#"
+								class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Products</a>
+						</li>
+						<li>
+							<a href="#"
+								class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Billing</a>
+						</li>
+						<li>
+							<a href="#"
+								class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11">Invoice</a>
+						</li>
+					</ul>
+				</li>
+                    </div>
+
+                <!-- lab kimia terapan -->
+                <div class="ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5 cursor-pointer">
+                <div class="flex justify-between w-full items-center" onclick="dropDown()">
+                    <span>Lab Kimia Terapan</span>
+                    <span class="text-sm rotate-180" id="arrow">
+                    <i class="bi bi-chevron-down"></i>
+                    </span>
+                </div>
+                </div>
+                <div class=" leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto" id="submenu">
+                <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Data Barang
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Barang Masuk
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Barang Keluar
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Pengajuan Barang
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                </div>
+
+
+                <div class="ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5 cursor-pointer">
+                <div class="flex justify-between w-full items-center" onclick="dropDown()">
+                    <span>Lab Kimia Organik</span>
+                    <span class="text-sm rotate-180" id="arrow">
+                    <i class="bi bi-chevron-down"></i>
+                    </span>
+                </div>
+                </div>
+                <div class=" leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto" id="submenu">
+                <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Data Barang
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Barang Masuk
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Barang Keluar
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
+                            <div class="side-menu__title cursor-pointer ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
+                                Pengajuan Barang
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                </div>
+
+               
                     <li class="side-nav__devider my-8"></li>
                     <li>
                         <a class="side-menu side-menu--active flex">
@@ -225,6 +370,17 @@
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
         <script src="dist/js/app.js"></script>
+        <script>
+            function dropDown() {
+            document.querySelector('#submenu').classList.toggle('hidden')
+            document.querySelector('#arrow').classList.toggle('rotate-0')
+            }
+            dropDown()
+
+            function Openbar() {
+            document.querySelector('.sidebar').classList.toggle('left-[-300px]')
+            }
+        </script>
        
         <!-- END: JS Assets-->
     </body>

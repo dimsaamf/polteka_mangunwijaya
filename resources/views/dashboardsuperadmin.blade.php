@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
-        <title>Dashboard Wadir</title>
+        <title>Dashboard Superadmin</title>
         <link rel="stylesheet" href="dist/css/app.css" />
     </head>
     <!-- END: Head -->
@@ -141,32 +141,9 @@
                         <a href="javascript:;" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
                             <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
-                                Pengajuan Barang
+                                Pengguna
                                 <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                             </div>
-                        </a>
-                    </li>
-                    <li class="side-nav__devider my-8"></li>
-                    <li>
-                        <a class="side-menu side-menu--active flex">
-                            <div class="ml-8 mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" viewBox="0 0 24 24"><path fill="currentColor" d="m16 11.78l4.24-7.33l1.73 1l-5.23 9.05l-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg>
-                            </div>
-                            <div class="side-menu__title ml-2 mb-3 font-semibold">Laporan</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="side-menu">
-                            <div class="side-menu__icon"> <i data-lucide="sidebar"></i> </div>
-                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5">
-                                Laporan Laboratorium
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="side-menu-light-inbox.html" class="side-menu">
-                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
-                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5"> Laporan Prodi </div>
                         </a>
                     </li>
                     <li class="side-nav__devider my-8"></li>
