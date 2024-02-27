@@ -166,7 +166,7 @@
                     <li>
                         <a href="side-menu-light-inbox.html" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
-                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5"> Laporan Prodi </div>
+                            <div class="side-menu__title ml-8 mb-3 active:text-hitam-polteka active:bg-putih-polteka active:rounded-full active:ml-10 active:w-full active:py-2 active:pl-5"> Laporan Prodi </div>
                         </a>
                     </li>
                     <li class="side-nav__devider my-8"></li>

@@ -8,7 +8,7 @@
         <meta name="author" content="LEFT4CODE">
         <title>Login</title>
         <!-- BEGIN: CSS Assets-->
-        @vite('resources/css/app.css')
+        @vite('resources/css/loginapp.css')
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->

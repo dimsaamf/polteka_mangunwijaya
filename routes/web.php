@@ -22,7 +22,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/dashboardwadir', function () {
-    return view('dashboardwadir');
+    return view('rolewadir.contentwadir.dashboardwadiru');
 });
 
 Route::get('/laporanlabwadir', function () {
