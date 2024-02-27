@@ -19,7 +19,6 @@ export default {
       },
       fontFamily: {
         'polteka': ['Rubik'],
-        PlayfairDisplay: ['Playfair Display', 'serif'],
       },
     },
     
