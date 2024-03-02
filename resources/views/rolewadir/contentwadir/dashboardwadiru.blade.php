@@ -1,6 +1,6 @@
 @extends('rolewadir.layoutwadir.sidebarwadir')
 @section('content')
-<div class="bg-abu-polteka w-full min-h-[500px] mt-4 flex rounded-xl">
+<div class="bg-abu-polteka w-full min-h-[500px] flex md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
     <!-- BEGIN: Top Bar -->
     <div class="w-full">
         <a class="m-4 flex text-hitam-polteka">
