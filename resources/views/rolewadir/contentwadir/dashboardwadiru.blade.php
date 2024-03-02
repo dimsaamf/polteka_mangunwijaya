@@ -1,6 +1,7 @@
 @extends('rolewadir.layoutwadir.sidebarwadir')
 @section('content')
-<div class="bg-putih-polteka w-full min-h-[500px] mt-4 flex rounded-xl">
+<div class="bg-abu-polteka w-full min-h-[500px] mt-4 flex rounded-xl">
+    <!-- BEGIN: Top Bar -->
     <div class="w-full">
         <a class="m-4 flex text-hitam-polteka">
         <div class="mr-2 ml-4">Hei, Admin</div>
@@ -8,5 +9,6 @@
         <div class="ml-2">Manajemen</div>
     </a>        
     </div>
+    <!-- END: Top Bar -->
 </div>
 @endsection
