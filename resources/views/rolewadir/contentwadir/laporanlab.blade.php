@@ -7,7 +7,7 @@
         <div class="my-4 w-1/2 flex justify-start ">
             <div class="mr-2 text-merah200-polteka">Hei, Admin</div>
             <svg class="my-1.5 text-merah200-polteka" xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Manajemen</div>
+            <div class="ml-2  text-hitam-polteka">Laporan Laboratorium</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -16,41 +16,83 @@
         </div>
     </section>
     <!-- END: Top Bar -->
-    <section class="text-hitam-polteka">
-        <div>
-        <h2 class="text-xl font-medium">DASHBOARD</h2>
-        <div class="flex grid grid-cols-9 gap-8">
-            <div class="col-span-12 col-start-1 col-end-3 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                <div class=" gap-6 mt-3">
-                    <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="box p-6">
-                            <div class="text-3xl font-medium">9999</div>
-                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Tersedia</div>
+    <!-- Filter laporan -->
+    <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
+        <h2 class="text-xl font-medium">Filter Laporan Laboratorium</h2>
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Mulai Tanggal</span>
+            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+        </label>   
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Sampai Tanggal</span>
+            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+        </label>
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Laporan</span>
+            <div class="relative text-left">
+                <div class="group">
+                    <button type="button" class="inline-flex w-[150px] justify-center mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        Jenis Laporan
+                        <!-- Dropdown arrow -->
+                        <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div
+                        class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
+                        <div class="py-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Data Barang</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Masuk</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Keluar</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-span-12 col-start-3 col-end-5 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                <div class=" gap-6 mt-3">
-                    <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="box p-6">
-                            <div class="text-3xl font-medium">9999</div>
-                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Hampir Habis</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-12 col-start-5 col-end-7 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                <div class=" gap-6 mt-3">
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="box p-6">
-                            <div class="text-3xl font-medium">9999</div>
-                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Rusak</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </label>  
+            <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                Tampilkan
+            </button>  
+    </section>  
+
+    <!-- laporan yang sudah difilter  -->
+    <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6">
+        <h2 class="text-xl font-medium">Laporan</h2>
+        <div class="flex w-full mt-4">
+            <span class="text-sm font-medium w-1/6">Mulai Tanggal</span>
+            <span class="text-sm font-medium w-1/6">:</span>
+            <input type="date" name="date" class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </div>    
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Sampai Tanggal</span>
+            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+        </label>
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Laporan</span>
+            <div class="relative text-left">
+                <div class="group">
+                    <button type="button" class="inline-flex w-[150px] justify-center mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        Jenis Laporan
+                        <!-- Dropdown arrow -->
+                        <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div
+                        class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
+                        <div class="py-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Data Barang</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Masuk</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Keluar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </label>  
+            <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                Tampilkan
+            </button>  
     </section>  
 </div>
 
