@@ -21,20 +21,16 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/dashboardwadir1', function () {
-    return view('dashboardwadir');
-});
-
 Route::get('/dashboardwadir2', function () {
     return view('rolewadir.contentwadir.dashboardwadiru');
 });
 
 Route::get('/laporanlabwadir', function () {
-    return view('laporanlabwadir');
+    return view('rolewadir.contentwadir.laporanlab');
 });
 
 Route::get('/laporanprodiwadir', function () {
-    return view('laporanprodiwadir');
+    return view('rolewadir.contentwadir.laporanprodi');
 });
 
 Route::get('/pengajuanwadir', function () {
