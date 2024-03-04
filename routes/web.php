@@ -38,7 +38,7 @@ Route::get('/laporanprodiwadir', function () {
 });
 
 Route::get('/pengajuanwadir', function () {
-    return view('pengajuanwadir');
+    return view('rolewadir.contentwadir.pengajuanbarang');
 });
 
 Route::get('/ubahpasswadir', function () {
