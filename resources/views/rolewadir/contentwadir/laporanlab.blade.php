@@ -60,38 +60,21 @@
         <h2 class="text-xl font-medium">Laporan</h2>
         <div class="flex w-full mt-4">
             <span class="text-sm font-medium w-1/6">Mulai Tanggal</span>
-            <span class="text-sm font-medium w-1/6">:</span>
-            <input type="date" name="date" class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <span class="text-sm font-medium w-1/6 text-right pr-5">:</span>
+            <span class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 text-slate-400 focus:outline-none block rounded-md sm:text-sm focus:ring-1">11/11/2020</span>
         </div>    
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Sampai Tanggal</span>
-            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Laporan</span>
-            <div class="relative text-left">
-                <div class="group">
-                    <button type="button" class="inline-flex w-[150px] justify-center mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        Jenis Laporan
-                        <!-- Dropdown arrow -->
-                        <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div
-                        class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
-                        <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Data Barang</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Masuk</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Keluar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </label>  
+        <div class="flex w-full mt-4">
+            <span class="text-sm font-medium w-1/6">Sampai Tanggal</span>
+            <span class="text-sm font-medium w-1/6 text-right pr-5">:</span>
+            <span class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 text-slate-400 focus:outline-none block rounded-md sm:text-sm focus:ring-1">11/11/2020</span>
+        </div>  
+        <div class="flex w-full mt-4">
+            <span class="text-sm font-medium w-1/6">Jenis Laporan</span>
+            <span class="text-sm font-medium w-1/6 text-right pr-5">:</span>
+            <span class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 text-slate-400 focus:outline-none block rounded-md sm:text-sm focus:ring-1">Barang Masuk</span>
+        </div>  
             <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                Tampilkan
+                Cetak
             </button>  
     </section>  
 </div>

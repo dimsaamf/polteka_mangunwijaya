@@ -38,11 +38,7 @@ Route::get('/pengajuanwadir', function () {
 });
 
 Route::get('/ubahpasswadir', function () {
-    return view('ubahpasswadir');
-});
-
-Route::get('/ubahpasswadir', function () {
-    return view('ubahpasswadir');
+    return view('rolewadir.contentwadir.ubahpasswadir');
 });
 
 Route::get('/ubahppwadir', function () {
