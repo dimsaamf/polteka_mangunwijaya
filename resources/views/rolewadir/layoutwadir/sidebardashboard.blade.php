@@ -3,10 +3,10 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
+        <link href="logo.png" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <title>Dashboard Wadir</title>
-        <link rel="stylesheet" href="dist/css/app.css" />
     </head>
     <!-- END: Head -->
     <body class="py-5 bg-merah200-polteka text-putih-polteka font-polteka">
@@ -116,7 +116,7 @@
             </script>
         </div>
         <!-- END: Mobile Menu -->
-        <div class="flex md:mr-8 bg-merah200-polteka text-putih-polteka">
+        <div class="flex mr-0 md:mr-8 bg-merah200-polteka text-putih-polteka">
             <!-- BEGIN: Side Menu -->
             <nav class="hidden md:block xl:w-[20%] lg:w-[12%] md:w-[12%]">
                 <div href="" class="intro-x flex xl:justify-start md:justify-center lg:justify-center xl:pl-5 pt-4">
