@@ -63,7 +63,7 @@
                                         @enderror
                                 </div>
                                 <div class="xl:mt-8 xl:text-left xl:px-0 lg:mt-8 lg:text-left lg:px-0 px-10 mt-7">
-                                    <button class="xl:text-xs lg:text-sm text-lg text-putih-polteka font-bold text-polteka rounded-xl w-full  bg-biru160-polteka xl:py-2 xl:px-4 lg:py-2 lg:px-4 py-1" href="#" type="submit">Masuk</button>
+                                    <button href="{{ route('dashboard') }}" class="xl:text-xs lg:text-sm text-lg text-putih-polteka font-bold text-polteka rounded-xl w-full  bg-biru160-polteka xl:py-2 xl:px-4 lg:py-2 lg:px-4 py-1" href="#" type="submit">Masuk</button>
                                 </div>
                             </form>
                         </div>

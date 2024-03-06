@@ -19,27 +19,27 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 Route::get('/dashboardwadir2', function () {
     return view('rolewadir.contentwadir.dashboardwadiru');
-});
+})->name('dashboard');
 
 Route::get('/laporanlabwadir', function () {
     return view('rolewadir.contentwadir.laporanlab');
-});
+})->name('laporanlabwadir');
 
 Route::get('/laporanprodiwadir', function () {
     return view('rolewadir.contentwadir.laporanprodi');
-});
+})->name('laporanprodiwadir');
 
 Route::get('/pengajuanwadir', function () {
     return view('rolewadir.contentwadir.pengajuanbarang');
-});
+})->name('pengajuanwadir');
 
 Route::get('/ubahpasswadir', function () {
     return view('rolewadir.contentwadir.ubahpasswadir');
-});
+})->name('ubahpasswadir');
 
 Route::get('/ubahppwadir', function () {
     return view('ubahppwadir');

@@ -58,7 +58,7 @@
                                             </svg>
                                     </button>
                                     <!-- Dropdown menu -->
-                                    <div class="absolute right-14 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
+                                    <div class="absolute lg:right-16 xl:right-20 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
                                         <div class="py-1">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Disetujui</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditunda</a>
@@ -96,7 +96,7 @@
                                             </svg>
                                     </button>
                                     <!-- Dropdown menu -->
-                                    <div class="absolute right-14 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
+                                    <div class="absolute right-14 lg:right-16 xl:right-20 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
                                         <div class="py-1">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Disetujui</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditunda</a>
