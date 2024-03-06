@@ -5,7 +5,7 @@
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="ml-2  text-hitam-polteka">Ubah Password</div>
+            <div class="text-hitam-polteka">Ubah Password</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Wadir</div>
