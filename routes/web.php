@@ -49,6 +49,10 @@ Route::get('/dashboardsuperadmin', function () {
     return view('dashboardsuperadmin');
 });
 
+Route::get('/dashboardprodiarmasi', function () {
+    return view('dashboardprodifarmasi');
+});
+
 Route::get('/dashboardprodikimia', function () {
     return view('dashboardprodikimia');
 });
