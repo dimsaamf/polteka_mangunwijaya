@@ -5,12 +5,12 @@
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Ubah Password</div>
+            <div class="text-hitam-polteka">Ubah Gambar Profil</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Wadir</div>
             <svg class="my-1.5 text-hitam-polteka" xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Ubah Password</div>
+            <div class="ml-2  text-hitam-polteka">Ubah Gambar Profil</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -21,22 +21,22 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Ubah Password</h2>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Password Lama</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
-        </label>   
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Password Baru</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Ulangi Password Baru</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
-        </label>  
-            <button type="button" class="inline-flex w-[130px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                Ubah Password
-            </button>  
+        <h2 class="text-xl font-medium">Ubah Gambar Profil</h2>
+            <div class="w-52 mt-6 mx-auto xl:mr-0 xl:ml-6">
+                <div class="border-2 border-dashed shadow-sm border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                    <div class="h-40 relative image-fit  p6 bg-[#f2f2f2]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="165px" height="165px" viewBox="0 0 20 20"><path fill="#d4d4d4" d="M10 11c-5.92 0-8 3-8 5v3h16v-3c0-2-2.08-5-8-5"/><circle cx="10" cy="5.5" r="4.5" fill="#d4d4d4"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="preview ml-5 mt-5">
+                <div>
+                    <input id="avatar" name="avatar" type="file" class="bg-white rounded-sm p">
+                </div>
+                <button type="button" class="inline-flex w-[150px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                Ubah Gambar Profil
+            </button> 
+            </div>
     </section>
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">
@@ -45,5 +45,4 @@
         </div>
     </footer> 
 </div>
-
 @endsection
