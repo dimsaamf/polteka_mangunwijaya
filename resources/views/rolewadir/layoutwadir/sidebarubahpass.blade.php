@@ -212,7 +212,7 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a>
+                                <a href="{{ route('ubahppwadir') }}">
                                     <div class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5"> 
                                         Ubah Gambar Profil 
                                     </div>

@@ -42,8 +42,8 @@ Route::get('/ubahpasswadir', function () {
 })->name('ubahpasswadir');
 
 Route::get('/ubahppwadir', function () {
-    return view('ubahppwadir');
-});
+    return view('rolewadir.contentwadir.ubahppwadir');
+})->name('ubahppwadir');
 
 Route::get('/dashboardsuperadmin', function () {
     return view('dashboardsuperadmin');
