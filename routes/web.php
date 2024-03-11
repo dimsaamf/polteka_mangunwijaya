@@ -21,8 +21,8 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/dashboardwadir2', function () {
-    return view('rolewadir.contentwadir.dashboardwadiru');
+Route::get('/dashboardwadir', function () {
+    return view('rolewadir.contentwadir.dashboard');
 })->name('dashboard');
 
 Route::get('/laporanlabwadir', function () {
@@ -38,11 +38,11 @@ Route::get('/pengajuanwadir', function () {
 })->name('pengajuanwadir');
 
 Route::get('/ubahpasswadir', function () {
-    return view('rolewadir.contentwadir.ubahpasswadir');
+    return view('rolewadir.contentwadir.ubahpassword');
 })->name('ubahpasswadir');
 
 Route::get('/ubahppwadir', function () {
-    return view('rolewadir.contentwadir.ubahppwadir');
+    return view('rolewadir.contentwadir.ubahpp');
 })->name('ubahppwadir');
 
 Route::get('/editpenggunasuperadmin', function () {
@@ -72,26 +72,6 @@ Route::get('/ubahpwsuperadmin', function () {
 Route::get('/ubahppsuperadmin', function () {
     return view('rolesuperadmin.contentsuperadmin.ubahprofil');
 })->name('ubahppsuperadmin');
-
-Route::get('/dashboardsuperadmin', function () {
-    return view('dashboardsuperadmin');
-});
-
-Route::get('/dashboardprodiarmasi', function () {
-    return view('dashboardprodifarmasi');
-});
-
-Route::get('/dashboardprodikimia', function () {
-    return view('dashboardprodikimia');
-});
-
-Route::get('/dashboardkoorkimia', function () {
-    return view('dashboardkoorkimia');
-});
-
-Route::get('/dashboardadminkimia', function () {
-    return view('dashboardadminkimia');
-});
 
 Route::get('/notfound', function () {
     return view('notfound');
