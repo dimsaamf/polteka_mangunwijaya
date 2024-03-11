@@ -45,6 +45,34 @@ Route::get('/ubahppwadir', function () {
     return view('rolewadir.contentwadir.ubahppwadir');
 })->name('ubahppwadir');
 
+Route::get('/editpenggunasuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.editpengguna');
+})->name('editpenggunasuperadmin');
+
+Route::get('/manajemensuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.manajemen');
+})->name('manajemenasuperadmin');
+
+Route::get('/pengajuanbarangsuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.pengajuanbarang');
+})->name('pengajuanbarangsuperadmin');
+
+Route::get('/tambahpengajuansuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.tambahpengajuan');
+})->name('tambahpengajuansuperadmin');
+
+Route::get('/tambahpenggunasuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.tambahpengguna');
+})->name('tambahpenggunasuperadmin');
+
+Route::get('/ubahpwsuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.ubahpassword');
+})->name('ubahpwsuperadmin');
+
+Route::get('/ubahppsuperadmin', function () {
+    return view('rolesuperadmin.contentsuperadmin.ubahprofil');
+})->name('ubahppsuperadmin');
+
 Route::get('/dashboardsuperadmin', function () {
     return view('dashboardsuperadmin');
 });
