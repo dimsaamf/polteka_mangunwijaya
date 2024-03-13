@@ -73,6 +73,10 @@ Route::get('/ubahppsuperadmin', function () {
     return view('rolesuperadmin.contentsuperadmin.ubahprofil');
 })->name('ubahppsuperadmin');
 
+Route::get('/dashboardadminlab', function () {
+    return view('roleadminlab.contentadminlab.dashboard');
+})->name('dashboardadminlab');
+
 Route::get('/notfound', function () {
     return view('notfound');
 });
