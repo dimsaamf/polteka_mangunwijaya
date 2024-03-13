@@ -51,7 +51,7 @@ Route::get('/editpenggunasuperadmin', function () {
 
 Route::get('/manajemensuperadmin', function () {
     return view('rolesuperadmin.contentsuperadmin.manajemen');
-})->name('manajemenasuperadmin');
+})->name('manajemensuperadmin');
 
 Route::get('/pengajuanbarangsuperadmin', function () {
     return view('rolesuperadmin.contentsuperadmin.pengajuanbarang');
