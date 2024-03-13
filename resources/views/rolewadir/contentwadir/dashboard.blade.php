@@ -1,4 +1,4 @@
-@extends('rolewadir.layoutwadir.sidebardashboard')
+@extends('rolewadir.layoutwadir.dashboard')
 @section('content')
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
     <!-- BEGIN: Top Bar -->
@@ -22,38 +22,40 @@
     <section class="text-hitam-polteka">
         <div>
         <h2 class="text-xl font-medium">DASHBOARD</h2>
-        <div class="flex grid grid-cols-3 sm:grid-cols-6 md:grid-cols-9 sm:gap-8 mb-10 w-full lg:w-4/5">
-            <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-1 md:col-end-4 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                <div class=" gap-6 mt-3">
-                    <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="box p-6">
-                            <div class="text-3xl font-medium">9999</div>
-                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Tersedia</div>
+        <div class="flex">
+            <div class="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-9 sm:gap-8 mb-10 w-full lg:w-4/5">
+                <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-1 md:col-end-4 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                    <div class=" gap-6 mt-3">
+                        <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
+                            <div class="box p-6">
+                                <div class="text-3xl font-medium">9999</div>
+                                <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Tersedia</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-4 md:col-end-7 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                <div class=" gap-6 mt-3">
-                    <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="box p-6">
-                            <div class="text-3xl font-medium">9999</div>
-                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Hampir Habis</div>
+                <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-4 md:col-end-7 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                    <div class=" gap-6 mt-3">
+                        <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
+                            <div class="box p-6">
+                                <div class="text-3xl font-medium">9999</div>
+                                <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Hampir Habis</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-7 md:col-end-10 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                <div class=" gap-6 mt-3">
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="box p-6">
-                            <div class="text-3xl font-medium">9999</div>
-                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Rusak</div>
+                <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-7 md:col-end-10 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                    <div class=" gap-6 mt-3">
+                        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                            <div class="box p-6">
+                                <div class="text-3xl font-medium">9999</div>
+                                <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Rusak</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>    
+            </div>  
+        </div>  
     </section>  
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-44 md:mt-[350px] mb-6 text-center">
