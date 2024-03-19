@@ -6,7 +6,7 @@
         <link href="logo.png" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
-        <title>Dashboard Admin Laboratorium</title>
+        <title>Dashboard Admin Laboratorium Farmasi</title>
     </head>
     <!-- END: Head -->
     <body class="py-5 bg-merah200-polteka text-putih-polteka font-polteka">
@@ -126,7 +126,7 @@
                 <div class="my-7"></div>
                 <ul>
                     <li>
-                        <a href="{{ route('dashboard') }}" class="md:justify-center lg:justify-center xl:justify-start flex pt-2 text-hitam-polteka bg-abu-polteka rounded-full xl:ml-8 lg:ml-10 md:ml-6 w-full">
+                        <a href="{{ route('dashboardadminlabfarmasi') }}" class="md:justify-center lg:justify-center xl:justify-start flex pt-2 text-hitam-polteka bg-abu-polteka rounded-full xl:ml-8 lg:ml-10 md:ml-6 w-full">
                             <div class="xl:ml-8 mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="xl:w-6 lg:w-8 lg:mr-10 xl:mr-0 md:w-8 md:mr-6" viewBox="0 0 1024 1024"><path fill="currentColor" d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2M568 868H456V664h112zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7l23.1 23.1L882 542.3z"/></svg>
                             </div>
@@ -144,7 +144,7 @@
                         </a>
                     </li>
                     <li class="opcion-con-desplegable mt-3">
-                        <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
+                        <a href="{{ route('databarangadminlabfarmasetika') }}" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmasetika
                         </a>
                         <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
@@ -154,83 +154,83 @@
                         </a>
                         <ul class="desplegable ml-[43px] hidden">
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('databarangadminlabfarmasetika') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Data Barang
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangmasukadminlabfarmasetika') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Masuk
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangkeluaradminlabfarmasetika') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Keluar
                             </a>
                             </li>
                         </ul>
                     </li>
                     <li class="opcion-con-desplegable mt-3">
-                        <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
-                            Lab Tek. Farmasetika
+                        <a href="{{ route('databarangadminlabtekfarmasi') }}" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
+                            Lab Tek. Farmasi
                         </a>
                         <ul class="desplegable ml-[43px] hidden">
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('databarangadminlabtekfarmasi') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Data Barang
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangmasukadminlabtekfarmasi') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Masuk
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangkeluaradminlabtekfarmasi') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Keluar
                             </a>
                             </li>
                         </ul>
                     </li>
                     <li class="opcion-con-desplegable mt-3">
-                        <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
+                        <a href="{{ route('databarangadminlabfarmasikimia') }}" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Kimia
                         </a>
                         <ul class="desplegable ml-[43px] hidden">
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('databarangadminlabfarmasikimia') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Data Barang
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangmasukadminlabfarmasikimia') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Masuk
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangkeluaradminlabfarmasikimia') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Keluar
                             </a>
                             </li>
                         </ul>
                     </li>
                     <li class="opcion-con-desplegable mt-3">
-                        <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
+                        <a href="{{ route('databarangadminlabfarmakognosi') }}" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmakognosi
                         </a>
                         <ul class="desplegable ml-[43px] hidden">
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('databarangadminlabfarmakognosi') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Data Barang
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangmasukadminlabfarmakognosi') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Masuk
                             </a>
                             </li>
                             <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
+                            <a href="{{ route('barangkeluaradminlabfarmakognosi') }}" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
                                 Barang Keluar
                             </a>
                             </li>
@@ -249,24 +249,24 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('ubahpasswadir') }}">
+                        <a href="{{ route('ubahpwadminlabfarmasi') }}">
                             <div class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                                 Ubah Password
                             </div>
                         </a>
-                        <a href="{{ route('ubahpasswadir') }}" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                        <a href="{{ route('ubahpwadminlabfarmasi') }}" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
                         <ul>
                             <li>
-                                <a href="{{ route('ubahppwadir') }}">
+                                <a href="{{ route('ubahppadminlabfarmasi') }}">
                                     <div class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5"> 
                                     Ubah Gambar Profil 
                                     </div>
                                 </a>
-                                <a href="{{ route('ubahppwadir') }}" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                                <a href="{{ route('ubahppadminlabfarmasi') }}" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                                     <div class="xl:ml-8 mb-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                                     </div>

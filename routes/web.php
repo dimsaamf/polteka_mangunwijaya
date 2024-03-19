@@ -89,25 +89,86 @@ Route::get('/ubahppadminlabfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
 })->name('ubahppadminlabfarmasi');
 
+// lab tek farmasi
 Route::get('/databarangadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.databarang');
-})->name('/databarangadminlabtekfarmasi');
+})->name('databarangadminlabtekfarmasi');
 
 Route::get('/barangmasukadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangmasuk');
-})->name('/barangmasukadminlabtekfarmasi');
+})->name('barangmasukadminlabtekfarmasi');
 
 Route::get('/barangkeluaradminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangkeluar');
-})->name('/barangkeluaradminlabtekfarmasi');
+})->name('barangkeluaradminlabtekfarmasi');
 
 Route::get('/tambahbarangadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.tambahbarang');
-})->name('/tambahbarangadminlabtekfarmasi');
+})->name('tambahbarangadminlabtekfarmasi');
 
 Route::get('/ubahbarangadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.ubahbarang');
-})->name('/ubahbarangadminlabtekfarmasi');
+})->name('ubahbarangadminlabtekfarmasi');
+
+Route::get('/databarangadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang');
+})->name('databarangadminlabfarmakognosi');
+
+Route::get('/barangmasukadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangmasuk');
+})->name('barangmasukadminlabfarmakognosi');
+
+Route::get('/barangkeluaradminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangkeluar');
+})->name('barangkeluaradminlabfarmakognosi');
+
+Route::get('/tambahbarangadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.tambahbarang');
+})->name('tambahbarangadminlabfarmakognosi');
+
+Route::get('/ubahbarangadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang');
+})->name('ubahbarangadminlabfarmakognosi');
+
+Route::get('/databarangadminlabfarmasetika', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.databarang');
+})->name('databarangadminlabfarmasetika');
+
+Route::get('/barangmasukadminlabfarmasetika', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.barangmasuk');
+})->name('barangmasukadminlabfarmasetika');
+
+Route::get('/barangkeluaradminlabfarmasetika', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.barangkeluar');
+})->name('barangkeluaradminlabfarmasetika');
+
+Route::get('/tambahbarangadminlabfarmasetika', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.tambahbarang');
+})->name('tambahbarangadminlabfarmasetika');
+
+Route::get('/ubahbarangadminlabfarmasetika', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.ubahbarang');
+})->name('ubahbarangadminlabfarmasetika');
+
+Route::get('/databarangadminlabfarmasikimia', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.databarang');
+})->name('databarangadminlabfarmasikimia');
+
+Route::get('/barangmasukadminlabfarmasikimia', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.barangmasuk');
+})->name('barangmasukadminlabfarmasikimia');
+
+Route::get('/barangkeluaradminlabfarmasikimia', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.barangkeluar');
+})->name('barangkeluaradminlabfarmasikimia');
+
+Route::get('/tambahbarangadminlabfarmasikimia', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.tambahbarang');
+})->name('tambahbarangadminlabfarmasikimia');
+
+Route::get('/ubahbarangadminlabfarmasikimia', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.ubahbarang');
+})->name('ubahbarangadminlabfarmasikimia');
 
 Route::get('/notfound', function () {
     return view('notfound');
