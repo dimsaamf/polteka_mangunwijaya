@@ -33,38 +33,117 @@
                     </a>
                 </li>
                 <li class="menu__devider my-6"></li>
-                <li>
-                    <a href="{{ route('pengajuanwadir') }}" class="flex hover:font-bold">
+                <li Class="opcion-con-desplegable">
+                    <a href="#" class="flex hover:font-bold">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
                         </div>
                         <div class="ml-3 mt-1">
-                            Pengajuan Barang
+                            Lab Farmasetika
                         </div>
                     </a>
+                    <ul class="desplegable hidden mt-3 ml-10">
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Data Barang
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Keluar
+                                </a>
+                            </li>
+                        </ul>
                 </li>
                 <li class="menu__devider my-6"></li>
-                <li>
-                    <a href="{{ route('laporanlabwadir') }}" class="flex hover:font-bold">
+                <li Class="opcion-con-desplegable">
+                    <a href="#" class="flex hover:font-bold">
                         <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="currentColor" d="m16 11.78l4.24-7.33l1.73 1l-5.23 9.05l-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
                         </div>
                         <div class="ml-3 mt-1">
-                            Laporan Laboratorium
+                            Lab Tek. Farmasetika
                         </div>
                     </a>
+                    <ul class="desplegable hidden mt-3 ml-10">
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Data Barang
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Keluar
+                                </a>
+                            </li>
+                        </ul>
                 </li>
                 <li class="menu__devider my-6"></li>
-                <li>
-                    <a href="{{ route('laporanprodiwadir') }}" class="flex hover:font-bold">
+                <li Class="opcion-con-desplegable">
+                    <a href="#" class="flex hover:font-bold">
                         <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="currentColor" d="m16 11.78l4.24-7.33l1.73 1l-5.23 9.05l-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
                         </div>
                         <div class="ml-3 mt-1">
-                            Laporan Prodi
+                            Lab Kimia
                         </div>
                     </a>
-                </li> 
+                    <ul class="desplegable hidden mt-3 ml-10">
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Data Barang
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Keluar
+                                </a>
+                            </li>
+                        </ul>
+                </li>
+                <li class="menu__devider my-6"></li>
+                <li Class="opcion-con-desplegable">
+                    <a href="#" class="flex hover:font-bold">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
+                        </div>
+                        <div class="ml-3 mt-1">
+                            Lab Farmakognosi
+                        </div>
+                    </a>
+                    <ul class="desplegable hidden mt-3 ml-10">
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Data Barang
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="#">
+                                    Barang Keluar
+                                </a>
+                            </li>
+                        </ul>
+                </li>
                 <li class="menu__devider my-6"></li>   
                 <li>
                     <a href="{{ route('ubahpasswadir') }}" class="flex hover:font-bold">
@@ -143,7 +222,7 @@
                             <div class="ml-2 mb-3 font-semibold hidden xl:block">Manajemen</div>
                         </a>
                     </li>
-                    <li class="opcion-con-desplegable mt-3">
+                    <li class="opcion-con-desplegable">
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmasetika
                         </a>
@@ -152,87 +231,122 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
-                        <ul class="desplegable ml-[43px] hidden">
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Data Barang
-                            </a>
+                        <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
+                            <li class="block xl:hidden py-2 xl:py-0">
+                                <a href="#" class="font-bold">
+                                    L. Farmasetika
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Masuk
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Data Barang
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Keluar
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Keluar
+                                </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="opcion-con-desplegable mt-3">
+                    <li class="opcion-con-desplegable">
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Tek. Farmasetika
                         </a>
-                        <ul class="desplegable ml-[43px] hidden">
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Data Barang
-                            </a>
+                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                            <div class="xl:ml-8 mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                            </div>
+                        </a>
+                        <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
+                            <li class="block xl:hidden py-2 xl:py-0">
+                                <a href="#" class="font-bold">
+                                    L. Tek. Farmasetika
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Masuk
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Data Barang
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Keluar
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Keluar
+                                </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="opcion-con-desplegable mt-3">
+                    <li class="opcion-con-desplegable">
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Kimia
                         </a>
-                        <ul class="desplegable ml-[43px] hidden">
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Data Barang
-                            </a>
+                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                            <div class="xl:ml-8 mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                            </div>
+                        </a>
+                        <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
+                            <li class="block xl:hidden py-2 xl:py-0">
+                                <a href="#" class="font-bold">
+                                    L. Kimia
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Masuk
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Data Barang
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Keluar
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Keluar
+                                </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="opcion-con-desplegable mt-3">
+                    <li class="opcion-con-desplegable">
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmakognosi
                         </a>
-                        <ul class="desplegable ml-[43px] hidden">
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Data Barang
-                            </a>
+                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                            <div class="xl:ml-8 mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                            </div>
+                        </a>
+                        <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
+                            <li class="block xl:hidden py-2 xl:py-0">
+                                <a href="#" class="font-bold">
+                                    L. Farmakognosi
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Masuk
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Data Barang
+                                </a>
                             </li>
-                            <li>
-                            <a href="#" class="hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full w-full hover:ml-4 py-2 pl-5 block">
-                                Barang Keluar
-                            </a>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Keluar
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -299,29 +413,28 @@
         <!-- BEGIN: JS Assets-->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-    const opcionesConDesplegable = document.querySelectorAll(".opcion-con-desplegable");
+            const opcionesConDesplegable = document.querySelectorAll(".opcion-con-desplegable");
 
-    opcionesConDesplegable.forEach(function (opcion) {
-        const link = opcion.querySelector("a"); // Ambil elemen <a> di dalam setiap opsi
+            opcionesConDesplegable.forEach(function (opcion) {
+                const link = opcion.querySelector("a"); // Ambil elemen <a> di dalam setiap opsi
 
-        // Tambahkan event listener ke setiap opsi
-        opcion.addEventListener("click", function () {
-            const desplegable = opcion.querySelector(".desplegable");
-            const menuText = opcion.querySelector("a"); // Ambil kembali elemen <a>
+                // Tambahkan event listener ke setiap opsi
+                opcion.addEventListener("click", function () {
+                    const desplegable = opcion.querySelector(".desplegable");
+                    const menuText = opcion.querySelector("a"); // Ambil kembali elemen <a>
 
-            // Toggle class "hidden" untuk menampilkan atau menyembunyikan dropdown
-            desplegable.classList.toggle("hidden");
+                    // Toggle class "hidden" untuk menampilkan atau menyembunyikan dropdown
+                    desplegable.classList.toggle("hidden");
 
-            // Toggle style "font-weight" untuk membuat teks menjadi tebal atau normal
-            if (!desplegable.classList.contains("hidden")) {
-                menuText.style.fontWeight = "bold";
-            } else {
-                menuText.style.fontWeight = "normal";
-            }
+                    // Toggle style "font-weight" untuk membuat teks menjadi tebal atau normal
+                    if (!desplegable.classList.contains("hidden")) {
+                        menuText.style.fontWeight = "bold";
+                    } else {
+                        menuText.style.fontWeight = "normal";
+                    }
+                });
+            });
         });
-    });
-});
-
         </script>
        
         <!-- END: JS Assets-->
