@@ -1,4 +1,4 @@
-@extends('roleadminlabfarmasi.layoutadminlab.labfarmakognosi.tambahbarang')
+@extends('rolekoorlabfarmasi.layoutkoorlab.labfarmakognosi.tambahbarang')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -6,12 +6,12 @@
     <section class="w-full mt-2 mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Ubah Barang</div>
+            <div class="text-hitam-polteka">Barang Masuk</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Farmasi</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmasi</div>
             <svg class="my-1.5 text-hitam-polteka" xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Ubah Barang</div>
+            <div class="ml-2  text-hitam-polteka">Barang Masuk</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -22,7 +22,7 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Ubah Barang</h2>
+        <h2 class="text-xl font-medium">Tambah Barang</h2>
         <label class="block mt-4">
             <span class="text-sm font-medium">Nama</span>
             <input type="text" name="text" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
