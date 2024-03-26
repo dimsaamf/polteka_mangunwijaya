@@ -1,4 +1,4 @@
-@extends('roleadminlabfarmasi.layoutadminlab.dashboard')
+@extends('roleadminlabfarmasi.layoutadminlab.labfarmakognosi.databarang')
 @section('content')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
@@ -23,7 +23,12 @@
         <div>
         <h2 class="text-xl font-semibold">Data Barang</h2>
 
-    <div class="flex w-full mt-6">
+        <!-- BEGIN: Data List --> 
+        <div class="flex flex-col mt-3">
+            <div class="-m-1.5 overflow-x-auto">
+                <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                <div class="flex w-full justify-start">
                         <div class ="bg-merah180-polteka w-2/5 h-10 flex justify-start items-center rounded-l-full rounded-r-full">
                             <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                 <div class="relative flex">
@@ -39,7 +44,7 @@
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="2"
-                                stroke="white">
+                                stroke="currentColor">
                                     <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -48,13 +53,7 @@
                             </span>
                         </div>
                     </div>
-
-        <!-- BEGIN: Data List --> 
-        <div class="flex flex-col mt-8">
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="overflow-hidden">
-                    <table class="min-w-full text-sm text-hitam-polteka">
+                    <table class="mt-8 min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
                             <th scope="col" class="px-6 py-3 text-center">Barcode</th>

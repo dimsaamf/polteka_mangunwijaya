@@ -1,4 +1,4 @@
-@extends('roleadminlabfarmasi.layoutadminlab.dashboard')
+@extends('roleadminlabfarmasi.layoutadminlab.labfarmakognosi.barangmasuk')
 @section('content')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
@@ -21,47 +21,46 @@
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
         <h2 class="text-xl font-semibold">Barang Masuk</h2>
-        <div class="flex mt-7">
-        <div class="flex w-1/2 justify-start">
-            <button type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                Tambah Barang
-            </button>
-        </div>
-        <div class="flex w-1/2 justify-end">
-                        <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                            <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
-                                <div class="relative flex">
-                                    <input
-                                        type="search"
-                                        class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
-                                        placeholder="Cari Barang"/>
-                                </div>
-                            </div>
-                            <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="white">
-                                    <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-        </div>
         
-            
-
         <!-- BEGIN: Data List --> 
         <div class="flex flex-col mt-8">
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
-                    <table class="min-w-full text-sm text-hitam-polteka">
+                    <div class="grid grid-cols-2 gap-10 ">
+                        <div class="justify-start">
+                            <button href="#" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                                Tambah Barang
+                            </button>
+                        </div>
+                        <div class="items-end ">
+                            <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
+                                    <div class="relative flex">
+                                        <input
+                                        type="search"
+                                        class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out
+                                         placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                        placeholder="Cari Barang"/>
+                                    </div>
+                                </div>
+                                <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1"
+                                        stroke="white">
+                                            <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="mt-4 min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
                             <th scope="col" class="px-6 py-3 text-center">Barcode</th>
@@ -73,7 +72,7 @@
                             <th scope="col" class="px-6 py-3 text-center">Gambar</th>
                             <th scope="col" class="px-6 py-3 text-center">Ubah Stok</th>
                         </tr>
-                    </thead>
+                    </thead>   
                     <tbody>
                         <tr class="text-center bg-putih-polteka ">
                             <td class="px-6 py-2 whitespace-nowrap rounded-l-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 16 16"><g fill="black"><path d="M2 2h2v2H2z"/><path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/><path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/><path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/><path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/></g></svg></td>
