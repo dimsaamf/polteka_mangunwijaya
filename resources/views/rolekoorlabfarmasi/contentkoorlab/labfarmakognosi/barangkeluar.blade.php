@@ -68,7 +68,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center bg-putih-polteka ">
+                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap rounded-l-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 16 16"><g fill="black"><path d="M2 2h2v2H2z"/><path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/><path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/><path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/><path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/></g></svg></td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>
@@ -79,17 +79,7 @@
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg></td>
                         </tr>
 
-                        <tr class="text-center bg-abu-polteka">
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                        </tr>
-
-                        <tr class="text-center bg-putih-polteka ">
+                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap rounded-l-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 16 16"><g fill="black"><path d="M2 2h2v2H2z"/><path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/><path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/><path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/><path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/></g></svg></td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>

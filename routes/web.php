@@ -293,6 +293,38 @@ Route::get('/tambahpengajuankoorlabtekfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.tambahpengajuan');
 })->name('tambahpengajuankoorlabtekfarmasi');
 
+Route::get('/dashboardadminprodifarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.dashboard');
+})->name('dashboardadminprodifarmasi');
+
+Route::get('/ubahpwadminprodifarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.ubahpassword');
+})->name('ubahpwadminprodifarmasi');
+
+Route::get('/ubahppadminprodifarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.ubahprofil');
+})->name('ubahppadminprodifarmasi');
+
+Route::get('/databarangadminproditekfarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.databarang');
+})->name('databarangadminproditekfarmasi');
+
+Route::get('/barangmasukadminproditekfarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.barangmasuk');
+})->name('barangmasukadminproditekfarmasi');
+
+Route::get('/barangkeluaradminproditekfarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.barangkeluar');
+})->name('barangkeluaradminproditekfarmasi');
+
+Route::get('/tambahbarangadminproditekfarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.tambahbarang');
+})->name('tambahbarangadminproditekfarmasi');
+
+Route::get('/ubahbarangadminproditekfarmasi', function () {
+    return view('roleadminprodifarmasi.contentadminprodi.ubahbarang');
+})->name('ubahbarangadminproditekfarmasi');
+
 Route::get('/notfound', function () {
     return view('notfound');
 });
