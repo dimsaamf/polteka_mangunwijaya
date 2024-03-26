@@ -27,13 +27,13 @@
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
-                    <div class="grid grid-cols-2 gap-10 ">
+                    <div class="grid grid-cols-2 gap-1">
                         <div class="justify-start">
                             <button href="#" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                                 Tambah Barang
                             </button>
                         </div>
-                        <div class="items-end ">
+                        <div class="flex items-center justify-end">
                             <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
                                 <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                     <div class="relative flex">
