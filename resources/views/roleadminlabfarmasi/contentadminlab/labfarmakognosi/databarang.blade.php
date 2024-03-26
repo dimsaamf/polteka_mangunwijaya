@@ -23,12 +23,7 @@
         <div>
         <h2 class="text-xl font-semibold">Data Barang</h2>
 
-        <!-- BEGIN: Data List --> 
-        <div class="flex flex-col mt-3">
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="overflow-hidden">
-                <div class="flex w-full justify-start">
+    <div class="flex w-full mt-6">
                         <div class ="bg-merah180-polteka w-2/5 h-10 flex justify-start items-center rounded-l-full rounded-r-full">
                             <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                 <div class="relative flex">
@@ -44,7 +39,7 @@
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="2"
-                                stroke="currentColor">
+                                stroke="white">
                                     <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -53,7 +48,13 @@
                             </span>
                         </div>
                     </div>
-                    <table class="mt-8 min-w-full text-sm text-hitam-polteka">
+
+        <!-- BEGIN: Data List --> 
+        <div class="flex flex-col mt-8">
+            <div class="-m-1.5 overflow-x-auto">
+                <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                    <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
                             <th scope="col" class="px-6 py-3 text-center">Barcode</th>
@@ -62,6 +63,7 @@
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
                             <th scope="col" class="px-6 py-3 text-center">Harga</th>
                             <th scope="col" class="px-6 py-3 text-center">Gambar</th>
+                            <th scope="col" class="px-6 py-3 text-center">Ubah</th>
                             <th scope="col" class="px-6 py-3 text-center">Hapus</th>
                         </tr>
                     </thead>
@@ -73,6 +75,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
+                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg></td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg></td>
                         </tr>
 
@@ -86,13 +89,14 @@
                             <td class="px-6 py-1 whitespace-nowrap"></td>
                         </tr>
 
-                        <tr class="text-center bg-putih-polteka">
+                        <tr class="text-center bg-putih-polteka ">
                             <td class="px-6 py-2 whitespace-nowrap rounded-l-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 16 16"><g fill="black"><path d="M2 2h2v2H2z"/><path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/><path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/><path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/><path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/></g></svg></td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
+                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg></td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg></td>
                         </tr>
                     </tbody>

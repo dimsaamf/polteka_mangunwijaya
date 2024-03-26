@@ -1,4 +1,4 @@
-@extends('rolekoorlabfarmasi.layoutkoorlab.dashboard')
+@extends('rolekoorlabfarmasi.layoutkoorlab.labfarmakognosi.pengajuan')
 @section('content')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
