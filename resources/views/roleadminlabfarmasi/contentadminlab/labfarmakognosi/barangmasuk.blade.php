@@ -29,9 +29,9 @@
                 <div class="overflow-hidden">
                     <div class="grid grid-cols-2 gap-1">
                         <div class="justify-start">
-                            <button href="#" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            <a href="{{ route('tambahbarangadminlabfarmakognosi')}}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                                 Tambah Barang
-                            </button>
+                            </a>
                         </div>
                         <div class="flex items-center justify-end">
                             <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">

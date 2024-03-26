@@ -67,7 +67,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
                         </div>
                         <div class="ml-3 mt-1">
-                            Lab Tek. Farmasetika
+                            Lab Tek. Farmasi
                         </div>
                     </a>
                     <ul class="desplegable hidden mt-3 ml-10">
@@ -255,7 +255,7 @@
                     </li>
                     <li class="opcion-con-desplegable">
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
-                            Lab Tek. Farmasetika
+                            Lab Tek. Farmasi
                         </a>
                         <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
@@ -265,7 +265,7 @@
                         <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
                             <li class="block xl:hidden py-2 xl:py-0">
                                 <a href="#" class="font-bold">
-                                    L. Tek. Farmasetika
+                                    L. Tek. Farmasi
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
