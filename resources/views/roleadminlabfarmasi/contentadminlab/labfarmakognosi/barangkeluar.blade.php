@@ -1,4 +1,4 @@
-@extends('roleadminlabfarmasi.layoutadminlab.dashboard')
+@extends('roleadminlabfarmasi.layoutadminlab.labfarmakognosi.barangkeluar')
 @section('content')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
@@ -21,7 +21,12 @@
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
         <h2 class="text-xl font-semibold">Barang Keluar</h2>
-        <div class="flex w-full mt-6">
+        <!-- BEGIN: Data List --> 
+        <div class="flex flex-col mt-8">
+            <div class="-m-1.5 overflow-x-auto">
+                <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                    <div class="flex w-full mt-1 mb-5">
                         <div class ="bg-merah180-polteka w-2/5 h-10 flex justify-start items-center rounded-l-full rounded-r-full">
                             <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                 <div class="relative flex">
@@ -46,14 +51,6 @@
                             </span>
                         </div>
                     </div>
-        
-            
-
-        <!-- BEGIN: Data List --> 
-        <div class="flex flex-col mt-8">
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="overflow-hidden">
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
