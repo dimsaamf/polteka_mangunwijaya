@@ -31,7 +31,7 @@
             </div>
             <div class="preview ml-5 mt-5">
                 <div>
-                    <input id="avatar" name="avatar" type="file" class="bg-white rounded-sm p">
+                    <input id="avatar" name="avatar" type="file" class="bg-white rounded-sm w-56">
                 </div>
                 <button type="button" class="inline-flex w-[150px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Ubah Gambar Profil
