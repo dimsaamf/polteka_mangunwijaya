@@ -1,4 +1,4 @@
-@extends('roleadminlabfarmasi.layoutadminlab.dashboard')
+@extends('roleadminlabfarmasi.layoutadminlab.labfarmakognosi.barangmasuk')
 @section('content')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
@@ -21,46 +21,44 @@
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
         <h2 class="text-xl font-semibold">Barang Masuk</h2>
-        <div class="flex mt-7">
-        <div class="flex w-1/2 justify-start">
-            <button type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                Tambah Barang
-            </button>
-        </div>
-        <div class="flex w-1/2 justify-end">
-                        <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                            <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
-                                <div class="relative flex">
-                                    <input
-                                        type="search"
-                                        class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
-                                        placeholder="Cari Barang"/>
-                                </div>
-                            </div>
-                            <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="white">
-                                    <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-        </div>
         
-            
-
         <!-- BEGIN: Data List --> 
         <div class="flex flex-col mt-8">
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
+                <div class="flex">
+                    <div class="flex w-1/2 justify-start mb-3">
+                        <a href="{{ route('tambahbarangadminlabfarmakognosi') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            Tambah Barang
+                        </a>
+                    </div>
+                    <div class="flex w-1/2 justify-end mb-3">
+                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                        <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
+                                            <div class="relative flex">
+                                                <input
+                                                    type="search"
+                                                    class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                                    placeholder="Cari Barang"/>
+                                            </div>
+                                        </div>
+                                        <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
+                                            <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="2"
+                                            stroke="white">
+                                                <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                    </div>
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
@@ -83,7 +81,16 @@
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg></td>
+                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                <!-- Letakkan tautan untuk menampilkan modal di dalam elemen td -->
+                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                    <!-- Gunakan elemen tautan sebagai tempat ikon SVG -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
+                                        <path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/>
+                                        <path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/>
+                                    </svg>
+                                </a>
+                            </td>
                         </tr>
 
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
@@ -102,6 +109,50 @@
                 </div>
             </div>
         </div>
+        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-auto fixed inset-0">
+            <!-- Lapisan latar belakang transparan -->
+            <div class="fixed inset-0 overflow-y-auto flex items-center justify-center z-50">
+                <!-- Lapisan latar belakang transparan -->
+                <div class="fixed inset-0 bg-black opacity-25"></div>
+                <div class="relative bg-white rounded-lg shadow w-[300px] sm:w-[450px] md:w-[500px]">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between py-2"></div>
+                    <div class="flex items-center justify-between px-5 py-1">
+                        <button type="button" class="text-hitam-polteka bg-transparent hover:bg-merah200-polteka hover:text-putih-polteka rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="default-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>                      
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="text-xl font-semibold">
+                            Tambah Stok barang
+                        </h3>                      
+                    </div>
+                    <!-- Modal body -->
+                    <div class="px-8">
+                        <label class="block mt-4">
+                            <span class="text-sm font-medium">Nama</span>
+                            <input type="text" name="text" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                        </label>
+                    </div>
+                    <div class="px-8">
+                        <label class="block mt-4">
+                            <span class="text-sm font-medium">Tanggal Service</span>
+                            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                        </label>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center p-4 md:p-5 mt-4">
+                        <button data-modal-hide="default-modal" type="button" class="inline-flex w-20 justify-center rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
@@ -144,5 +195,59 @@
       </div>
     </footer>
 </div>
+
+<!-- Script -->
+<script>
+    // Ambil tombol toggle modal
+    const modalToggleButtons = document.querySelectorAll('[data-modal-toggle]');
+    
+    // Loop melalui setiap tombol toggle modal
+    modalToggleButtons.forEach(button => {
+        // Tambahkan event listener untuk setiap tombol
+        button.addEventListener('click', () => {
+            // Ambil target modal berdasarkan data-modal-target atribut
+            const modalTarget = document.getElementById(button.dataset.modalTarget);
+            
+            // Periksa apakah target modal ada
+            if (modalTarget) {
+                // Toggle kelas 'hidden' pada modal untuk menampilkan atau menyembunyikan
+                modalTarget.classList.toggle('hidden');
+                
+                // Set atribut aria-hidden berdasarkan status modal
+                modalTarget.setAttribute('aria-hidden', modalTarget.classList.contains('hidden') ? 'true' : 'false');
+                
+                // Atur fokus pada modal jika ditampilkan
+                if (!modalTarget.classList.contains('hidden')) {
+                    modalTarget.focus();
+                }
+            }
+        });
+    });
+    
+    // Ambil tombol-tombol untuk menyembunyikan modal
+    const modalHideButtons = document.querySelectorAll('[data-modal-hide]');
+    
+    // Loop melalui setiap tombol menyembunyikan modal
+    modalHideButtons.forEach(button => {
+        // Tambahkan event listener untuk setiap tombol
+        button.addEventListener('click', () => {
+            // Ambil target modal berdasarkan data-modal-hide atribut
+            const modalTarget = document.getElementById(button.dataset.modalHide);
+            
+            // Periksa apakah target modal ada
+            if (modalTarget) {
+                // Sembunyikan modal dengan menambahkan kelas 'hidden'
+                modalTarget.classList.add('hidden');
+                
+                // Atur atribut aria-hidden ke true
+                modalTarget.setAttribute('aria-hidden', 'true');
+                
+                // Fokus kembali ke tombol toggle modal
+                button.focus();
+            }
+        });
+    });
+</script>
+<!-- Script -->
 
 @endsection
