@@ -82,9 +82,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <!-- Letakkan tautan untuk menampilkan modal di dalam elemen td -->
                                 <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" >
-                                    <!-- Gunakan elemen tautan sebagai tempat ikon SVG -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
                                         <path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/>
                                         <path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/>
@@ -198,51 +196,27 @@
 
 <!-- Script -->
 <script>
-    // Ambil tombol toggle modal
     const modalToggleButtons = document.querySelectorAll('[data-modal-toggle]');
     
-    // Loop melalui setiap tombol toggle modal
     modalToggleButtons.forEach(button => {
-        // Tambahkan event listener untuk setiap tombol
         button.addEventListener('click', () => {
-            // Ambil target modal berdasarkan data-modal-target atribut
             const modalTarget = document.getElementById(button.dataset.modalTarget);
-            
-            // Periksa apakah target modal ada
             if (modalTarget) {
-                // Toggle kelas 'hidden' pada modal untuk menampilkan atau menyembunyikan
                 modalTarget.classList.toggle('hidden');
-                
-                // Set atribut aria-hidden berdasarkan status modal
                 modalTarget.setAttribute('aria-hidden', modalTarget.classList.contains('hidden') ? 'true' : 'false');
-                
-                // Atur fokus pada modal jika ditampilkan
                 if (!modalTarget.classList.contains('hidden')) {
                     modalTarget.focus();
                 }
             }
         });
     });
-    
-    // Ambil tombol-tombol untuk menyembunyikan modal
     const modalHideButtons = document.querySelectorAll('[data-modal-hide]');
-    
-    // Loop melalui setiap tombol menyembunyikan modal
     modalHideButtons.forEach(button => {
-        // Tambahkan event listener untuk setiap tombol
         button.addEventListener('click', () => {
-            // Ambil target modal berdasarkan data-modal-hide atribut
             const modalTarget = document.getElementById(button.dataset.modalHide);
-            
-            // Periksa apakah target modal ada
             if (modalTarget) {
-                // Sembunyikan modal dengan menambahkan kelas 'hidden'
                 modalTarget.classList.add('hidden');
-                
-                // Atur atribut aria-hidden ke true
                 modalTarget.setAttribute('aria-hidden', 'true');
-                
-                // Fokus kembali ke tombol toggle modal
                 button.focus();
             }
         });

@@ -205,11 +205,16 @@
                 <div class="my-7"></div>
                 <ul>
                     <li>
-                        <a href="{{ route('dashboardadminlabfarmasi') }}" class="md:justify-center lg:justify-center xl:justify-start flex pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:xl:ml-10 hover:lg:ml-10 hover:md:ml-6 w-full">
+                        <a href="{{ route('dashboardadminlabfarmasi') }}" class="hidden xl:justify-start xl:flex pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:xl:ml-10 hover:lg:ml-10 hover:md:ml-6 w-full">
                             <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 1024 1024"><path fill="currentColor" d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2M568 868H456V664h112zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7l23.1 23.1L882 542.3z"/></svg>
+                                <svg href="{{ route('dashboardadminlabfarmasi') }}" xmlns="http://www.w3.org/2000/svg" class="xl:w-6 lg:w-8 md:w-8" viewBox="0 0 1024 1024"><path fill="currentColor" d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2M568 868H456V664h112zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7l23.1 23.1L882 542.3z"/></svg>
                             </div>
-                            <div class="ml-2 mb-3 font-semibold hidden xl:block">Dashboard</div>
+                            <div class="ml-2 mb-3 hidden xl:block">Dashboard</div>
+                        </a>
+                        <a href="{{ route('dashboardadminlabfarmasi') }}" class="xl:hidden justify-center hover:justify-start flex hover:pt-2 hover:md:px-4 hover:lg:px-6 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                            <div class="xl:ml-8 mb-3">
+                            <svg href="{{ route('dashboardadminlabfarmasi') }}" xmlns="http://www.w3.org/2000/svg" class="xl:w-6 lg:w-8 md:w-8" viewBox="0 0 1024 1024"><path fill="currentColor" d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2M568 868H456V664h112zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7l23.1 23.1L882 542.3z"/></svg>
+                            </div>
                         </a>
                     </li>
                     <li class="my-6"></li>
@@ -225,9 +230,9 @@
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmasetika
                         </a>
-                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                        <a href="#" class="xl:hidden justify-center hover:justify-start flex hover:mb-2 hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                                <svg  xmlns="http://www.w3.org/2000/svg" class="block xl:hidden md:w-8 " viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
                         <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
@@ -257,9 +262,9 @@
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Tek. Farmasi
                         </a>
-                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                        <a href="#" class="xl:hidden justify-center hover:justify-start flex hover:mb-2 hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                                <svg  xmlns="http://www.w3.org/2000/svg" class="block xl:hidden md:w-8 " viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
                         <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
@@ -289,9 +294,9 @@
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Kimia
                         </a>
-                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                        <a href="#" class="xl:hidden justify-center hover:justify-start flex hover:mb-2 hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                                <svg  xmlns="http://www.w3.org/2000/svg" class="block xl:hidden md:w-8 " viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
                         <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
@@ -317,21 +322,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="opcion-con-desplegable">
-                        <a href="#" class="hidden xl:block ml-8 mb-3 font-bold">
+                    <li class="hidden xl:block">
+                        <a href="#" class="ml-8 mb-3 font-bold">
                             Lab Farmakognosi
                         </a>
-                        <a href="#" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
-                            <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
-                            </div>
-                        </a>
-                        <ul class="desplegable xl:ml-[43px] mt-3 md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
-                            <li class="block xl:hidden py-2 xl:py-0">
-                                <a href="#" class="font-bold">
-                                    L. Farmakognosi
-                                </a>
-                            </li>
+                        <ul class=" xl:ml-[43px] mt-3 md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
                             <li class="py-2 xl:py-0">
                                 <a href="{{ route('databarangadminlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Data Barang
@@ -344,6 +339,35 @@
                             </li>
                             <li class="py-2 xl:py-0">
                                 <a href="{{ route('barangkeluaradminlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                    Barang Keluar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="block xl:hidden opcion-con-desplegable ">
+                        <a href="#" class="xl:hidden justify-start flex mb-2 pt-2 md:px-5 lg:px-7 text-hitam-polteka bg-abu-polteka rounded-full md:ml-6 lg:ml-10 w-full">
+                            <div class="xl:ml-8 mb-3">
+                                <svg  xmlns="http://www.w3.org/2000/svg" class="block xl:hidden md:w-8 " viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                            </div>
+                        </a>
+                        <ul class="hidden desplegable mt-3 absolute left-5 border w-40 bg-merah200-polteka rounded text-center">
+                            <li class="py-2 xl:py-0">
+                                <a href="#" class="font-bold">
+                                    L. Farmakognosi
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="{{ route('databarangadminlabfarmakognosi') }}" class=" w-[500px]">
+                                    Data Barang
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="{{ route('barangmasukadminlabfarmakognosi') }}" class="w-[500px] mb-0 mt-0 font-bold">
+                                    Barang Masuk
+                                </a>
+                            </li>
+                            <li class="py-2 xl:py-0">
+                                <a href="{{ route('barangkeluaradminlabfarmakognosi') }}" class="w-[500px]">
                                     Barang Keluar
                                 </a>
                             </li>
@@ -367,9 +391,9 @@
                                 Ubah Password
                             </div>
                         </a>
-                        <a href="{{ route('ubahpwadminlabfarmasi') }}" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                        <a href="{{ route('ubahpwadminlabfarmasi') }}" class="xl:hidden justify-center hover:justify-start flex hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:mb-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
                         <ul>
@@ -379,9 +403,9 @@
                                     Ubah Gambar Profil 
                                     </div>
                                 </a>
-                                <a href="{{ route('ubahppadminlabfarmasi') }}" class="xl:hidden md:justify-center lg:justify-center xl:justify-start flex hover:pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                                <a href="{{ route('ubahppadminlabfarmasi') }}" class="xl:hidden justify-center hover:justify-start flex hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                                     <div class="xl:ml-8 mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 hover:md:mr-6 hover:lg:mr-10 hover:xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                                     </div>
                                 </a>
                             </li>
@@ -415,17 +439,14 @@
             const opcionesConDesplegable = document.querySelectorAll(".opcion-con-desplegable");
 
             opcionesConDesplegable.forEach(function (opcion) {
-                const link = opcion.querySelector("a"); // Ambil elemen <a> di dalam setiap opsi
+                const link = opcion.querySelector("a");
 
-                // Tambahkan event listener ke setiap opsi
                 opcion.addEventListener("click", function () {
                     const desplegable = opcion.querySelector(".desplegable");
-                    const menuText = opcion.querySelector("a"); // Ambil kembali elemen <a>
+                    const menuText = opcion.querySelector("a");
 
-                    // Toggle class "hidden" untuk menampilkan atau menyembunyikan dropdown
                     desplegable.classList.toggle("hidden");
 
-                    // Toggle style "font-weight" untuk membuat teks menjadi tebal atau normal
                     if (!desplegable.classList.contains("hidden")) {
                         menuText.style.fontWeight = "bold";
                     } else {

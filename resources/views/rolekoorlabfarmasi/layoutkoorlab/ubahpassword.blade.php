@@ -456,17 +456,14 @@
             const opcionesConDesplegable = document.querySelectorAll(".opcion-con-desplegable");
 
             opcionesConDesplegable.forEach(function (opcion) {
-                const link = opcion.querySelector("a"); // Ambil elemen <a> di dalam setiap opsi
+                const link = opcion.querySelector("a");
 
-                // Tambahkan event listener ke setiap opsi
                 opcion.addEventListener("click", function () {
                     const desplegable = opcion.querySelector(".desplegable");
-                    const menuText = opcion.querySelector("a"); // Ambil kembali elemen <a>
+                    const menuText = opcion.querySelector("a");
 
-                    // Toggle class "hidden" untuk menampilkan atau menyembunyikan dropdown
                     desplegable.classList.toggle("hidden");
 
-                    // Toggle style "font-weight" untuk membuat teks menjadi tebal atau normal
                     if (!desplegable.classList.contains("hidden")) {
                         menuText.style.fontWeight = "bold";
                     } else {

@@ -73,7 +73,14 @@
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg></td>
+                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
+                                        <path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/>
+                                        <path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/>
+                                    </svg>
+                                </a>
+                            </td>
                         </tr>
 
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
@@ -89,6 +96,49 @@
                     </tbody>
                     </table>
                 </div>
+                </div>
+            </div>
+        </div>
+        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-auto fixed inset-0">
+            <!-- Lapisan latar belakang transparan -->
+            <div class="fixed inset-0 overflow-y-auto flex items-center justify-center z-50">
+                <!-- Lapisan latar belakang transparan -->
+                <div class="fixed inset-0 bg-black opacity-25"></div>
+                <div class="relative bg-white rounded-lg shadow w-[300px] sm:w-[450px] md:w-[500px]">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between py-2"></div>
+                    <div class="flex items-center justify-between px-5 py-1">
+                        <button type="button" class="text-hitam-polteka bg-transparent hover:bg-merah200-polteka hover:text-putih-polteka rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="default-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>                      
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <h3 class="text-xl font-semibold">
+                            Kurangi Stok barang
+                        </h3>                      
+                    </div>
+                    <!-- Modal body -->
+                    <div class="px-8">
+                        <label class="block mt-4">
+                            <span class="text-sm font-medium">Nama</span>
+                            <input type="text" name="text" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                        </label>
+                    </div>
+                    <div class="px-8">
+                        <label class="block mt-4">
+                            <span class="text-sm font-medium">Tanggal Service</span>
+                            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                        </label>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center p-4 md:p-5 mt-4">
+                        <button data-modal-hide="default-modal" type="button" class="inline-flex w-20 justify-center rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            Submit
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,5 +184,35 @@
       </div>
     </footer>
 </div>
+
+<!-- Script -->
+<script>
+    const modalToggleButtons = document.querySelectorAll('[data-modal-toggle]');
+    
+    modalToggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalTarget = document.getElementById(button.dataset.modalTarget);
+            if (modalTarget) {
+                modalTarget.classList.toggle('hidden');
+                modalTarget.setAttribute('aria-hidden', modalTarget.classList.contains('hidden') ? 'true' : 'false');
+                if (!modalTarget.classList.contains('hidden')) {
+                    modalTarget.focus();
+                }
+            }
+        });
+    });
+    const modalHideButtons = document.querySelectorAll('[data-modal-hide]');
+    modalHideButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalTarget = document.getElementById(button.dataset.modalHide);
+            if (modalTarget) {
+                modalTarget.classList.add('hidden');
+                modalTarget.setAttribute('aria-hidden', 'true');
+                button.focus();
+            }
+        });
+    });
+</script>
+<!-- Script -->
 
 @endsection

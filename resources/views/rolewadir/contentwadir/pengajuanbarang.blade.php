@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center bg-putih-polteka ">
+                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
@@ -69,17 +69,7 @@
                             </td>
                         </tr>
 
-                        <tr class="text-center bg-abu-polteka">
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                        </tr>
-
-                        <tr class="text-center bg-putih-polteka">
+                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
                             <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
