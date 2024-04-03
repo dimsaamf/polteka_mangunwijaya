@@ -305,25 +305,25 @@ Route::get('/ubahppadminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.ubahprofil');
 })->name('ubahppadminprodifarmasi');
 
-Route::get('/databarangadminproditekfarmasi', function () {
+Route::get('/databarangadminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.databarang');
-})->name('databarangadminproditekfarmasi');
+})->name('databarangadminprodifarmasi');
 
-Route::get('/barangmasukadminproditekfarmasi', function () {
+Route::get('/barangmasukadminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.barangmasuk');
-})->name('barangmasukadminproditekfarmasi');
+})->name('barangmasukadminprodifarmasi');
 
-Route::get('/barangkeluaradminproditekfarmasi', function () {
+Route::get('/barangkeluaradminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.barangkeluar');
-})->name('barangkeluaradminproditekfarmasi');
+})->name('barangkeluaradminprodifarmasi');
 
-Route::get('/tambahbarangadminproditekfarmasi', function () {
+Route::get('/tambahbarangadminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.tambahbarang');
-})->name('tambahbarangadminproditekfarmasi');
+})->name('tambahbarangadminprodifarmasi');
 
-Route::get('/ubahbarangadminproditekfarmasi', function () {
+Route::get('/ubahbarangadminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.ubahbarang');
-})->name('ubahbarangadminproditekfarmasi');
+})->name('ubahbarangadminprodifarmasi');
 
 Route::get('/notfound', function () {
     return view('notfound');
