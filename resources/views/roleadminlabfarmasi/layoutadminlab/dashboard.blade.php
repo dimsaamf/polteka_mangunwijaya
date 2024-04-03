@@ -6,7 +6,7 @@
         <link href="logo.png" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
-        <title>Dashboard Admin Laboratorium Farmasi</title>
+        <title>Dashboard Admin Laboratorium Prodi Farmasi</title>
     </head>
     <!-- END: Head -->
     <body class="py-5 bg-merah200-polteka text-putih-polteka font-polteka">

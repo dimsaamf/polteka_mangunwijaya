@@ -4,12 +4,12 @@
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
-        <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
+        <div class="flex md:hidden my-4 w-1/2 justify-start text-sm"> 
             <div class="text-hitam-polteka">Data Barang</div>
         </div> 
-        <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-lg">
+        <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmakognosi</div>
-            <svg class="my-1.5 text-hitam-polteka" xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
+            <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Data Barang</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
@@ -23,7 +23,12 @@
         <div>
         <h2 class="text-xl font-semibold">Data Barang</h2>
 
-    <div class="flex w-full mt-6">
+        <!-- BEGIN: Data List --> 
+        <div class="flex flex-col mt-3">
+            <div class="-m-1.5 overflow-x-auto">
+                <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                <div class="flex w-full justify-start">
                         <div class ="bg-merah180-polteka w-2/5 h-10 flex justify-start items-center rounded-l-full rounded-r-full">
                             <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                 <div class="relative flex">
@@ -39,7 +44,7 @@
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="2"
-                                stroke="white">
+                                stroke="currentColor">
                                     <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -48,15 +53,9 @@
                             </span>
                         </div>
                     </div>
-
-        <!-- BEGIN: Data List --> 
-        <div class="flex flex-col mt-8">
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="overflow-hidden">
-                    <table class="min-w-full text-sm text-hitam-polteka">
+                    <table class="mt-8 min-w-full text-sm text-hitam-polteka">
                     <thead>
-                        <tr >
+                    <tr >
                             <th scope="col" class="px-6 py-3 text-center">Barcode</th>
                             <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
@@ -75,7 +74,11 @@
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">0000</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg></td>
+                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                <a href="{{ route('ubahbarangkoorlabfarmakognosi') }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
+                                </a>
+                            </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg></td>
                         </tr>
 
@@ -128,7 +131,7 @@
             </ul>
         </div>
         <!-- END: Pagination -->
-    </section>  
+    </section> 
 
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 md:mt-44 lg:mt-56 mb-6 text-center">
