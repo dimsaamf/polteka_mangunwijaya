@@ -6,12 +6,12 @@
     <section class="w-full mt-2 mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Manajemen Pengguna</div>
+            <div class="text-hitam-polteka">Edit Pengguna</div>
         </div> 
-        <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-lg">
+        <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Superadmin</div>
-            <svg class="my-1.5 text-hitam-polteka" xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Manajemen Pengguna</div>
+            <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
+            <div class="ml-2  text-hitam-polteka">Edit Pengguna</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -42,22 +42,23 @@
         <label class="block mt-4">
             <span class="text-sm font-medium">Role</span>
             <div class="group">
-                    <button type="button" class="inline-flex w-full justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        Role Pengguna
-                        <!-- Dropdown arrow -->
-                        <svg class="w-4 h-4 ml-2 -mr-1 justify-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div
-                        class="absolute w-[1320px] mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
-                        <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Data Barang</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Masuk</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Keluar</a>
-                        </div>
+                <button type="button" class="inline-flex w-full justify-between mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    Role Pengguna
+                    <!-- Dropdown arrow -->
+                    <svg class="w-4 h-4 ml-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
+                    </svg>
+                </button>
+                <!-- Dropdown menu -->
+                <div class="absolute w-[130px] mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+                    <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Wakil Direktur</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Superadmin</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Lab</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Prodi</a>
                     </div>
+                </div>
+            </div>
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Foto</span>
