@@ -25,7 +25,7 @@
         <div class="justify-start mt-5">
             <a href="{{ route('tambahpengajuankoorlabfarmakognosi') }}" class="w-[170px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Tambah Pengajuan
-</a>
+            </a>
         </div>
 
         <!-- BEGIN: Data List --> 
@@ -53,25 +53,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp 000.000</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <div class="group">
-                                    <button type="button" class="inline-flex w-[98px] justify-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka hover:bg-merah180-polteka">
-                                        Status
-                                        <!-- Dropdown arrow -->
-                                            <svg class="h-5 ml-[2px] -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                                            </svg>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    <div class="absolute lg:right-16 xl:right-20 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
-                                        <div class="py-1">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Disetujui</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditunda</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditolak</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">Disetujui</td>
                         </tr>
 
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
@@ -81,25 +63,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp 000.000</td>
                             <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <div class="group">
-                                    <button type="button" class="inline-flex w-[98px] justify-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka hover:bg-merah180-polteka">
-                                        Status
-                                        <!-- Dropdown arrow -->
-                                            <svg class="h-5 ml-[2px] -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                                            </svg>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    <div class="absolute right-14 lg:right-16 xl:right-20 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
-                                        <div class="py-1">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Disetujui</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditunda</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditolak</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">Ditunda</td>
                         </tr>
                     </tbody>
                     </table>
