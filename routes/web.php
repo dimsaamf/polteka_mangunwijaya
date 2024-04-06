@@ -23,7 +23,7 @@ Route::get('/login', function () {
 
 Route::get('/dashboardwadir', function () {
     return view('rolewadir.contentwadir.dashboard');
-})->name('dashboard');
+})->name('dashboardwadir');
 
 Route::get('/laporanlabwadir', function () {
     return view('rolewadir.contentwadir.laporanlab');
