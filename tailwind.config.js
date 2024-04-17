@@ -16,6 +16,7 @@ export default {
         'hitam-polteka': '#000000', 
         'putih-polteka': '#FFFFFF', 
         'abu-polteka': '#F3F3F4', 
+        'kuning-polteka': '#E8C613',
       },
       fontFamily: {
         'polteka': ['Rubik'],

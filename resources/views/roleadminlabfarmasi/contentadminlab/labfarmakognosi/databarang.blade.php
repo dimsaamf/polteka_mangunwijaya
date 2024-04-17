@@ -131,6 +131,70 @@
             </ul>
         </div>
         <!-- END: Pagination -->
+        <div id="popup-modal" tabindex="-1" class="flex fixed top-24 right-0 lg:right-10 z-10 w-full h-full lg:justify-end justify-center items-start">
+            <div class="relative p-4  md:w-3/5 lg:w-2/5 pointer-events-auto">
+                <div class="relative rounded-lg shadow bg-kuning-polteka">
+                    <div class="grid grid-cols-7 gap-1">
+                        <div class="py-3 flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 xl:w-6 xl:h-6" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M6.285 1.975C7.06.68 8.939.68 9.715 1.975l5.993 9.997c.799 1.333-.161 3.028-1.716 3.028H2.008C.453 15-.507 13.305.292 11.972zM8 5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5m1 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="col-span-4 grid grid-rows-2 gap-[1px] py-3 flex justify-start text-[11px] xl:text-sm items-center text-putih-polteka">
+                                <p class="font-semibold mr-1">Perhatian!<span class="font-normal"> Stok alat hampir habis! </span></p> 
+                                Mohon segera diperbarui!
+                        </div>
+                        <div class="col-span-2 py-3 flex justify-center items-center">
+                            <button data-modal-hide="popup-modal" type="button" class="text-putih-polteka inline-flex text-[9px] xl:text-sm font-semibold items-center px-5 py-2.5 text-center">
+                                LIHAT DETAIL
+                            </button>
+                            
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        <div id="popup-modal1" tabindex="-1" class="flex fixed top-44 right-0 lg:right-10 z-10 w-full h-full lg:justify-end justify-center items-start">
+            <div class="relative p-4  md:w-3/5 lg:w-2/5 pointer-events-auto">
+                <div class="relative rounded-lg shadow bg-kuning-polteka">
+                    <div class="grid grid-cols-7 gap-1">
+                        <div class="py-3 flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 xl:w-6 xl:h-6" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M6.285 1.975C7.06.68 8.939.68 9.715 1.975l5.993 9.997c.799 1.333-.161 3.028-1.716 3.028H2.008C.453 15-.507 13.305.292 11.972zM8 5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5m1 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="col-span-4 grid grid-rows-2 gap-[1px] py-3 flex justify-start text-[11px] xl:text-sm items-center text-putih-polteka">
+                                <p class="font-semibold mr-1">Perhatian!<span class="font-normal"> Stok bahan hampir habis! </span></p> 
+                                Mohon segera diperbarui!
+                        </div>
+                        <div class="col-span-2 py-3 flex justify-center items-center">
+                            <button data-modal-hide="popup-modal1" type="button" class="text-putih-polteka inline-flex text-[9px] xl:text-sm font-semibold items-center px-5 py-2.5 text-center">
+                                LIHAT DETAIL
+                            </button>
+                            
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        <div id="popup-modal2" tabindex="-1" class="flex fixed top-64 right-0 lg:right-10 z-10 w-full h-full lg:justify-end justify-center items-start">
+            <div class="relative p-4  md:w-3/5 lg:w-2/5 pointer-events-auto">
+                <div class="relative rounded-lg shadow bg-kuning-polteka">
+                    <div class="grid grid-cols-7 gap-1">
+                        <div class="py-3 flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 xl:w-6 xl:h-6" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M6.285 1.975C7.06.68 8.939.68 9.715 1.975l5.993 9.997c.799 1.333-.161 3.028-1.716 3.028H2.008C.453 15-.507 13.305.292 11.972zM8 5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5m1 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div class="col-span-4 gap-[1px] py-3 flex justify-start text-[11px] xl:text-sm items-center text-putih-polteka">
+                                <p class="font-semibold mr-1">Perhatian!<span class="font-normal"> Stok alat hampir habis! </span></p> 
+                        </div>
+                        <div class="col-span-2 py-3 flex justify-center items-center">
+                            <button data-modal-hide="popup-modal2" type="button" class="text-putih-polteka inline-flex text-[9px] xl:text-sm font-semibold items-center px-5 py-2.5 text-center">
+                                LIHAT DETAIL
+                            </button>
+                            
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
     </section>  
 
     <!-- COPYRIGHT -->
@@ -141,4 +205,29 @@
     </footer>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("popup-modal").classList.remove("hidden");
+
+        document.querySelector("[data-modal-hide='popup-modal']").addEventListener("click", function() {
+            document.getElementById("popup-modal").classList.add("hidden");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("popup-modal1").classList.remove("hidden");
+
+        document.querySelector("[data-modal-hide='popup-modal1']").addEventListener("click", function() {
+            document.getElementById("popup-modal1").classList.add("hidden");
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("popup-modal2").classList.remove("hidden");
+
+        document.querySelector("[data-modal-hide='popup-modal2']").addEventListener("click", function() {
+            document.getElementById("popup-modal2").classList.add("hidden");
+        });
+    });
+</script>
 @endsection

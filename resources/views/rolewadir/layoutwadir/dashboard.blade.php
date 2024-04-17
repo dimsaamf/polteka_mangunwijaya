@@ -252,10 +252,10 @@
             @yield('content')
             <!-- END: Content -->
         </div>
-
+        <!-- Modal Notif -->
         <div id="modal" class="fixed z-10 inset-0 hidden">
-            <div class="flex mr-16 mt-24 justify-end">
-                <div class="bg-white w-[285px] p-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+            <div class="flex mr-24 mt-24 justify-end">
+                <div class="bg-putih-polteka w-[285px] p-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
                     <div class="w-full flex  text-black">
                         <div class="w-1/2 flex justify-start">
                             <h2 class="text-xl font-semibold" id="modal-title">Notifikasi</h2>
@@ -297,7 +297,27 @@
                 </div>
             </div>
         </div>
-        
+        <!-- Modal Profile -->
+        <div id="modal2" class="fixed z-10 inset-0 hidden">
+            <div class="flex mr-16 mt-24 justify-end">
+                <div class="bg-merah200-polteka w-[285px] p-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                    <div class="w-full flex  text-putih-polteka">
+                        <div class="w-1/2 flex justify-start">
+                            <h2 class="text-md font-semibold">Wakil Direktur</h2>
+                        </div>
+                        <div class="w-1/2 flex justify-end">
+                            <button id="close-modal-btn2" type="button">X</button>
+                        </div>
+                    </div>
+                    <div class="w-full flex  text-putih-polteka">
+                        <div class="w-1/2 flex justify-start">
+                            <h2 class="text-sm">wakil@gmail.com</h2>
+                        </div>
+                    </div>
+                    <hr class="mt-4 border-b border-abu-polteka w-full" />
+                </div>
+            </div>
+        </div>
         <!-- BEGIN: JS Assets-->
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
@@ -305,14 +325,31 @@
         <script type="module" src="script.js"></script>
         <script>
             document.getElementById("open-modal-btn").addEventListener("click", function() {
-            document.getElementById("modal").classList.remove("hidden");
+                document.getElementById("modal").classList.remove("hidden");
+                document.querySelector(".icon-container").classList.add("active");
             });
-
             document.getElementById("close-modal-btn").addEventListener("click", function() {
-            document.getElementById("modal").classList.add("hidden");
+                document.getElementById("modal").classList.add("hidden");
+                document.querySelector(".icon-container").classList.remove("active");
             });
+            window.onload = function() {
+                document.getElementById("modal").classList.add("hidden");
+                document.querySelector(".icon-container").classList.remove("active");
+            };
+
+            document.getElementById("open-modal-btn2").addEventListener("click", function() {
+                document.getElementById("modal2").classList.remove("hidden");
+                document.querySelector(".icon-container-prof").classList.add("active");
+            });
+            document.getElementById("close-modal-btn2").addEventListener("click", function() {
+                document.getElementById("modal2").classList.add("hidden");
+                document.querySelector(".icon-container-prof").classList.remove("active");
+            });
+            window.onload = function() {
+                document.getElementById("modal2").classList.add("hidden");
+                document.querySelector(".icon-container-prof").classList.remove("active");
+            };
         </script>
-       
         <!-- END: JS Assets-->
     </body>
 </html>
