@@ -73,7 +73,7 @@
                 </li>
                 <li class="menu__devider my-6"></li>
                 <li>
-                    <a href="{{ route('login') }}" class="flex hover:font-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <a href="#" class="flex hover:font-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mt-6 w-7">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                         </svg>
@@ -165,7 +165,7 @@
                                     Ubah Gambar Profil 
                                     </div>
                                 </a>
-                                <a href="{{ route('ubahpwsuperadmin') }}" class="xl:hidden justify-center hover:justify-start flex hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                                <a href="{{ route('ubahppsuperadmin') }}" class="xl:hidden justify-center hover:justify-start flex hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                                     <div class="xl:ml-8 mb-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                                     </div>
@@ -175,17 +175,17 @@
                     </li>
                     <li class="my-8"></li>
                     <li>
-                        <a href="{{ route('login') }}" class="md:justify-center lg:justify-center xl:justify-start flex">
-                            <div class="xl:ml-8 mb-3">
+                        <a href="#" class="md:justify-center lg:justify-center xl:justify-start flex">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                            <button type="submit" class="xl:ml-8 mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="xl:w-6 xl:h-6 w-8 h-8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                                 </svg>
-                            </div>
+                            </button>
                             <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                        </form>
                         </a>
-                        <!-- <form id="logout-form" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
                     </li>
                 </ul>
             </nav>
@@ -195,4 +195,5 @@
             <!-- END: Content -->
         </div>
     </body>
+    
 </html>

@@ -40,14 +40,14 @@
                                 Masukkan email dan password Anda!
                             </div>
                             <hr class="hidden xl:block lg:block border-1 w-full border-biru160-polteka border-opacity-50">
-                            <form method="POST" action="#">
+                            <form method="post" action="{{ route('login') }}">
                                 @csrf
                                 <div class="xl:mt-3 xl:px-0 lg:mt-3 lg:px-0 mt-3 px-10">
                                     <div class="xl:mt-2 xl:text-sm xl:mb-1 lg:mt-2 lg:text-sm lg:mb-1 text-lg text-biru160-polteka font-polteka">
                                         Username*
                                     </div>
-                                    <input type="username" name="username" class="xl:placeholder-sm lg:placeholder-sm placeholder-lg placeholder-biru160-polteka placeholder-opacity-50 xl:text-sm lg:text-sm text-lg text-biru160-polteka xl:py-2 xl:px-4 xl:w-full xl:rounded-xl lg:py-2 lg:px-4 lg:w-full lg:rounded-xl py-2 w-full px-3 rounded-xl block form-control border border-biru160-polteka @error('username') is-invalid @enderror" placeholder="Username" required autocomplete="username" autofocus>
-                                        @error('username')
+                                    <input value="{{old('name')}}" type="name" name="name" class="xl:placeholder-sm lg:placeholder-sm placeholder-lg placeholder-biru160-polteka placeholder-opacity-50 xl:text-sm lg:text-sm text-lg text-biru160-polteka xl:py-2 xl:px-4 xl:w-full xl:rounded-xl lg:py-2 lg:px-4 lg:w-full lg:rounded-xl py-2 w-full px-3 rounded-xl block form-control border border-biru160-polteka @error('username') is-invalid @enderror" placeholder="Username" required autocomplete="username" autofocus>
+                                        @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -63,8 +63,13 @@
                                         @enderror
                                 </div>
                                 <div class="xl:mt-8 xl:text-left xl:px-0 lg:mt-8 lg:text-left lg:px-0 px-10 mt-7">
-                                    <button href="{{ route('dashboard') }}" class="xl:text-xs lg:text-sm text-lg text-putih-polteka font-bold text-polteka rounded-xl w-full  bg-biru160-polteka xl:py-2 xl:px-4 lg:py-2 lg:px-4 py-1" href="#" type="submit">Masuk</button>
+                                    <button class="xl:text-xs lg:text-sm text-lg text-putih-polteka font-bold text-polteka rounded-xl w-full  bg-biru160-polteka xl:py-2 xl:px-4 lg:py-2 lg:px-4 py-1" href="#" type="submit">{{ __('Masuk') }}</button>
                                 </div>
+                                @if ($errors->any())
+                                    <div class="text-red-500 font-semibold mt-4 text-sm text-center xl:px-0 lg:px-0 px-10">
+                                        {{ $errors->first() }}
+                                    </div>
+                                @endif
                             </form>
                         </div>
                         <div class="xl:mt-24 xl:text-[12px] xl:mx-auto xl:text-center xl:mb-0 xl:px-0 lg:mt-24 lg:text-[12px] lg:mx-auto lg:text-center lg:mb-0 lg:px-0 mt-14 text-xs text-center mb-10 px-10 text-biru160-polteka font-polteka">

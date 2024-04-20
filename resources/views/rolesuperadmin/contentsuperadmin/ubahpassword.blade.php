@@ -22,19 +22,28 @@
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Ubah Password</h2>
+        @if(count($errors))
+                                @foreach ($errors->all() as $error)
+                                <p class="alert alert-danger alert-dismissible fade show"> {{$error}}</p>
+                                @endforeach
+
+                            @endif
+
+                            <form method="POST" action="{{ route ('update.password') }}">
+                                @csrf
         <label class="block mt-4">
             <span class="text-sm font-medium">Password Lama</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="password" name="oldpassword" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>   
         <label class="block mt-4">
             <span class="text-sm font-medium">Password Baru</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="password" name="newpassword" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Ulangi Password Baru</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="password" name="confirm_password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>  
-            <button type="button" class="inline-flex w-[130px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            <button type="submit" class="inline-flex w-[130px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Ubah Password
             </button>  
     </section>

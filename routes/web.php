@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ManajemenUserController;
+use App\Http\Controllers\DashboardWadirController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +17,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', [SesiController::class, 'index'])->name("login");
+Route::post('/login', [SesiController::class, 'login']);
+Route::post('/logout',[SesiController::class, 'logout'])->name("logout");
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+
+    Route::middleware(['auth', 'user.role:superadmin'])->group(function (){
+        Route::get('/superadmin/manajemenuser',[ManajemenUserController::class, 'index'])->name('manajemensuperadmin');
+        Route::get('/superadmin/tambahpengguna',[ManajemenUserController::class, 'create'])->name('tambahpenggunasuperadmin');
+        Route::post('/superadmin/tambahpengguna', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
+        Route::get('/superadmin/ubahpengguna/{id}', [ManajemenUserController::class, 'edit'])->name('editpenggunasuperadmin');
+        Route::post('/superadmin/ubahpengguna/{id}', [ManajemenUserController::class, 'update'])->name('updatepenggunasuperadmin');
+        Route::delete('/superadmin/hapuspengguna/{id}', [ManajemenUserController::class, 'destroy'])->name('hapuspenggunasuperadmin');
+        Route::get('/superadmin/ubahprofilepicture',[ProfileController::class, 'EditProfilePicSuperadmin'])->name('ubahppsuperadmin');
+        Route::post('/superadmin/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture");
+        Route::get('/avatars/{filename}', 'App\Http\Controllers\ProfileController@getAvatar')->name('avatar');
+        Route::get('/superadmin/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwsuperadmin');
+        Route::post('/superadmin/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password');
+        
+        Route::get('/superadmin/pengajuanbarang', function () {
+            return view('rolesuperadmin.contentsuperadmin.pengajuanbarang');
+        })->name('pengajuanbarangsuperadmin');
+        Route::get('/superadmin/tambahpengajuan', function () {
+            return view('rolesuperadmin.contentsuperadmin.tambahpengajuan');
+        })->name('tambahpengajuansuperadmin');
+    
+    });
+    
+    Route::middleware(['auth', 'user.role:wakildirektur'])->group(function (){
+        Route::get('/daswadir',[DashboardWadirController::class, 'index']);
+    });
+
+
+
+
+
+
 
 Route::get('/dashboardwadir', function () {
     return view('rolewadir.contentwadir.dashboard');
@@ -45,33 +78,7 @@ Route::get('/ubahppwadir', function () {
     return view('rolewadir.contentwadir.ubahpp');
 })->name('ubahppwadir');
 
-Route::get('/editpenggunasuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.editpengguna');
-})->name('editpenggunasuperadmin');
 
-Route::get('/manajemensuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.manajemen');
-})->name('manajemensuperadmin');
-
-Route::get('/pengajuanbarangsuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.pengajuanbarang');
-})->name('pengajuanbarangsuperadmin');
-
-Route::get('/tambahpengajuansuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.tambahpengajuan');
-})->name('tambahpengajuansuperadmin');
-
-Route::get('/tambahpenggunasuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.tambahpengguna');
-})->name('tambahpenggunasuperadmin');
-
-Route::get('/ubahpwsuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.ubahpassword');
-})->name('ubahpwsuperadmin');
-
-Route::get('/ubahppsuperadmin', function () {
-    return view('rolesuperadmin.contentsuperadmin.ubahprofil');
-})->name('ubahppsuperadmin');
 
 Route::get('/dashboardadminlab', function () {
     return view('roleadminlab.contentadminlab.dashboard');

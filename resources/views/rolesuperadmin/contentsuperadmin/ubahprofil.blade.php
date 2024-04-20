@@ -22,21 +22,33 @@
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Ubah Gambar Profil</h2>
+        <form method="POST" action="{{ route ('update.picture') }}" enctype="multipart/form-data">
+            @csrf
             <div class="w-52 mt-6 mx-auto xl:mr-0 xl:ml-6">
                 <div class="border-2 border-dashed shadow-sm border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
-                    <div class="h-40 relative image-fit  p6 bg-[#f2f2f2]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="165px" height="165px" viewBox="0 0 20 20"><path fill="#d4d4d4" d="M10 11c-5.92 0-8 3-8 5v3h16v-3c0-2-2.08-5-8-5"/><circle cx="10" cy="5.5" r="4.5" fill="#d4d4d4"/></svg>
+                    <div class="h-40 relative image-fit">
+                        @if (Auth::user()->avatar)
+                <img id="preview-image" class="rounded-md" alt="foto-profil" src="{{ route('avatar', ['filename' => Auth::user()->avatar]) }}">
+            @else
+                <img id="preview-image" class="rounded-md" alt="foto-profil" src="{{ asset('placeholder/avatar.png') }}">
+            @endif
                     </div>
                 </div>
             </div>
             <div class="preview ml-5 mt-5">
                 <div>
-                    <input id="avatar" name="avatar" type="file" class="bg-white rounded-sm p">
+                    <input id="avatar" name="avatar" type="file" class="bg-white rounded-sm p @error('avatar') is-invalid @enderror" value="{{ old('avatar') }}" required autocomplete="avatar">
+                    @error('avatar')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-                <button type="button" class="inline-flex w-[150px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                Ubah Gambar Profil
+                <button type="submit" class="inline-flex w-[150px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                {{ __('Ubah Gambar Profile') }}
             </button> 
             </div>
+        </form>
     </section>
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">
@@ -44,5 +56,22 @@
             © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
         </div>
     </footer> 
+    <script>
+        function previewImage() {
+            const preview = document.getElementById('preview-image');
+            const file = document.getElementById('avatar').files[0];
+            const reader = new FileReader();
+    
+            reader.onloadend = function() {
+                preview.src = reader.result;
+            }
+    
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
 </div>
 @endsection

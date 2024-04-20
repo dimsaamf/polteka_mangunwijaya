@@ -20,53 +20,65 @@
         </div>
     </section>
     <!-- END: Top Bar -->
-    <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Tambah Pengguna</h2>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Nama</span>
-            <input type="text" name="text" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Pengguna" />
-        </label>   
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Username</span>
-            <input type="text" name="text" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Username Pengguna" />
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Email</span>
-            <input type="email" name="email" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Email Pengguna" />
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Password</span>
-            <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Password Pengguna" />
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Role</span>
-            <div class="group">
-                <button type="button" class="inline-flex w-full justify-between mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                    Role Pengguna
-                    <!-- Dropdown arrow -->
-                    <svg class="w-4 h-4 ml-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                    </svg>
-                </button>
-                <!-- Dropdown menu -->
-                <div class="absolute w-[130px] mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
-                    <div class="py-1">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Wakil Direktur</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Superadmin</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Lab</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Prodi</a>
-                    </div>
+        <form action="{{ route('manajemen-user.store') }}" method="POST" enctype="multipart/form-data">  
+            @csrf 
+            <label class="block mt-4">
+                <span class="text-sm font-medium">Username*</span>
+                <input type="text" name="name" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Username Pengguna" />
+                @error('name')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </label>
+            <label class="block mt-4">
+                <span class="text-sm font-medium">Email*</span>
+                <input type="email" name="email" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Email Pengguna" />
+                @error('email')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </label>
+            <label class="block mt-4">
+                <span class="text-sm font-medium">Password*</span>
+                <input type="password" name="password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Password Pengguna" />
+                @error('password')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </label>
+            <label class="block mt-4">
+                <span class="text-sm font-medium">Role*</span>
+                <div class="group">
+                    <!-- Dropdown menu -->
+                    <select name="role" class="mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
+                        <option value="">Pilih Role</option>
+                        <option value="wakildirektur">Wakil Direktur</option>
+                        <option value="superadmin">Superadmin</option>
+                        <option value="adminprodfarmasi">Admin Prodi Farmasi</option>
+                        <option value="adminprodkimia">Admin Prodi Kimia</option>
+                        <option value="adminprodankes">Admin Prodi Analisis Kesehatan</option>
+                        <option value="adminlabprodfarmasi">Admin Lab Prodi Farmasi</option>
+                        <option value="adminlabprodkimia">Admin Lab Prodi Kimia</option>
+                        <option value="adminlabprodankes">Admin Lab Prodi Analisis Kesehatan</option>
+                        <option value="koorlabprodfarmasi">Koor Lab Prodi Farmasi</option>
+                        <option value="koorlabprodkimia">Koor Lab Prodi Kimia</option>
+                        <option value="koorlabprodankes">Koor Lab Prodi Analisis Kesehatan</option>
+                    </select>
+                    @error('role')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
-            </div>
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Foto</span>
-            <input type="file" name="avatar" class="mt-2 mr-4 block w-full sm:text-sm"/>
-        </label>        
-            <button type="button" class="inline-flex w-[130px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            </label>        
+            <label class="block mt-4">
+                <span class="text-sm font-medium">Foto</span>
+                <input type="file" name="avatar" class="mt-2 mr-4 block w-full sm:text-sm"/>
+                @error('avatar')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </label>        
+            <button type="submit" class="inline-flex w-[130px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Submit
             </button>  
+        </form>
     </section>
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">

@@ -1,5 +1,11 @@
 @extends('rolesuperadmin.layoutsuperadmin.manajemen')
 @section('content')
+@include('sweetalert::alert')
+    @if(session('status'))
+        <div class="alert alert-success font-polteka text-hitam-polteka">
+            {{ session('status') }}
+        </div>
+    @endif
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
@@ -37,7 +43,6 @@
                     <thead>
                     <tr >
                             <th scope="col" class="px-6 py-3 text-center">No</th>
-                            <th scope="col" class="px-6 py-3 text-center">Nama Pengguna</th>
                             <th scope="col" class="px-6 py-3 text-center">Username</th>
                             <th scope="col" class="px-6 py-3 text-center">Email</th>
                             <th scope="col" class="px-6 py-3 text-center">Password</th>
@@ -47,35 +52,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Loremipsum</td>
-                            <td class="px-6 py-2 whitespace-nowrap">admin@gmail.com</td>
-                            <td class="px-6 py-2 whitespace-nowrap">KACDSCSICJCK</td>
-                            <td class="px-6 py-2 whitespace-nowrap">admin</td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="{{ route('editpenggunasuperadmin') }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
-                                </a>
-                            </td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg></td>
-                        </tr>
-
-                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">2</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Loremipsum</td>
-                            <td class="px-6 py-2 whitespace-nowrap">admin@gmail.com</td>
-                            <td class="px-6 py-2 whitespace-nowrap">KACDSCSICJCK</td>
-                            <td class="px-6 py-2 whitespace-nowrap">admin</td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="{{ route('editpenggunasuperadmin') }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
-                                </a>
-                            </td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg></td>
-                        </tr>
+                        @foreach($users as $user)
+                            <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
+                                <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">
+                                    {{ ($users->currentPage() - 1) * $users->perPage() + $loop->index + 1 }}
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$user->name}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$user->email}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$user->password}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$user->role}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                    <a href="{{ route('editpenggunasuperadmin', $user->id) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
+                                    </a>
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                    <form action="{{ route('hapuspenggunasuperadmin', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto text-red-600" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
@@ -84,36 +85,37 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
-            <ul class="inline-flex mx-autospace-x-2">
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Sebelumnya
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    1
-                </button>
-                </li>
-                <li>
-                <button
-                    class="bg-biru160-polteka px-4 py-2 text-putih-polteka hover:bg-biru100-polteka rounded-full text-sm">
-                    2
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    3
-                </button>
-                </li>
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Selanjutnya
-                </button>
-                </li>
-            </ul>
-        </div>
+            <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
+                <ul class="inline-flex mx-autospace-x-2">
+                    @if ($users->onFirstPage())
+                        <li>
+                            <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ $users->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        </li>
+                    @endif
+            
+                    @foreach ($users->getUrlRange($users->currentPage() - 2, $users->currentPage() + 2) as $page => $url)
+                        @if ($page == $users->currentPage())
+                            <li>
+                                <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+            
+                    @if ($users->hasMorePages())
+                        <li>
+                            <a href="{{ $users->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        </li>
+                    @else
+                        <li>
+                            <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                        </li>
+                    @endif
+                </ul>
+            </div>
         <!-- END: Pagination -->
     </section>  
 
