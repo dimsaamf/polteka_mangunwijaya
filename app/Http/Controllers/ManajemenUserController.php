@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -85,14 +84,13 @@ class ManajemenUserController extends Controller
         $request->validate([
             'name' => 'string|max:20|regex:/^[^\s]+$/',
             'email' => 'string|email|max:255',
-            'password' => 'string|min:8',
+            'password' => 'nullable|string|min:8',
             'role' => 'in:wakildirektur,superadmin,adminprodfarmasi,adminprodkimia,adminproddankes,adminlabprodfarmasi,adminlabprodkimia,adminlabprodankes,koorlabprodfarmasi,koorlabprodkimia,koorlabprodankes',
             'avatar' => 'nullable|image|max:2048',
         ], $messages);
     
         $user = User::findOrFail($id);
-    
-        // Memeriksa apakah ada perubahan sebelum menyimpan
+
         $isUpdated = false;
         if ($user->name !== $request->name) {
             $user->name = $request->name;
@@ -120,6 +118,9 @@ class ManajemenUserController extends Controller
         if (!$isUpdated) {
             alert()->info('Tidak Ada Perubahan', 'Tidak ada yang diupdate.');
             return redirect()->route('manajemensuperadmin');
+        }
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
         }
 
         $user->save();

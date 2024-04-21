@@ -14,7 +14,7 @@ class SesiController extends Controller
             if(Auth::user()->role == 'superadmin'){
                 return redirect('/superadmin/manajemenuser');
             } elseif(Auth::user()->role == 'wakildirektur'){
-                return redirect('/daswadir');
+                return redirect('/wakildirektur/dashboard');
             }
         }
         return view('login');
@@ -39,7 +39,7 @@ class SesiController extends Controller
             if(Auth::user()->role == 'superadmin'){
                 return redirect('/superadmin/manajemenuser');
             } elseif(Auth::user()->role == 'wakildirektur'){
-                return redirect('/daswadir');
+                return redirect('/wakildirektur/dashboard');
             }
         } else {
             return redirect('/login')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();

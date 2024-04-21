@@ -3,7 +3,7 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="logo.png" rel="shortcut icon">
+        <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +15,7 @@
         <div class="block md:hidden bg-merah200-polteka text-putih-polteka">
             <div class="flex mr-auto">
                 <a href="#" class="ml-8 flex-grow">
-                    <img alt="Logo" class="w-10" src="logoputih.png">
+                    <img alt="Logo" class="w-10" src="{{ asset('logoputih.png') }}">
                 </a>
                 <a href="#" class="mr-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 buttonToogle" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1m0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1M3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1"/></svg>
@@ -94,19 +94,23 @@
                         </div>
                     </a>
                 </li>
-                <li class="menu__devider my-6"></li>
+                <li class="menu__devider my-10"></li>
                 <li>
-                    <a href="{{ route('login') }}" class="flex hover:font-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mt-6 w-7">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-                        </svg>
-                        <div class="ml-3 mt-6"> {{ __('Logout') }} </div>
-                    </a>
-                    <form id="logout-form" action="#" method="POST" class="d-none">
+                    <form action="{{route('logout')}}" method="post">
                         @csrf
+                        <button type="submit" class="flex">
+                            <div class="flex justify-start mr-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-md font-semibold">{{ __('Logout') }}</div>
+                            </div>
+                        </button>
                     </form>
                 </li>
-            </ul>
+            </ul> 
             <script>
                 const buttonToogle = document.querySelector('.buttonToogle')
                 const mobileMenu = document.querySelector('.mobileMenu')
@@ -121,7 +125,7 @@
             <!-- BEGIN: Side Menu -->
             <nav class="hidden md:block xl:w-[20%] lg:w-[12%] md:w-[12%]">
                 <div href="" class="intro-x flex xl:justify-start md:justify-center lg:justify-center xl:pl-5 pt-4">
-                    <img alt="Logo" class="xl:hidden lg:w-[50px] md:w-[50px] lg:mt-2" src="logoputih.png">
+                    <img alt="Logo" class="xl:hidden lg:w-[50px] md:w-[50px] lg:mt-2" src="{{ asset('logoputih.png') }}">
                     <span class="xl:block hidden text-putih-polteka text-lg ml-3 font-semibold text-[20px]"> Polteka <br>Mangunwijaya</br> </span> 
                 </div>
                 <div class="my-7"></div>
@@ -233,17 +237,17 @@
                     </li>
                     <li class="my-8"></li>
                     <li>
-                        <a href="{{ route('login') }}" class="md:justify-center lg:justify-center xl:justify-start flex">
-                            <div class="xl:ml-8 mb-3">
+                        <a href="#" class="md:justify-center lg:justify-center xl:justify-start flex">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                            <button type="submit" class="xl:ml-8 mb-3 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="xl:w-6 xl:h-6 w-8 h-8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                                 </svg>
-                            </div>
-                            <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                                <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                            </button>
+                        </form>
                         </a>
-                        <!-- <form id="logout-form" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
                     </li>
                 </ul>
             </nav>
@@ -297,35 +301,6 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Profile -->
-        <div id="modal2" class="fixed z-10 inset-0 hidden">
-            <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">
-                <div class="bg-merah200-polteka w-[285px] p-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                    <div class="w-full flex  text-putih-polteka">
-                        <div class="w-1/2 flex justify-start">
-                            <h2 class="text-md font-semibold">Wakil Direktur</h2>
-                        </div>
-                        <div class="w-1/2 flex justify-end">
-                            <button id="close-modal-btn2" type="button">X</button>
-                        </div>
-                    </div>
-                    <div class="w-full flex  text-putih-polteka">
-                        <div class="w-1/2 flex justify-start">
-                            <h2 class="text-sm">wakil@gmail.com</h2>
-                        </div>
-                    </div>
-                    <hr class="mt-4 border-b-0 border-abu-polteka w-full" />
-                    <div class="w-full flex mt-4 text-putih-polteka">
-                        <div class="flex justify-start mr-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 1024 1024"><path fill="white" d="M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8c-7 8.5-14.5 16.7-22.4 24.5a353.8 353.8 0 0 1-112.7 75.9A352.8 352.8 0 0 1 512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.8 353.8 0 0 1-112.7-75.9a353.3 353.3 0 0 1-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8s94.3 9.3 137.9 27.8c42.2 17.8 80.1 43.4 112.7 75.9c7.9 7.9 15.3 16.1 22.4 24.5c3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82C271.7 82.6 79.6 277.1 82 516.4C84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7c3.4-5.3-.4-12.3-6.7-12.3m88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 0 0 0-12.6"/></svg>
-                        </div>
-                        <div>
-                            <div class="text-md font-semibold">Logout</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- BEGIN: JS Assets-->
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
@@ -343,19 +318,6 @@
             window.onload = function() {
                 document.getElementById("modal").classList.add("hidden");
                 document.querySelector(".icon-container").classList.remove("active");
-            };
-
-            document.getElementById("open-modal-btn2").addEventListener("click", function() {
-                document.getElementById("modal2").classList.remove("hidden");
-                document.querySelector(".icon-container-prof").classList.add("active");
-            });
-            document.getElementById("close-modal-btn2").addEventListener("click", function() {
-                document.getElementById("modal2").classList.add("hidden");
-                document.querySelector(".icon-container-prof").classList.remove("active");
-            });
-            window.onload = function() {
-                document.getElementById("modal2").classList.add("hidden");
-                document.querySelector(".icon-container-prof").classList.remove("active");
             };
         </script>
         <!-- END: JS Assets-->
