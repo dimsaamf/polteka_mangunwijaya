@@ -4,6 +4,7 @@ use App\Http\Controllers\ManajemenUserController;
 use App\Http\Controllers\DashboardWadirController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SesiController;
+use App\Http\Controllers\InventarislabFarmakognosiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,61 +23,84 @@ Route::post('/login', [SesiController::class, 'login']);
 Route::post('/logout',[SesiController::class, 'logout'])->name("logout");
 
 
+Route::middleware(['auth', 'user.role:superadmin', 'revalidate'])->group(function (){
+    Route::get('/superadmin/manajemenuser',[ManajemenUserController::class, 'index'])->name('manajemensuperadmin');
+    Route::get('/superadmin/tambahpengguna',[ManajemenUserController::class, 'create'])->name('tambahpenggunasuperadmin');
+    Route::post('/superadmin/tambahpengguna', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
+    Route::get('/superadmin/ubahpengguna/{id}', [ManajemenUserController::class, 'edit'])->name('editpenggunasuperadmin');
+    Route::post('/superadmin/ubahpengguna/{id}', [ManajemenUserController::class, 'update'])->name('updatepenggunasuperadmin');
+    Route::delete('/superadmin/hapuspengguna/{id}', [ManajemenUserController::class, 'destroy'])->name('hapuspenggunasuperadmin');
+    Route::get('/superadmin/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppsuperadmin');
+    Route::post('/superadmin/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.superadmin");
+    Route::get('/avatars/{filename}', 'App\Http\Controllers\ProfileController@getAvatar')->name('avatar');
+    Route::get('/superadmin/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwsuperadmin');
+    Route::post('/superadmin/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.superadmin');
+    
+    Route::get('/superadmin/pengajuanbarang', function () {
+        return view('rolesuperadmin.contentsuperadmin.pengajuanbarang');
+    })->name('pengajuanbarangsuperadmin');
+    Route::get('/superadmin/tambahpengajuan', function () {
+        return view('rolesuperadmin.contentsuperadmin.tambahpengajuan');
+    })->name('tambahpengajuansuperadmin');
+
+});
+
+Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(function (){
+    Route::get('/wakildirektur/dashboard',[DashboardWadirController::class, 'index'])->name('dashboardwadir');
+    // Route::get('/wakildirektur/laporanlaboratorium',[LaporanController::class, 'laporanlab'])->name('laporanlabwadir');
+    // Route::get('/wakildirektur/laporanlaboratorium',[LaporanController::class, 'laporanprodi'])->name('laporanprodiwadir');
+    Route::get('/wakildirektur/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppwadir');
+    Route::post('/wakildirektur/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.wadir");
+    Route::get('/avatars/{filename}', 'App\Http\Controllers\ProfileController@getAvatar')->name('avatar');
+    Route::get('/wakildirektur/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpasswadir');
+    Route::post('/wakildirektur/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.wadir');
+    
+    Route::get('/laporanlabwadir', function () {
+        return view('rolewadir.contentwadir.laporanlab');
+    })->name('laporanlabwadir');
+    
+    Route::get('/laporanprodiwadir', function () {
+        return view('rolewadir.contentwadir.laporanprodi');
+    })->name('laporanprodiwadir');
+    
+    Route::get('/pengajuanwadir', function () {
+        return view('rolewadir.contentwadir.pengajuanbarang');
+    })->name('pengajuanwadir');
+    
+    // Route::get('/ubahpasswadir', function () {
+    //     return view('rolewadir.contentwadir.ubahpassword');
+    // })->name('ubahpasswadir');
+    
+    // Route::get('/ubahppwadir', function () {
+    //     return view('rolewadir.contentwadir.ubahpp');
+    // })->name('ubahppwadir');
+});
+
     Route::middleware(['auth', 'user.role:superadmin'])->group(function (){
-        Route::get('/superadmin/manajemenuser',[ManajemenUserController::class, 'index'])->name('manajemensuperadmin');
-        Route::get('/superadmin/tambahpengguna',[ManajemenUserController::class, 'create'])->name('tambahpenggunasuperadmin');
-        Route::post('/superadmin/tambahpengguna', [ManajemenUserController::class, 'store'])->name('manajemen-user.store');
-        Route::get('/superadmin/ubahpengguna/{id}', [ManajemenUserController::class, 'edit'])->name('editpenggunasuperadmin');
-        Route::post('/superadmin/ubahpengguna/{id}', [ManajemenUserController::class, 'update'])->name('updatepenggunasuperadmin');
-        Route::delete('/superadmin/hapuspengguna/{id}', [ManajemenUserController::class, 'destroy'])->name('hapuspenggunasuperadmin');
-        Route::get('/superadmin/ubahprofilepicture',[ProfileController::class, 'EditProfilePicSuperadmin'])->name('ubahppsuperadmin');
-        Route::post('/superadmin/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture");
-        Route::get('/avatars/{filename}', 'App\Http\Controllers\ProfileController@getAvatar')->name('avatar');
-        Route::get('/superadmin/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwsuperadmin');
-        Route::post('/superadmin/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password');
+        Route::get('/koorlabfarmasi/labfarmakognosi/databarang', [InventarislabFarmakognosiController::class, 'index'])->name('databarangkoorlabfarmakognosi');
+        Route::get('/koorlabfarmasi/labfarmakognosi/tambahbarang', [InventarislabFarmakognosiController::class, 'create'])->name('tambahbarangkoorlabfarmakognosi');
+        Route::post('/koorlabfarmasi/labfarmakognosi/tambahbarang', [InventarislabFarmakognosiController::class, 'store'])->name('tambahbarangkoorlabfarmakognosi.store');
+        Route::get('/koorlabfarmasi/labfarmakognosi/ubahbarang/{id}', [InventarislabFarmakognosiController::class, 'edit'])->name('ubahbarangkoorlabfarmakognosi');
+        Route::post('/koorlabfarmasi/labfarmakognosi/ubahbarang/{id}', [InventarislabFarmakognosiController::class, 'update'])->name('updatebarangkoorlabfarmakognosi');
         
-        Route::get('/superadmin/pengajuanbarang', function () {
-            return view('rolesuperadmin.contentsuperadmin.pengajuanbarang');
-        })->name('pengajuanbarangsuperadmin');
-        Route::get('/superadmin/tambahpengajuan', function () {
-            return view('rolesuperadmin.contentsuperadmin.tambahpengajuan');
-        })->name('tambahpengajuansuperadmin');
-    
+        
+        Route::get('/barangmasukkoorlabfarmakognosi', function () {
+            return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk');
+        })->name('barangmasukkoorlabfarmakognosi');
+        
+        Route::get('/barangkeluarkoorlabfarmakognosi', function () {
+            return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangkeluar');
+        })->name('barangkeluarkoorlabfarmakognosi');
+        
+        Route::get('/pengajuanbarangkoorlabfarmakognosi', function () {
+            return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.pengajuan');
+        })->name('pengajuanbarangkoorlabfarmakognosi');
+        
+        Route::get('/tambahpengajuankoorlabfarmakognosi', function () {
+            return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahpengajuan');
+        })->name('tambahpengajuankoorlabfarmakognosi');
+        
     });
-    
-    Route::middleware(['auth', 'user.role:wakildirektur'])->group(function (){
-        Route::get('/daswadir',[DashboardWadirController::class, 'index']);
-    });
-
-
-
-
-
-
-
-Route::get('/dashboardwadir', function () {
-    return view('rolewadir.contentwadir.dashboard');
-})->name('dashboardwadir');
-
-Route::get('/laporanlabwadir', function () {
-    return view('rolewadir.contentwadir.laporanlab');
-})->name('laporanlabwadir');
-
-Route::get('/laporanprodiwadir', function () {
-    return view('rolewadir.contentwadir.laporanprodi');
-})->name('laporanprodiwadir');
-
-Route::get('/pengajuanwadir', function () {
-    return view('rolewadir.contentwadir.pengajuanbarang');
-})->name('pengajuanwadir');
-
-Route::get('/ubahpasswadir', function () {
-    return view('rolewadir.contentwadir.ubahpassword');
-})->name('ubahpasswadir');
-
-Route::get('/ubahppwadir', function () {
-    return view('rolewadir.contentwadir.ubahpp');
-})->name('ubahppwadir');
 
 
 
@@ -115,26 +139,6 @@ Route::get('/tambahbarangadminlabtekfarmasi', function () {
 Route::get('/ubahbarangadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.ubahbarang');
 })->name('ubahbarangadminlabtekfarmasi');
-
-Route::get('/databarangadminlabfarmakognosi', function () {
-    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang');
-})->name('databarangadminlabfarmakognosi');
-
-Route::get('/barangmasukadminlabfarmakognosi', function () {
-    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangmasuk');
-})->name('barangmasukadminlabfarmakognosi');
-
-Route::get('/barangkeluaradminlabfarmakognosi', function () {
-    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangkeluar');
-})->name('barangkeluaradminlabfarmakognosi');
-
-Route::get('/tambahbarangadminlabfarmakognosi', function () {
-    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.tambahbarang');
-})->name('tambahbarangadminlabfarmakognosi');
-
-Route::get('/ubahbarangadminlabfarmakognosi', function () {
-    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang');
-})->name('ubahbarangadminlabfarmakognosi');
 
 Route::get('/databarangadminlabfarmasetika', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.databarang');
@@ -176,6 +180,26 @@ Route::get('/ubahbarangadminlabfarmasikimia', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.ubahbarang');
 })->name('ubahbarangadminlabfarmasikimia');
 
+Route::get('/databarangadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang');
+})->name('databarangadminlabfarmakognosi');
+
+Route::get('/barangmasukadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangmasuk');
+})->name('barangmasukadminlabfarmakognosi');
+
+Route::get('/barangkeluaradminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangkeluar');
+})->name('barangkeluaradminlabfarmakognosi');
+
+Route::get('/tambahbarangadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.tambahbarang');
+})->name('tambahbarangadminlabfarmakognosi');
+
+Route::get('/ubahbarangadminlabfarmakognosi', function () {
+    return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang');
+})->name('ubahbarangadminlabfarmakognosi');
+
 Route::get('/dashboardkoorlabfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.dashboard');
 })->name('dashboardkoorlabfarmasi');
@@ -187,34 +211,6 @@ Route::get('/ubahpwkoorlabfarmasi', function () {
 Route::get('/ubahppkoorlabfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.ubahprofil');
 })->name('ubahppkoorlabfarmasi');
-
-Route::get('/databarangkoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang');
-})->name('databarangkoorlabfarmakognosi');
-
-Route::get('/barangmasukkoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk');
-})->name('barangmasukkoorlabfarmakognosi');
-
-Route::get('/barangkeluarkoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangkeluar');
-})->name('barangkeluarkoorlabfarmakognosi');
-
-Route::get('/tambahbarangkoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahbarang');
-})->name('tambahbarangkoorlabfarmakognosi');
-
-Route::get('/ubahbarangkoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.ubahbarang');
-})->name('ubahbarangkoorlabfarmakognosi');
-
-Route::get('/pengajuanbarangkoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.pengajuan');
-})->name('pengajuanbarangkoorlabfarmakognosi');
-
-Route::get('/tambahpengajuankoorlabfarmakognosi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahpengajuan');
-})->name('tambahpengajuankoorlabfarmakognosi');
 
 Route::get('/databarangkoorlabfarmasetika', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.databarang');
