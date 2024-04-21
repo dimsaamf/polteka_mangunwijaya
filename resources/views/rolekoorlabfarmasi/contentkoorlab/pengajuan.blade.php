@@ -1,4 +1,4 @@
-@extends('rolekoorlabfarmasi.layoutkoorlab.labfarmakognosi.pengajuan')
+@extends('rolekoorlabfarmasi.layoutkoorlab.pengajuan')
 @section('content')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
@@ -23,7 +23,7 @@
         <div>
         <h2 class="text-xl font-semibold">Pengajuan Barang</h2>
         <div class="justify-start mt-5">
-            <a href="{{ route('tambahpengajuankoorlabfarmakognosi') }}" class="w-[170px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            <a href="{{ route('tambahpengajuankoorlabfarmasi') }}" class="w-[170px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Tambah Pengajuan
             </a>
         </div>

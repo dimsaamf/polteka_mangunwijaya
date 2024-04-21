@@ -6,7 +6,7 @@
         <link href="logo.png" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
-        <title>Pengajuan Barang Koor Laboratorium Farmakognosi</title>
+        <title>Pengajuan Barang Koor Laboratorium Prodi Farmasi</title>
     </head>
     <!-- END: Head -->
     <body class="py-5 bg-merah200-polteka text-putih-polteka font-polteka">
@@ -29,6 +29,17 @@
                         </div>
                         <div class="ml-3 mt-1 hover:font-bold">
                             Dashboard
+                        </div>
+                    </a>
+                </li>
+                <li class="menu__devider my-6"></li>
+                <li>
+                    <a href="{{ route('pengajuanbarangkoorlabfarmasi') }}" class="flex font-semibold">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.55" d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm0 5h18M10 3v18"/></svg>
+                        </div>
+                        <div class="ml-3 mt-1">
+                            Pengajuan Barang
                         </div>
                     </a>
                 </li>
@@ -56,11 +67,6 @@
                             <li class="py-2 xl:py-0 hover:font-bold">
                                 <a href="{{ route('barangkeluarkoorlabfarmasetika') }}">
                                     Barang Keluar
-                                </a>
-                            </li>
-                            <li class="py-2 xl:py-0 hover:font-bold">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmasetika') }}">
-                                    Pengajuan Barang
                                 </a>
                             </li>
                         </ul>
@@ -91,11 +97,6 @@
                                     Barang Keluar
                                 </a>
                             </li>
-                            <li class="py-2 xl:py-0 hover:font-bold">
-                                <a href="{{ route('pengajuanbarangkoorlabtekfarmasi') }}">
-                                    Pengajuan Barang
-                                </a>
-                            </li>
                         </ul>
                 </li>
                 <li class="menu__devider my-6"></li>
@@ -124,11 +125,6 @@
                                     Barang Keluar
                                 </a>
                             </li>
-                            <li class="py-2 xl:py-0 hover:font-bold">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmasikimia') }}">
-                                    Pengajuan Barang
-                                </a>
-                            </li>
                         </ul>
                 </li>
                 <li class="menu__devider my-6"></li>
@@ -141,7 +137,7 @@
                             Lab Farmakognosi
                         </div>
                     </a>
-                    <ul class="desplegable mt-3 ml-10">
+                    <ul class="desplegable hidden mt-3 ml-10">
                             <li class="py-2 xl:py-0 hover:font-bold">
                                 <a href="{{ route('databarangkoorlabfarmakognosi') }}">
                                     Data Barang
@@ -155,11 +151,6 @@
                             <li class="py-2 xl:py-0 hover:font-bold">
                                 <a href="{{ route('barangkeluarkoorlabfarmakognosi') }}">
                                     Barang Keluar
-                                </a>
-                            </li>
-                            <li class="py-2 xl:py-0 font-semibold">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmakognosi') }}">
-                                    Pengajuan Barang
                                 </a>
                             </li>
                         </ul>
@@ -246,6 +237,18 @@
                             <div class="ml-2 mb-3 font-semibold hidden xl:block">Manajemen</div>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('pengajuanbarangkoorlabfarmasi') }}">
+                            <div class="hidden xl:block ml-8 mb-3 text-hitam-polteka bg-abu-polteka rounded-full w-full py-2 pl-5 font-semibold">
+                                Pengajuan Barang
+                            </div>
+                        </a>
+                        <a href="{{ route('pengajuanbarangkoorlabfarmasi') }}" class="xl:hidden justify-start mb-2 flex pt-2 md:px-5 lg:px-7 text-hitam-polteka bg-abu-polteka rounded-full md:ml-6 lg:ml-10 w-full">
+                            <div class="xl:ml-8 mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 md:mr-6 lg:mr-10 xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                            </div>
+                        </a>
+                    </li>
                     <li class="opcion-con-desplegable">
                         <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmasetika
@@ -274,11 +277,6 @@
                             <li class="py-2 xl:py-0">
                                 <a href="{{ route('barangkeluarkoorlabfarmasetika') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Barang Keluar
-                                </a>
-                            </li>
-                            <li class="py-2 xl:py-0">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmasetika') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
-                                    Pengajuan Barang
                                 </a>
                             </li>
                         </ul>
@@ -313,11 +311,6 @@
                                     Barang Keluar
                                 </a>
                             </li>
-                            <li class="py-2 xl:py-0">
-                                <a href="{{ route('pengajuanbarangkoorlabtekfarmasi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
-                                    Pengajuan Barang
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <li class="opcion-con-desplegable">
@@ -350,36 +343,36 @@
                                     Barang Keluar
                                 </a>
                             </li>
-                            <li class="py-2 xl:py-0">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmasikimia') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
-                                    Pengajuan Barang
-                                </a>
-                            </li>
                         </ul>
                     </li>
-                    <li class="hidden xl:block">
-                        <a href="#" class="ml-8 mb-3 font-bold">
+                    <li class="opcion-con-desplegable">
+                        <a href="#" class="hidden xl:block ml-8 mb-3 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
                             Lab Farmakognosi
                         </a>
-                        <ul class=" xl:ml-[43px] mt-3 md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
+                        <a href="#" class="xl:hidden justify-center hover:justify-start flex hover:mb-2 hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
+                            <div class="xl:ml-8 mb-3">
+                                <svg  xmlns="http://www.w3.org/2000/svg" class="block xl:hidden md:w-8 " viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                            </div>
+                        </a>
+                        <ul class="desplegable xl:ml-[43px] mt-3 hidden md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
+                            <li class="block xl:hidden py-2 xl:py-0">
+                                <a href="#" class="font-bold">
+                                    L. Farmakognosi
+                                </a>
+                            </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('databarangkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('databarangkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('barangmasukkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('barangmasukkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Barang Masuk
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('barangkeluarkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('barangkeluarkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full xl:hover:w-52 xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Barang Keluar
-                                </a>
-                            </li>
-                            <li class="py-2 xl:py-0">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmakognosi') }}" class="xl:text-hitam-polteka xl:bg-abu-polteka xl:rounded-full w-[500px] xl:ml-4 xl:py-2 xl:pl-5 xl:block mb-0 mt-0 xl:mb-1 xl:mt-1 md:font-bold xl:font-normal">
-                                    Pengajuan Barang
                                 </a>
                             </li>
                         </ul>
@@ -409,11 +402,6 @@
                             <li class="py-2 xl:py-0">
                                 <a href="{{ route('barangkeluarkoorlabfarmakognosi') }}" class="w-[500px]">
                                     Barang Keluar
-                                </a>
-                            </li>
-                            <li class="py-2 xl:py-0">
-                                <a href="{{ route('pengajuanbarangkoorlabfarmakognosi') }}" class="w-[500px] mb-0 mt-0 font-bold">
-                                    Pengajuan Barang
                                 </a>
                             </li>
                         </ul>
@@ -466,9 +454,7 @@
                             </div>
                             <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
                         </a>
-                        <!-- <form id="logout-form" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
+                        
                     </li>
                 </ul>
             </nav>

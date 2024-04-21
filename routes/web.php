@@ -82,7 +82,8 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
         Route::post('/koorlabfarmasi/labfarmakognosi/tambahbarang', [InventarislabFarmakognosiController::class, 'store'])->name('tambahbarangkoorlabfarmakognosi.store');
         Route::get('/koorlabfarmasi/labfarmakognosi/ubahbarang/{id}', [InventarislabFarmakognosiController::class, 'edit'])->name('ubahbarangkoorlabfarmakognosi');
         Route::post('/koorlabfarmasi/labfarmakognosi/ubahbarang/{id}', [InventarislabFarmakognosiController::class, 'update'])->name('updatebarangkoorlabfarmakognosi');
-        
+        Route::get('/koorlabfarmasi/labfarmakognosi/riwayatbarangmasuk', [InventarislabFarmakognosiController::class, 'index'])->name('riwayatbarangmasukkoorlabfarmakognosi');
+        Route::get('/koorlabfarmasi/labfarmakognosi/riwayatbarankeluar', [InventarislabFarmakognosiController::class, 'index'])->name('riwayatbarankeluarkoorlabfarmakognosi');
         
         Route::get('/barangmasukkoorlabfarmakognosi', function () {
             return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk');
@@ -92,21 +93,17 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
             return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangkeluar');
         })->name('barangkeluarkoorlabfarmakognosi');
         
-        Route::get('/pengajuanbarangkoorlabfarmakognosi', function () {
-            return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.pengajuan');
-        })->name('pengajuanbarangkoorlabfarmakognosi');
+        Route::get('/pengajuanbarangkoorlabfarmasi', function () {
+            return view('rolekoorlabfarmasi.contentkoorlab.pengajuan');
+        })->name('pengajuanbarangkoorlabfarmasi');
         
-        Route::get('/tambahpengajuankoorlabfarmakognosi', function () {
-            return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahpengajuan');
-        })->name('tambahpengajuankoorlabfarmakognosi');
+        Route::get('/tambahpengajuankoorlabfarmasi', function () {
+            return view('rolekoorlabfarmasi.contentkoorlab.tambahpengajuan');
+        })->name('tambahpengajuankoorlabfarmasi');
         
     });
 
 
-
-Route::get('/dashboardadminlab', function () {
-    return view('roleadminlab.contentadminlab.dashboard');
-})->name('dashboardadminlab');
 
 Route::get('/dashboardadminlabfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.dashboard');
@@ -119,6 +116,8 @@ Route::get('/ubahpwadminlabfarmasi', function () {
 Route::get('/ubahppadminlabfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
 })->name('ubahppadminlabfarmasi');
+
+
 
 Route::get('/databarangadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.databarang');
@@ -140,6 +139,9 @@ Route::get('/ubahbarangadminlabtekfarmasi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.ubahbarang');
 })->name('ubahbarangadminlabtekfarmasi');
 
+
+
+
 Route::get('/databarangadminlabfarmasetika', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.databarang');
 })->name('databarangadminlabfarmasetika');
@@ -159,6 +161,10 @@ Route::get('/tambahbarangadminlabfarmasetika', function () {
 Route::get('/ubahbarangadminlabfarmasetika', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.ubahbarang');
 })->name('ubahbarangadminlabfarmasetika');
+
+
+
+
 
 Route::get('/databarangadminlabfarmasikimia', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.databarang');
@@ -180,6 +186,10 @@ Route::get('/ubahbarangadminlabfarmasikimia', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.ubahbarang');
 })->name('ubahbarangadminlabfarmasikimia');
 
+
+
+
+
 Route::get('/databarangadminlabfarmakognosi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang');
 })->name('databarangadminlabfarmakognosi');
@@ -200,6 +210,9 @@ Route::get('/ubahbarangadminlabfarmakognosi', function () {
     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang');
 })->name('ubahbarangadminlabfarmakognosi');
 
+
+
+
 Route::get('/dashboardkoorlabfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.dashboard');
 })->name('dashboardkoorlabfarmasi');
@@ -211,6 +224,8 @@ Route::get('/ubahpwkoorlabfarmasi', function () {
 Route::get('/ubahppkoorlabfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.ubahprofil');
 })->name('ubahppkoorlabfarmasi');
+
+
 
 Route::get('/databarangkoorlabfarmasetika', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.databarang');
@@ -232,13 +247,9 @@ Route::get('/ubahbarangkoorlabfarmasetika', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.ubahbarang');
 })->name('ubahbarangkoorlabfarmasetika');
 
-Route::get('/pengajuanbarangkoorlabfarmasetika', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.pengajuan');
-})->name('pengajuanbarangkoorlabfarmasetika');
 
-Route::get('/tambahpengajuankoorlabfarmasetika', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.tambahpengajuan');
-})->name('tambahpengajuankoorlabfarmasetika');
+
+
 
 Route::get('/databarangkoorlabfarmasikimia', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labfarmasikimia.databarang');
@@ -260,13 +271,9 @@ Route::get('/ubahbarangkoorlabfarmasikimia', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labfarmasikimia.ubahbarang');
 })->name('ubahbarangkoorlabfarmasikimia');
 
-Route::get('/pengajuanbarangkoorlabfarmasikimia', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmasikimia.pengajuan');
-})->name('pengajuanbarangkoorlabfarmasikimia');
 
-Route::get('/tambahpengajuankoorlabfarmasikimia', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labfarmasikimia.tambahpengajuan');
-})->name('tambahpengajuankoorlabfarmasikimia');
+
+
 
 Route::get('/databarangkoorlabtekfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.databarang');
@@ -288,13 +295,9 @@ Route::get('/ubahbarangkoorlabtekfarmasi', function () {
     return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.ubahbarang');
 })->name('ubahbarangkoorlabtekfarmasi');
 
-Route::get('/pengajuanbarangkoorlabtekfarmasi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.pengajuan');
-})->name('pengajuanbarangkoorlabtekfarmasi');
 
-Route::get('/tambahpengajuankoorlabtekfarmasi', function () {
-    return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.tambahpengajuan');
-})->name('tambahpengajuankoorlabtekfarmasi');
+
+
 
 Route::get('/dashboardadminprodifarmasi', function () {
     return view('roleadminprodifarmasi.contentadminprodi.dashboard');
