@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 class ProfileController extends Controller
 {
     public function EditProfilePic()
@@ -37,7 +38,7 @@ class ProfileController extends Controller
             $avatarName = $avatar->getClientOriginalName();
             $avatar->move(public_path('avatars'), $avatarName);
             $user->avatar = $avatarName;
-            $user->save(); 
+            $user->save();
         }
         alert()->success('Berhasil', 'Gambar Profil berhasil diubah.');
         return redirect()->back();
@@ -45,10 +46,25 @@ class ProfileController extends Controller
 
 
     public function getAvatar($filename)
-    {
-        $user = User::where('avatar', $filename)->firstOrFail();
-        return response()->file(public_path('Image/' . $filename));
-    }
+{
+    // Misalkan kolom 'avatar' menyimpan nama file avatar dalam tabel pengguna (users)
+    $user = User::where('avatar', $filename)->firstOrFail();
+    
+    // Ambil isi dari kolom 'avatar_content' yang berisi konten gambar dari database
+    $avatarContent = $user->avatar;
+
+    // Tentukan tipe konten gambar
+    $contentType = 'image/jpeg'; // Misalkan gambar disimpan dalam format JPEG
+
+    // Atur header respons
+    $headers = [
+        'Content-Type' => $contentType,
+    ];
+
+    // Kembalikan respons dengan konten gambar dan header yang sesuai
+    return response($avatarContent, 200, $headers);
+}
+
 
     public function ChangePassword()
     {

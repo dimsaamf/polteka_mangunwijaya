@@ -1,4 +1,4 @@
-@extends('rolekoorlabfarmasi.layoutkoorlab.tambahpengajuan')
+@extends('rolekoorlabfarmasi.layoutkoorlab.editpengajuan')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -11,7 +11,7 @@
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Prodi Farmasi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Tambah Pengajuan Barang</div>
+            <div class="ml-2  text-hitam-polteka">Ubah Pengajuan Barang</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -22,12 +22,12 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Tambah Pengajuan Barang</h2>
-        <form action="{{ route('tambahpengajuankoorlabfarmasi.store') }}" method="POST" enctype="multipart/form-data">
+        <h2 class="text-xl font-medium">Ubah Pengajuan Barang</h2>
+        <form action="{{ route('updatepengajuankoorlabfarmasi', $pengajuanBarang->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label class="block mt-4">
                 <span class="text-sm font-medium">Nomor Surat*</span>
-                <input type="text" name="no_surat" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                <input type="text" name="no_surat" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" value="{{ $pengajuanBarang->no_surat }}" />
                 @error('no_surat')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
@@ -39,14 +39,14 @@
             </label>
             <label class="block mt-4">
                 <span class="text-sm font-medium">Detail Barang*</span>
-                <textarea name="detail_barang" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum"></textarea> 
+                <textarea name="detail_barang" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum">{{ $pengajuanBarang->detail_barang }}</textarea> 
                 @error('detail_barang')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
             <label class="block mt-4">
-                <span class="text-sm font-medium">Total Dana*</span>
-                <input type="total_harga" name="total_harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                <span class="text-sm font-medium">Total harga*</span>
+                <input type="total_harga" name="total_harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" value="{{ $pengajuanBarang->total_harga}}" />
                 @error('total_harga')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
@@ -58,10 +58,10 @@
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>        
-                <button type="submit" class="inline-flex w-20 justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                    Submit
-                </button> 
-        </form> 
+            <button type="submit" class="inline-flex w-20 justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                Submit
+            </button> 
+        </form>          
     </section>
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">

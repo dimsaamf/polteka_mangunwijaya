@@ -50,61 +50,53 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Rp 000.000</td>
-                            <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <div class="group">
-                                    <button type="button" class="inline-flex w-[98px] justify-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka hover:bg-merah180-polteka">
-                                        Status
-                                        <!-- Dropdown arrow -->
-                                            <svg class="h-5 ml-[2px] -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
+                        @foreach($pengajuanBarangs as $pengajuanbarang)
+                            <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
+                                <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($pengajuanBarangs->currentPage() - 1) * $pengajuanBarangs->perPage() + $loop->index + 1 }}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$pengajuanbarang->no_surat}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($pengajuanbarang->tanggal)->translatedFormat('d F Y') }}</td>
+                                <td class="px-6 py-2 whitespace-nowrap max-w-[200px]">{{ mb_substr(implode(' ', array_slice(explode(' ', $pengajuanbarang->detail_barang), 0, 5)), 0, 30) }} ...</td>
+                                <td class="px-6 py-2 whitespace-nowrap">Rp {{ number_format($pengajuanbarang->total_harga, 0, ',', '.') }}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                    <a href="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" target="_blank">
+                                        @if (in_array(pathinfo($pengajuanbarang->file, PATHINFO_EXTENSION), ['pdf']))
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 15 15"><path fill="#e20808" d="M3.5 8H3V7h.5a.5.5 0 0 1 0 1M7 10V7h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/><path fill="#e20808" fill-rule="evenodd" d="M1 1.5A1.5 1.5 0 0 1 2.5 0h8.207L14 3.293V13.5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 1 13.5zM3.5 6H2v5h1V9h.5a1.5 1.5 0 1 0 0-3m4 0H6v5h1.5A1.5 1.5 0 0 0 9 9.5v-2A1.5 1.5 0 0 0 7.5 6m2.5 5V6h3v1h-2v1h1v1h-1v2z" clip-rule="evenodd"/></svg>
+                                        @else
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536">
+                                                <path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/>
                                             </svg>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    <div class="absolute lg:right-16 xl:right-20 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
-                                        <div class="py-1">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Disetujui</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditunda</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditolak</a>
+                                        @endif
+                                    </a>
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                    <form method="POST" action="{{ route('updatestatuskoorlabfarmasi', $pengajuanbarang->id) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group flex justify-center">
+                                            <select name="status" class="form-control inline-flex w-auto mr-2 justify-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka">
+                                                @php
+                                                $status = $pengajuanbarang->pengajuanWadir ? $pengajuanbarang->pengajuanWadir->status : ''; // Mengambil status dari relasi pengajuanWadir jika ada
+                                                @endphp
+                                                @if ($status)
+                                                    <option value="{{ $status }}" selected>{{ $status }}</option>
+                                                @else
+                                                    <option value="" selected disabled>Menunggu konfirmasi</option>
+                                                @endif
+                                                <option value="Disetujui">Disetujui</option>
+                                                <option value="Ditunda">Ditunda</option>
+                                                <option value="Ditolak">Ditolak</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 24 24" class="mr-1">
+                                                    <path fill="black" fill-rule="evenodd" d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-.232-5.36l5-6l-1.536-1.28l-4.3 5.159l-2.225-2.226l-1.414 1.414l3 3l.774.774z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </button>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem-ipsum-dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Rp 000.000</td>
-                            <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <div class="group">
-                                    <button type="button" class="inline-flex w-[98px] justify-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka hover:bg-merah180-polteka">
-                                        Status
-                                        <!-- Dropdown arrow -->
-                                            <svg class="h-5 ml-[2px] -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                                            </svg>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    <div class="absolute right-14 lg:right-16 xl:right-20 mt-4 w-36 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
-                                        <div class="py-1">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Disetujui</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditunda</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ditolak</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                    </form>
+                                </td>
+                                 
+                            </tr>
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
