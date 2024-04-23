@@ -10,7 +10,7 @@ use App\Models\InventarisLabfarmakognosi;
 class InventarisLabfarmakognosiController extends Controller
 {
     public function index(){
-        $labfarmakognosi = InventarislabFarmakognosi::paginate(10);
+        $labfarmakognosi = InventarisLabFarmakognosi::paginate(10);
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
     }
 
@@ -21,7 +21,7 @@ class InventarisLabfarmakognosiController extends Controller
     public function store(Request $request){
         $request->validate([
             'nama_barang'=>'required|string',
-            'jumlah'=>'required|integer',
+            'jumlah'=>'nullable|integer',
             'satuan'=>'required|string',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',

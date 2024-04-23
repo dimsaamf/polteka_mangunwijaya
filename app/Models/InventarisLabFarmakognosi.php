@@ -21,4 +21,9 @@ class InventarisLabFarmakognosi extends Model
         'keterangan',
         'gambar',
     ];
+
+    public function barangmasukfarmakognosi()
+    {
+        $this->hasMany(BarangMasukFarmakognosi::class);
+    }
 }

@@ -5,12 +5,12 @@
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Barang Masuk</div>
+            <div class="text-hitam-polteka">Riwayat Barang Masuk</div>
         </div>
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmakognosi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Barang Masuk</div>
+            <div class="ml-2  text-hitam-polteka">Riwayat Barang Masuk</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -20,7 +20,7 @@
     </section>
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
-        <h2 class="text-xl font-semibold">Barang Masuk</h2>
+        <h2 class="text-xl font-semibold">Riwayat Barang Masuk</h2>
         
         <!-- BEGIN: Data List --> 
         <div class="flex flex-col mt-8">
@@ -28,11 +28,6 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <div class="flex w-1/2 justify-start mb-3">
-                        <a href="{{ route('riwayatbarangmasukkoorlabfarmakognosi') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                            Riwayat Barang
-                        </a>
-                    </div>
                     <div class="flex w-1/2 justify-end mb-3">
                                     <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
                                         <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
@@ -64,28 +59,19 @@
                         <tr >
                             <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
-                            <th scope="col" class="px-6 py-3 text-center">Harga</th>
+                            <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
-                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
-                            <th scope="col" class="px-6 py-3 text-center">Ubah Stok</th>
+                            <th scope="col" class="px-6 py-3 text-center">Total Jumlah</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $item)
+                        @foreach($barangmasukfarmakognosi as $data)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->nama_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->id}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->harga}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->jumlah}} {{$item->satuan}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->keterangan}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
-                                        <path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/>
-                                        <path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/>
-                                    </svg>
-                                </a>
-                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$data->id_barang}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$data->tanggal_masuk}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah_masuk}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -177,9 +163,9 @@
 
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 md:mt-44 lg:mt-56 mb-6 text-center">
-      <div class="text-biru160-polteka text-xs md:text-sm">
+        <div class="text-biru160-polteka text-xs md:text-sm">
         © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
-      </div>
+        </div>
     </footer>
 </div>
 

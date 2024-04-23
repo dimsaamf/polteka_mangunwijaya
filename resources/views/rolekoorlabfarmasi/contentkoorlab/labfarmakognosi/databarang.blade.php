@@ -10,7 +10,7 @@
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmakognosi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Data Barang</div>
+            <div class="ml-2 text-hitam-polteka">Data Barang</div>
         </div> 
         <div class="my-4 w-1/2 flex justify-end text-hitam-polteka">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
@@ -24,38 +24,45 @@
         <h2 class="text-xl font-semibold">Data Barang</h2>
 
         <!-- BEGIN: Data List --> 
-        <div class="flex flex-col mt-3">
+        <div class="flex flex-col mt-8">
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
-                <div class="flex w-full justify-start">
-                        <div class ="bg-merah180-polteka w-2/5 h-10 flex justify-start items-center rounded-l-full rounded-r-full">
-                            <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
-                                <div class="relative flex">
-                                    <input
-                                        type="search"
-                                        class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
-                                        placeholder="Cari Barang"/>
+                <div class="flex">
+                    <div class="flex w-1/2 justify-start mb-3">
+                        <a href="{{ route('tambahbarangkoorlabfarmakognosi') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            Tambah Barang
+                        </a>
+                    </div>
+                    <div class="flex w-1/2 justify-end mb-3">
+                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                        <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
+                                            <div class="relative flex">
+                                                <input
+                                                    type="search"
+                                                    class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                                    placeholder="Cari Barang"/>
+                                            </div>
+                                        </div>
+                                        <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
+                                            <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="2"
+                                            stroke="white">
+                                                <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                            </svg>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="currentColor">
-                                    <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                </svg>
-                            </span>
-                        </div>
                     </div>
                     <table class="mt-8 min-w-full text-sm text-hitam-polteka">
                     <thead>
-                    <tr >
+                        <tr>
                             <th scope="col" class="px-6 py-3 text-center">Barcode</th>
                             <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
