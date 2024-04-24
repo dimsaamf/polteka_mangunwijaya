@@ -6,29 +6,14 @@ use App\Models\PengajuanBarangLabFarmasi;
 use App\Http\Controllers\Controller;
 use App\Models\PengajuanBarangWadir;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PengajuanWadirController extends Controller
 {
     public function getpengajuan()
     {
-        $pengajuanBarangs = PengajuanBarangLabFarmasi::paginate(10);
+        $pengajuanBarangs = PengajuanBarangLabFarmasi::with('pengajuanWadir')->paginate(10);
         return view('rolewadir.contentwadir.pengajuanbarang', compact('pengajuanBarangs'));
-    }
- 
-    public function createStatus(Request $request)
-    {
-        $request->validate([
-            'status' => 'required|in:Disetujui,Ditunda,Ditolak',
-        ]);
-
-        $pengajuanwadir = new PengajuanBarangWadir();
-        $pengajuanwadir->status = $request->status;
-
-        $pengajuanBarangLabFarmasi = PengajuanBarangLabFarmasi::first(); // Ganti ini dengan logika sesuai dengan kebutuhan Anda
-        $pengajuanwadir->pengajuanBarangLabFarmasi()->associate($pengajuanBarangLabFarmasi);
-        $pengajuanwadir->save();
-
-        return redirect()->route('pengajuanwadir');
     }
 
     public function updateStatus(Request $request, $id)
@@ -46,5 +31,43 @@ class PengajuanWadirController extends Controller
         $pengajuanBarangWadir->save();
 
         return redirect()->route('pengajuanwadir');
-    }
+        }
+        
+        public function detailPengajuanKoorLabFarmasi($id)
+        {
+            $pengajuanBarang = PengajuanBarangLabFarmasi::findOrFail($id);
+            return view('rolewadir.contentwadir.detailpengajuan', compact('pengajuanBarang'));
+        }
+
+        public function previewSurat($id)
+        {
+            $pengajuanBarang = PengajuanBarangLabFarmasi::findOrFail($id);
+
+            $fileExtension = pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION);
+
+            $contentType = '';
+            switch ($fileExtension) {
+                case 'pdf':
+                    $contentType = 'application/pdf';
+                    break;
+                case 'png':
+                    $contentType = 'image/png';
+                    break;
+                case 'jpg':
+                case 'jpeg':
+                    $contentType = 'image/jpeg';
+                    break;
+                default:
+                    return response()->json(['error' => 'Tipe file tidak didukung'], 400);
+            }
+
+            $fileContent = Storage::get('public/' . $pengajuanBarang->file);
+
+            $headers = [
+                'Content-Type' => $contentType,
+                'Content-Disposition' => 'inline; filename="' . $pengajuanBarang->file_name . '"',
+            ];
+
+            return response($fileContent, 200, $headers);
+        }
 }

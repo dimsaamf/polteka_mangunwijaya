@@ -46,7 +46,8 @@
                             <th scope="col" class="px-6 py-3 text-center">Detail Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Total Harga</th>
                             <th scope="col" class="px-6 py-3 text-center">File</th>
-                            <th scope="col" class="px-6 py-3 text-center">Status</th>
+                            <th scope="col" class="px-6 py-3 text-center">Detail</th>
+                            <th scope="col" class="px-3 py-3 text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +59,7 @@
                                 <td class="px-6 py-2 whitespace-nowrap max-w-[200px]">{{ mb_substr(implode(' ', array_slice(explode(' ', $pengajuanbarang->detail_barang), 0, 5)), 0, 30) }} ...</td>
                                 <td class="px-6 py-2 whitespace-nowrap">Rp {{ number_format($pengajuanbarang->total_harga, 0, ',', '.') }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">
-                                    <a href="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" target="_blank">
+                                    <a href="{{ route('preview.suratwadir', ['id' => $pengajuanbarang->id]) }}" target="_blank">
                                         @if (in_array(pathinfo($pengajuanbarang->file, PATHINFO_EXTENSION), ['pdf']))
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 15 15"><path fill="#e20808" d="M3.5 8H3V7h.5a.5.5 0 0 1 0 1M7 10V7h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/><path fill="#e20808" fill-rule="evenodd" d="M1 1.5A1.5 1.5 0 0 1 2.5 0h8.207L14 3.293V13.5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 1 13.5zM3.5 6H2v5h1V9h.5a1.5 1.5 0 1 0 0-3m4 0H6v5h1.5A1.5 1.5 0 0 0 9 9.5v-2A1.5 1.5 0 0 0 7.5 6m2.5 5V6h3v1h-2v1h1v1h-1v2z" clip-rule="evenodd"/></svg>
                                         @else
@@ -68,23 +69,24 @@
                                         @endif
                                     </a>
                                 </td>
+                                <td class="px-3 py-2 whitespace-nowrap rounded-r-xl flex justify-center space-x-4">
+                                    <a href="{{ route('detailpengajuanwadir', ['id' => $pengajuanbarang->id]) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4em" height="1.4em" viewBox="0 0 24 24"><path fill="black" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                                    </a>
+                                </td>
                                 <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
                                     <form method="POST" action="{{ route('updatestatuskoorlabfarmasi', $pengajuanbarang->id) }}">
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group flex justify-center">
-                                            <select name="status" class="form-control inline-flex w-auto mr-2 justify-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka">
+                                            <select name="status" class="form-control inline-flex w-auto mr-2 justify-center text-center rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka" >
                                                 @php
-                                                $status = $pengajuanbarang->pengajuanWadir ? $pengajuanbarang->pengajuanWadir->status : ''; // Mengambil status dari relasi pengajuanWadir jika ada
+                                                $status = $pengajuanbarang->pengajuanWadir ? $pengajuanbarang->pengajuanWadir->status : '';
                                                 @endphp
-                                                @if ($status)
-                                                    <option value="{{ $status }}" selected>{{ $status }}</option>
-                                                @else
-                                                    <option value="" selected disabled>Menunggu konfirmasi</option>
-                                                @endif
-                                                <option value="Disetujui">Disetujui</option>
-                                                <option value="Ditunda">Ditunda</option>
-                                                <option value="Ditolak">Ditolak</option>
+                                                <option value="" {{ !$status ? 'selected' : '' }} disabled>Menunggu konfirmasi</option>
+                                                <option value="Disetujui" {{ $status === 'Disetujui' ? 'selected' : '' }} >Disetujui</option>
+                                                <option value="Ditunda" {{ $status === 'Ditunda' ? 'selected' : '' }}>Ditunda</option>
+                                                <option value="Ditolak" {{ $status === 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
                                             </select>
                                             <button type="submit" class="btn btn-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 24 24" class="mr-1">
@@ -94,7 +96,6 @@
                                         </div>
                                     </form>
                                 </td>
-                                 
                             </tr>
                         @endforeach
                     </tbody>
@@ -107,32 +108,33 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Sebelumnya
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    1
-                </button>
-                </li>
-                <li>
-                <button
-                    class="bg-biru160-polteka px-4 py-2 text-putih-polteka hover:bg-biru100-polteka rounded-full text-sm">
-                    2
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    3
-                </button>
-                </li>
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Selanjutnya
-                </button>
-                </li>
+                @if ($pengajuanBarangs->onFirstPage())
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $pengajuanBarangs->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                    </li>
+                @endif
+        
+                @foreach ($pengajuanBarangs->getUrlRange($pengajuanBarangs->currentPage() - 2, $pengajuanBarangs->currentPage() + 2) as $page => $url)
+                    @if ($page == $pengajuanBarangs->currentPage())
+                        <li>
+                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                        </li>
+                    @endif
+                @endforeach
+        
+                @if ($pengajuanBarangs->hasMorePages())
+                    <li>
+                        <a href="{{ $pengajuanBarangs->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                    </li>
+                @else
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- END: Pagination -->

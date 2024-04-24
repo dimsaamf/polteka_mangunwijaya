@@ -5,6 +5,7 @@ use App\Models\PengajuanBarangLabFarmasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class PengajuanBarangLabFarmasiController extends Controller
 {
@@ -28,6 +29,7 @@ class PengajuanBarangLabFarmasiController extends Controller
 
     public function store(Request $request)
     {
+        
         $messages = [
             'no_surat.required' => 'Nomor surat harus diisi.',
             'no_surat.string' => 'Nomor surat harus berupa teks.',
@@ -56,7 +58,7 @@ class PengajuanBarangLabFarmasiController extends Controller
 
         PengajuanBarangLabFarmasi::create([
             'no_surat' => $request->no_surat,
-            'tanggal' => now(),
+            'tanggal' => Carbon::now('Asia/Jakarta'),
             'detail_barang' => $request->detail_barang,
             'total_harga' => $request->total_harga,
             'file' => $file_surat_path,

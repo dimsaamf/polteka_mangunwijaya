@@ -7,10 +7,19 @@ use App\Models\User;
 
 class ManajemenUserController extends Controller
 {
-    public function index(){
-        $users = User::paginate(10);
+    public function index(Request $request) {
+        $query = $request->input('search');
+        $users = User::query();
+    
+        if ($query) {
+            $users->where('name', 'like', '%'.$query.'%')
+                  ->orWhere('email', 'like', '%'.$query.'%');
+        }
+    
+        $users = $users->paginate(10);
         return view('rolesuperadmin.contentsuperadmin.manajemen', compact('users'));
     }
+    
 
     public function create()
     {

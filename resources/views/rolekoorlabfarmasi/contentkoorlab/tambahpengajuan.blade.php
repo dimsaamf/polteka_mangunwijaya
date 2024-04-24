@@ -35,8 +35,8 @@
             <label class="block mt-4">
                 <span class="text-sm font-medium">Tanggal*</span>
                 <input type="hidden" name="tanggal" value="{{ now()->toDateString() }}">
-                <p class="mt-2">{{ now()->translatedFormat('d F Y') }}</p>
-            </label>
+                <p class="mt-2">{{ \Carbon\Carbon::now()->timezone('Asia/Jakarta')->translatedFormat('d F Y') }}</p>
+            </label>            
             <label class="block mt-4">
                 <span class="text-sm font-medium">Detail Barang*</span>
                 <textarea name="detail_barang" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum"></textarea> 

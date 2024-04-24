@@ -1,4 +1,4 @@
-@extends('rolekoorlabfarmasi.layoutkoorlab.detailpengajuan')
+@extends('rolesuperadmin.layoutsuperadmin.detailpengajuan')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -9,7 +9,7 @@
             <div class="text-hitam-polteka">Detail Pengajuan Barang</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Prodi Farmasi</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Superadmin</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Detail Pengajuan Barang</div>
         </div> 
@@ -46,9 +46,9 @@
                     <div>
                         <p class="font-semibold">File:</p>
                         @if (pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION) == 'pdf')
-                            <embed src="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanBarang->id]) }}" type="application/pdf" width="100%" height="600px">
+                            <embed src="{{ route('preview.suratsuperadmin', ['id' => $pengajuanBarang->id]) }}" type="application/pdf" width="100%" height="600px">
                         @else
-                            <img src="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanBarang->id]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
+                            <img src="{{ route('preview.suratsuperadmin', ['id' => $pengajuanBarang->id]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
                         @endif
                     </div>
         </div>

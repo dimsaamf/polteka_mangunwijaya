@@ -43,10 +43,38 @@
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
-                <div class="flex w-1/2 justify-start mt-2">
-                        <a href="{{ route('tambahpenggunasuperadmin') }}" type="button" class="w-[150px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                            Tambah Pengguna
-                        </a>
+                    <div class="flex">
+                        <div class="flex w-1/2 justify-start mt-2">
+                            <a href="{{ route('tambahpenggunasuperadmin') }}" type="button" class="w-[150px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                                Tambah Pengguna
+                            </a>
+                        </div>
+                        <div class="flex w-1/2 justify-end mt-2">
+                            <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
+                                    <div class="relative flex">
+                                        <input
+                                            type="search"
+                                            id="searchInput"
+                                            class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                            placeholder="Cari Pengguna"/>
+                                    </div>
+                                </div>
+                                <button id="searchButton" class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2"
+                                        stroke="white">
+                                        <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <table class="mt-4 min-w-full text-sm text-hitam-polteka">
                     <thead>
@@ -194,5 +222,38 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+<script>
+    let typingTimer; // Timer untuk menunda permintaan pencarian
+    const doneTypingInterval = 500; // Waktu penundaan (ms) setelah selesai mengetik
+
+    // Fungsi untuk menunda permintaan pencarian
+    function doneTyping() {
+        let query = document.getElementById("searchInput").value.trim();
+        if (query !== "") {
+            window.location.href = "{{ route('manajemensuperadmin') }}?search=" + query;
+        } else {
+            window.location.href = "{{ route('manajemensuperadmin') }}";
+        }
+    }
+
+    // Event listener untuk memantau perubahan pada input pencarian
+    document.getElementById("searchInput").addEventListener("input", function(event) {
+        clearTimeout(typingTimer);
+        // Jika input terakhir adalah spasi, jangan mulai timer pencarian
+        if (event.data !== " ") {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    });
+
+    // Event listener untuk menangani klik tombol pencarian
+    document.getElementById("searchButton").addEventListener("click", function() {
+        doneTyping();
+    });
+</script>
+
+
+
+
 
 @endsection

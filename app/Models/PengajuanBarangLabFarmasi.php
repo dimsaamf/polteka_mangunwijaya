@@ -18,4 +18,9 @@ class PengajuanBarangLabFarmasi extends Model
         'file', 
         'status'
     ];
+
+    public function pengajuanWadir()
+    {
+        return $this->hasOne(PengajuanBarangWadir::class, 'pengajuan_barang_labfarmasi_id');
+    }
 }

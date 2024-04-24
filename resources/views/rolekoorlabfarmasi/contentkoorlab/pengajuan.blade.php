@@ -54,7 +54,7 @@
                                 <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($pengajuanBarangs->currentPage() - 1) * $pengajuanBarangs->perPage() + $loop->index + 1 }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">{{$pengajuanbarang->no_surat}}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($pengajuanbarang->tanggal)->translatedFormat('d F Y') }}</td>
-                                <td class="px-6 py-2 whitespace-nowrap max-w-[200px]">{{ mb_substr(implode(' ', array_slice(explode(' ', $pengajuanbarang->detail_barang), 0, 5)), 0, 30) }} ...</td>
+                                <td class="px-6 py-2 whitespace-nowrap max-w-[200px]">{{ mb_substr(implode(' ', array_slice(explode(' ', $pengajuanbarang->detail_barang), 0, 5)), 0, 25) }} ...</td>
                                 <td class="px-6 py-2 whitespace-nowrap">Rp {{ number_format($pengajuanbarang->total_harga, 0, ',', '.') }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">
                                     <a href="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" target="_blank">
@@ -67,7 +67,7 @@
                                         @endif
                                     </a>
                                 </td>
-                                <td class="px-6 py-2 whitespace-nowrap">{{ $pengajuanbarang->status }}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{ $pengajuanbarang->pengajuanWadir ? $pengajuanbarang->pengajuanWadir->status : 'Menunggu konfirmasi' }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap rounded-r-xl flex justify-center space-x-4">
                                     <a href="{{ route('detailpengajuankoorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4em" height="1.4em" viewBox="0 0 24 24"><path fill="black" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
