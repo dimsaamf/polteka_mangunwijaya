@@ -9,10 +9,11 @@ use App\Models\BarangMasukFarmakognosi;
 
 class BarangMasukFarmakognosiController extends Controller
 {
-    // public function index(){
-    //     $barangmasukfarmakognosi = BarangMasukFarmakognosi::paginate(10);
-    //     return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk', compact('barangmasukfarmakognosi'));
-    // }
+    public function index(){
+        $barangmasukfarmakognosi = BarangMasukFarmakognosi::paginate(10);
+        $data=InventarisLabFarmakognosi::all();
+        return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.riwayatmasuk', compact('barangmasukfarmakognosi','data'));
+    }
 
     public function tabel(){
         $data=InventarisLabFarmakognosi::all();
@@ -30,39 +31,22 @@ class BarangMasukFarmakognosiController extends Controller
             'tanggal_masuk' => 'required|date'
         ]);
 
-        $item=InventarisLabFarmakognosi::all();
+        $id_barang = $request->id_barang;
+        $barang = InventarisLabFarmakognosi::findOrFail($id_barang);
+
+        $jumlah_awal = $barang->jumlah;
+        $jumlah_masuk_baru = $request->jumlah_masuk;
+        $jumlah_akhir = $jumlah_awal + $jumlah_masuk_baru;
+        
+        $barang->jumlah = $jumlah_akhir;
+        $barang->save();
+        
         $barangmasukfarmakognosi = new BarangMasukFarmakognosi();
-        $barangmasukfarmakognosi->jumlah_masuk = $request->jumlah_masuk;
+        $barangmasukfarmakognosi->jumlah_masuk = $jumlah_masuk_baru;
         $barangmasukfarmakognosi->tanggal_masuk = $request->tanggal_masuk;
-        
-        // $barangmasukfarmakognosi->nama_barang = $item->nama_barang;
-        // $barangmasukfarmakognosi->jumlah = $item->jumlah;
-        // $barangmasukfarmakognosi->harga = $item->harga;
-        // $barangmasukfarmakognosi->keterangan = $item->keterangan;
-        
-
-        // foreach ($jumlah_masuk as $key => $value) {
-        //     if ($value == 0) {
-        //         continue;
-        //     }
-        //     // dd($value);
-        //     $dt_produk = InventarisLabFarmakognosi::where('id', $id_barang[$key])->first();
-        //     InventarisLabFarmakognosi::where('id', $id_barang[$key])->update([
-        //         'jumlah_masuk' => $dt_produk->jumlah_masuk[$key] + $jumlah_masuk
-        //     ]);
-        //     BarangMasukFarmakognosi::insert([
-        //         'id_barang' => $id_barang[$key],
-        //         'nama_barang' => $nama_barang[$key],
-        //         'jumlah' => $jumlah[$key],
-        //         'satuan' => $satuan[$key],
-        //         'harga' => $harga[$key],
-        //         'keterangan' => $keterangan[$key],
-        //         'tanggal_masuk' => $tanggal_masuk,
-        //     ]);
-
-        // }
-
+        $barangmasukfarmakognosi->id_barang = $id_barang;
         $barangmasukfarmakognosi->save();
+
         alert()->success('Berhasil','Stok Barang Berhasil Ditambahkan.');
         return redirect()->route('barangmasukkoorlabfarmakognosi');
 

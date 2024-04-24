@@ -19,16 +19,43 @@ class InventarisLabfarmakognosiController extends Controller
     }
 
     public function store(Request $request){
+
+        $thn = InventarisLabFarmakognosi::now();
+        $var = 'BF';
+        $bms = InventarisLabFarmakognosi::count();
+        if ($bms == 0) {
+            $awal = 10001;
+            $kode = $var.$thn.$awal;
+            // BM2021001
+        } else {
+           $last = InventarisLabFarmakognosi::all()->last();
+           $awal = (int)substr($last->kode, -5) + 1;
+           $kode = $var.$thn.$awal;
+        };
+
+        $request['kode_barang'] = $kode;
+
+        $messages = [
+            'nama_barang.required' => 'Nama barang harus diisi.',
+            'nama_barang.unique' => 'Nama barang sudah digunakan.',
+            'jumlah.required' => 'Jumlah harus diisi.',
+            'satuan.required' => 'Satuan harus diisi.',
+            'harga.required' => 'Harga harus dipilih.',
+            'Keterangan.required' => 'Keterangan harus diisi.',
+            'gambar.image' => 'Gambar harus berupa gambar.',
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
+        ];
+
         $request->validate([
-            'nama_barang'=>'required|string',
-            'jumlah'=>'nullable|integer',
+            'nama_barang'=>'required|string|unique:inventaris_labfarmakognosis',
+            'jumlah'=>'required|integer',
             'satuan'=>'required|string',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',
             'keterangan'=>'required',
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
-        ]);
+        ], $messages);
 
         $labfarmakognosi = new InventarisLabFarmakognosi();
         $labfarmakognosi->nama_barang = $request->nama_barang;
@@ -60,16 +87,22 @@ class InventarisLabfarmakognosiController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $messages = [
+            'nama_barang.unique' => 'Nama barang sudah digunakan.',
+            'gambar.image' => 'Gambar harus berupa gambar.',
+            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
+        ];
+
         $request->validate([
-            'nama_barang'=>'string',
-            'jumlah'=>'integer',
-            'satuan'=>'string',
-            'tanggal_service'=>'date',
-            'periode'=>'integer',
-            'harga'=>'integer',
+            'nama_barang'=>'required|string',
+            'jumlah'=>'required|integer',
+            'satuan'=>'required|string',
+            'tanggal_service'=>'nullable|date',
+            'periode'=>'nullable|integer',
+            'harga'=>'required|integer',
             'keterangan'=>'required',
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
-        ]);
+        ], $messages);
 
         $labfarmakognosi = Inventarislabfarmakognosi::findOrFail($id);
 
@@ -105,7 +138,7 @@ class InventarisLabfarmakognosiController extends Controller
         if ($request->hasFile('gambar')) {
             $gambarName = $request->file('gambar')->getClientOriginalName();
             $request->file('gambar')->storeAs('public/gambars', $gambarName);
-            $user->gambar = $gambarName;
+            $labfarmakognosi->gambar = $gambarName;
             $isUpdated = true;
         }
         if (!$isUpdated){

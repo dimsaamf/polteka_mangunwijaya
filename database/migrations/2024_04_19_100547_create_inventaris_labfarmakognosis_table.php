@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('inventaris_labfarmakognosis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
+            $table->string('kode_barang');
             $table->integer('jumlah');
             $table->string('satuan');
-            $table->date('tanggal_service');
-            $table->integer('periode');
+            $table->date('tanggal_service')->nullable();;
+            $table->integer('periode')->nullable();;
             $table->integer('harga');
             $table->text('keterangan');
             $table->string('gambar')->default(null);

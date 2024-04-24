@@ -15,11 +15,6 @@ class BarangMasukFarmakognosi extends Model
         'jumlah_masuk',
         'tanggal_masuk',
         'id_barang',
-        'nama_barang',
-        'jumlah',
-        'satuan',
-        'harga',
-        'keterangan'
     ];
 
     // public function inventarislabfarmakognosi()

@@ -13,6 +13,7 @@ class InventarisLabFarmakognosi extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'nama_barang',
+        'kode_barang',
         'jumlah',
         'satuan',
         'tanggal_service',

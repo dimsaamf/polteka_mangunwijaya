@@ -28,6 +28,9 @@
         <label class="block mt-4">
             <span class="text-sm font-medium">Nama</span>
             <input type="text" name="nama_barang" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            @error('nama_barang')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </label>   
         <label class="block mt-4">
             <span class="text-sm font-medium">ID Barang</span>
@@ -37,10 +40,16 @@
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah</span>
                 <input type="number" name="jumlah" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                @error('jumlah')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Satuan</span>
                 <input type="text" name="satuan" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                @error('satuan')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
             </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
@@ -59,14 +68,23 @@
         <label class="block mt-4">
             <span class="text-sm font-medium">Harga</span>
             <input type="number" name="harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            @error('harga')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Keterangan</span>
             <input type="text" name="keterangan" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            @error('keterangan')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Gambar</span>
             <input type="file" name="gambar" class="mt-2 mr-4 block w-full sm:text-sm"/>
+            @error('gambar')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </label>        
             <button type="submit" class="inline-flex w-20 justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Submit

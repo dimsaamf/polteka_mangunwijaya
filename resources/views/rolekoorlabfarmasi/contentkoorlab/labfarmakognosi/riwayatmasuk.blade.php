@@ -28,8 +28,8 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <div class="flex w-1/2 justify-end mb-3">
-                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                    <div class="flex w-full justify-end mb-3">
+                                    <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
                                         <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                             <div class="relative flex">
                                                 <input
@@ -57,21 +57,25 @@
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
+                            <th scope="col" class="px-6 py-3 text-center">No</th>
                             <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
-                            <th scope="col" class="px-6 py-3 text-center">Total Jumlah</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($barangmasukfarmakognosi as $data)
+                        @foreach($barangmasukfarmakognosi as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->id_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->tanggal_masuk}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah_masuk}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                @if($barang->id == $item->id_barang)
+                                    {{ $barang->nama_barang }}
+                                @endif
+                            @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->id_barang }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_masuk }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}</td>
                         </tr>
                         @endforeach
                     </tbody>
