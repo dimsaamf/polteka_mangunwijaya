@@ -93,52 +93,7 @@
                 </div>
             </div>
         </div>
-        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-auto fixed inset-0">
-            <!-- Lapisan latar belakang transparan -->
-            <div class="fixed inset-0 overflow-y-auto flex items-center justify-center z-50">
-                <!-- Lapisan latar belakang transparan -->
-                <div class="fixed inset-0 bg-black opacity-25"></div>
-                <div class="relative bg-white rounded-lg shadow w-[300px] sm:w-[450px] md:w-[500px]">
-                    <!-- Modal header -->
-                    <div class="flex items-center justify-between py-2"></div>
-                    <div class="flex items-center justify-between px-5 py-1">
-                        <button type="button" class="text-hitam-polteka bg-transparent hover:bg-merah200-polteka hover:text-putih-polteka rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="default-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>                      
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <h3 class="text-xl font-semibold">
-                            Kurangi Stok barang
-                        </h3>                      
-                    </div>
-                    <!-- Modal body -->
-                    <div class="px-8">
-                    <form action="{{ route('barangkeluarkoorlabfarmakognosi.store') }}" method="POST" enctype="multipart/form-data">  
-                    @csrf
-                        <label class="block mt-4">
-                            <span class="text-sm font-medium">Jumlah Barang keluar</span>
-                            <input type="text" name="jumlah_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
-                        </label>
-                    </div>
-                    <div class="px-8">
-                        <label class="block mt-4">
-                            <span class="text-sm font-medium">Tanggal Barang keluar</span>
-                            <input type="date" name="tanggal_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
-                        </label>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="flex items-center p-4 md:p-5 mt-4">
-                        <button data-modal-hide="default-modal" type="submit" class="inline-flex w-20 justify-center rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
