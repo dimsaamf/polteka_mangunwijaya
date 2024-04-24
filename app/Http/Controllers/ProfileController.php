@@ -46,24 +46,17 @@ class ProfileController extends Controller
 
 
     public function getAvatar($filename)
-{
-    // Misalkan kolom 'avatar' menyimpan nama file avatar dalam tabel pengguna (users)
-    $user = User::where('avatar', $filename)->firstOrFail();
-    
-    // Ambil isi dari kolom 'avatar_content' yang berisi konten gambar dari database
-    $avatarContent = $user->avatar;
+    {
+        $user = User::where('avatar', $filename)->firstOrFail();
+        $avatarContent = $user->avatar;
+        $contentType = 'image/jpeg';
 
-    // Tentukan tipe konten gambar
-    $contentType = 'image/jpeg'; // Misalkan gambar disimpan dalam format JPEG
+        $headers = [
+            'Content-Type' => $contentType,
+        ];
 
-    // Atur header respons
-    $headers = [
-        'Content-Type' => $contentType,
-    ];
-
-    // Kembalikan respons dengan konten gambar dan header yang sesuai
-    return response($avatarContent, 200, $headers);
-}
+        return response($avatarContent, 200, $headers);
+    }
 
 
     public function ChangePassword()

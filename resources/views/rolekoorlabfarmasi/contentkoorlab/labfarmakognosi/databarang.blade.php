@@ -28,37 +28,32 @@
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
-                <div class="flex">
-                    <div class="flex w-1/2 justify-start mb-3">
-                        <a href="{{ route('tambahbarangkoorlabfarmakognosi') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                            Tambah Barang
-                        </a>
-                    </div>
-                    <div class="flex w-1/2 justify-end mb-3">
-                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                        <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
-                                            <div class="relative flex">
-                                                <input
-                                                    type="search"
-                                                    class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
-                                                    placeholder="Cari Barang"/>
-                                            </div>
+                    <div class="flex">
+                        <div class="flex w-1/2 justify-start mb-3">
+                            <a href="{{ route('tambahbarangkoorlabfarmakognosi') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                                Tambah Barang
+                            </a>
+                        </div>
+                        <div class="flex w-1/2 justify-end mt-2">
+                            <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                <form action="{{ route('databarangkoorlabfarmakognosi') }}" method="GET" class="relative flex w-full">
+                                    <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
+                                        <div class="relative flex">   
+                                            <input
+                                                type="text"
+                                                name="search"
+                                                class="relative m-0 block flex-auto rounded-l-full border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                                placeholder="Cari berdasarkan Username atau email"/>
                                         </div>
-                                        <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
-                                            <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="2"
-                                            stroke="white">
-                                                <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                            </svg>
-                                        </span>
                                     </div>
-                                </div>
+                                    <button type="submit" class="absolute right-0 top-0 bottom-0 flex items-center justify-center w-10 h-full rounded-r-full bg-merah180-polteka dark:bg-merah180-polteka dark:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <table class="mt-8 min-w-full text-sm text-hitam-polteka">
                     <thead>
@@ -74,6 +69,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($labfarmakognosi->isEmpty())
+                            <tr>
+                                <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
+                            </tr>
+                        @else
                         @foreach($labfarmakognosi as $data)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">{!! DNS2D::getBarcodeHTML("$data->kode_barang", 'QRCODE', 2, 2) !!}</td>
@@ -81,7 +81,13 @@
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->kode_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp. {{$data->harga}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                <a href="{{ route('get.gambar.invlabfarmakognosi', ['id' => $data->id]) }}" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536">
+                                        <path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/>
+                                    </svg>
+                                </a>
+                            </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
                                 <a href="{{ route('ubahbarangkoorlabfarmakognosi', $data->id) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
@@ -98,6 +104,7 @@
                                 </td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     </table>
                 </div>
@@ -108,32 +115,33 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Sebelumnya
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    1
-                </button>
-                </li>
-                <li>
-                <button
-                    class="bg-biru160-polteka px-4 py-2 text-putih-polteka hover:bg-biru100-polteka rounded-full text-sm">
-                    2
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    3
-                </button>
-                </li>
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Selanjutnya
-                </button>
-                </li>
+                @if ($labfarmakognosi->onFirstPage())
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $labfarmakognosi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                    </li>
+                @endif
+        
+                @foreach ($labfarmakognosi->getUrlRange($labfarmakognosi->currentPage() - 2, $labfarmakognosi->currentPage() + 2) as $page => $url)
+                    @if ($page == $labfarmakognosi->currentPage())
+                        <li>
+                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                        </li>
+                    @endif
+                @endforeach
+        
+                @if ($labfarmakognosi->hasMorePages())
+                    <li>
+                        <a href="{{ $labfarmakognosi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                    </li>
+                @else
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- END: Pagination -->

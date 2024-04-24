@@ -92,6 +92,8 @@ Route::middleware(['auth', 'user.role:superadmin'])->group(function (){
     Route::get('/koorlabfarmasi/pengajuanbarang/edit/{id}', [PengajuanBarangLabFarmasiController::class, 'edit'])->name('editpengajuankoorlabfarmasi');
     Route::post('/koorlabfarmasi/pengajuanbarang/update/{id}', [PengajuanBarangLabFarmasiController::class, 'update'])->name('updatepengajuankoorlabfarmasi');
     Route::delete('/koorlabfarmasi/hapuspengajuan/{id}', [PengajuanBarangLabFarmasiController::class, 'destroy'])->name('hapuspengajuankoorlabfarmasi');
+    Route::get('/koorlabfarmasi/gambar/{id}', [InventarislabFarmakognosiController::class, 'getGambar'])->name('get.gambar.invlabfarmakognosi');
+    
 
     // Route::get('/barangmasukkoorlabfarmakognosi', function () {
     //     return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk');

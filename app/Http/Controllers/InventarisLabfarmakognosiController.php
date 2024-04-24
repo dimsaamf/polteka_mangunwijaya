@@ -10,8 +10,16 @@ use App\Models\InventarisLabfarmakognosi;
 
 class InventarisLabfarmakognosiController extends Controller
 {
-    public function index(){
-        $labfarmakognosi = InventarisLabFarmakognosi::paginate(10);
+    public function index(Request $request)
+    {
+        $query = $request->input('search');
+        $labfarmakognosi = InventarisLabFarmakognosi::query();
+        
+        if ($query) {
+            $labfarmakognosi->where('nama_barang', 'like', '%' . $query . '%');
+        }
+        
+        $labfarmakognosi = $labfarmakognosi->paginate(10);
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
     }
 
@@ -148,6 +156,14 @@ class InventarisLabfarmakognosiController extends Controller
         $labfarmakognosi->save();
         alert()->success('Berhasil', 'Data barang berhasil diperbarui');
         return redirect()->route('databarangkoorlabfarmakognosi');
+    }
+
+    public function getGambar($id)
+    {
+        $labfarmakognosi = InventarisLabFarmakognosi::findOrFail($id);
+        $gambarPath = storage_path('app/public/gambars/' . $labfarmakognosi->gambar);
+
+        return response()->file($gambarPath);
     }
 
     public function destroy($id)

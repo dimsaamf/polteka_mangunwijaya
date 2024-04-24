@@ -65,6 +65,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($barangkeluarfarmakognosi->isEmpty())
+                            <tr>
+                                <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
+                            </tr>
+                        @else
                         @foreach($barangkeluarfarmakognosi as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td>{{ $loop->iteration }}</td>
@@ -87,6 +92,7 @@
                             @endforeach</td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     </table>
                 </div>

@@ -20,7 +20,6 @@ class ManajemenUserController extends Controller
         return view('rolesuperadmin.contentsuperadmin.manajemen', compact('users'));
     }
     
-
     public function create()
     {
         return view('rolesuperadmin.contentsuperadmin.tambahpengguna');

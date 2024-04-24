@@ -71,6 +71,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($data->isEmpty())
+                            <tr>
+                                <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
+                            </tr>
+                        @else
                         @foreach($data as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->nama_barang}}</td>
@@ -88,6 +93,7 @@
                             </td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     </table>
                 </div>

@@ -49,6 +49,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($pengajuanBarangs->isEmpty())
+                            <tr>
+                                <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
+                            </tr>
+                        @else
                         @foreach($pengajuanBarangs as $pengajuanbarang)
                             <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                                 <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($pengajuanBarangs->currentPage() - 1) * $pengajuanBarangs->perPage() + $loop->index + 1 }}</td>
@@ -85,6 +90,7 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     </tbody>
                     </table>
                 </div>

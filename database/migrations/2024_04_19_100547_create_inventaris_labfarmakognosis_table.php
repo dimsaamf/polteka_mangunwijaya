@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('periode')->nullable();;
             $table->integer('harga');
             $table->text('keterangan');
-            $table->string('gambar')->default(null);
+            $table->string('gambar')->nullable()->default(null);
             $table->timestamps();
         });
     }
