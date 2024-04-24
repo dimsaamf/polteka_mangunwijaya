@@ -74,12 +74,12 @@
                         @foreach($data as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->nama_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->id}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->harga}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$item->kode_barang}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">Rp. {{$item->harga}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->jumlah}} {{$item->satuan}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->keterangan}}</td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" onclick="setIdBarang('{{ $item->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
                                         <path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/>
                                         <path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="flex items-center justify-center">
                         <h3 class="text-xl font-semibold">
-                            Tambah Stok barang
+                            Kurangi Stok barang
                         </h3>                      
                     </div>
                     <!-- Modal body -->
@@ -130,6 +130,7 @@
                             <input type="date" name="tanggal_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
                         </label>
                     </div>
+                    <input type="hidden" name="id_barang" id="id_barang" value="">
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 md:p-5 mt-4">
                         <button data-modal-hide="default-modal" type="submit" class="inline-flex w-20 justify-center rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
@@ -210,6 +211,9 @@
             }
         });
     });
+    function setIdBarang(id) {
+       document.getElementById('id_barang').value = id;
+   }
 </script>
 <!-- Script -->
 

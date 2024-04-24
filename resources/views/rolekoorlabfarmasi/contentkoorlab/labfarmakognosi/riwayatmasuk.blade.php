@@ -73,9 +73,18 @@
                                     {{ $barang->nama_barang }}
                                 @endif
                             @endforeach</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->id_barang }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                @if($barang->id == $item->id_barang)
+                                    {{ $barang->kode_barang }}
+                                @endif
+                            @endforeach</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_masuk }}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}
+                            @foreach($data as $barang)
+                                @if($barang->id == $item->id_barang)
+                                    {{ $barang->satuan }}
+                                @endif
+                            @endforeach</td>
                         </tr>
                         @endforeach
                     </tbody>

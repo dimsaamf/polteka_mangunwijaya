@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Account;
+use Carbon\Carbon;
 
 
 use Illuminate\Http\Request;
@@ -19,22 +20,6 @@ class InventarisLabfarmakognosiController extends Controller
     }
 
     public function store(Request $request){
-
-        $thn = InventarisLabFarmakognosi::now();
-        $var = 'BF';
-        $bms = InventarisLabFarmakognosi::count();
-        if ($bms == 0) {
-            $awal = 10001;
-            $kode = $var.$thn.$awal;
-            // BM2021001
-        } else {
-           $last = InventarisLabFarmakognosi::all()->last();
-           $awal = (int)substr($last->kode, -5) + 1;
-           $kode = $var.$thn.$awal;
-        };
-
-        $request['kode_barang'] = $kode;
-
         $messages = [
             'nama_barang.required' => 'Nama barang harus diisi.',
             'nama_barang.unique' => 'Nama barang sudah digunakan.',
@@ -57,8 +42,22 @@ class InventarisLabfarmakognosiController extends Controller
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
+        $thn = Carbon::now()->year;
+        $var = 'BF';
+        $bms = InventarisLabFarmakognosi::count();
+        if ($bms == 0) {
+            $awal = 10001;
+            $kode_barang = $var.$thn.$awal;
+            // BM2021001
+        } else {
+            $last = InventarisLabFarmakognosi::latest()->first();
+            $awal = (int)substr($last->kode_barang, -5) + 1;
+            $kode_barang = $var.$thn.$awal;
+        }
+
         $labfarmakognosi = new InventarisLabFarmakognosi();
         $labfarmakognosi->nama_barang = $request->nama_barang;
+        $labfarmakognosi->kode_barang = $kode_barang;
         $labfarmakognosi->jumlah = $request->jumlah;
         $labfarmakognosi->satuan = $request->satuan;
         $labfarmakognosi->tanggal_service = $request->tanggal_service;
