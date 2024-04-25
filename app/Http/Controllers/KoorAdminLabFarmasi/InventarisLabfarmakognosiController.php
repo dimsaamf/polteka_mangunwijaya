@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\KoorAdminLabFarmasi;
+use App\Http\Controllers\Controller;
 use App\Account;
 use Carbon\Carbon;
-
 
 use Illuminate\Http\Request;
 use App\Models\InventarisLabfarmakognosi;
@@ -173,4 +173,16 @@ class InventarisLabfarmakognosiController extends Controller
         alert()->success('Berhasil', 'Data barang berhasil dihapus.');
         return redirect()->route('databarangkoorlabfarmakognosi');
     }
+
+//     public function getBarcode($id)
+// {
+//     $labfarmakognosi = InventarisLabFarmakognosi::findOrFail($id);
+//     $kode_barang = $labfarmakognosi->kode_barang;
+    
+//     // Menggunakan DNS2D untuk membuat HTML barcode
+//     $barcodeHTML = DNS2D::getBarcodeHTML($kode_barang, 'QRCODE', 2, 2);
+
+//     // Mengembalikan HTML barcode
+//     return response()->json(['barcodeHTML' => $barcodeHTML]);
+// }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\KoorAdminLabFarmasi;
+use App\Http\Controllers\Controller;
 use App\Account;
-
 use Illuminate\Http\Request;
 use App\Models\InventarisLabfarmakognosi;
 use App\Models\BarangMasukFarmakognosi;

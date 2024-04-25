@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\KoorAdminLabFarmasi;
+use App\Http\Controllers\Controller;
 use App\Models\PengajuanBarangLabFarmasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;

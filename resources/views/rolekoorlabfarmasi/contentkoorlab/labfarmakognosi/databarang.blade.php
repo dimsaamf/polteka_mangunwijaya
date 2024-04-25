@@ -77,6 +77,14 @@
                         @foreach($labfarmakognosi as $data)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">{!! DNS2D::getBarcodeHTML("$data->kode_barang", 'QRCODE', 2, 2) !!}</td>
+                            {{-- <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">
+                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                                    <button onclick="showBarcode('{{ $data->id }}')" class="focus:outline-none">
+                                        Tampilkan Barcode
+                                    </button>
+                                </a>
+                            </td> --}}
+                            
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->kode_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}}</td>
@@ -89,7 +97,7 @@
                                 </a>
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="{{ route('ubahbarangkoorlabfarmakognosi', $data->id) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                <a href="{{ route('ubahbarangkoorlabfarmakognosi', $data->id) }}" >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
                                 </a>
                             </td>
@@ -109,6 +117,23 @@
                     </table>
                 </div>
                 </div>
+            </div>
+        </div>
+        <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="fixed inset-0 overflow-y-auto flex items-center justify-center z-50">
+                <div class="fixed inset-0 bg-black opacity-25"></div>
+                <div class="relative bg-white rounded-lg shadow">
+                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-4 md:p-5 text-center">
+                        <div id="barcodeContainer"></div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
         <!-- END: Data List -->
@@ -154,5 +179,51 @@
       </div>
     </footer>
 </div>
+
+{{-- <script>
+    function showBarcode(id) {
+        fetch('/getBarcode/' + id)
+            .then(response => response.json())
+            .then(data => {
+                const barcodeContainer = document.getElementById('barcodeContainer');
+                barcodeContainer.innerHTML = data.barcodeHTML; // Tampilkan HTML barcode di dalam elemen
+                const modalTarget = document.getElementById('popup-modal');
+                if (modalTarget) {
+                    modalTarget.classList.remove('hidden');
+                    modalTarget.setAttribute('aria-hidden', 'false');
+                    modalTarget.focus();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    const modalToggleButtons = document.querySelectorAll('[data-modal-toggle]');
+    
+    modalToggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalTarget = document.getElementById(button.dataset.modalTarget);
+            if (modalTarget) {
+                modalTarget.classList.toggle('hidden');
+                modalTarget.setAttribute('aria-hidden', modalTarget.classList.contains('hidden') ? 'true' : 'false');
+                if (!modalTarget.classList.contains('hidden')) {
+                    modalTarget.focus();
+                }
+            }
+        });
+    });
+
+    const modalHideButtons = document.querySelectorAll('[data-modal-hide]');
+    modalHideButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalTarget = document.getElementById(button.dataset.modalHide);
+            if (modalTarget) {
+                modalTarget.classList.add('hidden');
+                modalTarget.setAttribute('aria-hidden', 'true');
+                button.focus();
+            }
+        });
+    });
+</script> --}}
+
 
 @endsection

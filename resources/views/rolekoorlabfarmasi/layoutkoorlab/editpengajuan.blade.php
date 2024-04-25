@@ -183,16 +183,20 @@
                         </div>
                     </a>
                 </li>
-                <li class="menu__devider my-6"></li>
+                <li class="menu__devider my-10"></li>
                 <li>
-                    <a href="{{ route('login') }}" class="flex hover:font-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mt-6 w-7">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-                        </svg>
-                        <div class="ml-3 mt-6"> {{ __('Logout') }} </div>
-                    </a>
-                    <form id="logout-form" action="#" method="POST" class="d-none">
+                    <form action="{{route('logout')}}" method="post">
                         @csrf
+                        <button type="submit" class="flex">
+                            <div class="flex justify-start mr-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-md font-semibold">{{ __('Logout') }}</div>
+                            </div>
+                        </button>
                     </form>
                 </li>
             </ul>
@@ -417,17 +421,17 @@
                     </li>
                     <li class="my-8"></li>
                     <li>
-                        <a href="{{ route('login') }}" class="md:justify-center lg:justify-center xl:justify-start flex">
-                            <div class="xl:ml-8 mb-3">
+                        <a href="#" class="md:justify-center lg:justify-center xl:justify-start flex">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                            <button type="submit" class="xl:ml-8 mb-3 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="xl:w-6 xl:h-6 w-8 h-8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                                 </svg>
-                            </div>
-                            <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                                <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                            </button>
+                        </form>
                         </a>
-                        <!-- <form id="logout-form" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
                     </li>
                 </ul>
             </nav>

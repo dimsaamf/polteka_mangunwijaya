@@ -78,7 +78,7 @@
                         @else
                         @foreach($data as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->nama_barang}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{$item->nama_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->kode_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp. {{$item->harga}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->jumlah}} {{$item->satuan}}</td>
