@@ -96,7 +96,8 @@ class ProfileController extends Controller
             alert()->success('Berhasil', 'Kata Sandi berhasil diubah.');
             return redirect()->back();
         } else {
-            return redirect()->back()->withErrors(['oldpassword' => 'Password lama salah.'])->withInput();
+            alert()->error('Gagal', 'Password Lama Salah');
+            return redirect()->back();
         }
     }
 }

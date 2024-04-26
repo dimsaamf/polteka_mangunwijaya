@@ -1,5 +1,6 @@
 @extends('rolewadir.layoutwadir.laporanlab')
 @section('content')
+@include('sweetalert::alert')
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
@@ -31,19 +32,27 @@
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Filter Laporan Laboratorium</h2>
+        <form action="{{ route('previewlaporan') }}" method="POST">
+            @csrf
         <label class="block mt-4">
             <span class="text-sm font-medium">Mulai Tanggal</span>
-            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="date"  id="tgl_awal" name="tgl_awal" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>   
         <label class="block mt-4">
             <span class="text-sm font-medium">Sampai Tanggal</span>
-            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="date" id="tgl_akhir" name="tgl_akhir" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Laporan</span>
             <div class="relative text-left">
                 <div class="group">
-                    <button type="button" class="inline-flex w-[150px] justify-center mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <label for="jenis_laporan">Jenis Laporan</label>
+                            <select id="jenis_laporan" name="jenis_laporan" class="form-control">
+                                <option selected>Pilih Jenis Laporan...</option>
+                                <option value="keluar">Barang Keluar</option>
+                                <option value="masuk">Barang Masuk</option>
+                            </select>
+                    {{-- <button type="button" class="inline-flex w-[150px] justify-center mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         Jenis Laporan
                         <!-- Dropdown arrow -->
                         <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -58,13 +67,14 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Masuk</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Keluar</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </label>  
-            <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            <button type="submit" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Tampilkan
             </button>  
+        </form>
     </section>  
 
     <!-- laporan yang sudah difilter  -->
@@ -87,7 +97,7 @@
         </div>  
         <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
             Cetak PDF
-        </button>
+        </button>        
         <!-- BEGIN: Data List -->
         <div class="flex flex-col mt-5">
             <div class="-m-1.5 overflow-x-auto">
@@ -126,41 +136,62 @@
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
-                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
-                            <th scope="col" class="px-6 py-3 text-center">Gambar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center bg-abu-polteka ">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">ID6373</td>
-                            <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
-                            <td class="px-6 py-2 whitespace-nowrap">9999</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                        </tr>
-
-                        <tr class="text-center bg-putih-polteka">
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                            <td class="px-6 py-1 whitespace-nowrap"></td>
-                        </tr>
-
-                        <tr class="text-center bg-abu-polteka ">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">1</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap">ID6373</td>
-                            <td class="px-6 py-2 whitespace-nowrap">00-00-0000</td>
-                            <td class="px-6 py-2 whitespace-nowrap">9999</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Lorem ipsum dolor</td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536"><path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/></svg></td>
-                        </tr>
+                        @if(isset($laporanMasuk) && count($laporanMasuk) > 0)
+                            @foreach($laporanMasuk as $item)
+                                <tr class="text-center bg-abu-polteka ">
+                                    <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                        @if($barang->id == $item->id_barang)
+                                            {{ $barang->nama_barang }}
+                                        @endif
+                                    @endforeach</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                        @if($barang->id == $item->id_barang)
+                                            {{ $barang->kode_barang }}
+                                        @endif
+                                    @endforeach</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_masuk }}</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}
+                                    @foreach($data as $barang)
+                                        @if($barang->id == $item->id_barang)
+                                            {{ $barang->satuan }}
+                                        @endif
+                                    @endforeach</td>
+                                </tr>
+                            @endforeach
+                            @elseif(isset($laporanKeluar) && count($laporanKeluar) > 0)
+                            @foreach($laporanKeluar as $item)
+                                <tr class="text-center bg-abu-polteka ">
+                                    <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                        @if($barang->id == $item->id_barang)
+                                            {{ $barang->nama_barang }}
+                                        @endif
+                                    @endforeach</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                        @if($barang->id == $item->id_barang)
+                                            {{ $barang->kode_barang }}
+                                        @endif
+                                    @endforeach</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_keluar }}</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_keluar }}
+                                    @foreach($data as $barang)
+                                        @if($barang->id == $item->id_barang)
+                                            {{ $barang->satuan }}
+                                        @endif
+                                    @endforeach</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center">No data available</td>
+                            </tr>
+                        @endif
                     </tbody>
+                    
                     </table>
                 </div>
                 </div>

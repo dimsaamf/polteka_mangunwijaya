@@ -4,6 +4,7 @@ use App\Http\Controllers\Superadmin\ManajemenUserController;
 use App\Http\Controllers\Superadmin\PengajuanSuperadminController;
 use App\Http\Controllers\Wakildirektur\DashboardWadirController;
 use App\Http\Controllers\Wakildirektur\PengajuanWadirController;
+use App\Http\Controllers\Wakildirektur\LaporanWadirController;
 use App\Http\Controllers\KoorAdminLabFarmasi\DashboardKoorAdminLabFarmasiController;
 use App\Http\Controllers\KoorAdminLabFarmasi\BarangMasukFarmakognosiController;
 use App\Http\Controllers\KoorAdminLabFarmasi\BarangKeluarFarmakognosiController;
@@ -48,15 +49,11 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
     Route::get('/wakildirektur/status', [PengajuanWadirController::class, 'getStatusOptions'])->name('getStatusOptions');
     Route::get('/wakildirektur/detailpengajuanbarang/{id}', [PengajuanWadirController::class, 'detailPengajuanKoorLabFarmasi'])->name('detailpengajuanwadir');
     Route::get('/preview-surat-wadir/{id}', [PengajuanWadirController::class, 'previewSurat'])->name('preview.suratwadir');
-    // Route::get('/wakildirektur/laporanlaboratorium',[LaporanController::class, 'laporanlab'])->name('laporanlabwadir');
-    // Route::get('/wakildirektur/laporanlaboratorium',[LaporanController::class, 'laporanprodi'])->name('laporanprodiwadir');
-
-    Route::get('/laporanlabwadir', function () {
-        return view('rolewadir.contentwadir.laporanlab');
-    })->name('laporanlabwadir');
-    Route::get('/laporanprodiwadir', function () {
-        return view('rolewadir.contentwadir.laporanprodi');
-    })->name('laporanprodiwadir');
+    Route::get('/wakildirektur/laporanlaboratorium',[LaporanWadirController::class, 'laporanlab'])->name('laporanlabwadir');
+    Route::get('/wakildirektur/laporanprodi',[LaporanWadirController::class, 'laporanprodi'])->name('laporanprodiwadir');
+    // Route::get('/wakildirektur/laporanlaboratorium', [LaporanWadirController::class, 'prevlap'])->name('getlaporan');
+    Route::post('/wakildirektur/laporanlaboratorium', [LaporanWadirController::class, 'previewLaporan'])->name('previewlaporan');
+    Route::get('/cetak-pdf', [LaporanWadirController::class, 'cetakPDF'])->name('cetak_pdf');
 });
 
 Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group(function (){
@@ -84,7 +81,7 @@ Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group
     Route::post('/koorlabfarmasi/pengajuanbarang/update/{id}', [PengajuanBarangLabFarmasiController::class, 'update'])->name('updatepengajuankoorlabfarmasi');
     Route::delete('/koorlabfarmasi/hapuspengajuan/{id}', [PengajuanBarangLabFarmasiController::class, 'destroy'])->name('hapuspengajuankoorlabfarmasi');
     Route::get('/koorlabfarmasi/gambar/{id}', [InventarislabFarmakognosiController::class, 'getGambar'])->name('get.gambar.invlabfarmakognosi');
-    Route::get('/getBarcode/{id}', 'App\Http\Controllers\InventarisLabfarmakognosiController@getBarcode');
+    Route::get('/getBarcode/{id}', [InventarislabFarmakognosiController::class, 'getBarcode']);
     
     Route::get('/ubahpwkoorlabfarmasi', function () {
         return view('rolekoorlabfarmasi.contentkoorlab.ubahpassword');

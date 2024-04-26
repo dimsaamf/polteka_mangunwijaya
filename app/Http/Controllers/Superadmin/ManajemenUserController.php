@@ -31,7 +31,6 @@ class ManajemenUserController extends Controller
         $messages = [
             'name.required' => 'Username harus diisi.',
             'name.max' => 'username maksimal 20 karakter.',
-            'name.unique' => 'Username sudah digunakan.',
             'name.regex' => 'Username tidak boleh ada spasi.',
             'email.required' => 'Email harus diisi.',
             'email.email' => 'Email harus valid.',
@@ -44,12 +43,18 @@ class ManajemenUserController extends Controller
         ];
     
         $request->validate([
-            'name' => 'required|string|max:20|unique:users|regex:/^[^\s]+$/',
+            'name' => 'required|string|max:20|regex:/^[^\s]+$/',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'role' => 'required|in:wakildirektur,superadmin,adminprodfarmasi,adminprodkimia,adminproddankes,adminlabprodfarmasi,adminlabprodkimia,adminlabprodankes,koorlabprodfarmasi,koorlabprodkimia,koorlabprodankes',
             'avatar' => 'nullable|image|max:2048',
         ], $messages);
+
+        $existingUser = User::where('name', $request->name)->first();
+        if ($existingUser) {
+            alert()->error('Gagal', 'Username Telah Digunakan');
+            return redirect()->route('manajemensuperadmin');
+        }
 
         $user = new User();
         $user->name = $request->name;
@@ -140,7 +145,8 @@ class ManajemenUserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        alert()->success('Berhasil', 'Pengguna berhasil dihapus.');
-        return redirect()->route('manajemensuperadmin');
+        // alert()->success('Berhasil', 'Pengguna berhasil dihapus.');
+        // return redirect()->route('manajemensuperadmin');
+        return response()->json(['status'=>'yey dihapus']);
     }
 }

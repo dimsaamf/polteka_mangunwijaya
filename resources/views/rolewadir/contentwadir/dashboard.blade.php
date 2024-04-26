@@ -36,42 +36,107 @@
     </section>
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
-        <div>
-        <h2 class="text-xl font-medium">DASHBOARD</h2>
-        <div class="flex">
-            <div class="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-9 sm:gap-8 mb-10 w-full lg:w-4/5">
-                <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-1 md:col-end-4 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                    <div class=" gap-6 mt-3">
-                        <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
-                            <div class="box p-6">
-                                <div class="text-3xl font-medium">9999</div>
-                                <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Tersedia</div>
-                            </div>
+            <h2 class="text-xl font-medium">DASHBOARD</h2>
+            <div class=" bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                <div class=" gap-6 mt-3">
+                        <div class=" p-6">
+                            <div class="text-xl font-medium">Selamat Datang, {{ Auth::user()->name }}!</div>
+                            <div class="text-md text-slate-500 mt-1 font-semibold text-justify">Anda Login sebagai Wakil Direktur II Bidang Rumah Tangga Polteka Mangunwijaya</div>
+                        </div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 w-full">
+                    <div class="bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                        <div class="box p-6">
+                            <div class="text-3xl font-medium">9999</div>
+                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang</div>
+                        </div>
+                    </div>
+                    <div class="bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                        <div class="box p-6">
+                            <div class="text-3xl font-medium">9999</div>
+                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Masuk</div>
+                        </div>
+                    </div>
+                    <div class="bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                        <div class="box p-6">
+                            <div class="text-3xl font-medium">9999</div>
+                            <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Keluar</div>
+                        </div>
+                    </div>
+                    <div class="bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
+                        <div class="box p-6">
+                            <div class="text-3xl font-medium">9999</div>
+                            <div class="text-sm text-slate-500 mt-1 font-semibold">Pengajuan Barang</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-4 md:col-end-7 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                    <div class=" gap-6 mt-3">
-                        <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
-                            <div class="box p-6">
-                                <div class="text-3xl font-medium">9999</div>
-                                <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Hampir Habis</div>
+            </div>
+
+            {{-- <div id="popup-modal" tabindex="-1" class="flex w-full h-full ">
+                <div class="relative py-4 pointer-events-auto">
+                    <div class="relative rounded-lg shadow bg-kuning-polteka">
+                        <div class="grid grid-cols-7 gap-1">
+                            <div class="py-3 flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 xl:w-6 xl:h-6" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M6.285 1.975C7.06.68 8.939.68 9.715 1.975l5.993 9.997c.799 1.333-.161 3.028-1.716 3.028H2.008C.453 15-.507 13.305.292 11.972zM8 5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5m1 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" clip-rule="evenodd"/></svg>
                             </div>
-                        </div>
+                            <div class="col-span-4 grid grid-rows-2 gap-[1px] py-3 flex justify-start text-[11px] xl:text-sm items-center text-putih-polteka">
+                                    <p class="font-semibold mr-1">Perhatian!<span class="font-normal"> Stok alat hampir habis! </span></p> 
+                                    Mohon segera diperbarui!
+                            </div>
+                            <div class="col-span-2 py-3 flex justify-center items-center">
+                                <button data-modal-hide="popup-modal" type="button" class="text-putih-polteka inline-flex text-[9px] xl:text-sm font-semibold items-center px-5 py-2.5 text-center">
+                                    LIHAT DETAIL
+                                </button>
+                                
+                            </div>
+                        </div> 
                     </div>
                 </div>
-                <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-7 md:col-end-10 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
-                    <div class=" gap-6 mt-3">
-                        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                            <div class="box p-6">
-                                <div class="text-3xl font-medium">9999</div>
-                                <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Rusak</div>
+            </div>
+            <div id="popup-modal" tabindex="-1" class="flex w-full h-full ">
+                <div class="relative py-4 pointer-events-auto">
+                    <div class="relative rounded-lg shadow bg-kuning-polteka">
+                        <div class="grid grid-cols-7 gap-1">
+                            <div class="py-3 flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 xl:w-6 xl:h-6" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M6.285 1.975C7.06.68 8.939.68 9.715 1.975l5.993 9.997c.799 1.333-.161 3.028-1.716 3.028H2.008C.453 15-.507 13.305.292 11.972zM8 5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5m1 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" clip-rule="evenodd"/></svg>
                             </div>
-                        </div>
+                            <div class="col-span-4 grid grid-rows-2 gap-[1px] py-3 flex justify-start text-[11px] xl:text-sm items-center text-putih-polteka">
+                                    <p class="font-semibold mr-1">Perhatian!<span class="font-normal"> Stok bahan hampir habis! </span></p> 
+                                    Mohon segera diperbarui!
+                            </div>
+                            <div class="col-span-2 py-3 flex justify-center items-center">
+                                <button data-modal-hide="popup-modal1" type="button" class="text-putih-polteka inline-flex text-[9px] xl:text-sm font-semibold items-center px-5 py-2.5 text-center">
+                                    LIHAT DETAIL
+                                </button>
+                                
+                            </div>
+                        </div> 
                     </div>
                 </div>
-            </div>  
-        </div>  
+            </div>
+            <div id="popup-modal" tabindex="-1" class="flex w-full h-full ">
+                <div class="relative py-4 pointer-events-auto">
+                    <div class="relative rounded-lg shadow bg-kuning-polteka">
+                        <div class="grid grid-cols-7 gap-1">
+                            <div class="py-3 flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 xl:w-6 xl:h-6" viewBox="0 0 16 16"><path fill="white" fill-rule="evenodd" d="M6.285 1.975C7.06.68 8.939.68 9.715 1.975l5.993 9.997c.799 1.333-.161 3.028-1.716 3.028H2.008C.453 15-.507 13.305.292 11.972zM8 5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 5m1 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div class="col-span-4 gap-[1px] py-3 flex justify-start text-[11px] xl:text-sm items-center text-putih-polteka">
+                                    <p class="font-semibold mr-1">Perhatian!<span class="font-normal"> Stok alat hampir habis! </span></p> 
+                            </div>
+                            <div class="col-span-2 py-3 flex justify-center items-center">
+                                <button data-modal-hide="popup-modal2" type="button" class="text-putih-polteka inline-flex text-[9px] xl:text-sm font-semibold items-center px-5 py-2.5 text-center">
+                                    LIHAT DETAIL
+                                </button>
+                                
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div> --}}
+        
         <!-- Modal Profile -->
         <div id="modal2" class="fixed z-10 inset-0 hidden">
             <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">
