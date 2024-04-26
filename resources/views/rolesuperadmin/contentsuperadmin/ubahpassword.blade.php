@@ -38,21 +38,21 @@
             @csrf
             <label class="block mt-4">
                 <span class="text-sm font-medium">Password Lama</span>
-                <input type="password" name="oldpassword" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+                <input type="password" name="oldpassword" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Masukkan password lama" />
                 @error('oldpassword')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>   
             <label class="block mt-4">
                 <span class="text-sm font-medium">Password Baru</span>
-                <input type="password" name="newpassword" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+                <input type="password" name="newpassword" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Masukkan password baru" />
                 @error('newpassword')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
             <label class="block mt-4">
                 <span class="text-sm font-medium">Ulangi Password Baru</span>
-                <input type="password" name="confirm_password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+                <input type="password" name="confirm_password" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Konfirmasi password baru" />
                 @error('confirm_password')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror

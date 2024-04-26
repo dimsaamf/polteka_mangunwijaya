@@ -16,6 +16,8 @@ class ProfileController extends Controller
                 return view('rolesuperadmin.contentsuperadmin.ubahprofil');
             } elseif(Auth::user()->role == 'wakildirektur'){
                 return view('rolewadir.contentwadir.ubahpp');
+            } elseif(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.ubahprofil');
             }
         }
     }
@@ -66,6 +68,8 @@ class ProfileController extends Controller
                 return view('rolesuperadmin.contentsuperadmin.ubahpassword');
             } elseif(Auth::user()->role == 'wakildirektur'){
                 return view('rolewadir.contentwadir.ubahpassword');
+            } elseif(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.ubahpassword');
             }
         }
     }

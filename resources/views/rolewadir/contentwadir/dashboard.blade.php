@@ -41,7 +41,7 @@
                 <div class=" gap-6 mt-3">
                         <div class=" p-6">
                             <div class="text-xl font-medium">Selamat Datang, {{ Auth::user()->name }}!</div>
-                            <div class="text-md text-slate-500 mt-1 font-semibold text-justify">Anda Login sebagai Wakil Direktur II Bidang Rumah Tangga Polteka Mangunwijaya</div>
+                            <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Wakil Direktur II Bidang Rumah Tangga Polteka Mangunwijaya</div>
                         </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
         </div>
     </section>  
     <!-- COPYRIGHT -->
-    <footer class="block mt-6 sm:mt-44 md:mt-[350px] mb-6 text-center">
+    <footer class="block mt-6 sm:mt-44 md:mt-[250px] mb-6 text-center">
         <div class="text-biru160-polteka text-xs md:text-sm">
             © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
         </div>

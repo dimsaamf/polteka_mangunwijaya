@@ -52,8 +52,11 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
     Route::get('/wakildirektur/laporanlaboratorium',[LaporanWadirController::class, 'laporanlab'])->name('laporanlabwadir');
     Route::get('/wakildirektur/laporanprodi',[LaporanWadirController::class, 'laporanprodi'])->name('laporanprodiwadir');
     // Route::get('/wakildirektur/laporanlaboratorium', [LaporanWadirController::class, 'prevlap'])->name('getlaporan');
-    Route::post('/wakildirektur/laporanlaboratorium', [LaporanWadirController::class, 'previewLaporan'])->name('previewlaporan');
-    Route::get('/cetak-pdf', [LaporanWadirController::class, 'cetakPDF'])->name('cetak_pdf');
+    // Route::post('/wakildirektur/laporanlaboratorium', [LaporanWadirController::class, 'previewLaporan'])->name('previewlaporan');
+    // Route::post('/cetak-pdf', [LaporanWadirController::class, 'cetakPDF'])->name('cetakpdf');
+
+    Route::get('/cetak-pdf', [LaporanWadirController::class, 'cetakPDF'])->name('cetakPDF');
+    Route::post('/tampilkan-laporan', [LaporanWadirController::class, 'tampilkanLaporan'])->name('tampilkanLaporan');
 });
 
 Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group(function (){
@@ -79,25 +82,15 @@ Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group
     Route::get('/koorlabfarmasi/detailpengajuanbarang/{id}', [PengajuanBarangLabFarmasiController::class, 'show'])->name('detailpengajuankoorlabfarmasi');
     Route::get('/koorlabfarmasi/pengajuanbarang/edit/{id}', [PengajuanBarangLabFarmasiController::class, 'edit'])->name('editpengajuankoorlabfarmasi');
     Route::post('/koorlabfarmasi/pengajuanbarang/update/{id}', [PengajuanBarangLabFarmasiController::class, 'update'])->name('updatepengajuankoorlabfarmasi');
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/koorlabfarmasi/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppkoorlabfarmasi');
+    Route::post('/koorlabfarmasi/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.koorlabfarmasi");
+    Route::get('/koorlabfarmasi/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwkoorlabfarmasi');
+    Route::post('/koorlabfarmasi/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.koorlabfarmasi');
+
     Route::delete('/koorlabfarmasi/hapuspengajuan/{id}', [PengajuanBarangLabFarmasiController::class, 'destroy'])->name('hapuspengajuankoorlabfarmasi');
     Route::get('/koorlabfarmasi/gambar/{id}', [InventarislabFarmakognosiController::class, 'getGambar'])->name('get.gambar.invlabfarmakognosi');
     Route::get('/getBarcode/{id}', [InventarislabFarmakognosiController::class, 'getBarcode']);
-    
-    Route::get('/ubahpwkoorlabfarmasi', function () {
-        return view('rolekoorlabfarmasi.contentkoorlab.ubahpassword');
-    })->name('ubahpwkoorlabfarmasi');
-    
-    Route::get('/ubahppkoorlabfarmasi', function () {
-        return view('rolekoorlabfarmasi.contentkoorlab.ubahprofil');
-    })->name('ubahppkoorlabfarmasi');
-
-    // Route::get('/barangmasukkoorlabfarmakognosi', function () {
-    //     return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk');
-    // })->name('barangmasukkoorlabfarmakognosi');
-    
-    // Route::get('/barangkeluarkoorlabfarmakognosi', function () {
-    //     return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangkeluar');
-    // })->name('barangkeluarkoorlabfarmakognosi');
 });
 
 

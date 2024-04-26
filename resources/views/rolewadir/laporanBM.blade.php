@@ -38,41 +38,42 @@
     </style>
 
     <center>
-        <img src="images/kantor.png" alt="">
-        <h5>Inventori Barang Kantor Kelurahan Kalitimbang Cilegon</h5>
-            <br>Laporan Barang Masuk<br>
-            <h6>Tanggal : {{ date('d-M-Y', strtotime($dari)) }} - {{ date('d-M-Y', strtotime($sampai)) }}</h6>
-
+        <img src="" alt="">
+        <h5>Inventori Barang Kantor Kelurahan Kalitimbang Cilegon
+            <br>Laporan Barang Masuk</h5><br>
+        <h6>Tanggal : {{ \Carbon\Carbon::parse($dari)->translatedFormat('d F Y') }} -
+            {{ \Carbon\Carbon::parse($sampai)->translatedFormat('d F Y') }}
+        </h6>
         </center>
         <hr>
 
-        <table class='table table-bordered'>
+        <table class="table table-bordered">
             <thead>
                 <tr >
-                    <th scope="col" class="px-6 py-3 text-center">No</th>
-                    <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
-                    <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
-                    <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
-                    <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
+                    <th>No</th>
+                    <th>Nama Barang</th>
+                    <th>ID Barang</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Jumlah</th>
                 </tr>
             </thead>
             <tbody>
                 @if(isset($laporanMasuk) && count($laporanMasuk) > 0)
                     @foreach($laporanMasuk as $item)
-                        <tr class="text-center bg-abu-polteka ">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>@foreach($data as $barang)
                                 @if($barang->id == $item->id_barang)
                                     {{ $barang->nama_barang }}
                                 @endif
                             @endforeach</td>
-                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                            <td>@foreach($data as $barang)
                                 @if($barang->id == $item->id_barang)
                                     {{ $barang->kode_barang }}
                                 @endif
                             @endforeach</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_masuk }}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}
+                            <td>{{ $item->tanggal_masuk }}</td>
+                            <td>{{ $item->jumlah_masuk }}
                             @foreach($data as $barang)
                                 @if($barang->id == $item->id_barang)
                                     {{ $barang->satuan }}
@@ -82,20 +83,20 @@
                     @endforeach
                     @elseif(isset($laporanKeluar) && count($laporanKeluar) > 0)
                     @foreach($laporanKeluar as $item)
-                        <tr class="text-center bg-abu-polteka ">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>@foreach($data as $barang)
                                 @if($barang->id == $item->id_barang)
                                     {{ $barang->nama_barang }}
                                 @endif
                             @endforeach</td>
-                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                            <td>@foreach($data as $barang)
                                 @if($barang->id == $item->id_barang)
                                     {{ $barang->kode_barang }}
                                 @endif
                             @endforeach</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_keluar }}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_keluar }}
+                            <td>{{ $item->tanggal_keluar }}</td>
+                            <td>{{ $item->jumlah_keluar }}
                             @foreach($data as $barang)
                                 @if($barang->id == $item->id_barang)
                                     {{ $barang->satuan }}
@@ -110,7 +111,7 @@
                 @endif
             </tbody>
             
-        </table>
+            </table>
 
     </body>
 
