@@ -15,10 +15,23 @@ class BarangMasukFarmakognosiController extends Controller
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.riwayatmasuk', compact('barangmasukfarmakognosi','data'));
     }
 
-    public function tabel(){
-        $data=InventarisLabFarmakognosi::all();
+    // public function tabel(){
+    //     $data=InventarisLabFarmakognosi::all();
+    //     return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk', compact('data'));
+    // }
+
+    public function tabel(Request $request) {
+        $query = $request->input('search');
+        $data = InventarisLabFarmakognosi::query();
+        
+        if ($query) {
+            $data->where('nama_barang', 'like', '%' . $query . '%');
+        }
+        
+        $data = $data->paginate(10);
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk', compact('data'));
     }
+    
 
     public function create(){
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangmasuk');

@@ -26,27 +26,27 @@
         <form action="{{ route('updatebarangkoorlabfarmakognosi', $labfarmakognosi->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label class="block mt-4">
-            <span class="text-sm font-medium">Nama</span>
-            <input type="text" name="nama_barang" value="{{ $labfarmakognosi->nama_barang }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            <span class="text-sm font-medium">Nama*</span>
+            <input type="text" name="nama_barang" value="{{ $labfarmakognosi->nama_barang }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
             @error('nama_barang')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </label>   
         <label class="block mt-4">
             <span class="text-sm font-medium">ID Barang</span>
-            <input type="text" name="id" value="{{ $labfarmakognosi->id }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            <input type="text" name="id" value="{{ $labfarmakognosi->id }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="ID Barang" />
         </label>
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
-                <span class="text-sm font-medium">Jumlah</span>
-                <input type="number" name="jumlah" value="{{ $labfarmakognosi->jumlah }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
-                @error('jumlah')
+                <span class="text-sm font-medium">Jumlah*</span>
+                <input type="number" name="jumlah" value="{{ $labfarmakognosi->jumlah }}" readonly class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
+                <!-- @error('jumlah')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
+                @enderror -->
             </label>
             <label class="block md:col-span-1">
-                <span class="text-sm font-medium">Satuan</span>
-                <input type="text" name="satuan" value="{{ $labfarmakognosi->satuan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                <span class="text-sm font-medium">Satuan*</span>
+                <input type="text" name="satuan" value="{{ $labfarmakognosi->satuan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
                 @error('satuan')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
@@ -55,26 +55,26 @@
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" value="{{ $labfarmakognosi->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                <input type="date" name="tanggal_service" value="{{ $labfarmakognosi->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Tanggal Service" />
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
-                    <input type="number" name="periode" value="{{ $labfarmakognosi->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                    <input type="number" name="periode" value="{{ $labfarmakognosi->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
                     <span class="ml-2 mt-2 font-bold">bulan</span>
                 </div>
             </label>
         </div>
         <label class="block mt-4">
-            <span class="text-sm font-medium">Harga</span>
-            <input type="name" name="harga" value="{{ $labfarmakognosi->harga }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            <span class="text-sm font-medium">Harga*</span>
+            <input type="name" name="harga" value="{{ $labfarmakognosi->harga }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
             @error('harga')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </label>
         <label class="block mt-4">
-            <span class="text-sm font-medium">Keterangan</span>
-            <input type="name" name="keterangan" value="{{ $labfarmakognosi->keterangan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+            <span class="text-sm font-medium">Keterangan*</span>
+            <input type="name" name="keterangan" value="{{ $labfarmakognosi->keterangan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Keterangan" />
             @error('keterangan')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror

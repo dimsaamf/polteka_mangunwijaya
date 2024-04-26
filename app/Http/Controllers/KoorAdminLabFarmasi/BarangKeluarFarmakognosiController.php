@@ -8,8 +8,15 @@ use App\Models\BarangKeluarFarmakognosi;
 
 class BarangKeluarFarmakognosiController extends Controller
 {
-    public function tabel(){
-        $data=InventarisLabFarmakognosi::all();
+    public function tabel(Request $request){
+        $query = $request->input('search');
+        $data = InventarisLabFarmakognosi::query();
+        
+        if ($query) {
+            $data->where('nama_barang', 'like', '%' . $query . '%');
+        }
+        
+        $data = $data->paginate(10);
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.barangkeluar', compact('data'));
     }
 
@@ -35,19 +42,24 @@ class BarangKeluarFarmakognosiController extends Controller
 
         $jumlah_awal = $barang->jumlah;
         $jumlah_keluar_baru = $request->jumlah_keluar;
-        $jumlah_akhir = $jumlah_awal - $jumlah_keluar_baru;
+        if( $jumlah_awal < $jumlah_keluar_baru ){
+            alert()->error('Gagal','Jumlah Barang Melebihi Stok Barang.');
+            return back();
+            
+        } else {
+            $jumlah_akhir = $jumlah_awal - $jumlah_keluar_baru;
         
-        $barang->jumlah = $jumlah_akhir;
-        $barang->save();
-        
-        $barangkeluarfarmakognosi = new BarangKeluarFarmakognosi();
-        $barangkeluarfarmakognosi->jumlah_keluar = $jumlah_keluar_baru;
-        $barangkeluarfarmakognosi->tanggal_keluar = $request->tanggal_keluar;
-        $barangkeluarfarmakognosi->id_barang = $id_barang;
-        $barangkeluarfarmakognosi->save();
+            $barang->jumlah = $jumlah_akhir;
+            $barang->save();
+            
+            $barangkeluarfarmakognosi = new BarangKeluarFarmakognosi();
+            $barangkeluarfarmakognosi->jumlah_keluar = $jumlah_keluar_baru;
+            $barangkeluarfarmakognosi->tanggal_keluar = $request->tanggal_keluar;
+            $barangkeluarfarmakognosi->id_barang = $id_barang;
+            $barangkeluarfarmakognosi->save();
 
-        alert()->success('Berhasil','Stok Barang Berhasil Ditambahkan.');
-        return redirect()->route('barangkeluarkoorlabfarmakognosi');
-
+            alert()->success('Berhasil','Stok Barang Berhasil Dikurangi.');
+            return redirect()->route('barangkeluarkoorlabfarmakognosi');
+        }
     }
 }

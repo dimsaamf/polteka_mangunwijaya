@@ -51,7 +51,7 @@ class InventarisLabfarmakognosiController extends Controller
         ], $messages);
 
         $thn = Carbon::now()->year;
-        $var = 'BF';
+        $var = 'F-FARM-KN-';
         $bms = InventarisLabFarmakognosi::count();
         if ($bms == 0) {
             $awal = 10001;

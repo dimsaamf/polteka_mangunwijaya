@@ -28,7 +28,7 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <div class="flex w-full justify-end mb-3">
+                    <!-- <div class="flex w-full justify-end mb-3">
                                     <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
                                         <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
                                             <div class="relative flex">
@@ -53,7 +53,7 @@
                                         </span>
                                     </div>
                                 </div>
-                    </div>
+                    </div> -->
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >

@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign('id_barang')->references('id')->on('inventaris_labfarmakognosis');
+            $table->foreign('id_barang')->references('id')->on('inventaris_labfarmakognosis')->onDelete('cascade');
         });
     }
 
