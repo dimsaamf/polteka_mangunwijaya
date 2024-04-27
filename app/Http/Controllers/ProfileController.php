@@ -25,8 +25,8 @@ class ProfileController extends Controller
     public function EditProfilePicture(Request $request)
     {
         $messages = [
-            'avatar.image' => 'Avatar harus berupa gambar.',
-            'avatar.max' => 'Ukuran avatar tidak boleh melebihi 2MB.',
+            'avatar.image' => 'Gambar Profile harus berupa gambar.',
+            'avatar.max' => 'Ukuran Gambar Profile tidak boleh melebihi 2MB.',
         ]; 
 
         $request->validate([

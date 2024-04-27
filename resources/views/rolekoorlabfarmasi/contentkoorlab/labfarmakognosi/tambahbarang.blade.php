@@ -66,6 +66,10 @@
             </label>
         </div>
         <label class="block mt-4">
+            <input type="checkbox" id="reminder" name="reminder">
+            <span class="ml-2">Ingatkan saya saat tanggal service tiba</span>
+        </label>
+        <label class="block mt-4">
             <span class="text-sm font-medium">Harga*</span>
             <input type="number" name="harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
             @error('harga')
@@ -88,7 +92,8 @@
         </label>        
             <button type="submit" class="inline-flex w-20 justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Submit
-            </button>  
+            </button> 
+        </form> 
     </section>
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">

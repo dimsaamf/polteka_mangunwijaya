@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->string('satuan');
             $table->date('tanggal_service')->nullable();;
+            $table->boolean('reminder')->default(false);
+            $table->boolean('sudah_dilayani')->default(false); 
             $table->integer('periode')->nullable();;
             $table->integer('harga');
             $table->text('keterangan');

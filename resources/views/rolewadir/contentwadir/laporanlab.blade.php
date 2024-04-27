@@ -32,32 +32,38 @@
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Filter Laporan Laboratorium</h2>
-        <form id="laporanForm" action="{{ route('tampilkanLaporan') }}" method="POST">
+        <form action="{{route('tampilkanLaporan')}}" method="POST">
             @csrf
-            <!-- Input fields untuk filter -->
-            <label for="tgl_awal">Mulai Tanggal</label>
-            <input type="date" id="tgl_awal" name="tgl_awal" required>
-        
-            <label for="tgl_akhir">Sampai Tanggal</label>
-            <input type="date" id="tgl_akhir" name="tgl_akhir" required>
-        
-            <label for="jenis_laporan">Jenis Laporan</label>
-            <select id="jenis_laporan" name="jenis_laporan" required>
-                <option value="Barang Keluar">Barang Keluar</option>
-                <option value="Barang Masuk">Barang Masuk</option>
-            </select>
-        
-            <!-- Tombol untuk menampilkan laporan -->
-            <button type="submit" id="tampilkanButton">Tampilkan Laporan</button>
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Mulai Tanggal</span>
+            <input type="date"  id="tgl_awal" name="tgl_awal" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+        </label>   
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Sampai Tanggal</span>
+            <input type="date" id="tgl_akhir" name="tgl_akhir" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+        </label>
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Laporan</span>
+            <div class="relative text-left">
+                <div class="group">
+                    <div class="inline-flex w-[175px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <select id="jenis_laporan" name="jenis_laporan" class="form-control">
+                            <option selected clas="py-5">Pilih Jenis Laporan</option>
+                            <option value="Barang Keluar">Barang Keluar</option>
+                            <option value="Barang Masuk">Barang Masuk</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </label>  
+        <button type="submit" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            Tampilkan
+        </button>    
         </form>
-        
-        <!-- Tombol untuk mencetak PDF -->
-        <button id="cetakButton">Cetak PDF</button>
-        
     </section>  
 
     <!-- laporan yang sudah difilter  -->
-    <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6">
+    {{-- <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6"> --}}
         {{-- <h2 class="text-xl font-medium">Laporan</h2>
         <div class="flex w-full mt-4">
             <span class="text-sm font-medium w-1/6">Mulai Tanggal</span>
@@ -78,7 +84,7 @@
             Cetak PDF
         </button>         --}}
         <!-- BEGIN: Data List -->
-        <div class="flex flex-col mt-5">
+        {{-- <div class="flex flex-col mt-5">
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
@@ -185,7 +191,7 @@
         </div>
         <!-- END: Pagination -->
         
-    </section>
+    </section> --}}
     <!-- Modal Profile -->
     <div id="modal2" class="fixed z-10 inset-0 hidden">
         <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">
@@ -255,33 +261,6 @@
     };
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        // Ketika tombol "Tampilkan Laporan" diklik
-        $('#tampilkanButton').click(function() {
-            // Submit formulir menggunakan AJAX
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('tampilkanLaporan') }}',
-                data: $('#laporanForm').serialize(), // Mengirim data formulir
-                success: function(response) {
-                    // Handle respons dari server (opsional)
-                    // Misalnya, menampilkan data laporan di halaman
-                }
-            });
-        });
-
-        // Ketika tombol "Cetak PDF" diklik
-        $('#cetakButton').click(function() {
-            // Mengarahkan ke route untuk mencetak PDF
-            window.location.href = '{{ route('cetakPDF') }}';
-        });
-    });
-</script>
-
-
 
 {{-- <script>
     function showInputValues() {
@@ -305,6 +284,7 @@
         });
     });
 </script> --}}
+
 
 
 

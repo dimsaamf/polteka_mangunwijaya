@@ -23,7 +23,7 @@
         <div>
         <h2 class="text-xl font-medium">DASHBOARD</h2>
         <div class="flex">
-            <div class="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-9 sm:gap-8 mb-10 w-full lg:w-4/5">
+            <div class="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-9 sm:gap-8 mb-10 w-full">
                 <div class="col-span-3 sm:col-span-2 md:col-span-12 md:col-start-1 md:col-end-4 bg-white mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
                     <div class=" gap-6 mt-3">
                         <div class="col-span-8 sm:col-span-6 xl:col-span-3 intro-y">
@@ -55,6 +55,60 @@
                     </div>
                 </div>
             </div>  
+        </div>
+        <div class="flex">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 w-full">
+                    <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                    <div class=" p-6">
+                            <div class="text-xl font-medium mb-1">Barang Hampir Habis</div>
+                            @foreach($data['barangHabis'] as $barang)
+                                <div class="w-full flex text-black border-b-2 py-3">
+                                    <div class="w-1/8">
+                                        <div class="flex bg-[#D0E5FF] rounded-full w-[1.8rem] h-[1.8rem] m-auto mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 16 16"><path fill="#020320" d="M6.923 1.378a3 3 0 0 1 2.154 0l4.962 1.908a1.5 1.5 0 0 1 .961 1.4v6.626a1.5 1.5 0 0 1-.961 1.4l-4.962 1.909a3 3 0 0 1-2.154 0l-4.961-1.909a1.5 1.5 0 0 1-.962-1.4V4.686a1.5 1.5 0 0 1 .962-1.4zm1.795.933a2 2 0 0 0-1.436 0l-1.384.533l5.59 2.116l1.948-.834zM14 4.971L8.5 7.33v6.428c.074-.019.146-.042.218-.07l4.962-1.908a.5.5 0 0 0 .32-.467zm-6.5 8.786V7.33L2 4.972v6.34a.5.5 0 0 0 .32.467l4.962 1.908c.072.028.144.051.218.07M2.564 4.126L8 6.456l2.164-.928l-5.667-2.146z"/></svg>
+                                        </div>
+                                    </div>
+                                    <div class="w-7/8 ml-2">
+                                        <div class="text-sm">{{ $barang->nama_barang }}</div>
+                                        <div class="text-xs text-slate-500">Stok saat ini {{ $barang->jumlah }}</div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                    </div>
+                    <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                        <div class="p-6">
+                            <div class="text-xl font-medium mb-1">Barang Perlu Diservice</div>
+                            @foreach ($notifications as $notification)
+                                <div class="w-full flex text-black border-b-2 py-3">
+                                    <div class="w-1/8">
+                                        <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
+                                                <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="w-5/6 ml-2">
+                                        <div class="text-sm">{{ $notification->nama_barang }}</div>
+                                        <div class="text-xs text-slate-500">Service pada tanggal {{ $notification->tanggal_service }}</div>
+                                    </div>
+                                    <form action="{{ route('update.notification', $notification->id) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="w-full mt-3 flex justify-end">
+                                            <input type="checkbox" name="sudah_dilayani[]" value="{{ $notification->id }}" onchange="this.form.submit()" {{ $notification->sudah_dilayani ? 'checked' : '' }}>
+                                        </div>
+                                    </form>
+                                </div>
+                            @endforeach
+                    
+                            @if ($notifications->isEmpty())
+                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
+                            @endif
+                        </div>
+                    </div>               
+                </div>
+            </div>
         </div>  
     </section>  
     <!-- COPYRIGHT -->

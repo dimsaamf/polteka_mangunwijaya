@@ -21,7 +21,14 @@ class InventarisLabFarmakognosi extends Model
         'harga',
         'keterangan',
         'gambar',
+        'reminder',
+        'sudah_dilayani',
     ];
+
+    public function getTanggalServiceAttribute($value)
+    {
+        return $value ? \Carbon\Carbon::parse($value)->format('Y-m-d') : null;
+    }
 
     // public function barangmasukfarmakognosi()
     // {

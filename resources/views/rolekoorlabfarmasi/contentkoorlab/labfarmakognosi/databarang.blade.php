@@ -76,25 +76,33 @@
                         @else
                         @foreach($labfarmakognosi as $data)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">{!! DNS2D::getBarcodeHTML("$data->kode_barang", 'QRCODE', 2, 2) !!}</td>
-                            {{-- <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">
-                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                                    <button onclick="showBarcode('{{ $data->id }}')" class="focus:outline-none">
-                                        Tampilkan Barcode
-                                    </button>
-                                </a>
-                            </td> --}}
-                            
+                            {{-- <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">{!! DNS2D::getBarcodeHTML("$data->kode_barang", 'QRCODE', 2, 2) !!}</td> --}}
+                            {{-- <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">
+                                <button data-modal-toggle="popup-modal">
+                                    <img src="{{ asset($data->kode_barang . 'qrcode.png') }}" alt="Barcode">
+                                </button> --}}
+                                <!-- Di dalam loop foreach -->
+<td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">
+    <button data-modal-toggle="popup-modal" data-src="{{ asset($data->kode_barang . 'qrcode.png') }}">
+        <img src="{{ asset($data->kode_barang . 'qrcode.png') }}" alt="Barcode">
+    </button>
+</td>
+
+                            {{-- </td> --}}
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->kode_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp. {{$data->harga}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">
-                                <a href="{{ route('get.gambar.invlabfarmakognosi', ['id' => $data->id]) }}" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 1920 1536">
-                                        <path fill="currentColor" d="M640 448q0 80-56 136t-136 56t-136-56t-56-136t56-136t136-56t136 56t56 136m1024 384v448H256v-192l320-320l160 160l512-512zm96-704H160q-13 0-22.5 9.5T128 160v1216q0 13 9.5 22.5t22.5 9.5h1600q13 0 22.5-9.5t9.5-22.5V160q0-13-9.5-22.5T1760 128m160 32v1216q0 66-47 113t-113 47H160q-66 0-113-47T0 1376V160Q0 94 47 47T160 0h1600q66 0 113 47t47 113"/>
-                                    </svg>
-                                </a>
+                                    <div class="flex justify-center">
+                                        @if($data->gambar)
+                                            <a href="{{ route('get.gambar.invlabfarmakognosi', ['id' => $data->id]) }}" target="_blank">
+                                                <img src="{{ asset('storage/gambars/' . $data->gambar) }}" alt="Gambar Barang" class="w-10">
+                                            </a>
+                                        @else
+                                            <span>Tidak ada gambar</span>
+                                        @endif
+                                    </div>
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
                                 <a href="{{ route('ubahbarangkoorlabfarmakognosi', $data->id) }}" >
@@ -170,6 +178,22 @@
             </ul>
         </div>
         <!-- END: Pagination -->
+        <!-- Add the modal code at the bottom of the blade file -->
+        <div id="popup-modal" x-data="{ open: false }" x-show="open" @keydown.escape.window="open = false" tabindex="-1" class="fixed inset-0 overflow-y-auto overflow-x-hidden z-50 justify-center items-center hidden">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="relative bg-white rounded-lg shadow">
+                    <button @click="open = false" type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-4 md:p-5 text-center">
+                        <img id="barcodeImage" src="" alt="Barcode" class="mx-auto">
+                    </div>
+                </div>                
+            </div>
+        </div>
     </section> 
 
     <!-- COPYRIGHT -->
@@ -180,50 +204,25 @@
     </footer>
 </div>
 
-{{-- <script>
-    function showBarcode(id) {
-        fetch('/getBarcode/' + id)
-            .then(response => response.json())
-            .then(data => {
-                const barcodeContainer = document.getElementById('barcodeContainer');
-                barcodeContainer.innerHTML = data.barcodeHTML; // Tampilkan HTML barcode di dalam elemen
-                const modalTarget = document.getElementById('popup-modal');
-                if (modalTarget) {
-                    modalTarget.classList.remove('hidden');
-                    modalTarget.setAttribute('aria-hidden', 'false');
-                    modalTarget.focus();
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    const modalToggleButtons = document.querySelectorAll('[data-modal-toggle]');
+<!-- Di dalam tag <script> -->
+    <script>
+        document.querySelectorAll('[data-modal-toggle]').forEach((toggle) => {
+            const modal = document.getElementById(toggle.getAttribute('data-modal-toggle'));
+            toggle.addEventListener('click', () => {
+                modal.classList.toggle('hidden');
+                const src = toggle.getAttribute('data-src'); // Ambil URL gambar dari atribut data-src
+                modal.querySelector('#barcodeImage').src = src; // Setel src atribut gambar dengan URL yang diambil
+            });
+        });
     
-    modalToggleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modalTarget = document.getElementById(button.dataset.modalTarget);
-            if (modalTarget) {
-                modalTarget.classList.toggle('hidden');
-                modalTarget.setAttribute('aria-hidden', modalTarget.classList.contains('hidden') ? 'true' : 'false');
-                if (!modalTarget.classList.contains('hidden')) {
-                    modalTarget.focus();
-                }
-            }
+        document.querySelectorAll('[data-modal-hide]').forEach((hide) => {
+            const modal = document.getElementById(hide.getAttribute('data-modal-hide'));
+            hide.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
         });
-    });
-
-    const modalHideButtons = document.querySelectorAll('[data-modal-hide]');
-    modalHideButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modalTarget = document.getElementById(button.dataset.modalHide);
-            if (modalTarget) {
-                modalTarget.classList.add('hidden');
-                modalTarget.setAttribute('aria-hidden', 'true');
-                button.focus();
-            }
-        });
-    });
-</script> --}}
+    </script>
+    
 
 
 @endsection
