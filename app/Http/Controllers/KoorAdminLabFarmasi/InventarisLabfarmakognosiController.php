@@ -178,27 +178,11 @@ if (!Storage::exists($barcodePath)) {
         return redirect()->route('databarangkoorlabfarmakognosi');
     }
 
-// public function getBarcode($id)
-// {
-//     $labfarmakognosi = Inventarislabfarmakognosi::findOrFail($id);
-//     $barcodeContent = $labfarmakognosi->kode_barang;
-//     $barcodeDirectory = storage_path('app/public/barcodes');
-//     $barcodePath = $barcodeDirectory . '/' . $barcodeContent . '.png';
-
-//     if (!file_exists($barcodePath)) {
-//         if (!file_exists($barcodeDirectory)) {
-//             mkdir($barcodeDirectory, 0777, true);
-//         }
-//         $barcode = new DNS1D();
-//         $barcode->getBarcodePNGPath($barcodeContent, 'C128', 3, 50, array(0, 0, 0), true, $barcodePath);
-//     }
-
-//     if (file_exists($barcodePath)) {
-//         return response()->file($barcodePath);
-//     } else {
-//         return response()->json(['error' => 'File barcode tidak ditemukan'], 404);
-//     }
-// }
-
-
+    public function destroy($id)
+    {
+        $labfarmakognosi = Inventarislabfarmakognosi::findOrFail($id);
+        $labfarmakognosi->delete();
+        alert()->success('Berhasil', 'Data barang berhasil dihapus.');
+        return redirect()->route('databarangkoorlabfarmakognosi');
+    }
 }

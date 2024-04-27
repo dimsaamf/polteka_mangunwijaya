@@ -74,6 +74,9 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                @if ($data['barangHabis']->isEmpty())
+                                    <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang stoknya habis saat ini.</div>
+                                @endif
                             </div>
                     </div>
                     <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
