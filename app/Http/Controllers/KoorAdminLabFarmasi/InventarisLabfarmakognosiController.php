@@ -35,6 +35,7 @@ public function store(Request $request)
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
         'satuan.required' => 'Satuan harus diisi.',
+        'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
         'keterangan.required' => 'Keterangan harus diisi.',
         'gambar.image' => 'Gambar harus berupa gambar.',
@@ -44,7 +45,7 @@ public function store(Request $request)
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_labfarmakognosis',
         'jumlah'=>'required|integer',
-        'satuan'=>'required|string',
+        'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
         'tanggal_service'=>'nullable|date',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
@@ -82,30 +83,25 @@ public function store(Request $request)
         $labfarmakognosi->gambar = $gambarName;
     }
 
+    // Generate QR Code
     $barcodeContent = $labfarmakognosi->kode_barang;
-$barcodeStorageDirectory = storage_path('app/public/barcodes');
-$barcodePublicDirectory = 'public/barcodes';
-$barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . '.png';
+    $barcodeStorageDirectory = storage_path('app/public/barcodes');
+    $barcodePublicDirectory = 'public/barcodes';
+    $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . '.png';
 
-if (!Storage::exists($barcodePath)) {
-    // Pastikan direktori penyimpanan ada
-    if (!Storage::exists($barcodeStorageDirectory)) {
-        Storage::makeDirectory($barcodeStorageDirectory, 0777, true);
+    if (!Storage::exists($barcodePath)) {
+        if (!Storage::exists($barcodeStorageDirectory)) {
+            Storage::makeDirectory($barcodeStorageDirectory, 0777, true);
+        }
+        $barcode = new DNS2D();
+        $barcode->setStorPath($barcodeStorageDirectory);
+        $barcode->getBarcodePNGPath($barcodeContent, 'QRCODE', 3, 3, array(0, 0, 0), true, $barcodeContent);
     }
-    
-    // Generate barcode QR
-    $barcode = new DNS2D();
-    $barcode->getBarcodePNGPath($barcodeContent, 'QRCODE', 3, 3, array(0, 0, 0), true, $barcodePath);
-    
-    // Pindahkan gambar ke direktori public
-    Storage::move($barcodePath, $barcodePublicDirectory . '/' . $barcodeContent . '.png');
-}
 
-
-    $labfarmakognosi->save();
-    alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
-    return redirect()->route('databarangkoorlabfarmakognosi');
-}
+        $labfarmakognosi->save();
+        alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
+        return redirect()->route('databarangkoorlabfarmakognosi');
+    }
 
 
     public function edit($id){
@@ -116,6 +112,7 @@ if (!Storage::exists($barcodePath)) {
     public function update(Request $request, $id) {
         $messages = [
             'nama_barang.unique' => 'Nama barang sudah digunakan.',
+            'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
             'gambar.image' => 'Gambar harus berupa gambar.',
             'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
         ];
@@ -123,7 +120,7 @@ if (!Storage::exists($barcodePath)) {
         $request->validate([
             'nama_barang'=>'required|string',
             'jumlah'=>'required|integer',
-            'satuan'=>'required|string',
+            'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',
@@ -185,4 +182,41 @@ if (!Storage::exists($barcodePath)) {
         alert()->success('Berhasil', 'Data barang berhasil dihapus.');
         return redirect()->route('databarangkoorlabfarmakognosi');
     }
+
+
+    public function getGambar($id)
+{
+    $labfarmakognosi =  Inventarislabfarmakognosi::findOrFail($id);
+
+    $gambarPath = storage_path('app/public/gambars/' . $labfarmakognosi->gambar);
+
+    if (file_exists($gambarPath)) {
+        $extension = pathinfo($gambarPath, PATHINFO_EXTENSION);
+        $contentType = '';
+        switch ($extension) {
+            case 'jpg':
+            case 'jpeg':
+                $contentType = 'image/jpeg';
+                break;
+            case 'png':
+                $contentType = 'image/png';
+                break;
+            default:
+                return response()->json(['error' => 'Tipe file tidak didukung'], 404);
+        }
+
+        $gambarContent = file_get_contents($gambarPath);
+
+        $headers = [
+            'Content-Type' => $contentType,
+        ];
+
+        return response($gambarContent, 200, $headers);
+    } else {
+        return response()->json(['error' => 'File gambar tidak ditemukan'], 404);
+    }
+}
+
+
+
 }
