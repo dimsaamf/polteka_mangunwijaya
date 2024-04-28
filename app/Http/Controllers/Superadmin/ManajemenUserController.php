@@ -66,10 +66,9 @@ class ManajemenUserController extends Controller
             $avatarName = $request->file('avatar')->getClientOriginalName();
             $request->file('avatar')->storeAs('public/avatars', $avatarName);
             $user->avatar = $avatarName;
-        }
-
-        if ($user->avatar === null) {
-            unset($user->avatar);
+        } else {
+            // Set default avatar if no avatar is uploaded
+            $user->avatar = asset('defaultavatar.png');
         }
 
         $user->save();
@@ -147,6 +146,6 @@ class ManajemenUserController extends Controller
         $user->delete();
         // alert()->success('Berhasil', 'Pengguna berhasil dihapus.');
         // return redirect()->route('manajemensuperadmin');
-        return response()->json(['status'=>'yey dihapus']);
+        return response()->json(['status'=>'Pengguna Berhasil Dihapus']);
     }
 }

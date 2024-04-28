@@ -138,13 +138,13 @@
                         </div>
                     </a>
                     <ul class="desplegable mt-3 ml-10">
-                            <li class="py-2 xl:py-0 hover:font-bold">
+                            <li class="py-2 xl:py-0 font-semibold">
                                 <a href="{{ route('databarangkoorlabfarmakognosi') }}">
                                     Data Barang
                                 </a>
                             </li>
-                            <li class="py-2 xl:py-0 font-semibold">
-                                <a href="#">
+                            <li class="py-2 xl:py-0 hover:font-bold">
+                                <a href="{{ route('barangmasukkoorlabfarmakognosi') }}">
                                     Barang Masuk
                                 </a>
                             </li>
@@ -355,12 +355,12 @@
                         </a>
                         <ul class=" xl:ml-[43px] mt-3 md:absolute xl:static left-5 xl:border-none xl:bg-none xl:text-start md:border md:w-40 md:bg-merah200-polteka md:rounded md:text-center">
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('databarangkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('databarangkoorlabfarmakognosi') }}" class="xl:text-hitam-polteka xl:bg-abu-polteka xl:rounded-full w-[500px] xl:ml-4 xl:py-2 xl:pl-5 xl:block mb-0 mt-0 xl:mb-1 xl:mt-1 md:font-bold xl:font-normal">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="#" class="xl:text-hitam-polteka xl:bg-abu-polteka xl:rounded-full w-[500px] xl:ml-4 xl:py-2 xl:pl-5 xl:block mb-0 mt-0 xl:mb-1 xl:mt-1 md:font-bold xl:font-normal">
+                                <a href="{{ route('barangmasukkoorlabfarmakognosi') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Barang Masuk
                                 </a>
                             </li>
@@ -384,12 +384,12 @@
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('databarangkoorlabfarmakognosi') }}" class=" w-[500px]">
+                                <a href="{{ route('databarangkoorlabfarmakognosi') }}" class=" w-[500px] mb-0 mt-0 font-bold">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="#" class="w-[500px] mb-0 mt-0 font-bold">
+                                <a href="{{ route('barangmasukkoorlabfarmakognosi') }}" class="w-[500px]">
                                     Barang Masuk
                                 </a>
                             </li>

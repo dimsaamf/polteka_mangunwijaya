@@ -42,7 +42,10 @@ class DashboardKoorAdminLabFarmasiController extends Controller
                 Log::error('Tanggal layanan tidak valid untuk notifikasi dengan ID: ' . $notification->id);
             }
         }
-        $data['barangHabis'] = InventarisLabFarmakognosi::where('jumlah', '<', 20)->get();
+        // $data['barangHabis'] = InventarisLabFarmakognosi::where('jumlah', '<', 20)->get();
+        // return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'data'));
+        $batasJumlah = 0.2 * InventarisLabFarmakognosi::avg('jumlah');
+        $data['barangHabis'] = InventarisLabFarmakognosi::where('jumlah', '<', $batasJumlah)->get();
         return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'data'));
     }
 

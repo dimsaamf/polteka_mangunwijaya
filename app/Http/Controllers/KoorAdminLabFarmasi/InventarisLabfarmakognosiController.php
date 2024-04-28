@@ -179,8 +179,7 @@ public function store(Request $request)
     {
         $labfarmakognosi = Inventarislabfarmakognosi::findOrFail($id);
         $labfarmakognosi->delete();
-        alert()->success('Berhasil', 'Data barang berhasil dihapus.');
-        return redirect()->route('databarangkoorlabfarmakognosi');
+        return response()->json(['status'=>'Data Barang Berhasil Dihapus']);
     }
 
 
@@ -216,7 +215,4 @@ public function store(Request $request)
         return response()->json(['error' => 'File gambar tidak ditemukan'], 404);
     }
 }
-
-
-
 }

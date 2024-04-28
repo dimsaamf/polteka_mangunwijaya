@@ -152,8 +152,7 @@ class PengajuanBarangLabFarmasiController extends Controller
     {
         $pengajuanBarang = PengajuanBarangLabFarmasi::findOrFail($id);
         $pengajuanBarang->delete();
-        alert()->success('Berhasil', 'Pengajuan berhasil dihapus.');
-        return redirect()->route('pengajuanbarangkoorlabfarmasi');
+        return response()->json(['status'=>'Pengajuan Berhasil Dihapus']);
     }
 
 }

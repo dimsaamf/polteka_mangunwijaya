@@ -85,6 +85,7 @@
                         @else
                         @foreach($labfarmakognosi as $data)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
+                            <input type="hidden" class="delete_id" value="{{$data->id}}">
                             {{-- <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">{!! DNS2D::getBarcodeHTML("$data->kode_barang", 'QRCODE', 2, 2) !!}</td> --}}
                             {{-- <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">
                                 <button data-modal-toggle="popup-modal">
@@ -120,14 +121,15 @@
                                 </a>
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
+                                    
                                     <form action="{{ route('hapusbarangfarmakognosi', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">
+                                        <button class="btndelete">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto text-red-600" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
                                         </button>
                                     </form>
-                                </td>
+                            </td>
                         </tr>
                         @endforeach
                         @endif
@@ -292,4 +294,57 @@
             document.querySelector(".icon-container-prof").classList.remove("active");
         };
     </script>
+
+    <!-- Pastikan jQuery dimuat sebelum kode JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Pastikan SweetAlert dimuat sebelum kode JavaScript -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.btndelete').click(function (e){
+            e.preventDefault();
+
+            var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+            swal({
+                title: "Apakah anda yakin?",
+                text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    var data = {
+                        "_token": $('input[name=_token]').val(),
+                        'id': deleteid,
+                    };
+                    $.ajax({
+                        type: "DELETE",
+                        url: '/koorlabfarmasi/labfarmakognosi/databarang/' + deleteid,
+                        data: data,
+                        success: function(response) {
+                            swal(response.status, {
+                                icon: "success",
+                            }).then((result) => {
+                                if (result) {
+                                    location.reload();
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            swal("Oops!", "Terjadi kesalahan saat menghapus data.", "error");
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

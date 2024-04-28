@@ -292,7 +292,7 @@ Route::middleware(['auth', 'user.role:adminprodfarmasi', 'revalidate'])->group(f
     
     Route::get('/barangmasukadminprodifarmasi', function () {
         return view('roleadminprodifarmasi.contentadminprodi.barangmasuk');
-    })->name('barangmasukadminprodifarmasi');
+    })->name('barangmasukadminprodifarmasi'); 
     
     Route::get('/barangkeluaradminprodifarmasi', function () {
         return view('roleadminprodifarmasi.contentadminprodi.barangkeluar');
