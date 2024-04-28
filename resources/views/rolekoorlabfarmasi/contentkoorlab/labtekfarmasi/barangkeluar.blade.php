@@ -157,32 +157,33 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Sebelumnya
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    1
-                </button>
-                </li>
-                <li>
-                <button
-                    class="bg-biru160-polteka px-4 py-2 text-putih-polteka hover:bg-biru100-polteka rounded-full text-sm">
-                    2
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    3
-                </button>
-                </li>
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Selanjutnya
-                </button>
-                </li>
+                @if ($data->onFirstPage())
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $data->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                    </li>
+                @endif
+        
+                @foreach ($data->getUrlRange($data->currentPage() - 2, $data->currentPage() + 2) as $page => $url)
+                    @if ($page == $data->currentPage())
+                        <li>
+                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                        </li>
+                    @endif
+                @endforeach
+        
+                @if ($data->hasMorePages())
+                    <li>
+                        <a href="{{ $data->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                    </li>
+                @else
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- END: Pagination -->

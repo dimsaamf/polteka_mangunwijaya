@@ -18,9 +18,9 @@ class SesiController extends Controller
             } elseif(Auth::user()->role == 'koorlabprodfarmasi'){
                 return redirect('/koorlabfarmasi/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
-                return redirect('/adminlabfarmasi/dashboard');
-            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                return redirect('/adminlabfarmasi/dashboard');
             }
         }
         return view('login');
@@ -49,9 +49,9 @@ class SesiController extends Controller
             } elseif(Auth::user()->role == 'koorlabprodfarmasi'){
                 return redirect('/koorlabfarmasi/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
-                return redirect('/adminlabfarmasi/dashboard');
-            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                return redirect('/adminlabfarmasi/dashboard');
             }
         } else {
             return redirect('/login')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();

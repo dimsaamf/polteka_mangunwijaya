@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 use App\Models\InventarisLabfarmakognosi;
 use App\Models\BarangKeluarFarmakognosi;
 use App\Models\BarangMasukFarmakognosi;
+use App\Models\InventarisFarmasi;
+use App\Models\BarangKeluarFarmasi;
+use App\Models\BarangMasukFarmasi;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,7 +19,10 @@ class LaporanWadirController extends Controller
         $barangfarmakognosi = InventarisLabFarmakognosi::count('id');
         $barang_masuk_farmakognosi = BarangMasukFarmakognosi::count('id');
         $barang_keluar_farmakognosi = BarangKeluarFarmakognosi::count('id');
-        return view('dashboard', compact('barangfarmakognosi', 'barang_masuk_farmakognosi', 'barang_keluar_farmakognosi'));
+        $barangfarmasi = InventarisFarmasi::count('id');
+        $barang_masuk_farmasi = BarangMasukFarmasi::count('id');
+        $barang_keluar_farmasi = BarangKeluarFarmasi::count('id');
+        return view('dashboard', compact('barangfarmakognosi', 'barang_masuk_farmakognosi', 'barang_keluar_farmakognosi', 'barangfarmasi', 'barang_masuk_farmasi', 'barang_keluar_farmasi'));
     }
 
     public function laporanlab()
@@ -79,6 +85,60 @@ class LaporanWadirController extends Controller
                 ->get();
 
                 $pdf = PDF::loadView('rolewadir.laporanBK', compact('laporanKeluar', 'dari', 'sampai', 'data'))->setPaper('A4', 'potrait');
+            return $pdf->stream('Laporan Barang Keluar.pdf');
+        }
+    }
+
+    public function previewLaporanProdi(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
+            'jenis_laporan' => 'required'
+        ]);
+
+        // Ambil input dari request
+        $dari = $request->tgl_awal;
+        $sampai = $request->tgl_akhir;
+        $jenis = $request->jenis_laporan;
+        $cek = Carbon::today();
+        $hari_ini = $cek->toDateString();
+
+        if ($dari > $sampai) {
+            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            return back();
+        }
+
+        if ($dari > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ( $sampai > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            return back();
+        }
+
+        // Inisialisasi variabel
+        $laporanMasuk = null;
+        $laporanKeluar = null;
+        $data=InventarisFarmasi::all();
+
+        // Ambil data laporan berdasarkan filter
+        if ($jenis == 'Barang Masuk') {
+            $laporanMasuk = BarangMasukFarmasi::where('tanggal_masuk', '>=', $dari)
+                ->where('tanggal_masuk', '<=', $sampai)
+                ->get();
+                
+                $pdf = PDF::loadView('rolewadir.laporanBMProdi', compact('laporanMasuk', 'dari', 'sampai', 'data'))->setPaper('A4', 'potrait');
+                return $pdf->stream('Laporan Barang Masuk.pdf');
+        } elseif ($jenis == 'Barang Keluar') {
+            $laporanKeluar = BarangKeluarFarmasi::where('tanggal_keluar', '>=', $dari)
+                ->where('tanggal_keluar', '<=', $sampai)
+                ->get();
+
+                $pdf = PDF::loadView('rolewadir.laporanBKProdi', compact('laporanKeluar', 'dari', 'sampai', 'data'))->setPaper('A4', 'potrait');
             return $pdf->stream('Laporan Barang Keluar.pdf');
         }
     }

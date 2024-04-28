@@ -1,5 +1,7 @@
 @extends('rolekoorlabfarmasi.layoutkoorlab.labfarmakognosi.databarang')
 @section('content')
+@include('sweetalert::alert')
+
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">

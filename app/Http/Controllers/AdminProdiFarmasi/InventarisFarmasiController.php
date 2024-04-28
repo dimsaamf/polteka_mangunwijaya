@@ -28,78 +28,79 @@ class InventarisFarmasiController extends Controller
         return view('roleadminprodifarmasi.contentadminprodi.tambahbarang');
     }
 
-    public function store(Request $request)
-    {
-        $messages = [
-            'nama_barang.required' => 'Nama barang harus diisi.',
-            'nama_barang.unique' => 'Nama barang sudah digunakan.',
-            'jumlah.required' => 'Jumlah harus diisi.',
-            'satuan.required' => 'Satuan harus diisi.',
-            'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
-            'harga.required' => 'Harga harus dipilih.',
-            'keterangan.required' => 'Keterangan harus diisi.',
-            'gambar.image' => 'Gambar harus berupa gambar.',
-            'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
-        ];
+public function store(Request $request)
+{
+    $messages = [
+        'nama_barang.required' => 'Nama barang harus diisi.',
+        'nama_barang.unique' => 'Nama barang sudah digunakan.',
+        'jumlah.required' => 'Jumlah harus diisi.',
+        'satuan.required' => 'Satuan harus diisi.',
+        'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
+        'harga.required' => 'Harga harus dipilih.',
+        'keterangan.required' => 'Keterangan harus diisi.',
+        'gambar.image' => 'Gambar harus berupa gambar.',
+        'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
+    ];
 
-        $request->validate([
-            'nama_barang'=>'required|string|unique:inventaris_farmasis',
-            'jumlah'=>'required|integer',
-            'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
-            'tanggal_service'=>'nullable|date',
-            'periode'=>'nullable|integer',
-            'harga'=>'required|integer',
-            'keterangan'=>'required',
-            'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
-        ], $messages);
+    $request->validate([
+        'nama_barang'=>'required|string|unique:inventaris_farmasis',
+        'jumlah'=>'required|integer',
+        'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
+        'tanggal_service'=>'nullable|date',
+        'periode'=>'nullable|integer',
+        'harga'=>'required|integer',
+        'keterangan'=>'required',
+        'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
+    ], $messages);
 
-        $thn = Carbon::now()->year;
-        $var = 'FARM-';
-        $bms = InventarisFarmasi::count();
-        if ($bms == 0) {
-            $awal = 10001;
-            $kode_barang = $var.$thn.$awal;
-        } else {
-            $last = InventarisFarmasi::latest()->first();
-            $awal = (int)substr($last->kode_barang, -5) + 1;
-            $kode_barang = $var.$thn.$awal;
+    $thn = Carbon::now()->year;
+    $var = 'F-FARM-KN-';
+    $bms = InventarisFarmasi::count();
+    if ($bms == 0) {
+        $awal = 10001;
+        $kode_barang = $var.$thn.$awal;
+        // BM2021001
+    } else {
+        $last = InventarisFarmasi::latest()->first();
+        $awal = (int)substr($last->kode_barang, -5) + 1;
+        $kode_barang = $var.$thn.$awal;
+    }
+
+    $farmasi = new InventarisFarmasi();
+    $farmasi->nama_barang = $request->nama_barang;
+    $farmasi->kode_barang = $kode_barang;
+    $farmasi->jumlah = $request->jumlah;
+    $farmasi->satuan = $request->satuan;
+    $farmasi->tanggal_service = $request->tanggal_service;
+    $farmasi->periode = $request->periode;
+    $farmasi->harga = $request->harga;
+    $farmasi->keterangan = $request->keterangan;
+    $farmasi->reminder = $request->has('reminder');
+
+    if ($request->hasFile('gambar')) {
+        $gambarName = $request->file('gambar')->getClientOriginalName();
+        $request->file('gambar')->storeAs('public/gambars', $gambarName);
+        $farmasi->gambar = $gambarName;
+    }
+
+    // Generate QR Code
+    $barcodeContent = $farmasi->kode_barang;
+    $barcodeStorageDirectory = storage_path('app/public/barcodes');
+    $barcodePublicDirectory = 'public/barcodes';
+    $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . '.png';
+
+    if (!Storage::exists($barcodePath)) {
+        if (!Storage::exists($barcodeStorageDirectory)) {
+            Storage::makeDirectory($barcodeStorageDirectory, 0777, true);
         }
+        $barcode = new DNS2D();
+        $barcode->setStorPath($barcodeStorageDirectory);
+        $barcode->getBarcodePNGPath($barcodeContent, 'QRCODE', 3, 3, array(0, 0, 0), true, $barcodeContent);
+    }
 
-        $farmasi = new InventarisFarmasi();
-        $farmasi->nama_barang = $request->nama_barang;
-        $farmasi->kode_barang = $kode_barang;
-        $farmasi->jumlah = $request->jumlah;
-        $farmasi->satuan = $request->satuan;
-        $farmasi->tanggal_service = $request->tanggal_service;
-        $farmasi->periode = $request->periode;
-        $farmasi->harga = $request->harga;
-        $farmasi->keterangan = $request->keterangan;
-        $farmasi->reminder = $request->has('reminder');
-
-        if ($request->hasFile('gambar')) {
-            $gambarName = $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->storeAs('public/gambars', $gambarName);
-            $farmasi->gambar = $gambarName;
-        }
-
-        // Generate QR Code
-        $barcodeContent = $farmasi->kode_barang;
-        $barcodeStorageDirectory = storage_path('app/public/barcodes');
-        $barcodePublicDirectory = 'public/barcodes';
-        $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . '.png';
-
-        if (!Storage::exists($barcodePath)) {
-            if (!Storage::exists($barcodeStorageDirectory)) {
-                Storage::makeDirectory($barcodeStorageDirectory, 0777, true);
-            }
-            $barcode = new DNS2D();
-            $barcode->setStorPath($barcodeStorageDirectory);
-            $barcode->getBarcodePNGPath($barcodeContent, 'QRCODE', 3, 3, array(0, 0, 0), true, $barcodeContent);
-        }
-
-            $farmasi->save();
-            alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
-            return redirect()->route('databarangadminprodifarmasi');
+        $farmasi->save();
+        alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
+        return redirect()->route('databarangadminprodifarmasi');
     }
 
 
@@ -183,35 +184,35 @@ class InventarisFarmasiController extends Controller
 
 
     public function getGambar($id)
-    {
-        $farmasi =  InventarisFarmasi::findOrFail($id);
+{
+    $farmasi =  InventarisFarmasi::findOrFail($id);
 
-        $gambarPath = storage_path('app/public/gambars/' . $farmasi->gambar);
+    $gambarPath = storage_path('app/public/gambars/' . $farmasi->gambar);
 
-        if (file_exists($gambarPath)) {
-            $extension = pathinfo($gambarPath, PATHINFO_EXTENSION);
-            $contentType = '';
-            switch ($extension) {
-                case 'jpg':
-                case 'jpeg':
-                    $contentType = 'image/jpeg';
-                    break;
-                case 'png':
-                    $contentType = 'image/png';
-                    break;
-                default:
-                    return response()->json(['error' => 'Tipe file tidak didukung'], 404);
-            }
-
-            $gambarContent = file_get_contents($gambarPath);
-
-            $headers = [
-                'Content-Type' => $contentType,
-            ];
-
-            return response($gambarContent, 200, $headers);
-        } else {
-            return response()->json(['error' => 'File gambar tidak ditemukan'], 404);
+    if (file_exists($gambarPath)) {
+        $extension = pathinfo($gambarPath, PATHINFO_EXTENSION);
+        $contentType = '';
+        switch ($extension) {
+            case 'jpg':
+            case 'jpeg':
+                $contentType = 'image/jpeg';
+                break;
+            case 'png':
+                $contentType = 'image/png';
+                break;
+            default:
+                return response()->json(['error' => 'Tipe file tidak didukung'], 404);
         }
+
+        $gambarContent = file_get_contents($gambarPath);
+
+        $headers = [
+            'Content-Type' => $contentType,
+        ];
+
+        return response($gambarContent, 200, $headers);
+    } else {
+        return response()->json(['error' => 'File gambar tidak ditemukan'], 404);
     }
+}
 }

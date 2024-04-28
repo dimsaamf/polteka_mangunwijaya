@@ -1,5 +1,6 @@
 @extends('rolewadir.layoutwadir.laporanprodi')
 @section('content')
+@include('sweetalert::alert')
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
@@ -30,45 +31,39 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Filter Laporan Prodi</h2>
+        <h2 class="text-xl font-medium">Filter Laporan Laboratorium</h2>
+        <form action="{{route('tampilkanLaporanProdi')}}" method="POST">
+            @csrf
         <label class="block mt-4">
             <span class="text-sm font-medium">Mulai Tanggal</span>
-            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="date"  id="tgl_awal" name="tgl_awal" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>   
         <label class="block mt-4">
             <span class="text-sm font-medium">Sampai Tanggal</span>
-            <input type="date" name="date" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
+            <input type="date" id="tgl_akhir" name="tgl_akhir" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Laporan</span>
             <div class="relative text-left">
                 <div class="group">
-                    <button type="button" class="inline-flex w-[150px] justify-center mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        Jenis Laporan
-                        <!-- Dropdown arrow -->
-                        <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div
-                        class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
-                        <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Data Barang</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Masuk</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Barang Keluar</a>
-                        </div>
+                    <div class="inline-flex w-[175px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <select id="jenis_laporan" name="jenis_laporan" class="form-control">
+                            <option selected clas="py-5">Pilih Jenis Laporan</option>
+                            <option value="Barang Keluar">Barang Keluar</option>
+                            <option value="Barang Masuk">Barang Masuk</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </label>  
-            <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                Tampilkan
-            </button>  
-    </section>  
+        <button type="submit" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            Tampilkan
+        </button>    
+        </form>
+    </section>   
 
     <!-- laporan yang sudah difilter  -->
-    <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6">
+    {{-- <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Laporan</h2>
         <div class="flex w-full mt-4">
             <span class="text-sm font-medium w-1/6">Mulai Tanggal</span>
@@ -87,9 +82,9 @@
         </div>  
         <button type="button" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
             Cetak PDF
-        </button>
+        </button> --}}
         <!-- BEGIN: Data List -->
-        <div class="flex flex-col mt-5">
+        {{-- <div class="flex flex-col mt-5">
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
@@ -165,10 +160,10 @@
                 </div>
                 </div>
             </div>
-        </div> 
+        </div>  --}}
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
+        {{-- <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
                 <li>
                 <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
@@ -197,7 +192,7 @@
                 </button>
                 </li>
             </ul>
-        </div>
+        </div> --}}
         <!-- END: Pagination --> 
         <!-- Modal Profile -->
         <div id="modal2" class="fixed z-10 inset-0 hidden">
