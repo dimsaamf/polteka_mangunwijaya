@@ -1,18 +1,16 @@
-@extends('roleadminlabfarmasi.layoutadminlab.labtekfarmasi.barangkeluar')
+@extends('roleadminlabfarmasi.layoutadminlab.labfarmakognosi.barangmasuk')
 @section('content')
-@include('sweetalert::alert')
-
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Barang Keluar</div>
+            <div class="text-hitam-polteka">Riwayat Barang Masuk</div>
         </div>
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Tekfarmasi</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Farmakognosi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Barang Keluar</div>
+            <div class="ml-2  text-hitam-polteka">Riwayat Barang Masuk</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
@@ -31,7 +29,7 @@
     </section>
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
-        <h2 class="text-xl font-semibold">Barang Keluar</h2>
+        <h2 class="text-xl font-semibold">Riwayat Barang Masuk</h2>
         
         <!-- BEGIN: Data List --> 
         <div class="flex flex-col mt-8">
@@ -39,14 +37,9 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <div class="flex w-1/2 justify-start mb-3">
-                        <a href="{{ route('riwayatbarangkeluaradminlabtekfarmasi') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                            Riwayat Barang
-                        </a>
-                    </div>
-                    <div class="flex w-1/2 justify-end mb-3">
-                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                    <form action="{{ route('barangkeluaradminlabtekfarmasi') }}" method="GET" class="relative flex w-full">
+                    <!-- <div class="flex w-full justify-end mb-3">
+                                    <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                    <form action="{{ route('riwayatbarangmasukadminlabfarmakognosi') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input
@@ -64,39 +57,43 @@
                                 </form>
                                     </div>
                                 </div>
-                    </div>
+                    </div> -->
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
+                            <th scope="col" class="px-6 py-3 text-center">No</th>
                             <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
-                            <th scope="col" class="px-6 py-3 text-center">Harga</th>
+                            <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
-                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
-                            <th scope="col" class="px-6 py-3 text-center">Ubah Stok</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($data->isEmpty())
+                        @if ($barangmasukfarmakognosi->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($data as $item)
+                        @foreach($barangmasukfarmakognosi as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{$item->nama_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->kode_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">Rp. {{$item->harga}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->jumlah}} {{$item->satuan}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->keterangan}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" onclick="setIdBarang('{{ $item->id }}')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
-                                        <path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/>
-                                        <path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/>
-                                    </svg>
-                                </a>
-                            </td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                @if($barang->id == $item->id_barang)
+                                    {{ $barang->nama_barang }}
+                                @endif
+                            @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
+                                @if($barang->id == $item->id_barang)
+                                    {{ $barang->kode_barang }}
+                                @endif
+                            @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_masuk }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}
+                            @foreach($data as $barang)
+                                @if($barang->id == $item->id_barang)
+                                    {{ $barang->satuan }}
+                                @endif
+                            @endforeach</td>
                         </tr>
                         @endforeach
                         @endif
@@ -124,25 +121,24 @@
                     </div>
                     <div class="flex items-center justify-center">
                         <h3 class="text-xl font-semibold">
-                            Kurangi Stok barang
+                            Tambah Stok barang
                         </h3>                      
                     </div>
                     <!-- Modal body -->
                     <div class="px-8">
-                    <form action="{{ route('barangkeluaradminlabtekfarmasi.store') }}" method="POST" enctype="multipart/form-data">  
+                    <form action="{{ route('barangmasukadminlabfarmakognosi.store') }}" method="POST" enctype="multipart/form-data">  
                     @csrf
                         <label class="block mt-4">
-                            <span class="text-sm font-medium">Jumlah Barang Keluar</span>
-                            <input type="text" name="jumlah_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                            <span class="text-sm font-medium">Jumlah Barang Masuk</span>
+                            <input type="text" name="jumlah_masuk" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
                         </label>
                     </div>
                     <div class="px-8">
                         <label class="block mt-4">
-                            <span class="text-sm font-medium">Tanggal Barang Keluar</span>
-                            <input type="date" name="tanggal_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                            <span class="text-sm font-medium">Tanggal Barang Masuk</span>
+                            <input type="date" name="tanggal_masuk" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
                         </label>
                     </div>
-                    <input type="hidden" name="id_barang" id="id_barang" value="">
                     <!-- Modal footer -->
                     <div class="flex items-center p-4 md:p-5 mt-4">
                         <button data-modal-hide="default-modal" type="submit" class="inline-flex w-20 justify-center rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
@@ -157,27 +153,27 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                @if ($data->onFirstPage())
+                @if ($barangmasukfarmakognosi->onFirstPage())
                     <li>
                         <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $data->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        <a href="{{ $barangmasukfarmakognosi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                     </li>
                 @endif
         
-                @foreach ($data->getUrlRange($data->currentPage() - 2, $data->currentPage() + 2) as $page => $url)
-                    @if ($page == $data->currentPage())
+                @foreach ($barangmasukfarmakognosi->getUrlRange($barangmasukfarmakognosi->currentPage() - 2, $barangmasukfarmakognosi->currentPage() + 2) as $page => $url)
+                    @if ($page == $barangmasukfarmakognosi->currentPage())
                         <li>
                             <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach
         
-                @if ($data->hasMorePages())
+                @if ($barangmasukfarmakognosi->hasMorePages())
                     <li>
-                        <a href="{{ $data->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        <a href="{{ $barangmasukfarmakognosi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
                     </li>
                 @else
                     <li>
@@ -237,9 +233,9 @@
 
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 md:mt-44 lg:mt-56 mb-6 text-center">
-      <div class="text-biru160-polteka text-xs md:text-sm">
+        <div class="text-biru160-polteka text-xs md:text-sm">
         © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
-      </div>
+        </div>
     </footer>
 </div>
 
@@ -270,9 +266,6 @@
             }
         });
     });
-    function setIdBarang(id) {
-       document.getElementById('id_barang').value = id;
-   }
 </script>
 
 <script>

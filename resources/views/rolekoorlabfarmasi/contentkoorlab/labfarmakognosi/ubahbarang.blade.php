@@ -1,4 +1,4 @@
-@extends('rolekoorlabfarmasi.layoutkoorlab.labfarmakognosi.ubahbarang')
+@extends('rolekoorlabfarmasi.layoutkoorlab.labfarmakognosi.tambahbarang')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -6,12 +6,12 @@
     <section class="w-full mt-2 mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Ubah Barang</div>
+            <div class="text-hitam-polteka">Tambah Barang</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmakognosi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Ubah Barang</div>
+            <div class="ml-2  text-hitam-polteka">Tambah Barang</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
@@ -31,27 +31,31 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Ubah Barang</h2>
-        <form action="{{ route('updatebarangkoorlabfarmakognosi', $labfarmakognosi->id) }}" method="POST" enctype="multipart/form-data">
+        <h2 class="text-xl font-medium">Tambah Barang</h2>
+        <form action="{{ route('tambahbarangkoorlabfarmakognosi.store') }}" method="POST" enctype="multipart/form-data">  
         @csrf
         <label class="block mt-4">
             <span class="text-sm font-medium">Nama*</span>
-            <input type="text" name="nama_barang" value="{{ $labfarmakognosi->nama_barang }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
+            <input type="text" name="nama_barang" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
             @error('nama_barang')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
-        </label>
+        </label>   
+        <!-- <label class="block mt-4">
+            <span class="text-sm font-medium">ID Barang</span>
+            <input type="text" name="id" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+        </label> -->
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah*</span>
-                <input type="number" name="jumlah" value="{{ $labfarmakognosi->jumlah }}" readonly class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
-                <!-- @error('jumlah')
+                <input type="number" name="jumlah" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
+                @error('jumlah')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror -->
+                @enderror
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Satuan*</span>
-                <input type="text" name="satuan" value="{{ $labfarmakognosi->satuan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
+                <input type="text" name="satuan" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
                 @error('satuan')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
@@ -60,26 +64,30 @@
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" value="{{ $labfarmakognosi->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" min="{{ now()->format('Y-m-d') }}" />
+                <input type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
-                    <input type="number" name="periode" value="{{ $labfarmakognosi->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
+                    <input type="number" name="periode" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
                     <span class="ml-2 mt-2 font-bold">bulan</span>
                 </div>
             </label>
         </div>
         <label class="block mt-4">
+            <input type="checkbox" id="reminder" name="reminder">
+            <span class="ml-2">Ingatkan saya saat tanggal service tiba</span>
+        </label>
+        <label class="block mt-4">
             <span class="text-sm font-medium">Harga*</span>
-            <input type="name" name="harga" value="{{ $labfarmakognosi->harga }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
+            <input type="number" name="harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
             @error('harga')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Keterangan*</span>
-            <input type="name" name="keterangan" value="{{ $labfarmakognosi->keterangan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Keterangan" />
+            <input type="text" name="keterangan" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Keterangan" />
             @error('keterangan')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
@@ -93,8 +101,9 @@
         </label>        
             <button type="submit" class="inline-flex w-20 justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                 Submit
-            </button>  
-            <!-- Modal Profile -->
+            </button> 
+        </form>
+        <!-- Modal Profile -->
         <div id="modal2" class="fixed z-10 inset-0 hidden">
             <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">
                 <div class="bg-merah200-polteka w-auto p-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg">
@@ -139,7 +148,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
     <!-- COPYRIGHT -->
     <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">

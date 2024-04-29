@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Models\InventarisLabfarmasetika;
 use Milon\Barcode\DNS2D;
+use Illuminate\Support\Facades\Auth;
 
 class InventarisLabFarmasetikaController extends Controller
 {
@@ -21,11 +22,25 @@ class InventarisLabFarmasetikaController extends Controller
         }
         
         $labfarmasetika = $labfarmasetika->paginate(10);
-        return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.databarang', compact('labfarmasetika'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.databarang', compact('labfarmasetika'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.databarang', compact('labfarmasetika'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.databarang', compact('labfarmasetika'));
+            }
+        }
     }
 
     public function create(){
-        return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.tambahbarang');
+        // return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.tambahbarang');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.tambahbarang');
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.tambahbarang');
+            }
+        }
     }
 
 public function store(Request $request)
@@ -100,13 +115,27 @@ public function store(Request $request)
 
         $labfarmasetika->save();
         alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
-        return redirect()->route('databarangkoorlabfarmasetika');
+        // return redirect()->route('databarangkoorlabfarmasetika');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('databarangkoorlabfarmasetika');
+            } else{
+                return redirect()->route('databarangadminlabfarmasetika');
+            }
+        }
     }
 
 
     public function edit($id){
         $labfarmasetika = InventarisLabFarmasetika::findOrFail($id);
-        return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.ubahbarang', compact('labfarmasetika'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.ubahbarang', compact('labfarmasetika'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.ubahbarang', compact('labfarmasetika'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.ubahbarang', compact('labfarmasetika'));
+            }
+        }
     }
 
     public function update(Request $request, $id) {
@@ -167,12 +196,26 @@ public function store(Request $request)
         }
         if (!$isUpdated){
             alert()->info('Tidak Ada Perubahan', 'Tidak ada yang diupdate.');
-            return redirect()->route('databarangkoorlabfarmasetika');
+            // return redirect()->route('databarangkoorlabfarmasetika');
+            if(session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodfarmasi'){
+                    return redirect()->route('databarangkoorlabfarmasetika');
+                } else{
+                    return redirect()->route('databarangkadminlabfarmasetika');
+                }
+            }
         }
 
         $labfarmasetika->save();
         alert()->success('Berhasil', 'Data barang berhasil diperbarui');
-        return redirect()->route('databarangkoorlabfarmasetika');
+        // return redirect()->route('databarangkoorlabfarmasetika');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('databarangkoorlabfarmasetika');
+            } else{
+                return redirect()->route('databarangkadminlabfarmasetika');
+            }
+        }
     }
 
     public function destroy($id)

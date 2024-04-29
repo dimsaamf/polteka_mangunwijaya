@@ -6,13 +6,21 @@ use App\Account;
 use Illuminate\Http\Request;
 use App\Models\InventarisLabTekfarmasi;
 use App\Models\BarangMasukTekfarmasi;
+use Illuminate\Support\Facades\Auth;
 
 class BarangMasukTekfarmasiController extends Controller
 {
     public function index(){
         $BarangMasukTekfarmasi = BarangMasukTekfarmasi::paginate(10);
         $data=InventarisLabTekfarmasi::all();
-        return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.riwayatmasuk', compact('BarangMasukTekfarmasi','data'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.riwayatmasuk', compact('BarangMasukTekfarmasi','data'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.riwayatmasuk', compact('BarangMasukTekfarmasi','data'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.riwayatmasuk', compact('BarangMasukTekfarmasi','data'));
+            }
+        }
     }
 
     // public function tabel(){
@@ -29,12 +37,26 @@ class BarangMasukTekfarmasiController extends Controller
         }
         
         $data = $data->paginate(10);
-        return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.barangmasuk', compact('data'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.barangmasuk', compact('data'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.barangmasuk', compact('data'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangmasuk', compact('data'));
+            }
+        }
     }
     
 
     public function create(){
-        return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.barangmasuk');
+        // return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.barangmasuk');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.barangmasuk');
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangmasuk');
+            }
+        }
     }
 
     public function store(Request $request)
@@ -61,7 +83,13 @@ class BarangMasukTekfarmasiController extends Controller
         $BarangMasukTekfarmasi->save();
 
         alert()->success('Berhasil','Stok Barang Berhasil Ditambahkan.');
-        return redirect()->route('barangmasukkoorlabtekfarmasi');
-
+        // return redirect()->route('barangmasukkoorlabtekfarmasi');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('barangmasukkoorlabtekfarmasi');
+            } else{
+                return redirect()->route('barangmasukadminlabtekfarmasi');
+            }
+        }
     }
 }

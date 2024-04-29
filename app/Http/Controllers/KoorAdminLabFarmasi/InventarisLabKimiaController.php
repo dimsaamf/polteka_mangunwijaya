@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Models\InventarisLabKimia;
 use Milon\Barcode\DNS2D;
+use Illuminate\Support\Facades\Auth;
 
 class InventarisLabKimiaController extends Controller
 {
@@ -21,11 +22,25 @@ class InventarisLabKimiaController extends Controller
         }
         
         $labkimia = $labkimia->paginate(10);
-        return view('rolekoorlabfarmasi.contentkoorlab.labkimia.databarang', compact('labkimia'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labkimia.databarang', compact('labkimia'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labkimia.databarang', compact('labkimia'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labkimia.databarang', compact('labkimia'));
+            }
+        }
     }
 
     public function create(){
-        return view('rolekoorlabfarmasi.contentkoorlab.labkimia.tambahbarang');
+        // return view('rolekoorlabfarmasi.contentkoorlab.labkimia.tambahbarang');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labkimia.tambahbarang');
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labkimia.tambahbarang');
+            }
+        }
     }
 
 public function store(Request $request)
@@ -100,13 +115,27 @@ public function store(Request $request)
 
         $labkimia->save();
         alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
-        return redirect()->route('databarangkoorlabfarmasikimia');
+        // return redirect()->route('databarangkoorlabfarmasikimia');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('databarangkoorlabfarmasikimia');
+            } else{
+                return redirect()->route('databarangadminlabfarmasikimia');
+            }
+        }
     }
 
 
     public function edit($id){
         $labkimia = InventarisLabKimia::findOrFail($id);
-        return view('rolekoorlabfarmasi.contentkoorlab.labkimia.ubahbarang', compact('labkimia'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labkimia.ubahbarang', compact('labkimia'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labkimia.ubahbarang', compact('labkimia'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labkimia.ubahbarang', compact('labkimia'));
+            }
+        }
     }
 
     public function update(Request $request, $id) {
@@ -167,12 +196,26 @@ public function store(Request $request)
         }
         if (!$isUpdated){
             alert()->info('Tidak Ada Perubahan', 'Tidak ada yang diupdate.');
-            return redirect()->route('databarangkoorlabfarmasikimia');
+            // return redirect()->route('databarangkoorlabfarmasikimia');
+            if(session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodfarmasi'){
+                    return redirect()->route('databarangkoorlabfarmasikimia');
+                } else{
+                    return redirect()->route('databarangadminlabfarmasikimia');
+                }
+            }
         }
 
         $labkimia->save();
         alert()->success('Berhasil', 'Data barang berhasil diperbarui');
-        return redirect()->route('databarangkoorlabfarmasikimia');
+        // return redirect()->route('databarangkoorlabfarmasikimia');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('databarangkoorlabfarmasikimia');
+            } else{
+                return redirect()->route('databarangadminlabfarmasikimia');
+            }
+        }
     }
 
     public function destroy($id)

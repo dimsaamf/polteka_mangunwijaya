@@ -151,112 +151,144 @@ Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group
 });
 
 Route::middleware(['auth', 'user.role:adminlabprodfarmasi', 'revalidate'])->group(function (){
-    Route::get('/adminlabfarmasi/dashboard', function () {
-        return view('roleadminlabfarmasi.contentadminlab.dashboard');
-    })->name('dashboardadminlabfarmasi');
-    
-    Route::get('/ubahpwadminlabfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.ubahpassword');
-    })->name('ubahpwadminlabfarmasi');
-    
-    Route::get('/ubahppadminlabfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
-    })->name('ubahppadminlabfarmasi');
+    // Route::get('/adminlabfarmasi/dashboard', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.dashboard');
+    // })->name('dashboardadminlabfarmasi');
+    // Route::get('/ubahpwadminlabfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.ubahpassword');
+    // })->name('ubahpwadminlabfarmasi');
+    // Route::get('/ubahppadminlabfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
+    // })->name('ubahppadminlabfarmasi');
 
-    
+    Route::get('/adminlabfarmasi/dashboard',[DashboardKoorAdminLabFarmasiController::class, 'index'])->name('dashboardadminlabfarmasi');
+    Route::post('/adminlabfarmasi/dashboard', [DashboardKoorAdminLabFarmasiController::class, 'updateNotification'])->name('update.notification');
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/adminlabfarmasi/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppadminlabfarmasi');
+    Route::post('/adminlabfarmasi/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.adminlabfarmasi");
+    Route::get('/adminlabfarmasi/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwadminlabfarmasi');
+    Route::post('/adminlabfarmasi/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.adminlabfarmasi');
 
-
-    Route::get('/databarangadminlabtekfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.databarang');
-    })->name('databarangadminlabtekfarmasi');
-
-    Route::get('/barangmasukadminlabtekfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangmasuk');
-    })->name('barangmasukadminlabtekfarmasi');
-
-    Route::get('/barangkeluaradminlabtekfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangkeluar');
-    })->name('barangkeluaradminlabtekfarmasi');
-
-    Route::get('/tambahbarangadminlabtekfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.tambahbarang');
-    })->name('tambahbarangadminlabtekfarmasi');
-
-    Route::get('/ubahbarangadminlabtekfarmasi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.ubahbarang');
-    })->name('ubahbarangadminlabtekfarmasi');
-
-
-
-
-    Route::get('/databarangadminlabfarmasetika', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.databarang');
-    })->name('databarangadminlabfarmasetika');
-
-    Route::get('/barangmasukadminlabfarmasetika', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.barangmasuk');
-    })->name('barangmasukadminlabfarmasetika');
-
-    Route::get('/barangkeluaradminlabfarmasetika', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.barangkeluar');
-    })->name('barangkeluaradminlabfarmasetika');
-
-    Route::get('/tambahbarangadminlabfarmasetika', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.tambahbarang');
-    })->name('tambahbarangadminlabfarmasetika');
-
-    Route::get('/ubahbarangadminlabfarmasetika', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.ubahbarang');
-    })->name('ubahbarangadminlabfarmasetika');
+    // Route::get('/databarangadminlabtekfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.databarang');
+    // })->name('databarangadminlabtekfarmasi');
+    // Route::get('/barangmasukadminlabtekfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangmasuk');
+    // })->name('barangmasukadminlabtekfarmasi');
+    // Route::get('/barangkeluaradminlabtekfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.barangkeluar');
+    // })->name('barangkeluaradminlabtekfarmasi');
+    // Route::get('/tambahbarangadminlabtekfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.tambahbarang');
+    // })->name('tambahbarangadminlabtekfarmasi');
+    // Route::get('/ubahbarangadminlabtekfarmasi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labtekfarmasi.ubahbarang');
+    // })->name('ubahbarangadminlabtekfarmasi');
+    Route::get('/adminlabfarmasi/labtekfarmasi/databarang', [InventarislabTekfarmasiController::class, 'index'])->name('databarangadminlabtekfarmasi');
+    Route::delete('/adminlabfarmasi/labtekfarmasi/databarang/{id}', [InventarislabTekfarmasiController::class, 'destroy'])->name('hapusbarangtekfarmasi');
+    Route::get('/adminlabfarmasi/labtekfarmasi/tambahbarang', [InventarislabTekfarmasiController::class, 'create'])->name('tambahbarangadminlabtekfarmasi');
+    Route::post('/adminlabfarmasi/labtekfarmasi/tambahbarang', [InventarislabTekfarmasiController::class, 'store'])->name('tambahbarangadminlabtekfarmasi.store');
+    Route::get('/adminlabfarmasi/labtekfarmasi/ubahbarang/{id}', [InventarislabTekfarmasiController::class, 'edit'])->name('ubahbarangadminlabtekfarmasi');
+    Route::post('/adminlabfarmasi/labtekfarmasi/ubahbarang/{id}', [InventarislabTekfarmasiController::class, 'update'])->name('updatebarangadminlabtekfarmasi');
+    Route::get('/adminlabfarmasi/labtekfarmasi/riwayatbarangmasuk', [BarangMasukTekfarmasiController::class, 'index'])->name('riwayatbarangmasukadminlabtekfarmasi');
+    Route::get('/adminlabfarmasi/labtekfarmasi/riwayatbarangkeluar', [BarangKeluarTekfarmasiController::class, 'index'])->name('riwayatbarangkeluaradminlabtekfarmasi');
+    Route::get('/adminlabfarmasi/labtekfarmasi/barangmasuk', [BarangMasukTekfarmasiController::class, 'tabel'])->name('barangmasukadminlabtekfarmasi');
+    Route::get('/adminlabfarmasi/labtekfarmasi/barangkeluar', [BarangKeluarTekfarmasiController::class, 'tabel'])->name('barangkeluaradminlabtekfarmasi');
+    Route::post('/adminlabfarmasi/labtekfarmasi/barangmasuk', [BarangMasukTekfarmasiController::class, 'store'])->name('barangmasukadminlabtekfarmasi.store');
+    Route::post('/adminlabfarmasi/labtekfarmasi/barangkeluar', [BarangKeluarTekfarmasiController::class, 'store'])->name('barangkeluaradminlabtekfarmasi.store');
+    Route::get('/adminlabfarmasi/labtekfarmasi/gambar/{id}', [InventarislabTekfarmasiController::class, 'getGambar'])->name('get.gambar.invlabtekfarmasi');
 
 
+    // Route::get('/databarangadminlabfarmasetika', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.databarang');
+    // })->name('databarangadminlabfarmasetika');
+    // Route::get('/barangmasukadminlabfarmasetika', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.barangmasuk');
+    // })->name('barangmasukadminlabfarmasetika');
+    // Route::get('/barangkeluaradminlabfarmasetika', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.barangkeluar');
+    // })->name('barangkeluaradminlabfarmasetika');
+    // Route::get('/tambahbarangadminlabfarmasetika', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.tambahbarang');
+    // })->name('tambahbarangadminlabfarmasetika');
+    // Route::get('/ubahbarangadminlabfarmasetika', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.ubahbarang');
+    // })->name('ubahbarangadminlabfarmasetika');
+    Route::get('/adminlabfarmasi/labfarmasetika/databarang', [InventarisLabFarmasetikaController::class, 'index'])->name('databarangadminlabfarmasetika');
+    Route::delete('/adminlabfarmasi/labfarmasetika/databarang/{id}', [InventarisLabFarmasetikaController::class, 'destroy'])->name('hapusbarangfarmasetika');
+    Route::get('/adminlabfarmasi/labfarmasetika/tambahbarang', [InventarisLabFarmasetikaController::class, 'create'])->name('tambahbarangadminlabfarmasetika');
+    Route::post('/adminlabfarmasi/labfarmasetika/tambahbarang', [InventarisLabFarmasetikaController::class, 'store'])->name('tambahbarangadminlabfarmasetika.store');
+    Route::get('/adminlabfarmasi/labfarmasetika/ubahbarang/{id}', [InventarisLabFarmasetikaController::class, 'edit'])->name('ubahbarangadminlabfarmasetika');
+    Route::post('/adminlabfarmasi/labfarmasetika/ubahbarang/{id}', [InventarisLabFarmasetikaController::class, 'update'])->name('updatebarangadminlabfarmasetika');
+    Route::get('/adminlabfarmasi/labfarmasetika/riwayatbarangmasuk', [BarangMasukFarmasetikaController::class, 'index'])->name('riwayatbarangmasukadminlabfarmasetika');
+    Route::get('/adminlabfarmasi/labfarmasetika/riwayatbarangkeluar', [BarangKeluarFarmasetikaController::class, 'index'])->name('riwayatbarangkeluaradminlabfarmasetika');
+    Route::get('/adminlabfarmasi/labfarmasetika/barangmasuk', [BarangMasukFarmasetikaController::class, 'tabel'])->name('barangmasukadminlabfarmasetika');
+    Route::get('/adminlabfarmasi/labfarmasetika/barangkeluar', [BarangKeluarFarmasetikaController::class, 'tabel'])->name('barangkeluaradminlabfarmasetika');
+    Route::post('/adminlabfarmasi/labfarmasetika/barangmasuk', [BarangMasukFarmasetikaController::class, 'store'])->name('barangmasukadminlabfarmasetika.store');
+    Route::post('/adminlabfarmasi/labfarmasetika/barangkeluar', [BarangKeluarFarmasetikaController::class, 'store'])->name('barangkeluaradminlabfarmasetika.store');
+    Route::get('/adminlabfarmasi/labfarmasetika/gambar/{id}', [InventarisLabFarmasetikaController::class, 'getGambar'])->name('get.gambar.invlabfarmasetika');
 
 
-    Route::get('/databarangadminlabfarmasikimia', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.databarang');
-    })->name('databarangadminlabfarmasikimia');
-
-    Route::get('/barangmasukadminlabfarmasikimia', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.barangmasuk');
-    })->name('barangmasukadminlabfarmasikimia');
-
-    Route::get('/barangkeluaradminlabfarmasikimia', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.barangkeluar');
-    })->name('barangkeluaradminlabfarmasikimia');
-
-    Route::get('/tambahbarangadminlabfarmasikimia', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.tambahbarang');
-    })->name('tambahbarangadminlabfarmasikimia');
-
-    Route::get('/ubahbarangadminlabfarmasikimia', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.ubahbarang');
-    })->name('ubahbarangadminlabfarmasikimia');
-
-
-
-
-
-    Route::get('/databarangadminlabfarmakognosi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang');
-    })->name('databarangadminlabfarmakognosi');
-
-    Route::get('/barangmasukadminlabfarmakognosi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangmasuk');
-    })->name('barangmasukadminlabfarmakognosi');
-
-    Route::get('/barangkeluaradminlabfarmakognosi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangkeluar');
-    })->name('barangkeluaradminlabfarmakognosi');
-
-    Route::get('/tambahbarangadminlabfarmakognosi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.tambahbarang');
-    })->name('tambahbarangadminlabfarmakognosi');
-
-    Route::get('/ubahbarangadminlabfarmakognosi', function () {
-        return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang');
-    })->name('ubahbarangadminlabfarmakognosi');
+    // Route::get('/databarangadminlabfarmasikimia', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.databarang');
+    // })->name('databarangadminlabfarmasikimia');
+    // Route::get('/barangmasukadminlabfarmasikimia', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.barangmasuk');
+    // })->name('barangmasukadminlabfarmasikimia');
+    // Route::get('/barangkeluaradminlabfarmasikimia', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.barangkeluar');
+    // })->name('barangkeluaradminlabfarmasikimia');
+    // Route::get('/tambahbarangadminlabfarmasikimia', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.tambahbarang');
+    // })->name('tambahbarangadminlabfarmasikimia');
+    // Route::get('/ubahbarangadminlabfarmasikimia', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmasikimia.ubahbarang');
+    // })->name('ubahbarangadminlabfarmasikimia');
+    Route::get('/adminlabfarmasi/labkimia/databarang', [InventarisLabKimiaController::class, 'index'])->name('databarangadminlabfarmasikimia');
+    Route::delete('/adminlabfarmasi/labkimia/databarang/{id}', [InventarisLabKimiaController::class, 'destroy'])->name('hapusbarangfarmasikimia');
+    Route::get('/adminlabfarmasi/labkimia/tambahbarang', [InventarisLabKimiaController::class, 'create'])->name('tambahbarangadminlabfarmasikimia');
+    Route::post('/adminlabfarmasi/labkimia/tambahbarang', [InventarisLabKimiaController::class, 'store'])->name('tambahbarangadminlabfarmasikimia.store');
+    Route::get('/adminlabfarmasi/labkimia/ubahbarang/{id}', [InventarisLabKimiaController::class, 'edit'])->name('ubahbarangadminlabfarmasikimia');
+    Route::post('/adminlabfarmasi/labkimia/ubahbarang/{id}', [InventarisLabKimiaController::class, 'update'])->name('updatebarangadminlabfarmasikimia');
+    Route::get('/adminlabfarmasi/labkimia/riwayatbarangmasuk', [BarangMasukKimiaController::class, 'index'])->name('riwayatbarangmasukadminlabfarmasikimia');
+    Route::get('/adminlabfarmasi/labkimia/riwayatbarangkeluar', [BarangKeluarKimiaController::class, 'index'])->name('riwayatbarangkeluaradminlabfarmasikimia');
+    Route::get('/adminlabfarmasi/labkimia/barangmasuk', [BarangMasukKimiaController::class, 'tabel'])->name('barangmasukadminlabfarmasikimia');
+    Route::get('/adminlabfarmasi/labkimia/barangkeluar', [BarangKeluarKimiaController::class, 'tabel'])->name('barangkeluaradminlabfarmasikimia');
+    Route::post('/adminlabfarmasi/labkimia/barangmasuk', [BarangMasukKimiaController::class, 'store'])->name('barangmasukadminlabfarmasikimia.store');
+    Route::post('/adminlabfarmasi/labkimia/barangkeluar', [BarangKeluarKimiaController::class, 'store'])->name('barangkeluaradminlabfarmasikimia.store');
+    Route::get('/adminlabfarmasi/gambar/{id}', [InventarisLabKimiaController::class, 'getGambar'])->name('get.gambar.invlabfarmasikimia');
 
 
+
+    // Route::get('/databarangadminlabfarmakognosi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang');
+    // })->name('databarangadminlabfarmakognosi');
+    // Route::get('/barangmasukadminlabfarmakognosi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangmasuk');
+    // })->name('barangmasukadminlabfarmakognosi');
+    // Route::get('/barangkeluaradminlabfarmakognosi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.barangkeluar');
+    // })->name('barangkeluaradminlabfarmakognosi');
+    // Route::get('/tambahbarangadminlabfarmakognosi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.tambahbarang');
+    // })->name('tambahbarangadminlabfarmakognosi');
+    // Route::get('/ubahbarangadminlabfarmakognosi', function () {
+    //     return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang');
+    // })->name('ubahbarangadminlabfarmakognosi');
+
+    Route::get('/adminlabfarmasi/labfarmakognosi/databarang', [InventarislabFarmakognosiController::class, 'index'])->name('databarangadminlabfarmakognosi');
+    Route::delete('/adminlabfarmasi/labfarmakognosi/databarang/{id}', [InventarislabFarmakognosiController::class, 'destroy'])->name('hapusbarangfarmakognosi');
+    Route::get('/adminlabfarmasi/labfarmakognosi/tambahbarang', [InventarislabFarmakognosiController::class, 'create'])->name('tambahbarangadminlabfarmakognosi');
+    Route::post('/adminlabfarmasi/labfarmakognosi/tambahbarang', [InventarislabFarmakognosiController::class, 'store'])->name('tambahbarangadminlabfarmakognosi.store');
+    Route::get('/adminlabfarmasi/labfarmakognosi/ubahbarang/{id}', [InventarislabFarmakognosiController::class, 'edit'])->name('ubahbarangadminlabfarmakognosi');
+    Route::post('/adminlabfarmasi/labfarmakognosi/ubahbarang/{id}', [InventarislabFarmakognosiController::class, 'update'])->name('updatebarangadminlabfarmakognosi');
+    Route::get('/adminlabfarmasi/labfarmakognosi/gambar/{id}', [InventarislabFarmakognosiController::class, 'getGambar'])->name('get.gambar.invlabfarmakognosi');
+    Route::get('/adminlabfarmasi/labfarmakognosi/riwayatbarangmasuk', [BarangMasukFarmakognosiController::class, 'index'])->name('riwayatbarangmasukadminlabfarmakognosi');
+    Route::get('/adminlabfarmasi/labfarmakognosi/riwayatbarangkeluar', [BarangKeluarFarmakognosiController::class, 'index'])->name('riwayatbarangkeluaradminlabfarmakognosi');
+    Route::get('/adminlabfarmasi/labfarmakognosi/barangmasuk', [BarangMasukFarmakognosiController::class, 'tabel'])->name('barangmasukadminlabfarmakognosi');
+    Route::get('/adminlabfarmasi/labfarmakognosi/barangkeluar', [BarangKeluarFarmakognosiController::class, 'tabel'])->name('barangkeluaradminlabfarmakognosi');
+    Route::post('/adminlabfarmasi/labfarmakognosi/barangmasuk', [BarangMasukFarmakognosiController::class, 'store'])->name('barangmasukadminlabfarmakognosi.store');
+    Route::post('/adminlabfarmasi/labfarmakognosi/barangkeluar', [BarangKeluarFarmakognosiController::class, 'store'])->name('barangkeluaradminlabfarmakognosi.store');
 });
 
 Route::middleware(['auth', 'user.role:adminprodfarmasi', 'revalidate'])->group(function (){

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\InventarisLabfarmakognosi;
 use Milon\Barcode\DNS2D;
+use Illuminate\Support\Facades\Auth;
 
 class InventarisLabfarmakognosiController extends Controller
 {
@@ -21,11 +22,25 @@ class InventarisLabfarmakognosiController extends Controller
         }
         
         $labfarmakognosi = $labfarmakognosi->paginate(10);
-        return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
+            }
+        }
     }
 
     public function create(){
         return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahbarang');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahbarang');
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.tambahbarang');
+            }
+        }
     }
 
 public function store(Request $request)
@@ -100,13 +115,27 @@ public function store(Request $request)
 
         $labfarmakognosi->save();
         alert()->success('Berhasil', 'Barang Baru Berhasil Ditambahkan.');
-        return redirect()->route('databarangkoorlabfarmakognosi');
+        // return redirect()->route('databarangkoorlabfarmakognosi');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('databarangkoorlabfarmakognosi');
+            } else{
+                return redirect()->route('databarangadminlabfarmakognosi');
+            }
+        }
     }
 
 
     public function edit($id){
         $labfarmakognosi = InventarisLabfarmakognosi::findOrFail($id);
-        return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.ubahbarang', compact('labfarmakognosi'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.ubahbarang', compact('labfarmakognosi'));
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.ubahbarang', compact('labfarmakognosi'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.ubahbarang', compact('labfarmakognosi'));
+            }
+        }
     }
 
     public function update(Request $request, $id) {
@@ -167,12 +196,26 @@ public function store(Request $request)
         }
         if (!$isUpdated){
             alert()->info('Tidak Ada Perubahan', 'Tidak ada yang diupdate.');
-            return redirect()->route('databarangkoorlabfarmakognosi');
+            if(session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodfarmasi'){
+                    return redirect()->route('databarangkoorlabfarmakognosi');
+                } else{
+                    return redirect()->route('databarangadminlabfarmakognosi');
+                }
+            }
+            // return redirect()->route('databarangkoorlabfarmakognosi');
         }
 
         $labfarmakognosi->save();
         alert()->success('Berhasil', 'Data barang berhasil diperbarui');
-        return redirect()->route('databarangkoorlabfarmakognosi');
+        // return redirect()->route('databarangkoorlabfarmakognosi');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('databarangkoorlabfarmakognosi');
+            } else{
+                return redirect()->route('databarangadminlabfarmakognosi');
+            }
+        }
     }
 
     public function destroy($id)

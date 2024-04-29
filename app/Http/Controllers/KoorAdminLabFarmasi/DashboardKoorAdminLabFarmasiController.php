@@ -4,6 +4,7 @@ namespace App\Http\Controllers\KoorAdminLabFarmasi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InventarisLabFarmakognosi;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class DashboardKoorAdminLabFarmasiController extends Controller
@@ -45,7 +46,15 @@ class DashboardKoorAdminLabFarmasiController extends Controller
         // return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'data'));
         $batasJumlah = 0.2 * InventarisLabFarmakognosi::avg('jumlah');
         $data['barangHabis'] = InventarisLabFarmakognosi::where('jumlah', '<', $batasJumlah)->get();
-        return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'data'));
+        // return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'data'));
+
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'data'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.dashboard', compact('notifications', 'data'));
+            }
+        }
     }
 
     public function updateNotification(Request $request)
