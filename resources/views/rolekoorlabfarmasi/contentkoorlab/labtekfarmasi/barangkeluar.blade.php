@@ -72,7 +72,7 @@
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Harga</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
-                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
+                            <th scope="col" class="px-6 py-3 text-center">Gambar</th>
                             <th scope="col" class="px-6 py-3 text-center">Ubah Stok</th>
                         </tr>
                     </thead>
@@ -88,7 +88,17 @@
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->kode_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp. {{$item->harga}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$item->jumlah}} {{$item->satuan}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$item->keterangan}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                    <div class="flex justify-center">
+                                        @if($item->gambar)
+                                            <a href="{{ route('get.gambar.invlabtekfarmasi', ['id' => $item->id]) }}" target="_blank">
+                                                <img src="{{ asset('storage/gambars/' . $item->gambar) }}" alt="Gambar Barang" class="w-10">
+                                            </a>
+                                        @else
+                                            <span>Tidak ada gambar</span>
+                                        @endif
+                                    </div>
+                            </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
                                 <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" onclick="setIdBarang('{{ $item->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
@@ -133,13 +143,19 @@
                     @csrf
                         <label class="block mt-4">
                             <span class="text-sm font-medium">Jumlah Barang Keluar</span>
-                            <input type="text" name="jumlah_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                            <input type="number" name="jumlah_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
                         </label>
                     </div>
                     <div class="px-8">
                         <label class="block mt-4">
                             <span class="text-sm font-medium">Tanggal Barang Keluar</span>
                             <input type="date" name="tanggal_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                        </label>
+                    </div>
+                    <div class="px-8">
+                        <label class="block mt-4">
+                            <span class="text-sm font-medium">Keterangan</span>
+                            <input type="text" name="keterangan_keluar" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Keterangan" />
                         </label>
                     </div>
                     <input type="hidden" name="id_barang" id="id_barang" value="">

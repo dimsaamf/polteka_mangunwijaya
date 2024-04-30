@@ -80,7 +80,7 @@ class BarangMasukTekfarmasiController extends Controller
         $BarangMasukTekfarmasi = new BarangMasukTekfarmasi();
         $BarangMasukTekfarmasi->jumlah_masuk = $jumlah_masuk_baru;
         $BarangMasukTekfarmasi->tanggal_masuk = $request->tanggal_masuk;
-        $BarangMasukKimia->keterangan_masuk = $request->keterangan_masuk;
+        $BarangMasukTekfarmasi->keterangan_masuk = $request->keterangan_masuk;
         $BarangMasukTekfarmasi->id_barang = $id_barang;
         $BarangMasukTekfarmasi->save();
 

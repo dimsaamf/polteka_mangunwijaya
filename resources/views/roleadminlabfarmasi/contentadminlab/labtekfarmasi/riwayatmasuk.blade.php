@@ -70,12 +70,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($barangmasuktekfarmasi->isEmpty())
+                        @if ($BarangMasukTekfarmasi->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($barangmasuktekfarmasi as $item)
+                        @foreach($BarangMasukTekfarmasi as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td>{{ $loop->iteration }}</td>
                             <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
@@ -155,27 +155,27 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                @if ($barangmasuktekfarmasi->onFirstPage())
+                @if ($BarangMasukTekfarmasi->onFirstPage())
                     <li>
                         <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $barangmasuktekfarmasi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        <a href="{{ $BarangMasukTekfarmasi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                     </li>
                 @endif
         
-                @foreach ($barangmasuktekfarmasi->getUrlRange($barangmasuktekfarmasi->currentPage() - 2, $barangmasuktekfarmasi->currentPage() + 2) as $page => $url)
-                    @if ($page == $barangmasuktekfarmasi->currentPage())
+                @foreach ($BarangMasukTekfarmasi->getUrlRange($BarangMasukTekfarmasi->currentPage() - 2, $BarangMasukTekfarmasi->currentPage() + 2) as $page => $url)
+                    @if ($page == $BarangMasukTekfarmasi->currentPage())
                         <li>
                             <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach
         
-                @if ($barangmasuktekfarmasi->hasMorePages())
+                @if ($BarangMasukTekfarmasi->hasMorePages())
                     <li>
-                        <a href="{{ $barangmasuktekfarmasi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        <a href="{{ $BarangMasukTekfarmasi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
                     </li>
                 @else
                     <li>

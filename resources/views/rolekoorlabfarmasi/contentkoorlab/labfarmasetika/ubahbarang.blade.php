@@ -41,7 +41,7 @@
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </label>
-        <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah*</span>
                 <input type="number" name="jumlah" value="{{ $labfarmasetika->jumlah }}" readonly class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
@@ -53,6 +53,13 @@
                 <span class="text-sm font-medium">Satuan*</span>
                 <input type="text" name="satuan" value="{{ $labfarmasetika->satuan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
                 @error('satuan')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </label>
+            <label class="block md:col-span-1">
+                <span class="text-sm font-medium">Jumlah Minimal*</span>
+                <input type="number" name="jumlah_min" value="{{ $labfarmasetika->jumlah_min }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
+                @error('jumlah_min')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
@@ -78,7 +85,7 @@
             @enderror
         </label>
         <label class="block mt-4">
-            <span class="text-sm font-medium">Keterangan*</span>
+            <span class="text-sm font-medium">Keterangan</span>
             <input type="name" name="keterangan" value="{{ $labfarmasetika->keterangan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Keterangan" />
             @error('keterangan')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>

@@ -8,7 +8,7 @@
             <div class="text-hitam-polteka">Riwayat Barang Masuk</div>
         </div>
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Tekfarmasi</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Tek. Farmasi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Riwayat Barang Masuk</div>
         </div> 
@@ -66,6 +66,7 @@
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
+                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,6 +95,7 @@
                                     {{ $barang->satuan }}
                                 @endif
                             @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->keterangan_masuk }}</td>
                         </tr>
                         @endforeach
                         @endif

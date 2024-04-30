@@ -42,7 +42,7 @@
             <div class=" gap-6 mt-3">
                     <div class=" p-6">
                         <div class="text-xl font-medium">Selamat Datang, {{ Auth::user()->name }}!</div>
-                        <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Koor Admin Laboratorium Prodi Farmasi Polteka Mangunwijaya</div>
+                        <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai koor koor Laboratorium Prodi Farmasi Polteka Mangunwijaya</div>
                     </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                     <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                     <div class=" p-6">
                             <div class="text-xl font-medium mb-1">Barang Hampir Habis</div>
-                            @foreach($data['barangHabis'] as $barang)
+                            @foreach($barangHabis as $barang)
                                 <div class="w-full flex text-black border-b-2 py-3">
                                     <div class="w-1/8">
                                         <div class="flex bg-[#D0E5FF] rounded-full w-[1.8rem] h-[1.8rem] m-auto mx-2">
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                @if ($data['barangHabis']->isEmpty())
+                                @if (count($barangHabis) === 0)
                                     <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang stoknya habis saat ini.</div>
                                 @endif
                             </div>

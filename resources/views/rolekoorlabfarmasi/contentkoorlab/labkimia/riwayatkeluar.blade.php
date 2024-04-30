@@ -71,15 +71,16 @@
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal keluar</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
+                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($BarangKeluarKimia->isEmpty())
+                        @if ($barangkeluarfarmasikimia->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($BarangKeluarKimia as $item)
+                        @foreach($barangkeluarfarmasikimia as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td>{{ $loop->iteration }}</td>
                             <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
@@ -99,6 +100,7 @@
                                     {{ $barang->satuan }}
                                 @endif
                             @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->keterangan_keluar }}</td>
                         </tr>
                         @endforeach
                         @endif
@@ -113,32 +115,33 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Sebelumnya
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    1
-                </button>
-                </li>
-                <li>
-                <button
-                    class="bg-biru160-polteka px-4 py-2 text-putih-polteka hover:bg-biru100-polteka rounded-full text-sm">
-                    2
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    3
-                </button>
-                </li>
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Selanjutnya
-                </button>
-                </li>
+                @if ($barangkeluarfarmasikimia->onFirstPage())
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $barangkeluarfarmasikimia->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                    </li>
+                @endif
+        
+                @foreach ($barangkeluarfarmasikimia->getUrlRange($barangkeluarfarmasikimia->currentPage() - 2, $barangkeluarfarmasikimia->currentPage() + 2) as $page => $url)
+                    @if ($page == $barangkeluarfarmasikimia->currentPage())
+                        <li>
+                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                        </li>
+                    @endif
+                @endforeach
+        
+                @if ($barangkeluarfarmasikimia->hasMorePages())
+                    <li>
+                        <a href="{{ $barangkeluarfarmasikimia->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                    </li>
+                @else
+                    <li>
+                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- END: Pagination -->
