@@ -47,26 +47,7 @@ class DashboardFarmasiController extends Controller
                 Log::error('Tanggal layanan tidak valid untuk notifikasi dengan ID: ' . $notification->id);
             }
         }
-
-         // Mendapatkan semua data barang
-         $dataBarang = InventarisFarmasi::all();
-        
-         // Inisialisasi array untuk menyimpan barang yang stoknya hampir habis
-         $barangHampirHabis = [];
- 
-         // Loop melalui setiap data barang
-         foreach ($dataBarang as $barang) {
-            // Menghitung batas minimum stok hampir habis (20% dari stok saat ini)
-            $batasMinimum = 0.2 * $barang->jumlah;
-            
-            // Menghitung stok saat ini (stok awal dikurangi jumlah barang keluar)
-            $stokSaatIni = $barang->jumlah - $barang->jumlah_barang_keluar;
-        
-            // Jika stok saat ini kurang dari batas minimum, tambahkan barang ke array
-            if ($stokSaatIni < $batasMinimum) {
-                $barangHampirHabis[] = $barang;
-            }
-        }
+        $barangHampirHabis = $this->stokHampirHabis();
 
         return view('roleadminprodifarmasi.contentadminprodi.dashboard', compact('barangHampirHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
     }
@@ -87,4 +68,15 @@ class DashboardFarmasiController extends Controller
             return redirect()->back()->with('error', 'Tidak ada notifikasi yang dipilih.');
         }
     }
+
+    public static function stokHampirHabis()
+{
+    // Mengambil daftar barang yang stoknya kurang dari 20% dari jumlah awal atau jumlah terupdate
+    $barangHampirHabis = InventarisFarmasi::select('id', 'nama_barang', 'jumlah', 'jumlah_awal')
+        ->whereRaw('jumlah < jumlah_awal * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah awal
+        ->orWhereRaw('jumlah < jumlah_awal + (SELECT COALESCE(SUM(jumlah_masuk), 0) FROM barang_masuk_farmasis WHERE id_barang = inventaris_farmasis.id) * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah terupdate
+        ->get();
+
+    return $barangHampirHabis;
+}
 }

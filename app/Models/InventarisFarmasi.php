@@ -15,6 +15,7 @@ class InventarisFarmasi extends Model
         'nama_barang',
         'kode_barang',
         'jumlah',
+        'jumlah_awal',
         'satuan',
         'tanggal_service',
         'periode',

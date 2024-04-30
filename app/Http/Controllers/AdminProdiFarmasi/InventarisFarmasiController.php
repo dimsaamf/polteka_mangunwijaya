@@ -67,11 +67,13 @@ public function store(Request $request)
         $awal = (int)substr($last->kode_barang, -5) + 1;
         $kode_barang = $var.$thn.$awal;
     }
+    $jumlah_awal = $request->input('jumlah');
 
     $farmasi = new InventarisFarmasi();
     $farmasi->nama_barang = $request->nama_barang;
     $farmasi->kode_barang = $kode_barang;
     $farmasi->jumlah = $request->jumlah;
+    $farmasi->jumlah_awal = $jumlah_awal;
     $farmasi->satuan = $request->satuan;
     $farmasi->tanggal_service = $request->tanggal_service;
     $farmasi->periode = $request->periode;
@@ -218,14 +220,4 @@ public function store(Request $request)
         return response()->json(['error' => 'File gambar tidak ditemukan'], 404);
     }
 }
-public static function stokHampirHabis()
-    {
-        // Mengambil daftar barang yang stoknya kurang dari 20% dari jumlah awal atau jumlah terupdate
-        $barangHampirHabis = InventarisFarmasi::select('id', 'nama_barang', 'jumlah')
-            ->whereRaw('jumlah < jumlah_awal * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah awal
-            ->orWhereRaw('jumlah < jumlah_masuk + (SELECT COALESCE(SUM(jumlah_keluar), 0) FROM barang_keluar_farmasis WHERE id_barang = inventaris_farmasis.id) * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah terupdate
-            ->get();
-
-        return $barangHampirHabis;
-    }
 }

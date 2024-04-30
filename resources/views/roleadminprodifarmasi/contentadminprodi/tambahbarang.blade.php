@@ -62,9 +62,9 @@
             </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
-            <label class="block md:col-span-2">
+            <label id="tanggal_service_input" style="display: none;" class=" md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
+                <input id="tanggal_service" type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>
@@ -74,9 +74,11 @@
                 </div>
             </label>
         </div>
-        <label class="block mt-4">
-            <input type="checkbox" id="reminder" name="reminder">
-            <span class="ml-2">Ingatkan saya saat tanggal service tiba</span>
+        <label class="mt-4">
+            <label for="reminder">Apakah perlu tanggal service?</label>
+        <select name="reminder" id="reminder" class="form-control">
+            <option value="1">Ya</option>
+            <option value="0" selected>Tidak</option>
         </label>
         <label class="block mt-4">
             <span class="text-sm font-medium">Harga*</span>
@@ -172,5 +174,33 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+<script>
+    document.getElementById('reminder').addEventListener('change', function() {
+        var isAlatValue = this.value;
+        var tanggalServiceInput = document.getElementById('tanggal_service_input');
+        
+        if (isAlatValue === '1') {
+            tanggalServiceInput.style.display = 'block';
+            document.getElementById('tanggal_service').setAttribute('required', 'required');
+        } else {
+            tanggalServiceInput.style.display = 'none';
+            document.getElementById('tanggal_service').removeAttribute('required');
+        }
+    });
+
+    // Atur nilai default untuk tanggal service jika jenis diisi
+    window.onload = function() {
+        var isAlatValue = document.getElementById('reminder').value;
+        var tanggalServiceInput = document.getElementById('tanggal_service_input');
+
+        if (isAlatValue === '1') {
+            tanggalServiceInput.style.display = 'block';
+        } else {
+            tanggalServiceInput.style.display = 'none';
+        }
+    };
+</script>
+
 
 @endsection

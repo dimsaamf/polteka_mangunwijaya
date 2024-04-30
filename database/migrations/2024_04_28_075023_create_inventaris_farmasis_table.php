@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('kode_barang');
             $table->integer('jumlah');
+            $table->integer('jumlah_awal');
             $table->string('satuan');
             $table->date('tanggal_service')->nullable();;
             $table->boolean('reminder')->default(false);

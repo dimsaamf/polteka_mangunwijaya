@@ -27,20 +27,21 @@
                 <th class="border border-gray-200 px-4 py-2">Jumlah</th>
             </tr>
         </thead>
+        
         <tbody>
             @if(isset($laporanMasuk) && count($laporanMasuk) > 0)
             @foreach($laporanMasuk as $item)
             <tr class="text-center bg-abu-polteka">
                 <td class="border border-gray-200 px-4 py-2">{{ $loop->iteration }}</td>
                 <td class="border border-gray-200 px-4 py-2">
-                    @foreach($data as $barang)
+                    @foreach($dataInventaris as $barang)
                     @if($barang->id == $item->id_barang)
                         {{ $barang->nama_barang }}
                     @endif
                     @endforeach
                 </td>
                 <td class="border border-gray-200 px-4 py-2">
-                    @foreach($data as $barang)
+                    @foreach($dataInventaris as $barang)
                         @if($barang->id == $item->id_barang)
                             {{ $barang->kode_barang }}
                         @endif
@@ -49,37 +50,7 @@
                 <td class="border border-gray-200 px-4 py-2">{{ $item->tanggal_masuk }}</td>
                 <td class="border border-gray-200 px-4 py-2">
                     {{ $item->jumlah_masuk }}
-                    @foreach($data as $barang)
-                        @if($barang->id == $item->id_barang)
-                            {{ $barang->satuan }}
-                        @endif
-                    @endforeach
-                </td>
-            </tr>
-            @endforeach
-
-            @elseif(isset($laporanKeluar) && count($laporanKeluar) > 0)
-            @foreach($laporanKeluar as $item)
-            <tr>
-                <td class="border border-gray-200 px-4 py-2">{{ $loop->iteration }}</td>
-                <td class="border border-gray-200 px-4 py-2">
-                    @foreach($data as $barang)
-                    @if($barang->id == $item->id_barang)
-                        {{ $barang->nama_barang }}
-                    @endif
-                    @endforeach
-                </td>
-                <td class="border border-gray-200 px-4 py-2">
-                    @foreach($data as $barang)
-                        @if($barang->id == $item->id_barang)
-                            {{ $barang->kode_barang }}
-                        @endif
-                    @endforeach
-                </td>
-                <td class="border border-gray-200 px-4 py-2">{{ $item->tanggal_keluar }}</td>
-                <td class="border border-gray-200 px-4 py-2">
-                    {{ $item->jumlah_keluar }}
-                    @foreach($data as $barang)
+                    @foreach($dataInventaris as $barang)
                         @if($barang->id == $item->id_barang)
                             {{ $barang->satuan }}
                         @endif
@@ -90,7 +61,7 @@
 
             @else
             <tr>
-                <td colspan="5" class="border border-gray-200 px-4 py-2 text-center">No data available</td>
+                <td colspan="5" class="border border-gray-200 px-4 py-2 text-center">Tidak Ada Data Barang Masuk</td>
             </tr>
             @endif
 
