@@ -47,10 +47,10 @@ public function store(Request $request)
         'nama_barang.required' => 'Nama barang harus diisi.',
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
+        'jumlah_min.required' => 'Minimal jumlah harus diisi.',
         'satuan.required' => 'Satuan harus diisi.',
         'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
-        'keterangan.required' => 'Keterangan harus diisi.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
     ];
@@ -58,11 +58,12 @@ public function store(Request $request)
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_labfarmakognosis',
         'jumlah'=>'required|integer',
+        'jumlah_min'=>'required|integer',
         'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
         'tanggal_service'=>'nullable|date',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
-        'keterangan'=>'required',
+        'keterangan'=>'nullable',
         'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
     ], $messages);
 
@@ -83,6 +84,7 @@ public function store(Request $request)
     $labfarmakognosi->nama_barang = $request->nama_barang;
     $labfarmakognosi->kode_barang = $kode_barang;
     $labfarmakognosi->jumlah = $request->jumlah;
+    $labfarmakognosi->jumlah_min = $request->jumlah_min;
     $labfarmakognosi->satuan = $request->satuan;
     $labfarmakognosi->tanggal_service = $request->tanggal_service;
     $labfarmakognosi->periode = $request->periode;
@@ -147,11 +149,12 @@ public function store(Request $request)
         $request->validate([
             'nama_barang'=>'required|string',
             'jumlah'=>'required|integer',
+            'jumlah_min'=>'required|integer',
             'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',
-            'keterangan'=>'required',
+            'keterangan'=>'nullable',
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
@@ -164,6 +167,10 @@ public function store(Request $request)
         }
         if ($labfarmakognosi->jumlah !== $request->jumlah){
             $labfarmakognosi->jumlah = $request->jumlah;
+            $isUpdated = true;
+        }
+        if ($labfarmakognosi->jumlah_min !== $request->jumlah_min){
+            $labfarmakognosi->jumlah_min = $request->jumlah_min;
             $isUpdated = true;
         }
         if ($labfarmakognosi->satuan !== $request->satuan){

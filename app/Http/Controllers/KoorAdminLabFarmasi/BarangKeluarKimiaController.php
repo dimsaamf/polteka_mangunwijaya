@@ -56,7 +56,8 @@ class BarangKeluarKimiaController extends Controller
     {
         $request->validate([
             'jumlah_keluar'=>'required|integer',
-            'tanggal_keluar' => 'required|date'
+            'tanggal_keluar' => 'required|date',
+            'keterangan_keluar' => 'required'
         ]);
 
         $id_barang = $request->id_barang;
@@ -77,6 +78,7 @@ class BarangKeluarKimiaController extends Controller
             $BarangKeluarKimia = new BarangKeluarKimia();
             $BarangKeluarKimia->jumlah_keluar = $jumlah_keluar_baru;
             $BarangKeluarKimia->tanggal_keluar = $request->tanggal_keluar;
+            $BarangKeluarKimia->keterangan_keluar = $request->keterangan_keluar;
             $BarangKeluarKimia->id_barang = $id_barang;
             $BarangKeluarKimia->save();
 

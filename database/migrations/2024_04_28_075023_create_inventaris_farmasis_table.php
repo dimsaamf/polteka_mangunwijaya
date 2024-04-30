@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('kode_barang');
             $table->integer('jumlah');
-            $table->integer('jumlah_awal');
+            $table->integer('jumlah_min');
             $table->string('satuan');
-            $table->date('tanggal_service')->nullable();;
+            $table->date('tanggal_service')->nullable();
             $table->boolean('reminder')->default(false);
             $table->boolean('sudah_dilayani')->default(false); 
-            $table->integer('periode')->nullable();;
+            $table->integer('periode')->nullable();
             $table->integer('harga');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('gambar')->nullable()->default(null);
             $table->timestamps();
         });

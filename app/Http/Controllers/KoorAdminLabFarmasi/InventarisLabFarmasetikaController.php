@@ -49,10 +49,10 @@ public function store(Request $request)
         'nama_barang.required' => 'Nama barang harus diisi.',
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
+        'jumlah_min.required' => 'Minimal jumlah harus diisi.',
         'satuan.required' => 'Satuan harus diisi.',
         'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
-        'keterangan.required' => 'Keterangan harus diisi.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
     ];
@@ -60,11 +60,12 @@ public function store(Request $request)
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_lab_farmasetikas',
         'jumlah'=>'required|integer',
+        'jumlah_min'=>'required|integer',
         'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
         'tanggal_service'=>'nullable|date',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
-        'keterangan'=>'required',
+        'keterangan'=>'nullable',
         'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
     ], $messages);
 
@@ -85,6 +86,7 @@ public function store(Request $request)
     $labfarmasetika->nama_barang = $request->nama_barang;
     $labfarmasetika->kode_barang = $kode_barang;
     $labfarmasetika->jumlah = $request->jumlah;
+    $labfarmasetika->jumlah_min = $request->jumlah_min;
     $labfarmasetika->satuan = $request->satuan;
     $labfarmasetika->tanggal_service = $request->tanggal_service;
     $labfarmasetika->periode = $request->periode;
@@ -149,11 +151,12 @@ public function store(Request $request)
         $request->validate([
             'nama_barang'=>'required|string',
             'jumlah'=>'required|integer',
+            'jumlah_min'=>'required|integer',
             'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',
-            'keterangan'=>'required',
+            'keterangan'=>'nullable',
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
@@ -166,6 +169,10 @@ public function store(Request $request)
         }
         if ($labfarmasetika->jumlah !== $request->jumlah){
             $labfarmasetika->jumlah = $request->jumlah;
+            $isUpdated = true;
+        }
+        if ($labfarmasetika->jumlah_min !== $request->jumlah_min){
+            $labfarmasetika->jumlah_min = $request->jumlah_min;
             $isUpdated = true;
         }
         if ($labfarmasetika->satuan !== $request->satuan){
@@ -201,7 +208,7 @@ public function store(Request $request)
                 if(Auth::user()->role == 'koorlabprodfarmasi'){
                     return redirect()->route('databarangkoorlabfarmasetika');
                 } else{
-                    return redirect()->route('databarangkadminlabfarmasetika');
+                    return redirect()->route('databarangadminlabfarmasetika');
                 }
             }
         }
@@ -213,7 +220,7 @@ public function store(Request $request)
             if(Auth::user()->role == 'koorlabprodfarmasi'){
                 return redirect()->route('databarangkoorlabfarmasetika');
             } else{
-                return redirect()->route('databarangkadminlabfarmasetika');
+                return redirect()->route('databarangadminlabfarmasetika');
             }
         }
     }

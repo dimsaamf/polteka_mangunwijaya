@@ -16,6 +16,7 @@ return new class extends Migration
             $table->biginteger('id_barang')->unsigned();
             $table->integer('jumlah_keluar');
             $table->date('tanggal_keluar');
+            $table->text('keterangan_keluar');
 
             $table->timestamps();
 

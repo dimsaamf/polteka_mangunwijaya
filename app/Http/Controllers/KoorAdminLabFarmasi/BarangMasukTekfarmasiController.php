@@ -63,7 +63,8 @@ class BarangMasukTekfarmasiController extends Controller
     {
         $request->validate([
             'jumlah_masuk'=>'required|integer',
-            'tanggal_masuk' => 'required|date'
+            'tanggal_masuk' => 'required|date',
+            'keterangan_masuk' => 'required'
         ]);
 
         $id_barang = $request->id_barang;
@@ -79,6 +80,7 @@ class BarangMasukTekfarmasiController extends Controller
         $BarangMasukTekfarmasi = new BarangMasukTekfarmasi();
         $BarangMasukTekfarmasi->jumlah_masuk = $jumlah_masuk_baru;
         $BarangMasukTekfarmasi->tanggal_masuk = $request->tanggal_masuk;
+        $BarangMasukKimia->keterangan_masuk = $request->keterangan_masuk;
         $BarangMasukTekfarmasi->id_barang = $id_barang;
         $BarangMasukTekfarmasi->save();
 

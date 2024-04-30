@@ -71,6 +71,7 @@
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal keluar</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
+                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,6 +100,7 @@
                                     {{ $barang->satuan }}
                                 @endif
                             @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->keterangan_keluar }}</td>
                         </tr>
                         @endforeach
                         @endif

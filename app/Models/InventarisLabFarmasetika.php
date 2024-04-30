@@ -15,6 +15,7 @@ class InventarisLabFarmasetika extends Model
         'nama_barang',
         'kode_barang',
         'jumlah',
+        'jumlah_min',
         'satuan',
         'tanggal_service',
         'periode',

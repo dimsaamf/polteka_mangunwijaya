@@ -49,10 +49,10 @@ public function store(Request $request)
         'nama_barang.required' => 'Nama barang harus diisi.',
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
+        'jumlah_min.required' => 'Minimal jumlah harus diisi.',
         'satuan.required' => 'Satuan harus diisi.',
         'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
-        'keterangan.required' => 'Keterangan harus diisi.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
     ];
@@ -60,16 +60,17 @@ public function store(Request $request)
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_lab_tekfarmasis',
         'jumlah'=>'required|integer',
+        'jumlah_min'=>'required|integer',
         'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
         'tanggal_service'=>'nullable|date',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
-        'keterangan'=>'required',
+        'keterangan'=>'nullable',
         'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'F-FARM-ST-';
+    $var = 'F-TEK-FM-';
     $bms = InventarisLabTekfarmasi::count();
     if ($bms == 0) {
         $awal = 10001;
@@ -85,6 +86,7 @@ public function store(Request $request)
     $labtekfarmasi->nama_barang = $request->nama_barang;
     $labtekfarmasi->kode_barang = $kode_barang;
     $labtekfarmasi->jumlah = $request->jumlah;
+    $labtekfarmasi->jumlah_min = $request->jumlah_min;
     $labtekfarmasi->satuan = $request->satuan;
     $labtekfarmasi->tanggal_service = $request->tanggal_service;
     $labtekfarmasi->periode = $request->periode;
@@ -149,11 +151,12 @@ public function store(Request $request)
         $request->validate([
             'nama_barang'=>'required|string',
             'jumlah'=>'required|integer',
+            'jumlah_min'=>'required|integer',
             'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',
-            'keterangan'=>'required',
+            'keterangan'=>'nullable',
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
@@ -166,6 +169,10 @@ public function store(Request $request)
         }
         if ($labtekfarmasi->jumlah !== $request->jumlah){
             $labtekfarmasi->jumlah = $request->jumlah;
+            $isUpdated = true;
+        }
+        if ($labtekfarmasi->jumlah_min !== $request->jumlah_min){
+            $labtekfarmasi->jumlah_min = $request->jumlah_min;
             $isUpdated = true;
         }
         if ($labtekfarmasi->satuan !== $request->satuan){

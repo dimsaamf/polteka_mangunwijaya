@@ -8,7 +8,7 @@
             <div class="text-hitam-polteka">Riwayat Barang Masuk</div>
         </div>
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Tekfarmasi</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Tek. Farmasi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Riwayat Barang Masuk</div>
         </div> 
@@ -66,15 +66,16 @@
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
                             <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
+                            <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($BarangMasukTekfarmasi->isEmpty())
+                        @if ($barangmasuktekfarmasi->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($BarangMasukTekfarmasi as $item)
+                        @foreach($barangmasuktekfarmasi as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td>{{ $loop->iteration }}</td>
                             <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
@@ -94,6 +95,7 @@
                                     {{ $barang->satuan }}
                                 @endif
                             @endforeach</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ $item->keterangan_masuk }}</td>
                         </tr>
                         @endforeach
                         @endif
@@ -153,27 +155,27 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                @if ($BarangMasukTekfarmasi->onFirstPage())
+                @if ($barangmasuktekfarmasi->onFirstPage())
                     <li>
                         <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $BarangMasukTekfarmasi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        <a href="{{ $barangmasuktekfarmasi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                     </li>
                 @endif
         
-                @foreach ($BarangMasukTekfarmasi->getUrlRange($BarangMasukTekfarmasi->currentPage() - 2, $BarangMasukTekfarmasi->currentPage() + 2) as $page => $url)
-                    @if ($page == $BarangMasukTekfarmasi->currentPage())
+                @foreach ($barangmasuktekfarmasi->getUrlRange($barangmasuktekfarmasi->currentPage() - 2, $barangmasuktekfarmasi->currentPage() + 2) as $page => $url)
+                    @if ($page == $barangmasuktekfarmasi->currentPage())
                         <li>
                             <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach
         
-                @if ($BarangMasukTekfarmasi->hasMorePages())
+                @if ($barangmasuktekfarmasi->hasMorePages())
                     <li>
-                        <a href="{{ $BarangMasukTekfarmasi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        <a href="{{ $barangmasuktekfarmasi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
                     </li>
                 @else
                     <li>

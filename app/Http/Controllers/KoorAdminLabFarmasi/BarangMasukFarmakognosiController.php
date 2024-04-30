@@ -63,7 +63,8 @@ class BarangMasukFarmakognosiController extends Controller
     {
         $request->validate([
             'jumlah_masuk'=>'required|integer',
-            'tanggal_masuk' => 'required|date'
+            'tanggal_masuk' => 'required|date',
+            'keterangan_masuk' => 'required'
         ]);
 
         $id_barang = $request->id_barang;
@@ -80,6 +81,7 @@ class BarangMasukFarmakognosiController extends Controller
         $barangmasukfarmakognosi->jumlah_masuk = $jumlah_masuk_baru;
         $barangmasukfarmakognosi->tanggal_masuk = $request->tanggal_masuk;
         $barangmasukfarmakognosi->id_barang = $id_barang;
+        $barangmasukfarmakognosi->keterangan_masuk = $request->keterangan_masuk;
         $barangmasukfarmakognosi->save();
 
         alert()->success('Berhasil','Stok Barang Berhasil Ditambahkan.');

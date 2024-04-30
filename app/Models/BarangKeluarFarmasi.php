@@ -15,6 +15,7 @@ class BarangKeluarFarmasi extends Model
         'jumlah_keluar',
         'tanggal_keluar',
         'id_barang',
+        'keterangan_keluar',
     ];
 
     // public function inventarislabfarmakognosi()

@@ -15,6 +15,7 @@ class BarangMasukKimia extends Model
         'jumlah_masuk',
         'tanggal_masuk',
         'id_barang',
+        'keterangan_masuk',
     ];
 
     public function inventarislabkimia()
