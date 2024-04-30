@@ -22,7 +22,6 @@ class InventarisLabfarmakognosiController extends Controller
         }
         
         $labfarmakognosi = $labfarmakognosi->paginate(10);
-        // return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
                 return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.databarang', compact('labfarmakognosi'));
@@ -33,7 +32,6 @@ class InventarisLabfarmakognosiController extends Controller
     }
 
     public function create(){
-        return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahbarang');
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
                 return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.tambahbarang');

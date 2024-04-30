@@ -3,7 +3,7 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="logo.png" rel="shortcut icon">
+        <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <title>Ubah Barang Admin Laboratorium Farmakognosi</title>
@@ -14,7 +14,7 @@
         <div class="block md:hidden bg-merah200-polteka text-putih-polteka">
             <div class="flex mr-auto">
                 <a href="#" class="ml-8 flex-grow">
-                    <img alt="Logo" class="w-10" src="logoputih.png">
+                    <img alt="Logo" class="w-10" src="{{ asset('logoputih.png') }}">
                 </a>
                 <a href="#" class="mr-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 buttonToogle" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1m0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1M3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1"/></svg>
@@ -174,14 +174,18 @@
                 </li>
                 <li class="menu__devider my-6"></li>
                 <li>
-                    <a href="{{ route('login') }}" class="flex hover:font-bold" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mt-6 w-7">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-                        </svg>
-                        <div class="ml-3 mt-6"> {{ __('Logout') }} </div>
-                    </a>
-                    <form id="logout-form" action="#" method="POST" class="d-none">
+                    <form action="{{route('logout')}}" method="post">
                         @csrf
+                        <button type="submit" class="flex">
+                            <div class="flex justify-start mr-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-md font-semibold">{{ __('Logout') }}</div>
+                            </div>
+                        </button>
                     </form>
                 </li>
             </ul>
@@ -199,7 +203,7 @@
             <!-- BEGIN: Side Menu -->
             <nav class="hidden md:block xl:w-[20%] lg:w-[12%] md:w-[12%]">
                 <div href="" class="intro-x flex xl:justify-start md:justify-center lg:justify-center xl:pl-5 pt-4">
-                    <img alt="Logo" class="xl:hidden lg:w-[50px] md:w-[50px] lg:mt-2" src="logoputih.png">
+                    <img alt="Logo" class="xl:hidden lg:w-[50px] md:w-[50px] lg:mt-2" src="{{ asset('logoputih.png') }}">
                     <span class="xl:block hidden text-putih-polteka text-lg ml-3 font-semibold text-[20px]"> Polteka <br>Mangunwijaya</br> </span> 
                 </div>
                 <div class="my-7"></div>
@@ -413,17 +417,17 @@
                     </li>
                     <li class="my-8"></li>
                     <li>
-                        <a href="{{ route('login') }}" class="md:justify-center lg:justify-center xl:justify-start flex">
-                            <div class="xl:ml-8 mb-3">
+                        <a href="#" class="md:justify-center lg:justify-center xl:justify-start flex">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                            <button type="submit" class="xl:ml-8 mb-3 flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="xl:w-6 xl:h-6 w-8 h-8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                                 </svg>
-                            </div>
-                            <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                                <div class="ml-2 mb-3 font-semibold hidden xl:block"> {{ __('Logout') }}</div>
+                            </button>
+                        </form>
                         </a>
-                        <!-- <form id="logout-form" method="POST" class="d-none">
-                                        @csrf
-                                    </form> -->
                     </li>
                 </ul>
             </nav>

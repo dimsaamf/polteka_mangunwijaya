@@ -7,6 +7,7 @@ use App\Account;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Models\InventarisFarmasi;
+use Illuminate\Support\Facades\DB;
 use Milon\Barcode\DNS2D;
 
 class InventarisFarmasiController extends Controller
@@ -46,7 +47,8 @@ public function store(Request $request)
         'nama_barang'=>'required|string|unique:inventaris_farmasis',
         'jumlah'=>'required|integer',
         'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
-        'tanggal_service'=>'nullable|date',
+        'is_alat' => 'nullable|boolean',
+        'tanggal_service' => $request->filled('is_alat') && $request->input('is_alat') ? 'required|date' : '',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
         'keterangan'=>'required',
@@ -75,7 +77,8 @@ public function store(Request $request)
     $farmasi->periode = $request->periode;
     $farmasi->harga = $request->harga;
     $farmasi->keterangan = $request->keterangan;
-    $farmasi->reminder = $request->has('reminder');
+    $farmasi->reminder = $request->reminder;
+    $farmasi['reminder'] = $request->filled('reminder');
 
     if ($request->hasFile('gambar')) {
         $gambarName = $request->file('gambar')->getClientOriginalName();
@@ -215,4 +218,14 @@ public function store(Request $request)
         return response()->json(['error' => 'File gambar tidak ditemukan'], 404);
     }
 }
+public static function stokHampirHabis()
+    {
+        // Mengambil daftar barang yang stoknya kurang dari 20% dari jumlah awal atau jumlah terupdate
+        $barangHampirHabis = InventarisFarmasi::select('id', 'nama_barang', 'jumlah')
+            ->whereRaw('jumlah < jumlah_awal * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah awal
+            ->orWhereRaw('jumlah < jumlah_masuk + (SELECT COALESCE(SUM(jumlah_keluar), 0) FROM barang_keluar_farmasis WHERE id_barang = inventaris_farmasis.id) * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah terupdate
+            ->get();
+
+        return $barangHampirHabis;
+    }
 }
