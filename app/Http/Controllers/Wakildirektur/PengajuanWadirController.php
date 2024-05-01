@@ -18,7 +18,7 @@ class PengajuanWadirController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:Disetujui,Ditunda,Ditolak',
+            'status' => 'required|in:Diterima,Ditunda,Ditolak',
         ]);
 
         if (!$request->has('status')) {

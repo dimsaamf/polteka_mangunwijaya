@@ -125,7 +125,7 @@
                                         <div class="text-sm">{{ $notification->nama_barang }}</div>
                                         <div class="text-xs text-slate-500">Service pada tanggal {{ $notification->tanggal_service }}</div>
                                     </div>
-                                    <form action="{{ route('update.notification', $notification->id) }}" method="POST">
+                                    <form action="{{ route('update.notification.adminlabfarmasi', $notification->id) }}" method="POST">
                                         @csrf
                                         @method('POST')
                                         <div class="w-full mt-3 flex justify-end">

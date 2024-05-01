@@ -89,7 +89,7 @@
                                                 $status = $pengajuanbarang->pengajuanWadir ? $pengajuanbarang->pengajuanWadir->status : '';
                                                 @endphp
                                                 <option value="" {{ !$status ? 'selected' : '' }} disabled>Menunggu konfirmasi</option>
-                                                <option value="Disetujui" {{ $status === 'Disetujui' ? 'selected' : '' }} >Disetujui</option>
+                                                <option value="Diterima" {{ $status === 'Diterima' ? 'selected' : '' }} >Disetujui</option>
                                                 <option value="Ditunda" {{ $status === 'Ditunda' ? 'selected' : '' }}>Ditunda</option>
                                                 <option value="Ditolak" {{ $status === 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
                                             </select>
