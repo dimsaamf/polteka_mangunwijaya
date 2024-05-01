@@ -153,7 +153,7 @@ Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group
     Route::get('/koorlabfarmasi/pengajuanbarang', [PengajuanBarangLabFarmasiController::class, 'index'])->name('pengajuanbarangkoorlabfarmasi');
     Route::get('/koorlabfarmasi/tambahpengajuanbarang', [PengajuanBarangLabFarmasiController::class, 'create'])->name('tambahpengajuankoorlabfarmasi');
     Route::post('/koorlabfarmasi/tambahpengajuanbarang', [PengajuanBarangLabFarmasiController::class, 'store'])->name('tambahpengajuankoorlabfarmasi.store');
-    Route::get('/preview-surat/{id}', [PengajuanBarangLabFarmasiController::class, 'previewSurat'])->name('preview.surat.koorlabfarmasi');
+    Route::get('/preview-suratfarmasi/{id}', [PengajuanBarangLabFarmasiController::class, 'previewSurat'])->name('preview.surat.koorlabfarmasi');
     Route::get('/koorlabfarmasi/detailpengajuanbarang/{id}', [PengajuanBarangLabFarmasiController::class, 'show'])->name('detailpengajuankoorlabfarmasi');
     Route::get('/koorlabfarmasi/pengajuanbarang/edit/{id}', [PengajuanBarangLabFarmasiController::class, 'edit'])->name('editpengajuankoorlabfarmasi');
     Route::post('/koorlabfarmasi/pengajuanbarang/update/{id}', [PengajuanBarangLabFarmasiController::class, 'update'])->name('updatepengajuankoorlabfarmasi');
@@ -370,7 +370,7 @@ Route::middleware(['auth', 'user.role:koorlabprodankes', 'revalidate'])->group(f
     Route::get('/koorlabankes/pengajuanbarang', [PengajuanBarangLabAnkesController::class, 'index'])->name('pengajuanbarangkoorlabankes');
     Route::get('/koorlabankes/tambahpengajuanbarang', [PengajuanBarangLabAnkesController::class, 'create'])->name('tambahpengajuankoorlabankes');
     Route::post('/koorlabankes/tambahpengajuanbarang', [PengajuanBarangLabAnkesController::class, 'store'])->name('tambahpengajuankoorlabankes.store');
-    Route::get('/preview-surat/{id}', [PengajuanBarangLabAnkesController::class, 'previewSurat'])->name('preview.surat.koorlabankes');
+    Route::get('/preview-suratankes/{id}', [PengajuanBarangLabAnkesController::class, 'previewSurat'])->name('preview.surat.koorlabankes');
     Route::get('/koorlabankes/detailpengajuanbarang/{id}', [PengajuanBarangLabAnkesController::class, 'show'])->name('detailpengajuankoorlabankes');
     Route::get('/koorlabankes/pengajuanbarang/edit/{id}', [PengajuanBarangLabAnkesController::class, 'edit'])->name('editpengajuankoorlabankes');
     Route::post('/koorlabankes/pengajuanbarang/update/{id}', [PengajuanBarangLabAnkesController::class, 'update'])->name('updatepengajuankoorlabankes');

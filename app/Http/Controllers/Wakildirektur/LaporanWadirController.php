@@ -94,12 +94,12 @@ class LaporanWadirController extends Controller
         $barangKeluarFarmakognosi = BarangKeluarFarmakognosi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
         $barangKeluarFarmasetika = BarangKeluarFarmasetika::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
         $barangKeluarKimia = BarangKeluarKimia::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
-        $barangKeluarTekfarmasi = BarangKeluarTekfarmasi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarTekfarmasi = BarangKeluarTekfarmasi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
 
         $semuaBarangKeluar = $semuaBarangKeluar->merge($barangKeluarFarmakognosi)
                                             ->merge($barangKeluarFarmasetika)
                                             ->merge($barangKeluarKimia)
-                                            ->merge($barangKeluarTekfarmasi);
+                                            ->merge($BarangKeluarTekfarmasi);
                                             
         $semuaBarangKeluar = $semuaBarangKeluar->sortBy('tanggal_keluar');
 
