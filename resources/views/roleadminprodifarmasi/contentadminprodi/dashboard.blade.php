@@ -82,23 +82,22 @@
                     <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                         <div class="p-6">
                             <div class="text-xl font-medium mb-1">Barang Hampir Habis</div>
-                            @if(count($barangHampirHabis) > 0)
-                                @foreach($barangHampirHabis as $barang)
-                                    <div class="w-full flex text-black border-b-2 py-3">
-                                        <div class="w-1/8">
-                                            <div class="flex bg-[#D0E5FF] rounded-full w-[1.8rem] h-[1.8rem] m-auto mx-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 16 16"><path fill="#020320" d="M6.923 1.378a3 3 0 0 1 2.154 0l4.962 1.908a1.5 1.5 0 0 1 .961 1.4v6.626a1.5 1.5 0 0 1-.961 1.4l-4.962 1.909a3 3 0 0 1-2.154 0l-4.961-1.909a1.5 1.5 0 0 1-.962-1.4V4.686a1.5 1.5 0 0 1 .962-1.4zm1.795.933a2 2 0 0 0-1.436 0l-1.384.533l5.59 2.116l1.948-.834zM14 4.971L8.5 7.33v6.428c.074-.019.146-.042.218-.07l4.962-1.908a.5.5 0 0 0 .32-.467zm-6.5 8.786V7.33L2 4.972v6.34a.5.5 0 0 0 .32.467l4.962 1.908c.072.028.144.051.218.07M2.564 4.126L8 6.456l2.164-.928l-5.667-2.146z"/></svg>
-                                            </div>
-                                        </div>
-                                        <div class="w-7/8 ml-2">
-                                            <div class="text-sm">{{ $barang->nama_barang }}</div>
-                                            <div class="text-xs text-slate-500">Stok saat ini: {{ $barang->jumlah }}</div>
+                            @foreach($barangHabis as $barang)
+                                <div class="w-full flex text-black border-b-2 py-3">
+                                    <div class="w-1/8">
+                                        <div class="flex bg-[#D0E5FF] rounded-full w-[1.8rem] h-[1.8rem] m-auto mx-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 16 16"><path fill="#020320" d="M6.923 1.378a3 3 0 0 1 2.154 0l4.962 1.908a1.5 1.5 0 0 1 .961 1.4v6.626a1.5 1.5 0 0 1-.961 1.4l-4.962 1.909a3 3 0 0 1-2.154 0l-4.961-1.909a1.5 1.5 0 0 1-.962-1.4V4.686a1.5 1.5 0 0 1 .962-1.4zm1.795.933a2 2 0 0 0-1.436 0l-1.384.533l5.59 2.116l1.948-.834zM14 4.971L8.5 7.33v6.428c.074-.019.146-.042.218-.07l4.962-1.908a.5.5 0 0 0 .32-.467zm-6.5 8.786V7.33L2 4.972v6.34a.5.5 0 0 0 .32.467l4.962 1.908c.072.028.144.051.218.07M2.564 4.126L8 6.456l2.164-.928l-5.667-2.146z"/></svg>
                                         </div>
                                     </div>
+                                    <div class="w-7/8 ml-2">
+                                        <div class="text-sm">{{ $barang->nama_barang }}</div>
+                                        <div class="text-xs text-slate-500">Stok saat ini {{ $barang->jumlah }}</div>
+                                    </div>
+                                </div>
                                 @endforeach
-                            @else
-                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang stoknya habis saat ini.</div>
-                            @endif
+                                @if (count($barangHabis) === 0)
+                                    <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang stoknya habis saat ini.</div>
+                                @endif
                         </div>
                     </div>
                     

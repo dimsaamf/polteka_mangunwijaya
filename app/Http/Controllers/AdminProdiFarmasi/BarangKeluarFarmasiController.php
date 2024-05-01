@@ -34,7 +34,8 @@ class BarangKeluarFarmasiController extends Controller
     {
         $request->validate([
             'jumlah_keluar'=>'required|integer',
-            'tanggal_keluar' => 'required|date'
+            'tanggal_keluar' => 'required|date',
+            'keterangan_keluar' => 'required'
         ]);
 
         $id_barang = $request->id_barang;
@@ -55,6 +56,7 @@ class BarangKeluarFarmasiController extends Controller
             $barangkeluarfarmasi = new BarangKeluarFarmasi();
             $barangkeluarfarmasi->jumlah_keluar = $jumlah_keluar_baru;
             $barangkeluarfarmasi->tanggal_keluar = $request->tanggal_keluar;
+            $barangkeluarfarmasi->keterangan_keluar = $request->keterangan_keluar;
             $barangkeluarfarmasi->id_barang = $id_barang;
             $barangkeluarfarmasi->save();
 

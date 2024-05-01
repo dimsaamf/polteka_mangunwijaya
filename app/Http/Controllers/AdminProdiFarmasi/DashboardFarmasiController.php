@@ -10,47 +10,98 @@ use Carbon\Carbon;
 
 class DashboardFarmasiController extends Controller
 {
+    // public function index(Request $request)
+    // {
+    //      $jumlah_barang = InventarisFarmasi::count();
+    //      $jumlah_barang_masuk = BarangMasukFarmasi::count();
+    //      $jumlah_barang_keluar = BarangKeluarFarmasi::count();
+
+    //     if ($request->has('sudah_dilayani')) {
+    //         foreach ($request->sudah_dilayani as $notificationId) {
+    //             $notification = InventarisFarmasi::find($notificationId);
+    //             $notification->sudah_dilayani = true;
+    //             $notification->save();
+    //         }
+    //     }
+
+    //     $notifications = InventarisFarmasi::where(function ($query) {
+    //         $query->whereDate('tanggal_service', Carbon::today())
+    //             ->orWhere(function ($query) {
+    //                 $query->whereRaw('DATE_ADD(tanggal_service, INTERVAL periode MONTH) >= ?', [Carbon::today()])
+    //                     ->where('tanggal_service', '<', Carbon::today());
+    //             });
+
+    //         $query->where('reminder', true);
+    //     })->where('sudah_dilayani', false)->get();
+
+    //     foreach ($notifications as $notification) {
+    //         if (!$notification->sudah_dilayani) {
+    //             $tanggalService = Carbon::parse($notification->tanggal_service);
+    //             $periode = $notification->periode;
+    //             $tanggalServiceTerbaru = $tanggalService->addMonths($periode);
+        
+    //             $notification->tanggal_service = $tanggalServiceTerbaru;
+    //             $notification->save();
+    //         }
+    //     }
+
+    //     $barangHampirHabis = $this->stokHampirHabis();
+
+    //     return view('roleadminprodifarmasi.contentadminprodi.dashboard', compact('barangHampirHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
+    // }
+
     public function index(Request $request)
-    {
-         $jumlah_barang = InventarisFarmasi::count();
-         $jumlah_barang_masuk = BarangMasukFarmasi::count();
-         $jumlah_barang_keluar = BarangKeluarFarmasi::count();
+{
+    $jumlah_barang = InventarisFarmasi::count();
+    $jumlah_barang_masuk = BarangMasukFarmasi::count();
+    $jumlah_barang_keluar = BarangKeluarFarmasi::count();
 
-        if ($request->has('sudah_dilayani')) {
-            foreach ($request->sudah_dilayani as $notificationId) {
-                $notification = InventarisFarmasi::find($notificationId);
-                $notification->sudah_dilayani = true;
-                $notification->save();
+    if ($request->has('sudah_dilayani')) {
+                foreach ($request->sudah_dilayani as $notificationId) {
+                    $notification = InventarisFarmasi::find($notificationId);
+                    $notification->sudah_dilayani = true;
+                    $notification->save();
+                }
+            }
+    
+            $notifications = InventarisFarmasi::where(function ($query) {
+                $query->whereDate('tanggal_service', Carbon::today())
+                    ->orWhere(function ($query) {
+                        $query->whereRaw('DATE_ADD(tanggal_service, INTERVAL periode MONTH) >= ?', [Carbon::today()])
+                            ->where('tanggal_service', '<', Carbon::today());
+                    });
+    
+                $query->where('reminder', true);
+            })->where('sudah_dilayani', false)->get();
+    
+            foreach ($notifications as $notification) {
+                if (!$notification->sudah_dilayani) {
+                    $tanggalService = Carbon::parse($notification->tanggal_service);
+                    $periode = $notification->periode;
+                    $tanggalServiceTerbaru = $tanggalService->addMonths($periode);
+            
+                    $notification->tanggal_service = $tanggalServiceTerbaru;
+                    $notification->save();
+                }
+            }
+
+    $barangHabis = collect();
+        $inventarisModels = [
+            'App\Models\InventarisFarmasi',
+        ];
+
+        foreach ($inventarisModels as $model) {
+            $inventaris = $model::all();
+            foreach ($inventaris as $barang) {
+                if ($barang->jumlah < $barang->jumlah_min) {
+                    $barangHabis->push($barang);
+                }
             }
         }
+        
+    return view('roleadminprodifarmasi.contentadminprodi.dashboard', compact('barangHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
+}
 
-        $notifications = InventarisFarmasi::where(function ($query) {
-            $query->whereDate('tanggal_service', Carbon::today())
-                ->orWhere(function ($query) {
-                    $query->whereRaw('DATE_ADD(tanggal_service, INTERVAL periode MONTH) >= ?', [Carbon::today()])
-                        ->where('tanggal_service', '<', Carbon::today());
-                });
-
-            $query->where('reminder', true);
-        })->where('sudah_dilayani', false)->get();
-
-        foreach ($notifications as $notification) {
-            $tanggalService = Carbon::parse($notification->tanggal_service);
-
-            if ($tanggalService->isValid()) {
-                $periode = $notification->periode;
-                $tanggalServiceTerbaru = $tanggalService->addMonths($periode);
-
-                $notification->tanggal_service = $tanggalServiceTerbaru;
-                $notification->save();
-            } else {
-                Log::error('Tanggal layanan tidak valid untuk notifikasi dengan ID: ' . $notification->id);
-            }
-        }
-        $barangHampirHabis = $this->stokHampirHabis();
-
-        return view('roleadminprodifarmasi.contentadminprodi.dashboard', compact('barangHampirHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
-    }
 
     public function updateNotification(Request $request)
     {
@@ -68,15 +119,4 @@ class DashboardFarmasiController extends Controller
             return redirect()->back()->with('error', 'Tidak ada notifikasi yang dipilih.');
         }
     }
-
-    public static function stokHampirHabis()
-{
-    // Mengambil daftar barang yang stoknya kurang dari 20% dari jumlah awal atau jumlah terupdate
-    $barangHampirHabis = InventarisFarmasi::select('id', 'nama_barang', 'jumlah', 'jumlah_awal')
-        ->whereRaw('jumlah < jumlah_awal * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah awal
-        ->orWhereRaw('jumlah < jumlah_awal + (SELECT COALESCE(SUM(jumlah_masuk), 0) FROM barang_masuk_farmasis WHERE id_barang = inventaris_farmasis.id) * 0.2') // Mengecek apakah stok kurang dari 20% dari jumlah terupdate
-        ->get();
-
-    return $barangHampirHabis;
-}
 }

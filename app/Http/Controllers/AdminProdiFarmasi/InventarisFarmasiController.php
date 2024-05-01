@@ -35,10 +35,10 @@ public function store(Request $request)
         'nama_barang.required' => 'Nama barang harus diisi.',
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
+        'jumlah_min.required' => 'Minimal jumlah harus diisi.',
         'satuan.required' => 'Satuan harus diisi.',
         'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
-        'keterangan.required' => 'Keterangan harus diisi.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
     ];
@@ -46,12 +46,13 @@ public function store(Request $request)
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_farmasis',
         'jumlah'=>'required|integer',
+        'jumlah_min'=>'required|integer',
         'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
         'is_alat' => 'nullable|boolean',
         'tanggal_service' => $request->filled('is_alat') && $request->input('is_alat') ? 'required|date' : '',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
-        'keterangan'=>'required',
+        'keterangan'=>'nullable',
         'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
     ], $messages);
 
@@ -67,13 +68,12 @@ public function store(Request $request)
         $awal = (int)substr($last->kode_barang, -5) + 1;
         $kode_barang = $var.$thn.$awal;
     }
-    $jumlah_awal = $request->input('jumlah');
 
     $farmasi = new InventarisFarmasi();
     $farmasi->nama_barang = $request->nama_barang;
     $farmasi->kode_barang = $kode_barang;
     $farmasi->jumlah = $request->jumlah;
-    $farmasi->jumlah_awal = $jumlah_awal;
+    $farmasi->jumlah_min = $request->jumlah_min;
     $farmasi->satuan = $request->satuan;
     $farmasi->tanggal_service = $request->tanggal_service;
     $farmasi->periode = $request->periode;
@@ -125,11 +125,12 @@ public function store(Request $request)
         $request->validate([
             'nama_barang'=>'required|string',
             'jumlah'=>'required|integer',
+            'jumlah_min'=>'required|integer',
             'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',
-            'keterangan'=>'required',
+            'keterangan'=>'nullable',
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
@@ -146,6 +147,10 @@ public function store(Request $request)
         }
         if ($farmasi->satuan !== $request->satuan){
             $farmasi->satuan = $request->satuan;
+            $isUpdated = true;
+        }
+        if ($farmasi->jumlah_min !== $request->jumlah_min){
+            $farmasi->jumlah_min = $request->jumlah_min;
             $isUpdated = true;
         }
         if ($farmasi->tanggal_service !== $request->tanggal_service){

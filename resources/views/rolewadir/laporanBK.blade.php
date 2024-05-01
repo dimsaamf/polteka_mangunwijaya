@@ -29,45 +29,26 @@
                 <th class="border border-gray-200 px-4 py-2">ID Barang</th>
                 <th class="border border-gray-200 px-4 py-2">Tanggal Keluar</th>
                 <th class="border border-gray-200 px-4 py-2">Jumlah</th>
+                <th class="border border-gray-200 px-4 py-2">Keterangan</th>
             </tr>
         </thead>
         <tbody>
-            @if(isset($laporanKeluar) && count($laporanKeluar) > 0)
-            @foreach($laporanKeluar as $item)
-            <tr class="text-center bg-abu-polteka">
-                <td class="border border-gray-200 px-4 py-2">{{ $loop->iteration }}</td>
-                <td class="border border-gray-200 px-4 py-2">
-                    @foreach($data as $barang)
-                    @if($barang->id == $item->id_barang)
-                        {{ $barang->nama_barang }}
-                    @endif
-                    @endforeach
-                </td>
-                <td class="border border-gray-200 px-4 py-2">
-                    @foreach($data as $barang)
-                        @if($barang->id == $item->id_barang)
-                            {{ $barang->kode_barang }}
-                        @endif
-                    @endforeach
-                </td>
-                <td class="border border-gray-200 px-4 py-2">{{ $item->tanggal_keluar }}</td>
-                <td class="border border-gray-200 px-4 py-2">
-                    {{ $item->jumlah_keluar }}
-                    @foreach($data as $barang)
-                        @if($barang->id == $item->id_barang)
-                            {{ $barang->satuan }}
-                        @endif
-                    @endforeach
-                </td>
-            </tr>
-            @endforeach
-
+            @if($semuaBarangKeluar->isEmpty())
+                <tr>
+                    <td colspan="5" class="border border-gray-200 px-4 py-2 text-center">Tidak Ada Data Barang Keluar</td>
+                </tr>
             @else
-            <tr>
-                <td colspan="5" class="border border-gray-200 px-4 py-2 text-center">No data available</td>
-            </tr>
+                @foreach($semuaBarangKeluar as $barangKeluar)
+                    <tr class="text-center bg-abu-polteka">
+                        <td class="border border-gray-200 px-4 py-2">{{ $loop->iteration }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ $barangKeluar->nama_barang }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ $barangKeluar->kode_barang }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ $barangKeluar->tanggal_keluar }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ $barangKeluar->jumlah_keluar }} {{ $barangKeluar->satuan }}</td>
+                        <td class="border border-gray-200 px-4 py-2">{{ $barangKeluar->keterangan_keluar }}</td>
+                    </tr>
+                @endforeach
             @endif
-            
         </tbody>
     </table>
 </body>

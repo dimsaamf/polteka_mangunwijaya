@@ -12,7 +12,7 @@
             <div class="mr-2 text-merah180-polteka">Hai, Admin Prodi Farmasi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Ubah Barang</div>
-        </div> 
+        </div>
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
                 <div class="icon-container-prof">
@@ -41,11 +41,7 @@
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </label>   
-        <label class="block mt-4">
-            <span class="text-sm font-medium">ID Barang</span>
-            <input type="text" name="id" value="{{ $farmasi->id }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="ID Barang" />
-        </label>
-        <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah*</span>
                 <input type="number" name="jumlah" value="{{ $farmasi->jumlah }}" readonly class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
@@ -60,13 +56,20 @@
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
+            <label class="block md:col-span-1">
+                <span class="text-sm font-medium">Jumlah Minimal*</span>
+                <input type="number" name="jumlah_min" value="{{ $farmasi->jumlah_min }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
+                @error('jumlah_min')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
-            <label class="block md:col-span-2">
+            <label class="block mt-4 md:col-span-2" id="tanggal_service_field" @if($farmasi->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Tanggal Service</span>
                 <input type="date" name="tanggal_service" value="{{ $farmasi->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" min="{{ now()->format('Y-m-d') }}" />
             </label>
-            <label class="block md:col-span-1">
+            <label class="block mt-4  md:col-span-1" id="periode_field" @if($farmasi->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
                     <input type="number" name="periode" value="{{ $farmasi->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />

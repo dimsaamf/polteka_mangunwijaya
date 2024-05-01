@@ -75,72 +75,114 @@ class LaporanWadirController extends Controller
             return back();
         }
 
-        // Inisialisasi variabel
-        $laporanMasuk = null;
-        $laporanKeluar = null;
-        $dataInventaris = [
-            'farmakognosi'=> InventarisLabFarmakognosi::all(),
-            'farmasetika' => InventarisLabFarmasetika::all(),
-            'kimia' => InventarisLabKimia::all(),
-            'tekfarmasi' => InventarisLabTekfarmasi::all(),
-        ];
+        $semuaBarangMasuk = collect();
+
+        $barangMasukFarmakognosi = BarangMasukFarmakognosi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $barangMasukFarmasetika = BarangMasukFarmasetika::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $barangMasukKimia = BarangMasukKimia::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $barangMasukTekfarmasi = BarangMasukTekfarmasi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+
+        $semuaBarangMasuk = $semuaBarangMasuk->merge($barangMasukFarmakognosi)
+                                            ->merge($barangMasukFarmasetika)
+                                            ->merge($barangMasukKimia)
+                                            ->merge($barangMasukTekfarmasi);
+                                            
+        $semuaBarangMasuk = $semuaBarangMasuk->sortBy('tanggal_masuk');
+
+        $semuaBarangKeluar = collect();
+
+        $barangKeluarFarmakognosi = BarangKeluarFarmakognosi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $barangKeluarFarmasetika = BarangKeluarFarmasetika::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $barangKeluarKimia = BarangKeluarKimia::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $barangKeluarTekfarmasi = BarangKeluarTekfarmasi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+
+        $semuaBarangKeluar = $semuaBarangKeluar->merge($barangKeluarFarmakognosi)
+                                            ->merge($barangKeluarFarmasetika)
+                                            ->merge($barangKeluarKimia)
+                                            ->merge($barangKeluarTekfarmasi);
+                                            
+        $semuaBarangKeluar = $semuaBarangKeluar->sortBy('tanggal_keluar');
+
+        $dataInventarisFarmakognosi = InventarisLabFarmakognosi::all();
+        $dataInventarisFarmasetika = InventarisLabFarmasetika::all();
+        $dataInventarisKimia = InventarisLabKimia::all();
+        $dataInventarisTekfarmasi = InventarisLabTekfarmasi::all();
+
+        $dataInventaris = collect()
+            ->merge($dataInventarisFarmakognosi)
+            ->merge($dataInventarisFarmasetika)
+            ->merge($dataInventarisKimia)
+            ->merge($dataInventarisTekfarmasi);
 
         if ($jenis == 'Barang Masuk') {
-            $laporanMasukFarmakognosi = BarangMasukFarmakognosi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
-            $laporanMasukFarmasetika = BarangMasukFarmasetika::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
-            $laporanMasukKimia = BarangMasukKimia::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
-            $laporanMasukTekfarmasi = BarangMasukTekfarmasi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+            foreach ($semuaBarangMasuk as $barangMasuk) {
+                $inventaris = null;
+                switch ($barangMasuk->getTable()) {
+                    case 'barang_masuk_farmakognosis':
+                        $inventaris = $dataInventarisFarmakognosi->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_farmasetikas':
+                        $inventaris = $dataInventarisFarmasetika->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_kimias':
+                        $inventaris = $dataInventarisKimia->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_tekfarmasis':
+                        $inventaris = $dataInventarisTekfarmasi->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    default:
+                        break;
+                }
         
-            // Gabungkan data laporan masuk dari semua jenis lab
-            $laporanMasuk = $laporanMasukFarmakognosi->merge($laporanMasukFarmasetika)
-                                                    ->merge($laporanMasukKimia)
-                                                    ->merge($laporanMasukTekfarmasi);
-        
-            $pdf = PDF::loadView('rolewadir.laporanBM', compact('laporanMasuk', 'dari', 'sampai', 'dataInventaris'))->setPaper('A4', 'portrait');
-            return $pdf->stream('Laporan Barang Masuk.pdf');
+                if ($inventaris) {
+                    $barangMasuk->nama_barang = $inventaris->nama_barang;
+                    $barangMasuk->kode_barang = $inventaris->kode_barang;
+                    $barangMasuk->satuan = $inventaris->satuan;
+                }
+            }
+            
+            $pdf = PDF::loadView('rolewadir.laporanBM', compact('semuaBarangMasuk', 'dari', 'sampai'))->setPaper('A4', 'landscape');
+            return $pdf->stream('Laporan Barang Masuk.pdf');        
         } elseif ($jenis == 'Barang Keluar') {
-            $laporanKeluarFarmakognosi = BarangKeluarFarmakognosi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
-            $laporanKeluarFarmasetika = BarangKeluarFarmasetika::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
-            $laporanKeluarKimia = BarangKeluarKimia::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
-            $laporanKeluarTekfarmasi = BarangKeluarTekfarmasi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+            foreach ($semuaBarangKeluar as $barangKeluar) {
+                $inventaris = null;
+                switch ($barangKeluar->getTable()) {
+                    case 'barang_keluar_farmakognosis':
+                        $inventaris = $dataInventarisFarmakognosi->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_farmasetikas':
+                        $inventaris = $dataInventarisFarmasetika->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_kimias':
+                        $inventaris = $dataInventarisKimia->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_tekfarmasis':
+                        $inventaris = $dataInventarisTekfarmasi->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    default:
+                        break;
+                }
         
-            // Gabungkan data laporan keluar dari semua jenis lab
-            $laporanKeluar = $laporanKeluarFarmakognosi->merge($laporanKeluarFarmasetika)
-                                                    ->merge($laporanKeluarKimia)
-                                                    ->merge($laporanKeluarTekfarmasi);
+                if ($inventaris) {
+                    $barangKeluar->nama_barang = $inventaris->nama_barang;
+                    $barangKeluar->kode_barang = $inventaris->kode_barang;
+                    $barangKeluar->satuan = $inventaris->satuan;
+                }
+            }
         
-            $pdf = PDF::loadView('rolewadir.laporanBK', compact('laporanKeluar', 'dari', 'sampai', 'dataInventaris'))->setPaper('A4', 'portrait');
+            $pdf = PDF::loadView('rolewadir.laporanBK', compact('semuaBarangKeluar', 'dari', 'sampai'))->setPaper('A4', 'landscape');
             return $pdf->stream('Laporan Barang keluar.pdf');
         }
-
-        // // Ambil data laporan berdasarkan filter
-        // if ($jenis == 'Barang Masuk') {
-        //     $laporanMasuk = BarangMasukFarmakognosi::where('tanggal_masuk', '>=', $dari)
-        //         ->where('tanggal_masuk', '<=', $sampai)
-        //         ->get();
-                
-        //         $pdf = PDF::loadView('rolewadir.laporanBM', compact('laporanMasuk', 'dari', 'sampai', 'data'))->setPaper('A4', 'potrait');
-        //         return $pdf->stream('Laporan Barang Masuk.pdf');
-        // } elseif ($jenis == 'Barang Keluar') {
-        //     $laporanKeluar = BarangKeluarFarmakognosi::where('tanggal_keluar', '>=', $dari)
-        //         ->where('tanggal_keluar', '<=', $sampai)
-        //         ->get();
-
-        //         $pdf = PDF::loadView('rolewadir.laporanBK', compact('laporanKeluar', 'dari', 'sampai', 'data'))->setPaper('A4', 'potrait');
-        //     return $pdf->stream('Laporan Barang Keluar.pdf');
-        // }
     }
 
     public function previewLaporanProdi(Request $request)
     {
-        // Validasi input
         $request->validate([
             'tgl_awal' => 'required',
             'tgl_akhir' => 'required',
             'jenis_laporan' => 'required'
         ]);
 
-        // Ambil input dari request
         $dari = $request->tgl_awal;
         $sampai = $request->tgl_akhir;
         $jenis = $request->jenis_laporan;
@@ -162,12 +204,10 @@ class LaporanWadirController extends Controller
             return back();
         }
 
-        // Inisialisasi variabel
         $laporanMasuk = null;
         $laporanKeluar = null;
         $data=InventarisFarmasi::all();
 
-        // Ambil data laporan berdasarkan filter
         if ($jenis == 'Barang Masuk') {
             $laporanMasuk = BarangMasukFarmasi::where('tanggal_masuk', '>=', $dari)
                 ->where('tanggal_masuk', '<=', $sampai)
