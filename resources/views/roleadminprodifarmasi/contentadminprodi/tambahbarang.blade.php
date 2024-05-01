@@ -74,8 +74,7 @@
                 <option value="1">Ya</option>
                 <option value="0" selected>Tidak</option>
             </select>
-        </label>
-        
+        </label> 
         <div id="tanggal_service_input" style="display: none;" class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>

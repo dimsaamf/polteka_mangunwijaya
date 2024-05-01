@@ -65,11 +65,11 @@
             </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
-            <label class="block md:col-span-2">
+            <label class="block mt-4 md:col-span-2" id="tanggal_service_field" @if($labtekfarmasi->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" value="{{ $labtekfarmasi->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" min="{{ now()->format('Y-m-d') }}"/>
+                <input type="date" name="tanggal_service" value="{{ $labtekfarmasi->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" min="{{ now()->format('Y-m-d') }}" />
             </label>
-            <label class="block md:col-span-1">
+            <label class="block mt-4  md:col-span-1" id="periode_field" @if($labtekfarmasi->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
                     <input type="number" name="periode" value="{{ $labtekfarmasi->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />

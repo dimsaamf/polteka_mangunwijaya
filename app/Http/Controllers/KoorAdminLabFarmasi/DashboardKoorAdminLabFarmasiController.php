@@ -23,7 +23,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
 {
     public function index(Request $request)
     {
-        $pengajuanbarang = PengajuanBarangLabFarmasi::count();
+        $pengajuan = PengajuanBarangLabFarmasi::count();
 
         $baranglabfarmakognosi = InventarisLabFarmakognosi::count();
         $baranglabfarmasetika = InventarisLabFarmasetika::count();

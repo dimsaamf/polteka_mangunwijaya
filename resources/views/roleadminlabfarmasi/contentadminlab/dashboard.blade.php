@@ -53,7 +53,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="M22 3H2v6h1v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9h1zM4 5h16v2H4zm15 15H5V9h14zM9 11h6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2"/></svg>
                     </div>
                     <div class="box p-6">
-                        <div class="text-3xl font-medium">9999</div>
+                        <div class="text-3xl font-medium">{{ $total_barang }}</div>
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Barang</div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="m21.706 5.292l-2.999-2.999A.996.996 0 0 0 18 2H6a.997.997 0 0 0-.707.293L2.294 5.292A.996.996 0 0 0 2 6v13c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6a.994.994 0 0 0-.294-.708M6.414 4h11.172l1 1H5.414zM12 18l-5-5h3v-3h4v3h3z"/></svg>
                     </div>
                     <div class="box p-6">
-                        <div class="text-3xl font-medium">9999</div>
+                        <div class="text-3xl font-medium">{{ $total_masuk }}</div>
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Masuk</div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="m21.706 5.292l-2.999-2.999A.996.996 0 0 0 18 2H6a.996.996 0 0 0-.707.293L2.294 5.292A.994.994 0 0 0 2 6v13c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6a.994.994 0 0 0-.294-.708M6.414 4h11.172l1 1H5.414zM14 14v3h-4v-3H7l5-5l5 5z"/></svg>
                     </div>
                     <div class="box p-6">
-                        <div class="text-3xl font-medium">9999</div>
+                        <div class="text-3xl font-medium">{{ $total_keluar }}</div>
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Keluar</div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="m15.5 17.125l4.95-4.95q.275-.275.7-.275t.7.275t.275.7t-.275.7l-5.65 5.65q-.3.3-.7.3t-.7-.3l-2.85-2.85q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h4.175q.275-.875 1.075-1.437T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v4q0 .425-.288.713T20 10t-.712-.288T19 9V5h-2v2q0 .425-.288.713T16 8H8q-.425 0-.712-.288T7 7V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm7-16q.425 0 .713-.288T13 4t-.288-.712T12 3t-.712.288T11 4t.288.713T12 5"/></svg>
                     </div>
                     <div class="box p-6">
-                        <div class="text-3xl font-medium">9999</div>
+                        <div class="text-3xl font-medium">{{ $pengajuan}}</div>
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Pengajuan Barang</div>
                     </div>
                 </div>

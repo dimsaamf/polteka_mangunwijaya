@@ -68,10 +68,18 @@
                 @enderror
             </label>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Apakah perlu pengingat tanggal service?</span>
+            <select name="reminder" id="reminder" class="form-control">
+                <option value="1">Ya</option>
+                <option value="0" selected>Tidak</option>
+            </select>
+        </label>
+        
+        <div id="tanggal_service_input" style="display: none;" class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
+                <input id="tanggal_service" type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>
@@ -80,11 +88,7 @@
                     <span class="ml-2 mt-2 font-bold">bulan</span>
                 </div>
             </label>
-        </div>
-        <label class="block mt-4">
-            <input type="checkbox" id="reminder" name="reminder">
-            <span class="ml-2">Ingatkan saya saat tanggal service tiba</span>
-        </label>
+        </div> 
         <label class="block mt-4">
             <span class="text-sm font-medium">Harga*</span>
             <input type="number" name="harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
@@ -179,5 +183,32 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+<script>
+    document.getElementById('reminder').addEventListener('change', function() {
+        var isServiceNeeded = this.value;
+        var tanggalServiceInput = document.getElementById('tanggal_service_input');
+        
+        if (isServiceNeeded === '1') {
+            tanggalServiceInput.style.display = 'grid';
+            document.getElementById('tanggal_service').setAttribute('required', 'required');
+        } else {
+            tanggalServiceInput.style.display = 'none';
+            document.getElementById('tanggal_service').removeAttribute('required');
+        }
+    });
+    
+    // Set default value for tanggal service if needed
+    window.onload = function() {
+        var isServiceNeeded = document.getElementById('reminder').value;
+        var tanggalServiceInput = document.getElementById('tanggal_service_input');
+    
+        if (isServiceNeeded === '1') {
+            tanggalServiceInput.style.display = 'grid';
+        } else {
+            tanggalServiceInput.style.display = 'none';
+        }
+    };
+    </script>
 
 @endsection
