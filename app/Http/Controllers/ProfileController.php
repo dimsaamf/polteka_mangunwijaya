@@ -18,6 +18,8 @@ class ProfileController extends Controller
                 return view('rolewadir.contentwadir.ubahpp');
             } elseif(Auth::user()->role == 'koorlabprodfarmasi'){
                 return view('rolekoorlabfarmasi.contentkoorlab.ubahprofil');
+            } elseif(Auth::user()->role == 'koorlabprodankes'){
+                return view('rolekoorlabankes.contentkoorlab.ubahprofil');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
@@ -74,6 +76,8 @@ class ProfileController extends Controller
                 return view('rolewadir.contentwadir.ubahpassword');
             } elseif(Auth::user()->role == 'koorlabprodfarmasi'){
                 return view('rolekoorlabfarmasi.contentkoorlab.ubahpassword');
+            } elseif(Auth::user()->role == 'koorlabprodankes'){
+                return view('rolekoorlabankes.contentkoorlab.ubahpassword');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return view('roleadminlabfarmasi.contentadminlab.ubahpassword');    
             } elseif(Auth::user()->role == 'adminprodfarmasi'){

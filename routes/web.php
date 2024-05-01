@@ -23,6 +23,22 @@ use App\Http\Controllers\AdminProdiFarmasi\DashboardFarmasiController;
 use App\Http\Controllers\AdminProdiFarmasi\BarangMasukFarmasiController;
 use App\Http\Controllers\AdminProdiFarmasi\BarangKeluarFarmasiController;
 use App\Http\Controllers\AdminProdiFarmasi\InventarisFarmasiController;
+
+use App\Http\Controllers\KoorAdminLabAnkes\DashboardKoorAdminLabAnkesController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukAnkeskimiaController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarAnkeskimiaController;
+use App\Http\Controllers\KoorAdminLabAnkes\InventarisLabAnkeskimiaController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukMedisController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarMedisController;
+use App\Http\Controllers\KoorAdminLabAnkes\InventarisLabMedisController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukMikroController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarMikroController;
+use App\Http\Controllers\KoorAdminLabAnkes\InventarisLabMikroController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukSitohistoController;
+use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarSitohistoController;
+use App\Http\Controllers\KoorAdminLabAnkes\InventarisLabSitohistoController;
+use App\Http\Controllers\KoorAdminLabAnkes\PengajuanBarangLabAnkesController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
@@ -162,7 +178,7 @@ Route::middleware(['auth', 'user.role:adminlabprodfarmasi', 'revalidate'])->grou
     // })->name('ubahppadminlabfarmasi');
 
     Route::get('/adminlabfarmasi/dashboard',[DashboardKoorAdminLabFarmasiController::class, 'index'])->name('dashboardadminlabfarmasi');
-    Route::post('/adminlabfarmasi/dashboard', [DashboardKoorAdminLabFarmasiController::class, 'updateNotification'])->name('update.notification');
+    Route::post('/adminlabfarmasi/dashboard', [DashboardKoorAdminLabFarmasiController::class, 'updateNotification'])->name('update.notification.adminlabfarmasi');
     Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
     Route::get('/adminlabfarmasi/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppadminlabfarmasi');
     Route::post('/adminlabfarmasi/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name('update.picture.adminlabfarmasi');
@@ -290,6 +306,83 @@ Route::middleware(['auth', 'user.role:adminlabprodfarmasi', 'revalidate'])->grou
     Route::post('/adminlabfarmasi/labfarmakognosi/barangmasuk', [BarangMasukFarmakognosiController::class, 'store'])->name('barangmasukadminlabfarmakognosi.store');
     Route::post('/adminlabfarmasi/labfarmakognosi/barangkeluar', [BarangKeluarFarmakognosiController::class, 'store'])->name('barangkeluaradminlabfarmakognosi.store');
 });
+
+Route::middleware(['auth', 'user.role:koorlabprodankes', 'revalidate'])->group(function (){
+    Route::get('/koorlabankes/dashboard',[DashboardKoorAdminLabAnkesController::class, 'index'])->name('dashboardkoorlabankes');
+    Route::post('/koorlabankes/dashboard', [DashboardKoorAdminLabAnkesController::class, 'updateNotification'])->name('update.notification');
+
+    Route::get('/koorlabankes/labsitohisto/databarang', [InventarisLabSitohistoController::class, 'index'])->name('databarangkoorlabsitohisto');
+    Route::delete('/koorlabankes/labsitohisto/databarang/{id}', [InventarisLabSitohistoController::class, 'destroy'])->name('hapusbarangsitohisto');
+    Route::get('/koorlabankes/labsitohisto/tambahbarang', [InventarisLabSitohistoController::class, 'create'])->name('tambahbarangkoorlabsitohisto');
+    Route::post('/koorlabankes/labsitohisto/tambahbarang', [InventarisLabSitohistoController::class, 'store'])->name('tambahbarangkoorlabsitohisto.store');
+    Route::get('/koorlabankes/labsitohisto/ubahbarang/{id}', [InventarisLabSitohistoController::class, 'edit'])->name('ubahbarangkoorlabsitohisto');
+    Route::post('/koorlabankes/labsitohisto/ubahbarang/{id}', [InventarisLabSitohistoController::class, 'update'])->name('updatebarangkoorlabsitohisto');
+    Route::get('/koorlabankes/labsitohisto/gambar/{id}', [InventarisLabSitohistoController::class, 'getGambar'])->name('get.gambar.invlabsitohisto');
+    Route::get('/koorlabankes/labsitohisto/riwayatbarangmasuk', [BarangMasukSitohistoController::class, 'index'])->name('riwayatbarangmasukkoorlabsitohisto');
+    Route::get('/koorlabankes/labsitohisto/riwayatbarangkeluar', [BarangKeluarSitohistoController::class, 'index'])->name('riwayatbarangkeluarkoorlabsitohisto');
+    Route::get('/koorlabankes/labsitohisto/barangmasuk', [BarangMasukSitohistoController::class, 'tabel'])->name('barangmasukkoorlabsitohisto');
+    Route::get('/koorlabankes/labsitohisto/barangkeluar', [BarangKeluarSitohistoController::class, 'tabel'])->name('barangkeluarkoorlabsitohisto');
+    Route::post('/koorlabankes/labsitohisto/barangmasuk', [BarangMasukSitohistoController::class, 'store'])->name('barangmasukkoorlabsitohisto.store');
+    Route::post('/koorlabankes/labsitohisto/barangkeluar', [BarangKeluarSitohistoController::class, 'store'])->name('barangkeluarkoorlabsitohisto.store');
+
+    Route::get('/koorlabankes/labmikro/databarang', [InventarisLabMikroController::class, 'index'])->name('databarangkoorlabmikro');
+    Route::delete('/koorlabankes/labmikro/databarang/{id}', [InventarisLabMikroController::class, 'destroy'])->name('hapusbarangmikro');
+    Route::get('/koorlabankes/labmikro/tambahbarang', [InventarisLabMikroController::class, 'create'])->name('tambahbarangkoorlabmikro');
+    Route::post('/koorlabankes/labmikro/tambahbarang', [InventarisLabMikroController::class, 'store'])->name('tambahbarangkoorlabmikro.store');
+    Route::get('/koorlabankes/labmikro/ubahbarang/{id}', [InventarisLabMikroController::class, 'edit'])->name('ubahbarangkoorlabmikro');
+    Route::post('/koorlabankes/labmikro/ubahbarang/{id}', [InventarisLabMikroController::class, 'update'])->name('updatebarangkoorlabmikro');
+    Route::get('/koorlabankes/labmikro/riwayatbarangmasuk', [BarangMasukMikroController::class, 'index'])->name('riwayatbarangmasukkoorlabmikro');
+    Route::get('/koorlabankes/labmikro/riwayatbarangkeluar', [BarangKeluarMikroController::class, 'index'])->name('riwayatbarangkeluarkoorlabmikro');
+    Route::get('/koorlabankes/labmikro/barangmasuk', [BarangMasukMikroController::class, 'tabel'])->name('barangmasukkoorlabmikro');
+    Route::get('/koorlabankes/labmikro/barangkeluar', [BarangKeluarMikroController::class, 'tabel'])->name('barangkeluarkoorlabmikro');
+    Route::post('/koorlabankes/labmikro/barangmasuk', [BarangMasukMikroController::class, 'store'])->name('barangmasukkoorlabmikro.store');
+    Route::post('/koorlabankes/labmikro/barangkeluar', [BarangKeluarMikroController::class, 'store'])->name('barangkeluarkoorlabmikro.store');
+    Route::get('/koorlabankes/labmikro/gambar/{id}', [InventarisLabMikroController::class, 'getGambar'])->name('get.gambar.invlabmikro');
+
+    Route::get('/koorlabankes/labankeskimia/databarang', [InventarisLabAnkeskimiaController::class, 'index'])->name('databarangkoorlabankeskimia');
+    Route::delete('/koorlabankes/labankeskimia/databarang/{id}', [InventarisLabAnkeskimiaController::class, 'destroy'])->name('hapusbarangankeskimia');
+    Route::get('/koorlabankes/labankeskimia/tambahbarang', [InventarisLabAnkeskimiaController::class, 'create'])->name('tambahbarangkoorlabankeskimia');
+    Route::post('/koorlabankes/labankeskimia/tambahbarang', [InventarisLabAnkeskimiaController::class, 'store'])->name('tambahbarangkoorlabankeskimia.store');
+    Route::get('/koorlabankes/labankeskimia/ubahbarang/{id}', [InventarisLabAnkeskimiaController::class, 'edit'])->name('ubahbarangkoorlabankeskimia');
+    Route::post('/koorlabankes/labankeskimia/ubahbarang/{id}', [InventarisLabAnkeskimiaController::class, 'update'])->name('updatebarangkoorlabankeskimia');
+    Route::get('/koorlabankes/labankeskimia/riwayatbarangmasuk', [BarangMasukAnkeskimiaController::class, 'index'])->name('riwayatbarangmasukkoorlabankeskimia');
+    Route::get('/koorlabankes/labankeskimia/riwayatbarangkeluar', [BarangKeluarAnkeskimiaController::class, 'index'])->name('riwayatbarangkeluarkoorlabankeskimia');
+    Route::get('/koorlabankes/labankeskimia/barangmasuk', [BarangMasukAnkeskimiaController::class, 'tabel'])->name('barangmasukkoorlabankeskimia');
+    Route::get('/koorlabankes/labankeskimia/barangkeluar', [BarangKeluarAnkeskimiaController::class, 'tabel'])->name('barangkeluarkoorlabankeskimia');
+    Route::post('/koorlabankes/labankeskimia/barangmasuk', [BarangMasukAnkeskimiaController::class, 'store'])->name('barangmasukkoorlabankeskimia.store');
+    Route::post('/koorlabankes/labankeskimia/barangkeluar', [BarangKeluarAnkeskimiaController::class, 'store'])->name('barangkeluarkoorlabankeskimia.store');
+    Route::get('/koorlabankes/gambar/{id}', [InventarisLabAnkeskimiaController::class, 'getGambar'])->name('get.gambar.invlabankeskimia');
+
+    Route::get('/koorlabankes/labmedis/databarang', [InventarisLabMedisController::class, 'index'])->name('databarangkoorlabmedis');
+    Route::delete('/koorlabankes/labmedis/databarang/{id}', [InventarisLabMedisController::class, 'destroy'])->name('hapusbarangmedis');
+    Route::get('/koorlabankes/labmedis/tambahbarang', [InventarisLabMedisController::class, 'create'])->name('tambahbarangkoorlabmedis');
+    Route::post('/koorlabankes/labmedis/tambahbarang', [InventarisLabMedisController::class, 'store'])->name('tambahbarangkoorlabmedis.store');
+    Route::get('/koorlabankes/labmedis/ubahbarang/{id}', [InventarisLabMedisController::class, 'edit'])->name('ubahbarangkoorlabmedis');
+    Route::post('/koorlabankes/labmedis/ubahbarang/{id}', [InventarisLabMedisController::class, 'update'])->name('updatebarangkoorlabmedis');
+    Route::get('/koorlabankes/labmedis/riwayatbarangmasuk', [BarangMasukMedisController::class, 'index'])->name('riwayatbarangmasukkoorlabmedis');
+    Route::get('/koorlabankes/labmedis/riwayatbarangkeluar', [BarangKeluarMedisController::class, 'index'])->name('riwayatbarangkeluarkoorlabmedis');
+    Route::get('/koorlabankes/labmedis/barangmasuk', [BarangMasukMedisController::class, 'tabel'])->name('barangmasukkoorlabmedis');
+    Route::get('/koorlabankes/labmedis/barangkeluar', [BarangKeluarMedisController::class, 'tabel'])->name('barangkeluarkoorlabmedis');
+    Route::post('/koorlabankes/labmedis/barangmasuk', [BarangMasukMedisController::class, 'store'])->name('barangmasukkoorlabmedis.store');
+    Route::post('/koorlabankes/labmedis/barangkeluar', [BarangKeluarMedisController::class, 'store'])->name('barangkeluarkoorlabmedis.store');
+    Route::get('/koorlabankes/labmedis/gambar/{id}', [InventarisLabMedisController::class, 'getGambar'])->name('get.gambar.invlabmedis');
+
+    Route::get('/koorlabankes/pengajuanbarang', [PengajuanBarangLabAnkesController::class, 'index'])->name('pengajuanbarangkoorlabankes');
+    Route::get('/koorlabankes/tambahpengajuanbarang', [PengajuanBarangLabAnkesController::class, 'create'])->name('tambahpengajuankoorlabankes');
+    Route::post('/koorlabankes/tambahpengajuanbarang', [PengajuanBarangLabAnkesController::class, 'store'])->name('tambahpengajuankoorlabankes.store');
+    Route::get('/preview-surat/{id}', [PengajuanBarangLabAnkesController::class, 'previewSurat'])->name('preview.surat.koorlabankes');
+    Route::get('/koorlabankes/detailpengajuanbarang/{id}', [PengajuanBarangLabAnkesController::class, 'show'])->name('detailpengajuankoorlabankes');
+    Route::get('/koorlabankes/pengajuanbarang/edit/{id}', [PengajuanBarangLabAnkesController::class, 'edit'])->name('editpengajuankoorlabankes');
+    Route::post('/koorlabankes/pengajuanbarang/update/{id}', [PengajuanBarangLabAnkesController::class, 'update'])->name('updatepengajuankoorlabankes');
+    Route::delete('/koorlabankes/hapuspengajuan/{id}', [PengajuanBarangLabAnkesController::class, 'destroy'])->name('hapuspengajuankoorlabankes');
+
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/koorlabankes/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppkoorlabankes');
+    Route::post('/koorlabankes/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.koorlabankes");
+    Route::get('/koorlabankes/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwkoorlabankes');
+    Route::post('/koorlabankes/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.koorlabankes');
+});
+
 
 Route::middleware(['auth', 'user.role:adminprodfarmasi', 'revalidate'])->group(function (){
     Route::get('/adminprodifarmasi/dashboard',[DashboardFarmasiController::class, 'index'])->name('dashboardadminprodifarmasi');
