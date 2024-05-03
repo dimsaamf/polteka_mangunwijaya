@@ -10,18 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class BarangMasukKimiaController extends Controller
 {
-    public function index(){
-        $BarangMasukKimia = BarangMasukKimia::paginate(10);
-        $data=InventarisLabKimia::all();
-        // return view('rolekoorlabfarmasi.contentkoorlab.labkimia.riwayatmasuk', compact('BarangMasukKimia','data'));
+    public function index(Request $request){
+        $query = $request->input('search');
+        $BarangMasukKimia = BarangMasukKimia::with('inventarislabkimia')
+                            ->whereHas('inventarislabkimia', function ($q) use ($query) {
+                                $q->where('nama_barang', 'LIKE', '%' . $query . '%');
+                            })->paginate(10);
+    
+        $data = InventarisLabKimia::all();
+        
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return view('rolekoorlabfarmasi.contentkoorlab.labkimia.riwayatmasuk', compact('BarangMasukKimia','data'));
-            } else{
-                return view('roleadminlabfarmasi.contentadminlab.labkimia.riwayatmasuk', compact('BarangMasukKimia','data'));
+                return view('rolekoorlabfarmasi.contentkoorlab.labkimia.riwayatmasuk', compact('BarangMasukKimia', 'data'));
+            } else {
+                return view('roleadminlabfarmasi.contentadminlab.labkimia.riwayatmasuk', compact('BarangMasukKimia', 'data'));
             }
         }
     }
+    
 
     // public function tabel(){
     //     $data=InventarisLabKimia::all();

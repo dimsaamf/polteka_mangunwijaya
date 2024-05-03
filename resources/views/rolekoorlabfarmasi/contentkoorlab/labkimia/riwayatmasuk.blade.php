@@ -37,7 +37,7 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <!-- <div class="flex w-full justify-end mb-3">
+                    <div class="flex w-full justify-end mb-3">
                                     <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
                                     <form action="{{ route('riwayatbarangmasukkoorlabfarmasikimia') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
@@ -45,6 +45,7 @@
                                             <input
                                                 type="text"
                                                 name="search"
+                                                value="{{ request('search') }}"
                                                 class="relative m-0 block flex-auto rounded-l-full border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
                                                 placeholder="Cari barang"/>
                                         </div>
@@ -56,8 +57,8 @@
                                     </button>
                                 </form>
                                     </div>
-                                </div>
-                    </div> -->
+                        </div>
+                    </div>
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
