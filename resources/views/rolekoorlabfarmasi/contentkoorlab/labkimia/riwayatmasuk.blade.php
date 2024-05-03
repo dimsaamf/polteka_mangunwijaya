@@ -1,5 +1,6 @@
 @extends('rolekoorlabfarmasi.layoutkoorlab.labkimia.barangmasuk')
 @section('content')
+@include('sweetalert::alert')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
@@ -37,8 +38,21 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <div class="flex w-full justify-end mb-3">
-                                    <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                    <div class="flex w-full justify-start mb-3">
+                    <form action="{{ route('riwayatbarangmasukkoorlabfarmasikimia') }}" method="GET" class="mt-4 flex">
+                        <label for="start_date" class="block">
+                            <span class="text-sm font-medium">Tanggal Awal</span>
+                            <input type="date" name="start_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_start_date') }}" />
+                        </label>
+                        <label for="end_date" class="block">
+                            <span class="text-sm font-medium">Tanggal Akhir</span>
+                            <input type="date" name="end_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_end_date') }}" />
+                        </label>
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </form>
+                    </div>
+                    <div class="flex w-full justify-end mb-3 items-center">
+                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
                                     <form action="{{ route('riwayatbarangmasukkoorlabfarmasikimia') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   

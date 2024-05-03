@@ -7,27 +7,65 @@ use Illuminate\Http\Request;
 use App\Models\InventarisLabKimia;
 use App\Models\BarangMasukKimia;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BarangMasukKimiaController extends Controller
 {
-    public function index(Request $request){
-        $query = $request->input('search');
-        $BarangMasukKimia = BarangMasukKimia::with('inventarislabkimia')
-                            ->whereHas('inventarislabkimia', function ($q) use ($query) {
-                                $q->where('nama_barang', 'LIKE', '%' . $query . '%');
-                            })->paginate(10);
-    
-        $data = InventarisLabKimia::all();
-        
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return view('rolekoorlabfarmasi.contentkoorlab.labkimia.riwayatmasuk', compact('BarangMasukKimia', 'data'));
-            } else {
-                return view('roleadminlabfarmasi.contentadminlab.labkimia.riwayatmasuk', compact('BarangMasukKimia', 'data'));
-            }
+    public function index(Request $request)
+{
+    $query = $request->input('search');
+    $start_date = $request->input('start_date');
+    $end_date = $request->input('end_date');
+    $cek = Carbon::today();
+    $hari_ini = $cek->toDateString();
+
+    if ($start_date > $end_date) {
+        alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+        return back();
+    }
+
+    if ($start_date > $hari_ini) {
+        alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+        return back();
+    }
+
+    if ( $end_date > $hari_ini) {
+        alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+        return back();
+    }
+
+    if ($start_date && $end_date) {
+        session()->put('filter_start_date', $start_date);
+        session()->put('filter_end_date', $end_date);
+    } else {
+        // Jika tidak ada nilai filter yang diberikan, hapus nilai filter dari session
+        session()->forget('filter_start_date');
+        session()->forget('filter_end_date');
+    }
+
+
+    $queryBuilder = BarangMasukKimia::with('inventarislabkimia')
+        ->whereHas('inventarislabkimia', function ($q) use ($query) {
+            $q->where('nama_barang', 'LIKE', '%' . $query . '%');
+        });
+
+    if ($start_date && $end_date) {
+        $queryBuilder->whereBetween('tanggal_masuk', [$start_date, $end_date]);
+    }
+
+    $BarangMasukKimia = $queryBuilder->paginate(10);
+
+    $data = InventarisLabKimia::all();
+
+    if (session('is_logged_in')) {
+        if (Auth::user()->role == 'koorlabprodfarmasi') {
+            return view('rolekoorlabfarmasi.contentkoorlab.labkimia.riwayatmasuk', compact('BarangMasukKimia', 'data'));
+        } else {
+            return view('roleadminlabfarmasi.contentadminlab.labkimia.riwayatmasuk', compact('BarangMasukKimia', 'data'));
         }
     }
-    
+}
+
 
     // public function tabel(){
     //     $data=InventarisLabKimia::all();
