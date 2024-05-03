@@ -225,4 +225,62 @@ class LaporanWadirController extends Controller
         }
     }
 
+    public function cetakSemuaData(Request $request)
+    {
+        $request->validate([
+            'laboratorium' => 'required'
+        ]);
+
+        $laboratorium = $request->laboratorium;
+
+        switch ($laboratorium) {
+            case 'farmakognosi':
+                $semuaData = InventarisLabFarmakognosi::all();
+                break;
+            case 'farmasetika':
+                $semuaData = InventarisLabFarmasetika::all();
+                break;
+            case 'kimia':
+                $semuaData = InventarisLabKimia::all();
+                break;
+            case 'tekfarmasi':
+                $semuaData = InventarisLabTekfarmasi::all();
+                break;
+            default:
+                alert()->error('Data Gagal Dicetak.','Laboratorium tidak valid.');
+                return back();
+                break;
+        }
+
+        $pdf = PDF::loadView('rolewadir.laporanDB', compact('semuaData', 'laboratorium'))->setPaper('A4', 'potrait');
+            return $pdf->stream('Laporan Barang Laboratorium.pdf');
+    }
+
+    public function cetakSemuaDataProdi(Request $request)
+    {
+        $request->validate([
+            'prodi' => 'required'
+        ]);
+
+        $prodi = $request->prodi;
+
+        switch ($prodi) {
+            case 'farmasi':
+                $semuaData = InventarisFarmasi::all();
+                break;
+            case 'ankes':
+                $semuaData = InventarisLabFarmasetika::all();
+                break;
+            case 'tekkimia':
+                $semuaData = InventarisLabKimia::all();
+                break;
+            default:
+                alert()->error('Data Gagal Dicetak.','Program Studi tidak valid.');
+                return back();
+                break;
+        }
+
+        $pdf = PDF::loadView('rolewadir.laporanDBProdi', compact('semuaData', 'prodi'))->setPaper('A4', 'potrait');
+            return $pdf->stream('Laporan Barang Prodi.pdf');
+    }
 }

@@ -18,6 +18,9 @@ use App\Models\BarangKeluarTekfarmasi;
 use App\Models\PengajuanBarangLabFarmasi;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
 
 class DashboardKoorAdminLabFarmasiController extends Controller
 {
@@ -71,6 +74,13 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             $notifications = $notifications->merge($notificationsForLab);
         }
 
+        $perPage = 5;
+        $currentPage = Paginator::resolveCurrentPage() ?: 1;
+        $sliced = $notifications->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $notifications = new LengthAwarePaginator($sliced, $notifications->count(), $perPage, $currentPage, [
+            'path' => Paginator::resolveCurrentPath(),
+        ]);
+
 
         $barangHabis = collect();
         $inventarisModels = [
@@ -88,6 +98,13 @@ class DashboardKoorAdminLabFarmasiController extends Controller
                 }
             }
         }
+
+        $perPage = 5;
+        $currentPage = Paginator::resolveCurrentPage() ?: 1;
+        $sliced = $barangHabis->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $barangHabis = new LengthAwarePaginator($sliced, $barangHabis->count(), $perPage, $currentPage, [
+            'path' => Paginator::resolveCurrentPath(),
+        ]);
 
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){

@@ -31,7 +31,7 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Filter Laporan Laboratorium</h2>
+        <h2 class="text-xl font-medium">Filter Laporan Barang Masuk dan Barang Keluar</h2>
         <form action="{{route('tampilkanLaporan')}}" method="POST">
             @csrf
         <label class="block mt-4">
@@ -62,136 +62,32 @@
         </form>
     </section>  
 
-    <!-- laporan yang sudah difilter  -->
-    {{-- <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6"> --}}
-        {{-- <h2 class="text-xl font-medium">Laporan</h2>
-        <div class="flex w-full mt-4">
-            <span class="text-sm font-medium w-1/6">Mulai Tanggal</span>
-            <span class="text-sm font-medium w-1/6 text-right pr-5">:</span>
-            <span id="show_tgl_awal" class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 text-slate-400 focus:outline-none block rounded-md sm:text-sm focus:ring-1"></span>
-        </div>    
-        <div class="flex w-full mt-4">
-            <span class="text-sm font-medium w-1/6">Sampai Tanggal</span>
-            <span class="text-sm font-medium w-1/6 text-right pr-5">:</span>
-            <span id="show_tgl_akhir" class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 text-slate-400 focus:outline-none block rounded-md sm:text-sm focus:ring-1"></span>
-        </div>  
-        <div class="flex w-full mt-4">
-            <span class="text-sm font-medium w-1/6">Jenis Laporan</span>
-            <span class="text-sm font-medium w-1/6 text-right pr-5">:</span>
-            <span id="show_jenis_laporan" class="px-2 py-2 -mt-2 w-2/3 bg-white border shadow-sm border-slate-300 text-slate-400 focus:outline-none block rounded-md sm:text-sm focus:ring-1"></span>
-        </div>   
-        <button id="cetak-pdf-btn" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-            Cetak PDF
-        </button>         --}}
-        <!-- BEGIN: Data List -->
-        {{-- <div class="flex flex-col mt-5">
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="overflow-hidden">
-                    <table class="min-w-full text-sm text-hitam-polteka mt-10">
-                    <thead>
-                        <tr >
-                            <th scope="col" class="px-6 py-3 text-center">No</th>
-                            <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
-                            <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
-                            <th scope="col" class="px-6 py-3 text-center">Tanggal Masuk</th>
-                            <th scope="col" class="px-6 py-3 text-center">Jumlah</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(isset($laporanMasuk) && count($laporanMasuk) > 0)
-                            @foreach($laporanMasuk as $item)
-                                <tr class="text-center bg-abu-polteka ">
-                                    <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
-                                        @if($barang->id == $item->id_barang)
-                                            {{ $barang->nama_barang }}
-                                        @endif
-                                    @endforeach</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
-                                        @if($barang->id == $item->id_barang)
-                                            {{ $barang->kode_barang }}
-                                        @endif
-                                    @endforeach</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_masuk }}</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_masuk }}
-                                    @foreach($data as $barang)
-                                        @if($barang->id == $item->id_barang)
-                                            {{ $barang->satuan }}
-                                        @endif
-                                    @endforeach</td>
-                                </tr>
-                            @endforeach
-                            @elseif(isset($laporanKeluar) && count($laporanKeluar) > 0)
-                            @foreach($laporanKeluar as $item)
-                                <tr class="text-center bg-abu-polteka ">
-                                    <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
-                                        @if($barang->id == $item->id_barang)
-                                            {{ $barang->nama_barang }}
-                                        @endif
-                                    @endforeach</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
-                                        @if($barang->id == $item->id_barang)
-                                            {{ $barang->kode_barang }}
-                                        @endif
-                                    @endforeach</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->tanggal_keluar }}</td>
-                                    <td class="px-6 py-2 whitespace-nowrap">{{ $item->jumlah_keluar }}
-                                    @foreach($data as $barang)
-                                        @if($barang->id == $item->id_barang)
-                                            {{ $barang->satuan }}
-                                        @endif
-                                    @endforeach</td>
-                                </tr>
-                            @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="5" class="text-center">No data available</td>
-                                </tr>
-                            @endif
-                    </tbody>
-                    
-                    </table>
-                </div>
+    <!-- Filter Semua Barang  -->
+    <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6">
+        <h2 class="text-xl font-medium">Filter Laporan Persediaan Barang</h2>
+        <form action="{{route('tampilkanLaporanDBLab')}}" method="POST">
+            @csrf
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Laboratorium</span>
+            <div class="relative text-left">
+                <div class="group">
+                    <div class="inline-flex w-[185px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <select id="laboratorium" name="laboratorium" class="form-control">
+                            <option selected class="py-5">Pilih Laboratorium</option>
+                            <option value="farmakognosi">Lab Farmakognosi</option>
+                            <option value="farmasetika">Lab Farmasetika</option>
+                            <option value="kimia">Lab Kimia</option>
+                            <option value="tekfarmasi">Lab Teknologi Farmasi</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div> 
-        <!-- END: Data List -->
-        <!-- BEGIN: Pagination -->
-        <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
-            <ul class="inline-flex mx-autospace-x-2">
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Sebelumnya
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    1
-                </button>
-                </li>
-                <li>
-                <button
-                    class="bg-biru160-polteka px-4 py-2 text-putih-polteka hover:bg-biru100-polteka rounded-full text-sm">
-                    2
-                </button>
-                </li>
-                <li>
-                <button class="px-4 py-2 text-hitam-polteka text-opacity-40 hover:font-bold hover:text-hitam-polteka text-sm">
-                    3
-                </button>
-                </li>
-                <li>
-                <button class="hidden md:block px-4 py-2 text-hitam-polteka hover:font-bold text-sm">
-                    Selanjutnya
-                </button>
-                </li>
-            </ul>
-        </div>
-        <!-- END: Pagination -->
-        
-    </section> --}}
+        </label>
+        <button type="submit" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+            Tampilkan
+        </button>
+        </form>
+    </section>
     <!-- Modal Profile -->
     <div id="modal2" class="fixed z-10 inset-0 hidden">
         <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">

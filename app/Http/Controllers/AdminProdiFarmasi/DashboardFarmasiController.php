@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\InventarisFarmasi;
 use App\Models\BarangMasukFarmasi;
 use App\Models\BarangKeluarFarmasi;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class DashboardFarmasiController extends Controller
@@ -64,19 +65,21 @@ class DashboardFarmasiController extends Controller
                 });
 
             $query->where('reminder', true);
-        })->where('sudah_dilayani', false)->get();
+        })->where('sudah_dilayani', false)->paginate(5);
 
-        $barangHabis = collect();
-        $inventarisModels = ['App\Models\InventarisFarmasi'];
+        // $barangHabis = collect();
+        // $inventarisModels = ['App\Models\InventarisFarmasi'];
 
-        foreach ($inventarisModels as $model) {
-            $inventaris = $model::all();
-            foreach ($inventaris as $barang) {
-                if ($barang->jumlah < $barang->jumlah_min) {
-                    $barangHabis->push($barang);
-                }
-            }
-        }
+        // foreach ($inventarisModels as $model) {
+        //     $inventaris = $model::all();
+        //     foreach ($inventaris as $barang) {
+        //         if ($barang->jumlah < $barang->jumlah_min) {
+        //             $barangHabis->push($barang);
+        //         }
+        //     }
+        // }
+
+        $barangHabis = InventarisFarmasi::whereColumn('jumlah', '<', DB::raw('jumlah_min'))->paginate(5);
         
         return view('roleadminprodifarmasi.contentadminprodi.dashboard', compact('barangHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
     }

@@ -42,7 +42,7 @@
             <div class=" gap-6 mt-3">
                     <div class=" p-6">
                         <div class="text-xl font-medium">Selamat Datang, {{ Auth::user()->name }}!</div>
-                        <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai admin Admin Laboratorium Prodi Farmasi Polteka Mangunwijaya</div>
+                        <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Admin Laboratorium Prodi Farmasi Polteka Mangunwijaya</div>
                     </div>
             </div>
         </div>
@@ -108,6 +108,38 @@
                                     <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang stoknya habis saat ini.</div>
                                 @endif
                             </div>
+                            <!-- BEGIN: Pagination -->
+                            <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                                <ul class="inline-flex mx-autospace-x-2">
+                                    @if ($barangHabis->onFirstPage())
+                                        <li>
+                                            <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{ $barangHabis->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                                        </li>
+                                    @endif
+                            
+                                    @foreach ($barangHabis->getUrlRange($barangHabis->currentPage() - 2, $barangHabis->currentPage() + 2) as $page => $url)
+                                        @if ($page == $barangHabis->currentPage())
+                                            <li>
+                                                <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                    @if ($barangHabis->hasMorePages())
+                                        <li>
+                                            <a href="{{ $barangHabis->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        <!-- END: Pagination -->
                     </div>
                     <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                         <div class="p-6">
@@ -139,6 +171,39 @@
                                 <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
                             @endif
                         </div>
+                        <!-- BEGIN: Pagination -->
+                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                            <ul class="inline-flex mx-autospace-x-2">
+                                @if ($notifications->onFirstPage())
+                                    <li>
+                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ $notifications->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                                    </li>
+                                @endif
+                        
+                                @foreach ($notifications->getUrlRange($notifications->currentPage() - 2, $notifications->currentPage() + 2) as $page => $url)
+                                    @if ($page == $notifications->currentPage())
+                                        <li>
+                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                        
+                                @if ($notifications->hasMorePages())
+                                    <li>
+                                        <a href="{{ $notifications->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    <!-- END: Pagination -->
                     </div>               
                 </div>
             </div>
