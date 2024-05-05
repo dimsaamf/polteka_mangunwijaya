@@ -35,13 +35,14 @@ public function store(Request $request)
         'nama_barang.required' => 'Nama barang harus diisi.',
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
-        'jumlah.integer' => 'Jumlah harus berupa bilangan bulat.',
-        'jumlah.min' => 'Jumlah tidak boleh negatif.',
-        'jumlah_min.required' => 'Jumlah harus diisi.',
-        'jumlah_min.integer' => 'Jumlah harus berupa bilangan bulat.',
-        'jumlah_min.min' => 'Jumlah tidak boleh negatif.',
+        'jumlah_min.required' => 'Minimal jumlah harus diisi.',
+        'jumlah.min' => 'Jumlah tidak boleh bilangan negatif.',
+        'jumlah_min.min' => 'Jumlah Minimal tidak boleh bilangan negatif.',
+        'jumlah.numeric' => 'Jumlah harus berupa angka.',
+        'jumlah.integer' => 'Jumlah harus berupa angka.',
+        'jumlah_min.numeric' => 'Jumlah Minimal harus berupa angka.',
+        'jumlah_min.integer' => 'Jumlah Minimal harus berupa angka.',
         'satuan.required' => 'Satuan harus diisi.',
-        'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
@@ -49,13 +50,30 @@ public function store(Request $request)
 
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_farmasis',
-        'jumlah'=>'required|integer|min:0',
-        'jumlah_min'=>'required|integer|min:0',
-        'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
-        'is_alat' => 'nullable|boolean',
-        'tanggal_service' => $request->filled('is_alat') && $request->input('is_alat') ? 'required|date' : '',
-        'periode'=>'nullable|integer|min:0',
-        'harga'=>'required|integer|min:0',
+        'jumlah' => [
+            'required',
+            'numeric',
+            'min:0',
+            function ($attribute, $value, $fail) use ($request) {
+                if (in_array($request->satuan, ['pcs', 'lembar']) && !preg_match('/^\d+$/', $value)) {
+                    $fail('Jumlah tidak boleh desimal jika satuan adalah "pcs" atau "lembar".');
+                }
+            },
+        ],
+        'jumlah_min' => [
+            'required',
+            'numeric',
+            'min:0',
+            function ($attribute, $value, $fail) use ($request) {
+                if (in_array($request->satuan, ['pcs', 'lembar']) && !preg_match('/^\d+$/', $value)) {
+                    $fail('Jumlah Minimal tidak boleh desimal jika satuan adalah "pcs" atau "lembar".');
+                }
+            },
+        ],
+        'satuan' => 'required|in:ml,gr,pcs,lembar',
+        'tanggal_service'=>'nullable|date',
+        'periode'=>'nullable|integer',
+        'harga'=>'required|integer',
         'keterangan'=>'nullable',
         'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
     ], $messages);

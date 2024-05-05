@@ -37,14 +37,39 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <!-- <div class="flex w-full justify-end mb-3">
-                                    <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                    <form action="{{ route('riwayatbarangmasukkoorlabfarmakognosi') }}" method="GET" class="relative flex w-full">
+                    <!-- filter tanggal -->
+                    <div class="flex w-1/2 justify-start mb-3 items-center">
+                        <form action="{{ route('riwayatbarangmasukadminprodifarmasi') }}" method="GET" class="items-center flex gap-3 my-auto">
+                            <label for="start_date" class="block">
+                                <span class="text-sm font-xs">Tanggal Awal</span>
+                                <input type="date" name="start_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_start_date') }}" />
+                            </label>
+                            <label for="end_date" class="block">
+                                <span class="text-sm font-xs">Tanggal Akhir</span>
+                                <input type="date" name="end_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_end_date') }}" />
+                            </label>
+                            <button type="submit" class="btn btn-primary mt-6 w-[25px] h-[24px] rounded-md px-1 bg-zinc-400  text-putih-polteka shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 20 20"><path fill="white" d="M8.6 3.4L14.2 9H2v2h12.2l-5.6 5.6L10 18l8-8l-8-8z"/></svg>
+                            </button>
+                        </form>
+                        <form action="{{ route('riwayatbarangmasukadminprodifarmasi') }}" method="GET" >
+                            <button type="submit" class="btn btn-secondary ml-1 mt-7 w-[25px] h-[24px] rounded-md px-[3px] bg-merah200-polteka text-putih-polteka shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"/></svg>
+                            </button>
+                            <input type="hidden" name="cancel_filter" value="1">
+                        </form>
+
+                    </div>
+                    <!-- search -->
+                    <div class="flex w-1/2 justify-end mt-5 mb-3">
+                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                    <form action="{{ route('riwayatbarangmasukadminprodifarmasi') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input
                                                 type="text"
                                                 name="search"
+                                                value="{{ request('search') }}"
                                                 class="relative m-0 block flex-auto rounded-l-full border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
                                                 placeholder="Cari barang"/>
                                         </div>
@@ -55,9 +80,9 @@
                                         </svg>
                                     </button>
                                 </form>
-                                    </div>
-                                </div>
-                    </div> -->
+                            </div>
+                        </div>
+                    </div>
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >
@@ -69,12 +94,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($barangmasukfarmasi->isEmpty())
+                        @if ($BarangMasukFarmasi->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($barangmasukfarmasi as $item)
+                        @foreach($BarangMasukFarmasi as $item)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td>{{ $loop->iteration }}</td>
                             <td class="px-6 py-2 whitespace-nowrap">@foreach($data as $barang)
@@ -153,27 +178,27 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                @if ($barangmasukfarmasi->onFirstPage())
+                @if ($BarangMasukFarmasi->onFirstPage())
                     <li>
                         <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $barangmasukfarmasi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        <a href="{{ $BarangMasukFarmasi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                     </li>
                 @endif
         
-                @foreach ($barangmasukfarmasi->getUrlRange($barangmasukfarmasi->currentPage() - 2, $barangmasukfarmasi->currentPage() + 2) as $page => $url)
-                    @if ($page == $barangmasukfarmasi->currentPage())
+                @foreach ($BarangMasukFarmasi->getUrlRange($BarangMasukFarmasi->currentPage() - 2, $BarangMasukFarmasi->currentPage() + 2) as $page => $url)
+                    @if ($page == $BarangMasukFarmasi->currentPage())
                         <li>
                             <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach
         
-                @if ($barangmasukfarmasi->hasMorePages())
+                @if ($BarangMasukFarmasi->hasMorePages())
                     <li>
-                        <a href="{{ $barangmasukfarmasi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        <a href="{{ $BarangMasukFarmasi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
                     </li>
                 @else
                     <li>

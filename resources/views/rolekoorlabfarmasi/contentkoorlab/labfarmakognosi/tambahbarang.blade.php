@@ -48,21 +48,30 @@
         <div class="grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah*</span>
-                <input type="number" name="jumlah" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
+                <input name="jumlah" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
                 @error('jumlah')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Satuan*</span>
-                <input type="text" name="satuan" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
-                @error('satuan')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
+                <div class="relative text-left">
+                    <div class="group">
+                        <div class="inline-flex w-full justify-start mt-2 rounded-md bg-white px-3 py-2.5 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                            <select  name="satuan" id="satuan" class="form-control @error('satuan') is-invalid @enderror w-full" required>
+                                <option value="">Pilih Satuan</option>
+                                <option value="ml">ml</option>
+                                <option value="gr">gr</option>
+                                <option value="pcs">pcs</option>
+                                <option value="lembar">lembar</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Jumlah Minimal*</span>
-                <input type="number" name="jumlah_min" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
+                <input name="jumlah_min" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
                 @error('jumlah_min')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror

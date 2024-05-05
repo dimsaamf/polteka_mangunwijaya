@@ -50,8 +50,13 @@ public function store(Request $request)
         'nama_barang.unique' => 'Nama barang sudah digunakan.',
         'jumlah.required' => 'Jumlah harus diisi.',
         'jumlah_min.required' => 'Minimal jumlah harus diisi.',
+        'jumlah.min' => 'Jumlah tidak boleh bilangan negatif.',
+        'jumlah_min.min' => 'Jumlah Minimal tidak boleh bilangan negatif.',
+        'jumlah.numeric' => 'Jumlah harus berupa angka.',
+        'jumlah.integer' => 'Jumlah harus berupa angka.',
+        'jumlah_min.numeric' => 'Jumlah Minimal harus berupa angka.',
+        'jumlah_min.integer' => 'Jumlah Minimal harus berupa angka.',
         'satuan.required' => 'Satuan harus diisi.',
-        'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
         'harga.required' => 'Harga harus dipilih.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
@@ -59,9 +64,27 @@ public function store(Request $request)
 
     $request->validate([
         'nama_barang'=>'required|string|unique:inventaris_lab_tekfarmasis',
-        'jumlah'=>'required|integer',
-        'jumlah_min'=>'required|integer',
-        'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
+        'jumlah' => [
+            'required',
+            'numeric',
+            'min:0',
+            function ($attribute, $value, $fail) use ($request) {
+                if (in_array($request->satuan, ['pcs', 'lembar']) && !preg_match('/^\d+$/', $value)) {
+                    $fail('Jumlah tidak boleh desimal jika satuan adalah "pcs" atau "lembar".');
+                }
+            },
+        ],
+        'jumlah_min' => [
+            'required',
+            'numeric',
+            'min:0',
+            function ($attribute, $value, $fail) use ($request) {
+                if (in_array($request->satuan, ['pcs', 'lembar']) && !preg_match('/^\d+$/', $value)) {
+                    $fail('Jumlah Minimal tidak boleh desimal jika satuan adalah "pcs" atau "lembar".');
+                }
+            },
+        ],
+        'satuan' => 'required|in:ml,gr,pcs,lembar',
         'tanggal_service'=>'nullable|date',
         'periode'=>'nullable|integer',
         'harga'=>'required|integer',
@@ -144,15 +167,39 @@ public function store(Request $request)
         $messages = [
             'nama_barang.unique' => 'Nama barang sudah digunakan.',
             'satuan.regex' => 'Satuan hanya boleh berisi huruf.',
+            'jumlah.min' => 'Jumlah tidak boleh bilangan negatif.',
+            'jumlah_min.min' => 'Jumlah Minimal tidak boleh bilangan negatif.',
+            'jumlah.numeric' => 'Jumlah harus berupa angka.',
+            'jumlah.integer' => 'Jumlah harus berupa angka.',
+            'jumlah_min.numeric' => 'Jumlah Minimal harus berupa angka.',
+            'jumlah_min.integer' => 'Jumlah Minimal harus berupa angka.',
             'gambar.image' => 'Gambar harus berupa gambar.',
             'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
         ];
 
         $request->validate([
             'nama_barang'=>'required|string',
-            'jumlah'=>'required|integer',
-            'jumlah_min'=>'required|integer',
-            'satuan'=>'required|string|regex:/^[a-zA-Z\s]+$/',
+            'jumlah' => [
+                'required',
+                'numeric',
+                'min:0',
+                function ($attribute, $value, $fail) use ($request) {
+                    if (in_array($request->satuan, ['pcs', 'lembar']) && !preg_match('/^\d+$/', $value)) {
+                        $fail('Jumlah tidak boleh desimal jika satuan adalah "pcs" atau "lembar".');
+                    }
+                },
+            ],
+            'jumlah_min' => [
+                'required',
+                'numeric',
+                'min:0',
+                function ($attribute, $value, $fail) use ($request) {
+                    if (in_array($request->satuan, ['pcs', 'lembar']) && !preg_match('/^\d+$/', $value)) {
+                        $fail('Jumlah Minimal tidak boleh desimal jika satuan adalah "pcs" atau "lembar".');
+                    }
+                },
+            ],
+            'satuan'=>'required|in:ml,gr,pcs,lembar',
             'tanggal_service'=>'nullable|date',
             'periode'=>'nullable|integer',
             'harga'=>'required|integer',

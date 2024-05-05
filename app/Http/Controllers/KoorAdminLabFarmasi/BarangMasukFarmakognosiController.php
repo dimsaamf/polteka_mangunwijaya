@@ -114,11 +114,31 @@ class BarangMasukFarmakognosiController extends Controller
 
     public function store(Request $request)
     {
+        $messages = [
+            'jumlah_masuk.min' => 'Jumlah tidak boleh bilangan negatif.',
+            'jumlah_masuk.numeric' => 'Jumlah harus berupa angka.',
+            'jumlah_masuk.integer' => 'Jumlah harus berupa angka.',
+        ];
+
         $request->validate([
-            'jumlah_masuk'=>'required|integer',
+            'jumlah_masuk' => [
+                'required',
+                'numeric',
+                'min:0',
+                function ($attribute, $value, $fail) use ($request) {
+                    $inventaris = InventarisLabFarmakognosi::findOrFail($request->id_barang);
+                    $satuan = $inventaris->satuan;
+
+                    if (in_array($satuan, ['pcs', 'lembar'])) {
+                        if (strpos($value, '.') !== false) {
+                            $fail('Jumlah masuk tidak boleh mengandung angka desimal untuk satuan pcs dan desimal');
+                        }
+                    }
+                },
+            ],
             'tanggal_masuk' => 'required|date',
-            'keterangan_masuk' => 'required'
-        ]);
+            'keterangan_masuk' => 'required',
+        ], $messages);
 
         $id_barang = $request->id_barang;
         $barang = InventarisLabFarmakognosi::findOrFail($id_barang);

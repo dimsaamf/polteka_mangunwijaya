@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->string('kode_barang');
-            $table->integer('jumlah');
-            $table->integer('jumlah_min');
-            $table->string('satuan');
+            $table->float('jumlah');
+            $table->float('jumlah_min');
+            $table->enum('satuan', ['ml', 'gr', 'pcs', 'lembar']);
             $table->date('tanggal_service')->nullable();
             $table->boolean('reminder')->default(false);
             $table->boolean('sudah_dilayani')->default(false); 
