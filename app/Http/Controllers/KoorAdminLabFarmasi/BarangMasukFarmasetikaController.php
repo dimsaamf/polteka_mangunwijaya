@@ -7,18 +7,69 @@ use Illuminate\Http\Request;
 use App\Models\InventarisLabFarmasetika;
 use App\Models\BarangMasukFarmasetika;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BarangMasukFarmasetikaController extends Controller
 {
-    public function index(){
-        $barangmasukfarmasetika = BarangMasukFarmasetika::paginate(10);
-        $data=InventarisLabFarmasetika::all();
+    public function index(Request $request){
+        // $BarangMasukFarmasetika = BarangMasukFarmasetika::paginate(10);
+        // $data=InventarisLabFarmasetika::all();
+        $query = $request->input('search');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        $cek = Carbon::today();
+        $hari_ini = $cek->toDateString();
+
+        if ($start_date > $end_date) {
+            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            return back();
+        }
+
+        if ($start_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ( $end_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ($start_date && $end_date) {
+            session()->put('filter_start_date', $start_date);
+            session()->put('filter_end_date', $end_date);
+        } else {
+            // Jika tidak ada nilai filter yang diberikan, hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+
+        $queryBuilder = BarangMasukFarmasetika::with('inventarislabfarmasetika')
+            ->whereHas('inventarislabfarmasetika', function ($q) use ($query) {
+                $q->where('nama_barang', 'LIKE', '%' . $query . '%');
+            });
+
+        if ($start_date && $end_date) {
+            $queryBuilder->whereBetween('tanggal_masuk', [$start_date, $end_date]);
+        }
+
+        // Cek apakah tombol "Batal Filter" diklik
+        if ($request->has('cancel_filter')) {
+            // Hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+        $BarangMasukFarmasetika = $queryBuilder->paginate(10);
+
+        $data = InventarisLabFarmasetika::all();
         // return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.riwayatmasuk', compact('barangmasukfarmasetika','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.riwayatmasuk', compact('barangmasukfarmasetika','data'));
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.riwayatmasuk', compact('BarangMasukFarmasetika','data'));
             } else{
-                return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.riwayatmasuk', compact('barangmasukfarmasetika','data'));
+                return view('roleadminlabfarmasi.contentadminlab.labfarmasetika.riwayatmasuk', compact('BarangMasukFarmasetika','data'));
             }
         }
     }
@@ -77,12 +128,12 @@ class BarangMasukFarmasetikaController extends Controller
         $barang->jumlah = $jumlah_akhir;
         $barang->save();
         
-        $barangmasukfarmasetika = new BarangMasukfarmasetika();
-        $barangmasukfarmasetika->jumlah_masuk = $jumlah_masuk_baru;
-        $barangmasukfarmasetika->tanggal_masuk = $request->tanggal_masuk;
-        $barangmasukfarmasetika->keterangan_masuk = $request->keterangan_masuk;
-        $barangmasukfarmasetika->id_barang = $id_barang;
-        $barangmasukfarmasetika->save();
+        $BarangMasukFarmasetika = new BarangMasukfarmasetika();
+        $BarangMasukFarmasetika->jumlah_masuk = $jumlah_masuk_baru;
+        $BarangMasukFarmasetika->tanggal_masuk = $request->tanggal_masuk;
+        $BarangMasukFarmasetika->keterangan_masuk = $request->keterangan_masuk;
+        $BarangMasukFarmasetika->id_barang = $id_barang;
+        $BarangMasukFarmasetika->save();
 
         alert()->success('Berhasil','Stok Barang Berhasil Ditambahkan.');
         // return redirect()->route('barangmasukkoorlabfarmasetika');

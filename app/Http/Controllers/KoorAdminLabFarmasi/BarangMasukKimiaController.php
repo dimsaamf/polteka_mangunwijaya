@@ -53,6 +53,13 @@ class BarangMasukKimiaController extends Controller
         $queryBuilder->whereBetween('tanggal_masuk', [$start_date, $end_date]);
     }
 
+    // Cek apakah tombol "Batal Filter" diklik
+    if ($request->has('cancel_filter')) {
+        // Hapus nilai filter dari session
+        session()->forget('filter_start_date');
+        session()->forget('filter_end_date');
+    }
+
     $BarangMasukKimia = $queryBuilder->paginate(10);
 
     $data = InventarisLabKimia::all();

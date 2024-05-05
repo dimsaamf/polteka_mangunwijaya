@@ -19,6 +19,6 @@ class BarangKeluarMikro extends Model
 
     public function inventarislabmikro()
     {
-        return $this->belongsTo(InventarisLabMikro::class);
+        return $this->belongsTo(InventarisLabMikro::class, 'id_barang');
     }
 }

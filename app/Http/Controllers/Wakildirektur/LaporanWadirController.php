@@ -77,13 +77,13 @@ class LaporanWadirController extends Controller
 
         $semuaBarangMasuk = collect();
 
-        $barangMasukFarmakognosi = BarangMasukFarmakognosi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
-        $barangMasukFarmasetika = BarangMasukFarmasetika::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukFarmakognosi = BarangMasukFarmakognosi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukFarmasetika = BarangMasukFarmasetika::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
         $barangMasukKimia = BarangMasukKimia::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
         $barangMasukTekfarmasi = BarangMasukTekfarmasi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
 
-        $semuaBarangMasuk = $semuaBarangMasuk->merge($barangMasukFarmakognosi)
-                                            ->merge($barangMasukFarmasetika)
+        $semuaBarangMasuk = $semuaBarangMasuk->merge($BarangMasukFarmakognosi)
+                                            ->merge($BarangMasukFarmasetika)
                                             ->merge($barangMasukKimia)
                                             ->merge($barangMasukTekfarmasi);
                                             
@@ -91,12 +91,12 @@ class LaporanWadirController extends Controller
 
         $semuaBarangKeluar = collect();
 
-        $barangKeluarFarmakognosi = BarangKeluarFarmakognosi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarFarmakognosi = BarangKeluarFarmakognosi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
         $barangKeluarFarmasetika = BarangKeluarFarmasetika::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
         $barangKeluarKimia = BarangKeluarKimia::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
         $BarangKeluarTekfarmasi = BarangKeluarTekfarmasi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
 
-        $semuaBarangKeluar = $semuaBarangKeluar->merge($barangKeluarFarmakognosi)
+        $semuaBarangKeluar = $semuaBarangKeluar->merge($BarangKeluarFarmakognosi)
                                             ->merge($barangKeluarFarmasetika)
                                             ->merge($barangKeluarKimia)
                                             ->merge($BarangKeluarTekfarmasi);

@@ -24,6 +24,6 @@ class BarangMasukFarmakognosi extends Model
     // }
     public function inventarislabfarmakognosi()
     {
-        return $this->belongsTo(InventarislabFarmakognosi::class);
+        return $this->belongsTo(InventarislabFarmakognosi::class, 'id_barang');
     }
 }

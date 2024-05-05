@@ -1,5 +1,6 @@
 @extends('rolekoorlabfarmasi.layoutkoorlab.labtekfarmasi.barangkeluar')
 @section('content')
+@include('sweetalert::alert')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
@@ -37,32 +38,52 @@
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                 <div class="flex">
-                    <!-- <div class="flex w-full justify-end mb-3">
-                                    <div class ="bg-merah180-polteka w-1/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                        <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full">
-                                            <div class="relative flex">
-                                                <input
-                                                    type="search"
-                                                    class="relative m-0 block flex-auto rounded border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
-                                                    placeholder="Cari Barang"/>
-                                            </div>
+                    <!-- filter tanggal -->
+                    <div class="flex w-1/2 justify-start mb-3">
+                        <form action="{{ route('riwayatbarangkeluarkoorlabtekfarmasi') }}" method="GET" class="flex gap-3 my-auto">
+                            <label for="start_date" class="block">
+                                <span class="text-sm font-xs">Tanggal Awal</span>
+                                <input type="date" name="start_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_start_date') }}" />
+                            </label>
+                            <label for="end_date" class="block">
+                                <span class="text-sm font-xs">Tanggal Akhir</span>
+                                <input type="date" name="end_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_end_date') }}" />
+                            </label>
+                            <button type="submit" class="btn btn-primary mt-6 h-[40px] rounded-md px-2 bg-zinc-400  text-putih-polteka shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" viewBox="0 0 20 20"><path fill="white" d="M8.6 3.4L14.2 9H2v2h12.2l-5.6 5.6L10 18l8-8l-8-8z"/></svg>
+                            </button>
+                        </form>
+                        <form action="{{ route('riwayatbarangkeluarkoorlabtekfarmasi') }}" method="GET">
+                            <button type="submit" class="btn btn-secondary ml-2 mt-6 h-[40px] rounded-md px-2 bg-merah200-polteka text-putih-polteka shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"/></svg>
+                            </button>
+                            <input type="hidden" name="cancel_filter" value="1">
+                        </form>
+
+                    </div>
+                    <!-- search -->
+                    <div class="flex w-1/2 justify-end mt-5 mb-3">
+                                    <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                    <form action="{{ route('riwayatbarangkeluarkoorlabtekfarmasi') }}" method="GET" class="relative flex w-full">
+                                    <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
+                                        <div class="relative flex">   
+                                            <input
+                                                type="text"
+                                                name="search"
+                                                value="{{ request('search') }}"
+                                                class="relative m-0 block flex-auto rounded-l-full border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                                placeholder="Cari barang"/>
                                         </div>
-                                        <span class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5" id="button-addon2">
-                                            <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="2"
-                                            stroke="white">
-                                                <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                            </svg>
-                                        </span>
                                     </div>
-                                </div>
-                    </div> -->
+                                    <button type="submit" class="absolute right-0 top-0 bottom-0 flex items-center justify-center w-10 h-full rounded-r-full bg-merah180-polteka dark:bg-merah180-polteka dark:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <table class="min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr >

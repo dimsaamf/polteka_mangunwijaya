@@ -24,6 +24,6 @@ class BarangKeluarFarmasi extends Model
     // }
     public function inventarisfarmasi()
     {
-        return $this->belongsTo(InventarisFarmasi::class);
+        return $this->belongsTo(InventarisFarmasi::class, 'id_barang');
     }
 }

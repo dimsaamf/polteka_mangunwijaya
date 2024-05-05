@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\InventarisLabfarmakognosi;
 use App\Models\BarangKeluarFarmakognosi;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BarangKeluarFarmakognosiController extends Controller
 {
@@ -28,15 +29,65 @@ class BarangKeluarFarmakognosiController extends Controller
         }
     }
 
-    public function index(){
-        $barangkeluarfarmakognosi = BarangKeluarFarmakognosi::paginate(10);
-        $data=InventarisLabFarmakognosi::all();
+    public function index(Request $request){
+        // $BarangKeluarFarmakognosi = BarangKeluarFarmakognosi::paginate(10);
+        // $data=InventarisLabFarmakognosi::all();
+        $query = $request->input('search');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        $cek = Carbon::today();
+        $hari_ini = $cek->toDateString();
+
+        if ($start_date > $end_date) {
+            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            return back();
+        }
+
+        if ($start_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ( $end_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ($start_date && $end_date) {
+            session()->put('filter_start_date', $start_date);
+            session()->put('filter_end_date', $end_date);
+        } else {
+            // Jika tidak ada nilai filter yang diberikan, hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+        $queryBuilder = BarangKeluarFarmakognosi::with('inventarislabfarmakognosi')
+            ->whereHas('inventarislabfarmakognosi', function ($q) use ($query) {
+                $q->where('nama_barang', 'LIKE', '%' . $query . '%');
+            });
+
+        if ($start_date && $end_date) {
+            $queryBuilder->whereBetween('tanggal_keluar', [$start_date, $end_date]);
+        }
+
+        // Cek apakah tombol "Batal Filter" diklik
+        if ($request->has('cancel_filter')) {
+            // Hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+        $BarangKeluarFarmakognosi = $queryBuilder->paginate(10);
+
+        $data = InventarisLabFarmakognosi::all();
+
         // return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.riwayatkeluar', compact('barangkeluarfarmakognosi','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.riwayatkeluar', compact('barangkeluarfarmakognosi','data'));
+                return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.riwayatkeluar', compact('BarangKeluarFarmakognosi','data'));
             } else{
-                return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.riwayatkeluar', compact('barangkeluarfarmakognosi','data'));
+                return view('roleadminlabfarmasi.contentadminlab.labfarmakognosi.riwayatkeluar', compact('BarangKeluarFarmakognosi','data'));
             }
         }
     }
@@ -75,12 +126,12 @@ class BarangKeluarFarmakognosiController extends Controller
             $barang->jumlah = $jumlah_akhir;
             $barang->save();
             
-            $barangkeluarfarmakognosi = new BarangKeluarFarmakognosi();
-            $barangkeluarfarmakognosi->jumlah_keluar = $jumlah_keluar_baru;
-            $barangkeluarfarmakognosi->tanggal_keluar = $request->tanggal_keluar;
-            $barangkeluarfarmakognosi->keterangan_keluar = $request->keterangan_keluar;
-            $barangkeluarfarmakognosi->id_barang = $id_barang;
-            $barangkeluarfarmakognosi->save();
+            $BarangKeluarFarmakognosi = new BarangKeluarFarmakognosi();
+            $BarangKeluarFarmakognosi->jumlah_keluar = $jumlah_keluar_baru;
+            $BarangKeluarFarmakognosi->tanggal_keluar = $request->tanggal_keluar;
+            $BarangKeluarFarmakognosi->keterangan_keluar = $request->keterangan_keluar;
+            $BarangKeluarFarmakognosi->id_barang = $id_barang;
+            $BarangKeluarFarmakognosi->save();
 
             alert()->success('Berhasil','Stok Barang Berhasil Dikurangi.');
             // return redirect()->route('barangkeluarkoorlabfarmakognosi');

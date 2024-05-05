@@ -20,6 +20,6 @@ class BarangKeluarFarmasetika extends Model
 
     public function inventarislabfarmasetika()
     {
-        return $this->belongsTo(InventarislabFarmasetika::class);
+        return $this->belongsTo(InventarislabFarmasetika::class, 'id_barang');
     }
 }

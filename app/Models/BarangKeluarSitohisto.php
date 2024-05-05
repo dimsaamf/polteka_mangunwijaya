@@ -19,6 +19,6 @@ class BarangKeluarSitohisto extends Model
 
     public function inventarislabsitohisto()
     {
-        return $this->belongsTo(InventarisLabSitohisto::class);
+        return $this->belongsTo(InventarisLabSitohisto::class, 'id_barang');
     }
 }
