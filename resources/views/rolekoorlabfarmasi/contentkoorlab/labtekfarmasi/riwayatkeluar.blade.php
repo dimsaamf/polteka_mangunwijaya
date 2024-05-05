@@ -39,8 +39,8 @@
                 <div class="overflow-hidden">
                 <div class="flex">
                     <!-- filter tanggal -->
-                    <div class="flex w-1/2 justify-start mb-3">
-                        <form action="{{ route('riwayatbarangkeluarkoorlabtekfarmasi') }}" method="GET" class="flex gap-3 my-auto">
+                    <div class="flex w-1/2 justify-start mb-3 items-center">
+                        <form action="{{ route('riwayatbarangkeluarkoorlabtekfarmasi') }}" method="GET" class="items-center flex gap-3 my-auto">
                             <label for="start_date" class="block">
                                 <span class="text-sm font-xs">Tanggal Awal</span>
                                 <input type="date" name="start_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_start_date') }}" />
@@ -49,13 +49,13 @@
                                 <span class="text-sm font-xs">Tanggal Akhir</span>
                                 <input type="date" name="end_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_end_date') }}" />
                             </label>
-                            <button type="submit" class="btn btn-primary mt-6 h-[40px] rounded-md px-2 bg-zinc-400  text-putih-polteka shadow-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" viewBox="0 0 20 20"><path fill="white" d="M8.6 3.4L14.2 9H2v2h12.2l-5.6 5.6L10 18l8-8l-8-8z"/></svg>
+                            <button type="submit" class="btn btn-primary mt-6 w-[25px] h-[24px] rounded-md px-1 bg-zinc-400  text-putih-polteka shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 20 20"><path fill="white" d="M8.6 3.4L14.2 9H2v2h12.2l-5.6 5.6L10 18l8-8l-8-8z"/></svg>
                             </button>
                         </form>
                         <form action="{{ route('riwayatbarangkeluarkoorlabtekfarmasi') }}" method="GET">
-                            <button type="submit" class="btn btn-secondary ml-2 mt-6 h-[40px] rounded-md px-2 bg-merah200-polteka text-putih-polteka shadow-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"/></svg>
+                            <button type="submit" class="btn btn-secondary ml-1 mt-7 w-[25px] h-[24px] rounded-md px-[3px] bg-merah200-polteka text-putih-polteka shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"/></svg>
                             </button>
                             <input type="hidden" name="cancel_filter" value="1">
                         </form>
