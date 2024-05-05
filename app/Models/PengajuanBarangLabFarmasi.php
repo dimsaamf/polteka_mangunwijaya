@@ -12,8 +12,9 @@ class PengajuanBarangLabFarmasi extends Model
     protected $table = 'pengajuan_barang_labfarmasis';
     protected $fillable = [
         'no_surat', 
-        'tanggal', 
-        'detail_barang', 
+        'tanggal',  
+        'nama_barang',
+        'harga',
         'total_harga', 
         'file', 
         'status'

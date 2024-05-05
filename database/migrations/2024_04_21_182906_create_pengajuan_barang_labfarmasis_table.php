@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('no_surat');
             $table->date('tanggal')->default(now());
-            $table->text('detail_barang');
+            $table->json('nama_barang'); // Mengubah tipe data menjadi JSON
+            $table->json('harga'); // Mengubah tipe data menjadi JSON
             $table->integer('total_harga');
             $table->string('file');
             $table->string('status');

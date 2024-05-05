@@ -12,7 +12,7 @@
             <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmakognosi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Ubah Barang</div>
-        </div> 
+        </div>
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
                 <div class="icon-container-prof">

@@ -46,20 +46,30 @@
                 <input type="hidden" name="tanggal" value="{{ now()->toDateString() }}">
                 <p class="mt-2">{{ \Carbon\Carbon::now()->timezone('Asia/Jakarta')->translatedFormat('d F Y') }}</p>
             </label>            
-            <label class="block mt-4">
-                <span class="text-sm font-medium">Detail Barang*</span>
-                <textarea name="detail_barang" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum"></textarea> 
-                @error('detail_barang')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
-            </label>
-            <label class="block mt-4">
-                <span class="text-sm font-medium">Total Dana*</span>
-                <input type="total_harga" name="total_harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
-                @error('total_harga')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
-            </label>
+            <!-- Form Input Nama dan Harga Barang -->
+<div class="barang-container grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4 justify-center items-center">
+    <label class="block md:col-span-2">
+        <span class="text-sm font-medium">Nama Barang*</span>
+        <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
+    </label>
+    <label class="block md:col-span-1">
+        <span class="text-sm font-medium">Harga Barang*</span>
+        <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
+    </label>
+    <!-- Tombol Hapus Barang -->
+    <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+        Hapus Barang
+    </button>
+</div>
+<!-- Tombol Tambah Barang -->
+<button type="button" id="tambah-barang" class="md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+    Tambah Barang
+</button>
+<!-- Total Harga -->
+<label class="block mt-4">
+    <span class="text-sm font-medium">Total Harga</span>
+    <input type="text" name="total_harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Total Harga" readonly />
+</label>
             <label class="block mt-4">
                 <span class="text-sm font-medium">File Surat*</span>
                 <input type="file" name="file_surat" class="mt-2 mr-4 block w-full sm:text-sm"/>
@@ -140,5 +150,66 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tambahBarangBtn = document.getElementById('tambah-barang');
+        const totalHargaInput = document.querySelector('input[name="total_harga"]');
+
+        // Fungsi untuk menghitung total harga
+        function hitungTotalHarga() {
+            let total = 0;
+            document.querySelectorAll('.barang-container').forEach(container => {
+                const hargaInput = container.querySelector('input[name="harga[]"]');
+                if (hargaInput.value.trim() !== '') {
+                    total += parseFloat(hargaInput.value);
+                }
+            });
+            totalHargaInput.value = total;
+        }
+
+        // Event listener untuk setiap input harga barang
+        document.addEventListener('input', function (event) {
+            if (event.target && event.target.name === 'harga[]') {
+                hitungTotalHarga();
+            }
+        });
+
+        // Event listener untuk tombol hapus barang
+        document.addEventListener('click', function (event) {
+            if (event.target && event.target.classList.contains('hapus-barang')) {
+                const container = event.target.closest('.barang-container');
+                container.parentNode.removeChild(container);
+                hitungTotalHarga();
+            }
+        });
+
+        // Event listener untuk tombol tambah barang
+        tambahBarangBtn.addEventListener('click', function () {
+            const barangContainer = document.createElement('div');
+            barangContainer.classList.add('barang-container', 'grid', 'grid-cols-1', 'md:grid-cols-4', 'md:gap-7', 'gap-4', 'mt-4', 'justify-center', 'items-center');
+            barangContainer.innerHTML = `
+                <label class="block md:col-span-2">
+                    <span class="text-sm font-medium">Nama Barang*</span>
+                    <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
+                </label>
+                <label class="block md:col-span-1">
+                    <span class="text-sm font-medium">Harga Barang*</span>
+                    <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
+                </label>
+                <!-- Tombol Hapus Barang -->
+                <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                    Hapus Barang
+                </button>
+            `;
+            tambahBarangBtn.parentNode.insertBefore(barangContainer, tambahBarangBtn);
+            // Reset total harga
+            hitungTotalHarga();
+        });
+    });
+</script>
+
+
+
 
 @endsection
