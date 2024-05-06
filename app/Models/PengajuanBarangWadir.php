@@ -12,7 +12,10 @@ class PengajuanBarangWadir extends Model
     protected $fillable = [
         'pengajuan_barang_labfarmasi_id',
         'status',
+        'keterangan',
     ];
+
+    public $timestamps = true;
 
     public function pengajuanBarangLabFarmasi()
     {

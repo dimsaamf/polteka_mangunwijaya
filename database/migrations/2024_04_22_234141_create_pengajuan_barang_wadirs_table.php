@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pengajuan_barang_labfarmasi_id');
             $table->foreign('pengajuan_barang_labfarmasi_id')->references('id')->on('pengajuan_barang_labfarmasis')->onDelete('cascade');
-            $table->enum('status', ['Diterima', 'Ditunda', 'Ditolak']);
+            $table->enum('status', ['Disetujui', 'Ditunda', 'Ditolak','Disetujui Sebagian', 'Menunggu Konfirmasi']);
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

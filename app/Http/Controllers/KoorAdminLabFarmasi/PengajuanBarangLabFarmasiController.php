@@ -38,21 +38,43 @@ class PengajuanBarangLabFarmasiController extends Controller
         'file_surat.file' => 'File harus berupa file.',
         'file_surat.max' => 'Ukuran file tidak boleh melebihi 2MB.',
         'file_surat.mimes' => 'Format yang didukung hanya pdf,png,jpg,jpeg',
+        'nama_barang.*.required' => 'Nama barang harus diisi.',
+        'nama_barang.*.string' => 'Nama barang harus berupa teks.',
+        'harga.*.required' => 'Harga barang harus diisi.',
+        'harga.*.integer' => 'Harga barang harus berupa angka.',
     ];
 
     $request->validate([
         'no_surat' => 'required|string|max:255',
         'file_surat' => 'required|file|max:2048|mimes:pdf,png,jpg,jpeg',
+        'nama_barang.*' => 'required|string',
+        'harga.*' => 'required|integer',
     ], $messages);
+
+    foreach ($request->nama_barang as $key => $namaBarang) {
+        if (empty($namaBarang) || empty($request->harga[$key])) {
+            return redirect()->back()->withInput()->with('error', 'Semua kolom nama barang dan harga harus diisi.');
+        }
+    }
+    
+    // Logika untuk menambahkan barang baru
+    $tambahBarang = true;
+    foreach ($request->nama_barang as $namaBarang) {
+        if (empty($namaBarang)) {
+            $tambahBarang = false;
+            break;
+        }
+    }
 
     $file_surat = $request->file('file_surat');
     $file_surat_path = $file_surat->store('surat', 'public');
     $statusDefault = 'Menunggu Konfirmasi';
+    $keteranganDefault = 'Belum Ada';
 
     $total_harga = 0; // Inisialisasi total harga
-if (!empty($request->harga)) { // Periksa apakah $request->harga tidak kosong
-    $total_harga = array_sum($request->harga);
-}
+    if (!empty($request->harga)) { // Periksa apakah $request->harga tidak kosong
+        $total_harga = array_sum($request->harga);
+    }
         $nama_barang = json_encode($request->nama_barang);
         $harga = json_encode($request->harga);
 
@@ -61,6 +83,7 @@ if (!empty($request->harga)) { // Periksa apakah $request->harga tidak kosong
             'tanggal' => Carbon::now('Asia/Jakarta'),
             'file' => $file_surat_path,
             'status' => $statusDefault,
+            'keterangan' => $keteranganDefault,
             'total_harga' => $total_harga,
             'nama_barang' => $nama_barang,
             'harga' => $harga,
@@ -72,7 +95,7 @@ if (!empty($request->harga)) { // Periksa apakah $request->harga tidak kosong
 
 public function edit($id)
 {
-    $pengajuanBarang = PengajuanBarangLabFarmasi::with('detail')->findOrFail($id);
+    $pengajuanBarang = PengajuanBarangLabFarmasi::findOrFail($id);
     return view('rolekoorlabfarmasi.contentkoorlab.editpengajuan', compact('pengajuanBarang'));
 }
 
@@ -85,11 +108,16 @@ public function update(Request $request, $id)
         'file_surat.file' => 'File harus berupa file.',
         'file_surat.max' => 'Ukuran file tidak boleh melebihi 2MB.',
         'file_surat.mimes' => 'Format yang didukung hanya pdf, png, jpg, jpeg',
+        'nama_barang.*.required' => 'Nama barang harus diisi.',
+        'harga.*.required' => 'Harga harus diisi.',
+        'harga.*.integer' => 'Harga harus berupa angka.',
     ];
 
     $request->validate([
         'no_surat' => 'required|string|max:255',
         'file_surat' => 'sometimes|file|max:2048|mimes:pdf,png,jpg,jpeg',
+        'nama_barang.*' => 'required|string',
+        'harga.*' => 'required|integer',
     ], $messages);
 
     $pengajuanBarang = PengajuanBarangLabFarmasi::findOrFail($id);
@@ -102,15 +130,18 @@ public function update(Request $request, $id)
         $pengajuanBarang->file = $file_surat_path;
     }
 
-    $total_harga = array_sum($request->harga);
-        $pengajuanBarang->total_harga = $total_harga;
+    // Menghitung total harga
+    $total_harga = 0;
+    foreach ($request->harga as $harga) {
+        $total_harga += $harga;
+    }
+    $pengajuanBarang->total_harga = $total_harga;
 
-        $nama_barang = json_encode($request->nama_barang);
-        $harga = json_encode($request->harga);
-        $pengajuanBarang->nama_barang = $nama_barang;
-        $pengajuanBarang->harga = $harga;
+    // Menyimpan data nama barang dan harga dalam bentuk JSON
+    $pengajuanBarang->nama_barang = json_encode($request->nama_barang);
+    $pengajuanBarang->harga = json_encode($request->harga);
 
-        $pengajuanBarang->save();
+    $pengajuanBarang->save();
 
     alert()->success('Berhasil', 'Pengajuan Barang berhasil diperbarui.');
     return redirect()->route('pengajuanbarangkoorlabfarmasi');

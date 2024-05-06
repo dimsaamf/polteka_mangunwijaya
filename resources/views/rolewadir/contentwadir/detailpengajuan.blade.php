@@ -32,17 +32,75 @@
                         <p>{{ \Carbon\Carbon::parse($pengajuanBarang->tanggal)->translatedFormat('d F Y') }}</p>
                     </div>
                     <div class="mb-5">
+                        <p class="font-semibold mb-5">Detail Barang:</p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full border border-hitam-polteka">
+                                <thead class="bg-abu-polteka border-b border-hitam-polteka ">
+                                    <tr>
+                                        <th scope="col" class="border-e border-hitam-polteka w-10 px-6 py-2 text-center font-semibold font-polteka text-hitam-polteka">No</th>
+                                        <th scope="col" class="border-e border-hitam-polteka px-6 py-2 text-center font-semibold font-polteka text-hitam-polteka">Nama Barang</th>
+                                        <th scope="col" class="border-e border-hitam-polteka px-6 py-2 text-center font-semibold font-polteka text-hitam-polteka">Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y border-b border-hitam-polteka">
+                                    @foreach(json_decode($pengajuanBarang->nama_barang) as $index => $namaBarang)
+                                    <tr class="border-b border-hitam-polteka ">
+                                        <td class="border-e border-hitam-polteka w-10 px-6 py-2 text-center whitespace-nowrap">{{ $loop->iteration }}</td>
+                                        <td class="border-e border-hitam-polteka px-6 py-2 text-center whitespace-nowrap">{{ $namaBarang }}</td>
+                                        <td class="border-e border-hitam-polteka px-6 py-2 text-center whitespace-nowrap">Rp {{ number_format(json_decode($pengajuanBarang->harga)[$index], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="mb-5">
                         <p class="font-semibold">Total Harga:</p>
                         <p>Rp {{ number_format($pengajuanBarang->total_harga, 0, ',', '.') }}</p>
                     </div>
-                    <div class="mb-5">
-                        <p class="font-semibold">Status:</p>
-                        <p>{{ $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->status : 'Menunggu konfirmasi' }}</p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="font-semibold">Detail Barang:</p>
-                        <p class="text-justify">{{ $pengajuanBarang->detail_barang }}</p>
-                    </div>
+                    <form method="POST" action="{{ route('updatestatuskoorlabfarmasi', $pengajuanBarang->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-5">
+                            <p class="font-semibold">Status:</p>
+                                <div class="form-group flex">
+                                    @if ($pengajuanBarang->pengajuanWadir && in_array($pengajuanBarang->pengajuanWadir->status, ['Disetujui','Disetujui Sebagian']))
+                                    <select id="statusDropdown" name="status" class="form-control inline-flex w-auto mr-2 rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka" disabled>
+                                        @php
+                                        $status = $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->status : '';
+                                        @endphp
+                                        <option value="Menunggu Konfirmasi" {{ !$status ? 'selected' : '' }}>Menunggu konfirmasi</option>
+                                        <option value="Disetujui" {{ $status === 'Disetujui' ? 'selected' : '' }} >Disetujui</option>
+                                        <option value="Disetujui Sebagian" {{ $status === 'Disetujui Sebagian' ? 'selected' : '' }}>Disetujui Sebagian</option>
+                                        <option value="Ditunda" {{ $status === 'Ditunda' ? 'selected' : '' }}>Ditunda</option>
+                                        <option value="Ditolak" {{ $status === 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                    </select>
+                                    @else
+                                    <select id="statusDropdown" name="status" class="form-control inline-flex w-auto mr-2 rounded-md bg-merah180-polteka px-1 py-1 text-sm font-semibold text-putih-polteka" >
+                                        @php
+                                        $status = $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->status : '';
+                                        @endphp
+                                        <option value="" {{ !$status ? 'selected' : '' }}>Menunggu konfirmasi</option>
+                                        <option value="Disetujui" {{ $status === 'Disetujui' ? 'selected' : '' }} >Disetujui</option>
+                                        <option value="Disetujui Sebagian" {{ $status === 'Disetujui Sebagian' ? 'selected' : '' }}>Disetujui Sebagian</option>
+                                        <option value="Ditunda" {{ $status === 'Ditunda' ? 'selected' : '' }}>Ditunda</option>
+                                        <option value="Ditolak" {{ $status === 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                    </select>
+                                    @endif
+                                </div>
+                        </div>
+                        <div class="mb-3">
+                            <p class="font-semibold">Keterangan:</p>
+                            <label class="block mt-1">
+                                <textarea name="keterangan" rows="5" class="form-control @error('keterangan') is-invalid @enderror mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-start sm:text-sm focus:ring-1" placeholder="Keterangan">
+                                    {{ old('keterangan', $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->keterangan : '') }}
+                                </textarea>
+                            </label>
+                        </div>
+                        <button type="submit" class="inline-flex w-20 justify-center mt-2 mb-5 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            Update
+                        </button> 
+                    </form>
                     <div>
                         <p class="font-semibold">File:</p>
                         @if (pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION) == 'pdf')
@@ -60,5 +118,10 @@
         </div>
     </footer> 
 </div>
+
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'keterangan' );
+</script>
 
 @endsection

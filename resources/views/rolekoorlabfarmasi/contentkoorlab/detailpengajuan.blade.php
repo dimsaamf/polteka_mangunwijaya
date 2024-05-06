@@ -32,17 +32,53 @@
                         <p>{{ \Carbon\Carbon::parse($pengajuanBarang->tanggal)->translatedFormat('d F Y') }}</p>
                     </div>
                     <div class="mb-5">
+                        <p class="font-semibold mb-5">Detail Barang:</p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full border border-hitam-polteka">
+                                <thead class="bg-abu-polteka border-b border-hitam-polteka ">
+                                    <tr>
+                                        <th scope="col" class="border-e border-hitam-polteka w-10 px-6 py-2 text-center font-semibold font-polteka text-hitam-polteka">No</th>
+                                        <th scope="col" class="border-e border-hitam-polteka px-6 py-2 text-center font-semibold font-polteka text-hitam-polteka">Nama Barang</th>
+                                        <th scope="col" class="border-e border-hitam-polteka px-6 py-2 text-center font-semibold font-polteka text-hitam-polteka">Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y border-b border-hitam-polteka">
+                                    @foreach(json_decode($pengajuanBarang->nama_barang) as $index => $namaBarang)
+                                    <tr class="border-b border-hitam-polteka ">
+                                        <td class="border-e border-hitam-polteka w-10 px-6 py-2 text-center whitespace-nowrap">{{ $loop->iteration }}</td>
+                                        <td class="border-e border-hitam-polteka px-6 py-2 text-center whitespace-nowrap">{{ $namaBarang }}</td>
+                                        <td class="border-e border-hitam-polteka px-6 py-2 text-center whitespace-nowrap">Rp {{ number_format(json_decode($pengajuanBarang->harga)[$index], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="mb-5">
                         <p class="font-semibold">Total Harga:</p>
                         <p>Rp {{ number_format($pengajuanBarang->total_harga, 0, ',', '.') }}</p>
                     </div>
                     <div class="mb-5">
                         <p class="font-semibold">Status:</p>
                         <p>{{ $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->status : 'Menunggu konfirmasi' }}</p>
+                        @if($pengajuanBarang->pengajuanWadir)
+                            <p class="text-sm text-gray-500">Terakhir diubah oleh Wadir pada: {{ \Carbon\Carbon::parse($pengajuanBarang->pengajuanWadir->updated_at)->translatedFormat('d F Y H:i:s') }}</p>
+                        @endif
                     </div>
                     <div class="mb-5">
-                        <p class="font-semibold">Detail Barang:</p>
-                        <p class="text-justify">{{ $pengajuanBarang->detail_barang }}</p>
-                    </div>
+                        <p class="font-semibold">Keterangan:</p>
+                        <p>
+                            @if ($pengajuanBarang->pengajuanWadir)
+                                @if (!empty($pengajuanBarang->pengajuanWadir->keterangan))
+                                    {!! nl2br(e($pengajuanBarang->pengajuanWadir->keterangan)) !!}
+                                @else
+                                    Belum Ada
+                                @endif
+                            @else
+                                Belum Ada
+                            @endif
+                        </p>                        
+                    </div>                    
                     <div>
                         <p class="font-semibold">File:</p>
                         @if (pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION) == 'pdf')

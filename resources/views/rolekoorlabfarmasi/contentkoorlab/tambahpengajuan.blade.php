@@ -47,29 +47,35 @@
                 <p class="mt-2">{{ \Carbon\Carbon::now()->timezone('Asia/Jakarta')->translatedFormat('d F Y') }}</p>
             </label>            
             <!-- Form Input Nama dan Harga Barang -->
-<div class="barang-container grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4 justify-center items-center">
-    <label class="block md:col-span-2">
-        <span class="text-sm font-medium">Nama Barang*</span>
-        <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
-    </label>
-    <label class="block md:col-span-1">
-        <span class="text-sm font-medium">Harga Barang*</span>
-        <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
-    </label>
-    <!-- Tombol Hapus Barang -->
-    <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-        Hapus Barang
-    </button>
-</div>
-<!-- Tombol Tambah Barang -->
-<button type="button" id="tambah-barang" class="md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-    Tambah Barang
-</button>
-<!-- Total Harga -->
-<label class="block mt-4">
-    <span class="text-sm font-medium">Total Harga</span>
-    <input type="text" name="total_harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Total Harga" readonly />
-</label>
+            <div class="barang-container grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4 justify-center items-center">
+                <label class="block md:col-span-2">
+                    <span class="text-sm font-medium">Nama Barang*</span>
+                    <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
+                    @error('nama_barang')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </label>
+                <label class="block md:col-span-1">
+                    <span class="text-sm font-medium">Harga Barang*</span>
+                    <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
+                    @error('harga')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </label>
+                <!-- Tombol Hapus Barang -->
+                <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-8 h-8 justify-center items-center rounded-md text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hapus-barang" width="1.5em" height="1.5em" viewBox="0 0 512 512"><path fill="none" d="M296 64h-80a7.91 7.91 0 0 0-8 8v24h96V72a7.91 7.91 0 0 0-8-8"/><path fill="white" d="M432 96h-96V72a40 40 0 0 0-40-40h-80a40 40 0 0 0-40 40v24H80a16 16 0 0 0 0 32h17l19 304.92c1.42 26.85 22 47.08 48 47.08h184c26.13 0 46.3-19.78 48-47l19-305h17a16 16 0 0 0 0-32M192.57 416H192a16 16 0 0 1-16-15.43l-8-224a16 16 0 1 1 32-1.14l8 224A16 16 0 0 1 192.57 416M272 400a16 16 0 0 1-32 0V176a16 16 0 0 1 32 0Zm32-304h-96V72a7.91 7.91 0 0 1 8-8h80a7.91 7.91 0 0 1 8 8Zm32 304.57A16 16 0 0 1 320 416h-.58A16 16 0 0 1 304 399.43l8-224a16 16 0 1 1 32 1.14Z"/></svg>
+                </button>
+            </div>
+            <!-- Tombol Tambah Barang -->
+            <button type="button" id="tambah-barang" class="md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                Tambah Barang
+            </button>
+            <!-- Total Harga -->
+            <label class="block mt-4">
+                <span class="text-sm font-medium">Total Dana</span>
+                <input type="text" name="total_harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Total Harga" readonly />
+            </label>
             <label class="block mt-4">
                 <span class="text-sm font-medium">File Surat*</span>
                 <input type="file" name="file_surat" class="mt-2 mr-4 block w-full sm:text-sm"/>
@@ -175,41 +181,45 @@
             }
         });
 
+        // Event listener untuk tombol tambah barang
+        tambahBarangBtn.addEventListener('click', function () {
+            const isAllFilled = Array.from(document.querySelectorAll('input[name="nama_barang[]"], input[name="harga[]"]')).every(input => input.value.trim() !== '');
+            if (isAllFilled) {
+                const barangContainer = document.createElement('div');
+                barangContainer.classList.add('barang-container', 'grid', 'grid-cols-1', 'md:grid-cols-4', 'md:gap-7', 'gap-4', 'mt-4', 'justify-center', 'items-center');
+                barangContainer.innerHTML = `
+                    <label class="block md:col-span-2">
+                        <span class="text-sm font-medium">Nama Barang*</span>
+                        <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
+                        
+                    </label>
+                    <label class="block md:col-span-1">
+                        <span class="text-sm font-medium">Harga Barang*</span>
+                        <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
+                       
+                    </label>
+                    <!-- Tombol Hapus Barang -->
+                    <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-8 h-8 justify-center items-center rounded-md text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hapus-barang" width="1.5em" height="1.5em" viewBox="0 0 512 512"><path fill="none" d="M296 64h-80a7.91 7.91 0 0 0-8 8v24h96V72a7.91 7.91 0 0 0-8-8"/><path fill="white" d="M432 96h-96V72a40 40 0 0 0-40-40h-80a40 40 0 0 0-40 40v24H80a16 16 0 0 0 0 32h17l19 304.92c1.42 26.85 22 47.08 48 47.08h184c26.13 0 46.3-19.78 48-47l19-305h17a16 16 0 0 0 0-32M192.57 416H192a16 16 0 0 1-16-15.43l-8-224a16 16 0 1 1 32-1.14l8 224A16 16 0 0 1 192.57 416M272 400a16 16 0 0 1-32 0V176a16 16 0 0 1 32 0Zm32-304h-96V72a7.91 7.91 0 0 1 8-8h80a7.91 7.91 0 0 1 8 8Zm32 304.57A16 16 0 0 1 320 416h-.58A16 16 0 0 1 304 399.43l8-224a16 16 0 1 1 32 1.14Z"/></svg>
+                    </button>
+                `;
+                tambahBarangBtn.parentNode.insertBefore(barangContainer, tambahBarangBtn);
+                // Reset total harga
+                hitungTotalHarga();
+            } else {
+                alert('Isi terlebih dahulu kolom yang sudah ada sebelum menambah barang baru.');
+            }
+        });
+
         // Event listener untuk tombol hapus barang
         document.addEventListener('click', function (event) {
             if (event.target && event.target.classList.contains('hapus-barang')) {
                 const container = event.target.closest('.barang-container');
-                container.parentNode.removeChild(container);
-                hitungTotalHarga();
+                container.parentNode.removeChild(container); // Menghapus elemen barang dari DOM
+                hitungTotalHarga(); // Menghitung ulang total harga setelah menghapus barang
             }
-        });
-
-        // Event listener untuk tombol tambah barang
-        tambahBarangBtn.addEventListener('click', function () {
-            const barangContainer = document.createElement('div');
-            barangContainer.classList.add('barang-container', 'grid', 'grid-cols-1', 'md:grid-cols-4', 'md:gap-7', 'gap-4', 'mt-4', 'justify-center', 'items-center');
-            barangContainer.innerHTML = `
-                <label class="block md:col-span-2">
-                    <span class="text-sm font-medium">Nama Barang*</span>
-                    <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
-                </label>
-                <label class="block md:col-span-1">
-                    <span class="text-sm font-medium">Harga Barang*</span>
-                    <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
-                </label>
-                <!-- Tombol Hapus Barang -->
-                <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-32 h-10 justify-center items-center rounded-md px-3 py-1 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                    Hapus Barang
-                </button>
-            `;
-            tambahBarangBtn.parentNode.insertBefore(barangContainer, tambahBarangBtn);
-            // Reset total harga
-            hitungTotalHarga();
         });
     });
 </script>
-
-
-
 
 @endsection

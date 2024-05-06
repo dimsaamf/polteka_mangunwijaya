@@ -64,9 +64,10 @@ Route::middleware(['auth', 'user.role:superadmin', 'revalidate'])->group(functio
     Route::post('/superadmin/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.superadmin");
     Route::get('/superadmin/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwsuperadmin');
     Route::post('/superadmin/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.superadmin');
-    Route::get('/superadmin/pengajuanbarang', [PengajuanSuperadminController::class, 'getpengajuankoorlabfarmasi'])->name('pengajuanbarangsuperadmin');
-    Route::get('/superadmin/detailpengajuanbarang/{id}', [PengajuanSuperadminController::class, 'detailPengajuanKoorLabFarmasi'])->name('detailpengajuansuperadmin');
-    Route::get('/preview-surat-superadmin/{id}', [PengajuanSuperadminController::class, 'previewSurat'])->name('preview.suratsuperadmin');
+    Route::get('/superadmin/pengajuanbarang', [PengajuanWadirController::class, 'getpengajuan'])->name('pengajuanbarangsuperadmin');
+    Route::put('/superadmin/pengajuanbarang/{id}', [PengajuanWadirController::class, 'updateStatus'])->name('updatestatuskoorlabfarmasisuperadmin');
+    Route::get('/superadmin/detailpengajuanbarang/{id}', [PengajuanWadirController::class, 'detailPengajuanKoorLabFarmasi'])->name('detailpengajuansuperadmin');
+    Route::get('/preview-surat-superadmin/{id}', [PengajuanWadirController::class, 'previewSurat'])->name('preview.suratsuperadmin');
 });
 
 Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(function (){
@@ -78,7 +79,6 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
     Route::post('/wakildirektur/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.wadir');
     Route::get('/wakildirektur/pengajuanbarang', [PengajuanWadirController::class, 'getpengajuan'])->name('pengajuanwadir');
     Route::put('/wakildirektur/pengajuanbarang/{id}', [PengajuanWadirController::class, 'updateStatus'])->name('updatestatuskoorlabfarmasi');
-    Route::get('/wakildirektur/status', [PengajuanWadirController::class, 'getStatusOptions'])->name('getStatusOptions');
     Route::get('/wakildirektur/detailpengajuanbarang/{id}', [PengajuanWadirController::class, 'detailPengajuanKoorLabFarmasi'])->name('detailpengajuanwadir');
     Route::get('/preview-surat-wadir/{id}', [PengajuanWadirController::class, 'previewSurat'])->name('preview.suratwadir');
     Route::get('/wakildirektur/laporanlaboratorium',[LaporanWadirController::class, 'laporanlab'])->name('laporanlabwadir');

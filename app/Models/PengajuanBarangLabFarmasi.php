@@ -17,7 +17,8 @@ class PengajuanBarangLabFarmasi extends Model
         'harga',
         'total_harga', 
         'file', 
-        'status'
+        'status',
+        'keterangan'
     ];
 
     public function pengajuanWadir()

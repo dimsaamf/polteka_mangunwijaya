@@ -6,19 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Models\PengajuanBarangWadir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PengajuanWadirController extends Controller
 {
     public function getpengajuan()
     {
         $pengajuanBarangs = PengajuanBarangLabFarmasi::with('pengajuanWadir')->paginate(10);
-        return view('rolewadir.contentwadir.pengajuanbarang', compact('pengajuanBarangs'));
+
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'wakildirektur'){
+                return view('rolewadir.contentwadir.pengajuanbarang', compact('pengajuanBarangs'));
+            } elseif (Auth::user()->role == 'superadmin'){
+                return view('rolesuperadmin.contentsuperadmin.pengajuanbarang', compact('pengajuanBarangs'));
+            }
+        }
     }
 
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:Diterima,Ditunda,Ditolak',
+            'status' => 'required|in:Disetujui,Ditunda,Ditolak,Disetujui Sebagian,Menunggu Konfirmasi',
+            'keterangan' => 'nullable|string',
         ]);
 
         if (!$request->has('status')) {
@@ -27,15 +36,30 @@ class PengajuanWadirController extends Controller
 
         $pengajuanBarangWadir = PengajuanBarangWadir::firstOrNew(['pengajuan_barang_labfarmasi_id' => $id]);
         $pengajuanBarangWadir->status = $request->status;
+        $pengajuanBarangWadir->keterangan = $request->keterangan;
         $pengajuanBarangWadir->save();
 
-        return redirect()->route('pengajuanwadir');
+        alert()->success('Berhasil', 'Status Pengajuan Barang Berhasil Diubah.');
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'wakildirektur'){
+                return redirect()->route('pengajuanwadir');
+            } elseif (Auth::user()->role == 'superadmin'){
+                return redirect()->route('pengajuanbarangsuperadmin');
+            }
+        }
         }
         
         public function detailPengajuanKoorLabFarmasi($id)
         {
             $pengajuanBarang = PengajuanBarangLabFarmasi::findOrFail($id);
-            return view('rolewadir.contentwadir.detailpengajuan', compact('pengajuanBarang'));
+        
+            if(session('is_logged_in')) {
+                if(Auth::user()->role == 'wakildirektur'){
+                    return view('rolewadir.contentwadir.detailpengajuan', compact('pengajuanBarang'));
+                } elseif (Auth::user()->role == 'superadmin'){
+                    return view('rolesuperadmin.contentsuperadmin.detailpengajuan', compact('pengajuanBarang'));
+                }
+            }
         }
 
         public function previewSurat($id)
