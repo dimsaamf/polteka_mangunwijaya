@@ -38,7 +38,7 @@ use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukSitohistoController;
 use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarSitohistoController;
 use App\Http\Controllers\KoorAdminLabAnkes\InventarisLabSitohistoController;
 use App\Http\Controllers\KoorAdminLabAnkes\PengajuanBarangLabAnkesController;
-
+use App\Http\Controllers\ReminderFarmasiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
@@ -95,7 +95,7 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
 Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group(function (){
     Route::get('/koorlabfarmasi/dashboard',[DashboardKoorAdminLabFarmasiController::class, 'index'])->name('dashboardkoorlabfarmasi');
     Route::post('/koorlabfarmasi/dashboard', [DashboardKoorAdminLabFarmasiController::class, 'updateNotification'])->name('update.notification');
-
+    Route::get('/koorlabfarmasi/riwayatservice', [DashboardKoorAdminLabFarmasiController::class, 'history'])->name('riwayatservicekoorlabfarmasi');
     Route::get('/koorlabfarmasi/labfarmakognosi/databarang', [InventarislabFarmakognosiController::class, 'index'])->name('databarangkoorlabfarmakognosi');
     Route::delete('/koorlabfarmasi/labfarmakognosi/databarang/{id}', [InventarislabFarmakognosiController::class, 'destroy'])->name('hapusbarangfarmakognosi');
     Route::get('/koorlabfarmasi/labfarmakognosi/tambahbarang', [InventarislabFarmakognosiController::class, 'create'])->name('tambahbarangkoorlabfarmakognosi');
@@ -385,10 +385,79 @@ Route::middleware(['auth', 'user.role:koorlabprodankes', 'revalidate'])->group(f
     Route::post('/koorlabankes/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.koorlabankes');
 });
 
+Route::middleware(['auth', 'user.role:adminlabprodankes', 'revalidate'])->group(function (){
+    Route::get('/adminlabankes/dashboard',[DashboardKoorAdminLabAnkesController::class, 'index'])->name('dashboardadminlabankes');
+    Route::post('/adminlabankes/dashboard', [DashboardKoorAdminLabAnkesController::class, 'updateNotification'])->name('update.notification');
+
+    Route::get('/adminlabankes/labsitohisto/databarang', [InventarisLabSitohistoController::class, 'index'])->name('databarangadminlabsitohisto');
+    Route::delete('/adminlabankes/labsitohisto/databarang/{id}', [InventarisLabSitohistoController::class, 'destroy'])->name('hapusbarangsitohisto');
+    Route::get('/adminlabankes/labsitohisto/tambahbarang', [InventarisLabSitohistoController::class, 'create'])->name('tambahbarangadminlabsitohisto');
+    Route::post('/adminlabankes/labsitohisto/tambahbarang', [InventarisLabSitohistoController::class, 'store'])->name('tambahbarangadminlabsitohisto.store');
+    Route::get('/adminlabankes/labsitohisto/ubahbarang/{id}', [InventarisLabSitohistoController::class, 'edit'])->name('ubahbarangadminlabsitohisto');
+    Route::post('/adminlabankes/labsitohisto/ubahbarang/{id}', [InventarisLabSitohistoController::class, 'update'])->name('updatebarangadminlabsitohisto');
+    Route::get('/adminlabankes/labsitohisto/gambar/{id}', [InventarisLabSitohistoController::class, 'getGambar'])->name('get.gambar.invlabsitohisto');
+    Route::get('/adminlabankes/labsitohisto/riwayatbarangmasuk', [BarangMasukSitohistoController::class, 'index'])->name('riwayatbarangmasukadminlabsitohisto');
+    Route::get('/adminlabankes/labsitohisto/riwayatbarangkeluar', [BarangKeluarSitohistoController::class, 'index'])->name('riwayatbarangkeluaradminlabsitohisto');
+    Route::get('/adminlabankes/labsitohisto/barangmasuk', [BarangMasukSitohistoController::class, 'tabel'])->name('barangmasukadminlabsitohisto');
+    Route::get('/adminlabankes/labsitohisto/barangkeluar', [BarangKeluarSitohistoController::class, 'tabel'])->name('barangkeluaradminlabsitohisto');
+    Route::post('/adminlabankes/labsitohisto/barangmasuk', [BarangMasukSitohistoController::class, 'store'])->name('barangmasukadminlabsitohisto.store');
+    Route::post('/adminlabankes/labsitohisto/barangkeluar', [BarangKeluarSitohistoController::class, 'store'])->name('barangkeluaradminlabsitohisto.store');
+
+    Route::get('/adminlabankes/labmikro/databarang', [InventarisLabMikroController::class, 'index'])->name('databarangadminlabmikro');
+    Route::delete('/adminlabankes/labmikro/databarang/{id}', [InventarisLabMikroController::class, 'destroy'])->name('hapusbarangmikro');
+    Route::get('/adminlabankes/labmikro/tambahbarang', [InventarisLabMikroController::class, 'create'])->name('tambahbarangadminlabmikro');
+    Route::post('/adminlabankes/labmikro/tambahbarang', [InventarisLabMikroController::class, 'store'])->name('tambahbarangadminlabmikro.store');
+    Route::get('/adminlabankes/labmikro/ubahbarang/{id}', [InventarisLabMikroController::class, 'edit'])->name('ubahbarangadminlabmikro');
+    Route::post('/adminlabankes/labmikro/ubahbarang/{id}', [InventarisLabMikroController::class, 'update'])->name('updatebarangadminlabmikro');
+    Route::get('/adminlabankes/labmikro/riwayatbarangmasuk', [BarangMasukMikroController::class, 'index'])->name('riwayatbarangmasukadminlabmikro');
+    Route::get('/adminlabankes/labmikro/riwayatbarangkeluar', [BarangKeluarMikroController::class, 'index'])->name('riwayatbarangkeluaradminlabmikro');
+    Route::get('/adminlabankes/labmikro/barangmasuk', [BarangMasukMikroController::class, 'tabel'])->name('barangmasukadminlabmikro');
+    Route::get('/adminlabankes/labmikro/barangkeluar', [BarangKeluarMikroController::class, 'tabel'])->name('barangkeluaradminlabmikro');
+    Route::post('/adminlabankes/labmikro/barangmasuk', [BarangMasukMikroController::class, 'store'])->name('barangmasukadminlabmikro.store');
+    Route::post('/adminlabankes/labmikro/barangkeluar', [BarangKeluarMikroController::class, 'store'])->name('barangkeluaradminlabmikro.store');
+    Route::get('/adminlabankes/labmikro/gambar/{id}', [InventarisLabMikroController::class, 'getGambar'])->name('get.gambar.invlabmikro');
+
+    Route::get('/adminlabankes/labankeskimia/databarang', [InventarisLabAnkeskimiaController::class, 'index'])->name('databarangadminlabankeskimia');
+    Route::delete('/adminlabankes/labankeskimia/databarang/{id}', [InventarisLabAnkeskimiaController::class, 'destroy'])->name('hapusbarangankeskimia');
+    Route::get('/adminlabankes/labankeskimia/tambahbarang', [InventarisLabAnkeskimiaController::class, 'create'])->name('tambahbarangadminlabankeskimia');
+    Route::post('/adminlabankes/labankeskimia/tambahbarang', [InventarisLabAnkeskimiaController::class, 'store'])->name('tambahbarangadminlabankeskimia.store');
+    Route::get('/adminlabankes/labankeskimia/ubahbarang/{id}', [InventarisLabAnkeskimiaController::class, 'edit'])->name('ubahbarangadminlabankeskimia');
+    Route::post('/adminlabankes/labankeskimia/ubahbarang/{id}', [InventarisLabAnkeskimiaController::class, 'update'])->name('updatebarangadminlabankeskimia');
+    Route::get('/adminlabankes/labankeskimia/riwayatbarangmasuk', [BarangMasukAnkeskimiaController::class, 'index'])->name('riwayatbarangmasukadminlabankeskimia');
+    Route::get('/adminlabankes/labankeskimia/riwayatbarangkeluar', [BarangKeluarAnkeskimiaController::class, 'index'])->name('riwayatbarangkeluaradminlabankeskimia');
+    Route::get('/adminlabankes/labankeskimia/barangmasuk', [BarangMasukAnkeskimiaController::class, 'tabel'])->name('barangmasukadminlabankeskimia');
+    Route::get('/adminlabankes/labankeskimia/barangkeluar', [BarangKeluarAnkeskimiaController::class, 'tabel'])->name('barangkeluaradminlabankeskimia');
+    Route::post('/adminlabankes/labankeskimia/barangmasuk', [BarangMasukAnkeskimiaController::class, 'store'])->name('barangmasukadminlabankeskimia.store');
+    Route::post('/adminlabankes/labankeskimia/barangkeluar', [BarangKeluarAnkeskimiaController::class, 'store'])->name('barangkeluaradminlabankeskimia.store');
+    Route::get('/adminlabankes/gambar/{id}', [InventarisLabAnkeskimiaController::class, 'getGambar'])->name('get.gambar.invlabankeskimia');
+
+    Route::get('/adminlabankes/labmedis/databarang', [InventarisLabMedisController::class, 'index'])->name('databarangadminlabmedis');
+    Route::delete('/adminlabankes/labmedis/databarang/{id}', [InventarisLabMedisController::class, 'destroy'])->name('hapusbarangmedis');
+    Route::get('/adminlabankes/labmedis/tambahbarang', [InventarisLabMedisController::class, 'create'])->name('tambahbarangadminlabmedis');
+    Route::post('/adminlabankes/labmedis/tambahbarang', [InventarisLabMedisController::class, 'store'])->name('tambahbarangadminlabmedis.store');
+    Route::get('/adminlabankes/labmedis/ubahbarang/{id}', [InventarisLabMedisController::class, 'edit'])->name('ubahbarangadminlabmedis');
+    Route::post('/adminlabankes/labmedis/ubahbarang/{id}', [InventarisLabMedisController::class, 'update'])->name('updatebarangadminlabmedis');
+    Route::get('/adminlabankes/labmedis/riwayatbarangmasuk', [BarangMasukMedisController::class, 'index'])->name('riwayatbarangmasukadminlabmedis');
+    Route::get('/adminlabankes/labmedis/riwayatbarangkeluar', [BarangKeluarMedisController::class, 'index'])->name('riwayatbarangkeluaradminlabmedis');
+    Route::get('/adminlabankes/labmedis/barangmasuk', [BarangMasukMedisController::class, 'tabel'])->name('barangmasukadminlabmedis');
+    Route::get('/adminlabankes/labmedis/barangkeluar', [BarangKeluarMedisController::class, 'tabel'])->name('barangkeluaradminlabmedis');
+    Route::post('/adminlabankes/labmedis/barangmasuk', [BarangMasukMedisController::class, 'store'])->name('barangmasukadminlabmedis.store');
+    Route::post('/adminlabankes/labmedis/barangkeluar', [BarangKeluarMedisController::class, 'store'])->name('barangkeluaradminlabmedis.store');
+    Route::get('/adminlabankes/labmedis/gambar/{id}', [InventarisLabMedisController::class, 'getGambar'])->name('get.gambar.invlabmedis');
+
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/adminlabankes/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppadminlabankes');
+    Route::post('/adminlabankes/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.adminlabankes");
+    Route::get('/adminlabankes/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwadminlabankes');
+    Route::post('/adminlabankes/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.adminlabankes');
+});
+
 
 Route::middleware(['auth', 'user.role:adminprodfarmasi', 'revalidate'])->group(function (){
     Route::get('/adminprodifarmasi/dashboard',[DashboardFarmasiController::class, 'index'])->name('dashboardadminprodifarmasi');
     Route::post('/adminprodifarmasi/dashboard', [DashboardFarmasiController::class, 'updateNotification'])->name('update.notification.adminprodifarmasi');
+    Route::get('/adminprodifarmasi/riwayat', [DashboardFarmasiController::class, 'getRiwayat'])->name('reminder.adminprodifarmasi');
+    Route::post('/adminprodifarmasi/dashboard', [DashboardFarmasiController::class, 'update'])->name('reminder.update.adminprodifarmasi');
     Route::get('/adminprodifarmasi/databarang', [InventarisFarmasiController::class, 'index'])->name('databarangadminprodifarmasi');
     Route::delete('/adminprodifarmasi/databarang/{id}', [InventarisFarmasiController::class, 'destroy'])->name('hapusbarangfarmasi');
     Route::get('/adminprodifarmasi/tambahbarang', [InventarisFarmasiController::class, 'create'])->name('tambahbarangadminprodifarmasi');

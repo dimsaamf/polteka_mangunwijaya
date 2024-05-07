@@ -70,7 +70,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'A-KIM-';
+    $var = 'A-SIT-';
     $bms = InventarisLabSitohisto::count();
     if ($bms == 0) {
         $awal = 10001;

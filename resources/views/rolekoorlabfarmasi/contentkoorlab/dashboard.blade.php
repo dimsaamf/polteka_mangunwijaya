@@ -144,7 +144,14 @@
                     </div>
                     <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                         <div class="p-6">
-                            <div class="text-xl font-medium mb-1">Barang Perlu Diservice</div>
+                            <div class="flex w-full">
+                                <div class="flex w-1/2 justify-start text-xl font-medium mb-1">Barang Perlu Diservice</div>
+                                <div class="flex w-1/2 justify-end text-xl font-medium mb-1 mr-7">
+                                    <a href="{{ route('riwayatservicekoorlabfarmasi') }}" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
+                                    </a>
+                                </div>
+                            </div>
                             @foreach ($notifications as $notification)
                                 <div class="w-full flex text-black border-b-2 py-3">
                                     <div class="w-1/8">

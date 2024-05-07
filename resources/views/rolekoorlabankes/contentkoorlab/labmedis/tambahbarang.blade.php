@@ -1,4 +1,4 @@
-@extends('rolekoorlabankes.layoutkoorlab.dashboard')
+@extends('rolekoorlabankes.layoutkoorlab.labmedis.databarang')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -48,30 +48,47 @@
         <div class="grid grid-cols-1 md:grid-cols-4 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah*</span>
-                <input type="number" name="jumlah" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
+                <input name="jumlah" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
                 @error('jumlah')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Satuan*</span>
-                <input type="text" name="satuan" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
-                @error('satuan')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
+                <div class="relative text-left">
+                    <div class="group">
+                        <div class="inline-flex w-full justify-start mt-2 rounded-md bg-white px-3 py-2.5 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                            <select  name="satuan" id="satuan" class="form-control @error('satuan') is-invalid @enderror w-full" required>
+                                <option value="">Pilih Satuan</option>
+                                <option value="ml">ml</option>
+                                <option value="gr">gr</option>
+                                <option value="pcs">pcs</option>
+                                <option value="lembar">lembar</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Jumlah Minimal*</span>
-                <input type="number" name="jumlah_min" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
+                <input name="jumlah_min" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
                 @error('jumlah_min')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </label>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Apakah perlu pengingat tanggal service?</span>
+            <select name="reminder" id="reminder" class="form-control">
+                <option value="1">Ya</option>
+                <option value="0" selected>Tidak</option>
+            </select>
+        </label>
+        
+        <div id="tanggal_service_input" style="display: none;" class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
+                <input id="tanggal_service" type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>
@@ -80,11 +97,7 @@
                     <span class="ml-2 mt-2 font-bold">bulan</span>
                 </div>
             </label>
-        </div>
-        <label class="block mt-4">
-            <input type="checkbox" id="reminder" name="reminder">
-            <span class="ml-2">Ingatkan saya saat tanggal service tiba</span>
-        </label>
+        </div>     
         <label class="block mt-4">
             <span class="text-sm font-medium">Harga*</span>
             <input type="number" name="harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
@@ -179,5 +192,32 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+<script>
+    document.getElementById('reminder').addEventListener('change', function() {
+        var isServiceNeeded = this.value;
+        var tanggalServiceInput = document.getElementById('tanggal_service_input');
+        
+        if (isServiceNeeded === '1') {
+            tanggalServiceInput.style.display = 'grid';
+            document.getElementById('tanggal_service').setAttribute('required', 'required');
+        } else {
+            tanggalServiceInput.style.display = 'none';
+            document.getElementById('tanggal_service').removeAttribute('required');
+        }
+    });
+    
+    // Set default value for tanggal service if needed
+    window.onload = function() {
+        var isServiceNeeded = document.getElementById('reminder').value;
+        var tanggalServiceInput = document.getElementById('tanggal_service_input');
+    
+        if (isServiceNeeded === '1') {
+            tanggalServiceInput.style.display = 'grid';
+        } else {
+            tanggalServiceInput.style.display = 'none';
+        }
+    };
+    </script>
 
 @endsection

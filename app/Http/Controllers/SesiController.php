@@ -19,6 +19,8 @@ class SesiController extends Controller
                 return redirect('/koorlabfarmasi/dashboard');
             } elseif(Auth::user()->role == 'koorlabprodankes'){
                 return redirect('/koorlabankes/dashboard');
+            } elseif(Auth::user()->role == 'adminlabprodankes'){
+                return redirect('/adminlabankes/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
@@ -52,6 +54,8 @@ class SesiController extends Controller
                 return redirect('/koorlabfarmasi/dashboard');
             } elseif(Auth::user()->role == 'koorlabprodankes'){
                 return redirect('/koorlabankes/dashboard');
+            } elseif(Auth::user()->role == 'adminlabprodankes'){
+                return redirect('/adminlabankes/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){

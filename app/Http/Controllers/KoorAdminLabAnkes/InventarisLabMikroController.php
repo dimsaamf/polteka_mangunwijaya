@@ -70,7 +70,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'A-KIM-';
+    $var = 'A-MIK-';
     $bms = InventarisLabMikro::count();
     if ($bms == 0) {
         $awal = 10001;

@@ -1,4 +1,4 @@
-@extends('rolekoorlabankes.layoutkoorlab.dashboard')
+@extends('rolekoorlabankes.layoutkoorlab.labankeskimia.databarang')
 @section('content')
 @include('sweetalert::alert')
 

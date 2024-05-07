@@ -76,8 +76,12 @@
                             <option selected class="py-5">Pilih Laboratorium</option>
                             <option value="farmakognosi">Lab Farmakognosi</option>
                             <option value="farmasetika">Lab Farmasetika</option>
-                            <option value="kimia">Lab Kimia</option>
-                            <option value="tekfarmasi">Lab Teknologi Farmasi</option>
+                            <option value="kimia">Lab Kimia (Farmasi)</option>
+                            <option value="tekfarmasi">Lab Tek. Farmasi</option>
+                            <option value="ankeskimia">Lab Kimia (Ankes)</option>
+                            <option value="medis">Lab Medis</option>
+                            <option value="mikro">Lab Mikro</option>
+                            <option value="sitohisto">Lab Sitohisto</option>
                         </select>
                     </div>
                 </div>

@@ -7,12 +7,63 @@ use Illuminate\Http\Request;
 use App\Models\InventarisLabMedis;
 use App\Models\BarangMasukMedis;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BarangMasukMedisController extends Controller
 {
-    public function index(){
-        $BarangMasukMedis = BarangMasukMedis::paginate(10);
-        $data=InventarisLabMedis::all();
+    public function index(Request $request){
+        // $BarangMasukMedis = BarangMasukMedis::paginate(10);
+        // $data=InventarisLabMedis::all();
+        $query = $request->input('search');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        $cek = Carbon::today();
+        $hari_ini = $cek->toDateString();
+
+        if ($start_date > $end_date) {
+            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            return back();
+        }
+
+        if ($start_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ( $end_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ($start_date && $end_date) {
+            session()->put('filter_start_date', $start_date);
+            session()->put('filter_end_date', $end_date);
+        } else {
+            // Jika tidak ada nilai filter yang diberikan, hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+
+        $queryBuilder = BarangMasukMedis::with('inventarislabmedis')
+            ->whereHas('inventarislabmedis', function ($q) use ($query) {
+                $q->where('nama_barang', 'LIKE', '%' . $query . '%');
+            });
+
+        if ($start_date && $end_date) {
+            $queryBuilder->whereBetween('tanggal_masuk', [$start_date, $end_date]);
+        }
+
+        // Cek apakah tombol "Batal Filter" diklik
+        if ($request->has('cancel_filter')) {
+            // Hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+        $BarangMasukMedis = $queryBuilder->paginate(10);
+
+        $data = InventarisLabMedis::all();
         // return view('rolekoorlabankes.contentkoorlab.labmedis.riwayatmasuk', compact('BarangMasukMedis','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){
@@ -61,11 +112,31 @@ class BarangMasukMedisController extends Controller
 
     public function store(Request $request)
     {
+        $messages = [
+            'jumlah_masuk.min' => 'Jumlah tidak boleh bilangan negatif.',
+            'jumlah_masuk.numeric' => 'Jumlah harus berupa angka.',
+            'jumlah_masuk.integer' => 'Jumlah harus berupa angka.',
+        ];
+        
         $request->validate([
-            'jumlah_masuk'=>'required|integer',
+            'jumlah_masuk' => [
+                'required',
+                'numeric',
+                'min:0',
+                function ($attribute, $value, $fail) use ($request) {
+                    $inventaris = InventarisLabMedis::findOrFail($request->id_barang);
+                    $satuan = $inventaris->satuan;
+
+                    if (in_array($satuan, ['pcs', 'lembar'])) {
+                        if (strpos($value, '.') !== false) {
+                            $fail('Jumlah masuk tidak boleh mengandung angka desimal untuk satuan pcs dan desimal');
+                        }
+                    }
+                },
+            ],
             'tanggal_masuk' => 'required|date',
-            'keterangan_masuk' => 'required'
-        ]);
+            'keterangan_masuk' => 'required',
+        ], $messages);
 
         $id_barang = $request->id_barang;
         $barang = InventarisLabMedis::findOrFail($id_barang);

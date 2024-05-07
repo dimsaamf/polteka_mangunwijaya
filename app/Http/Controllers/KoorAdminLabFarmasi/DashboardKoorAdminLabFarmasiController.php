@@ -115,6 +115,25 @@ class DashboardKoorAdminLabFarmasiController extends Controller
         }
     }
 
+    public function history(Request $request)
+    {
+        $query = $request->input('search');
+        $labfarmakognosi = InventarisLabFarmakognosi::query();
+        
+        if ($query) {
+            $labfarmakognosi->where('nama_barang', 'like', '%' . $query . '%');
+        }
+        
+        $labfarmakognosi = $labfarmakognosi->paginate(10);
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.riwayatservice', compact('labfarmakognosi'));
+            } else{
+                return view('roleadminlabfarmasi.contentadminlab.riwayatservice', compact('labfarmakognosi'));
+            }
+        }
+    }
+
     public function updateNotification(Request $request)
     {
         if ($request->has('sudah_dilayani')) {

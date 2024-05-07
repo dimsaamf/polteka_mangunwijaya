@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\InventarisLabSitohisto;
 use App\Models\BarangKeluarSitohisto;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BarangKeluarSitohistoController extends Controller
 {
@@ -28,9 +29,58 @@ class BarangKeluarSitohistoController extends Controller
         }
     }
 
-    public function index(){
-        $BarangKeluarSitohisto = BarangKeluarSitohisto::paginate(10);
-        $data=InventarisLabSitohisto::all();
+    public function index(Request $request){
+        // $BarangKeluarSitohisto = BarangKeluarSitohisto::paginate(10);
+        // $data=InventarisLabSitohisto::all();
+        $query = $request->input('search');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        $cek = Carbon::today();
+        $hari_ini = $cek->toDateString();
+
+        if ($start_date > $end_date) {
+            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            return back();
+        }
+
+        if ($start_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ( $end_date > $hari_ini) {
+            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            return back();
+        }
+
+        if ($start_date && $end_date) {
+            session()->put('filter_start_date', $start_date);
+            session()->put('filter_end_date', $end_date);
+        } else {
+            // Jika tidak ada nilai filter yang diberikan, hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+        $queryBuilder = BarangKeluarSitohisto::with('inventarislabsitohisto')
+            ->whereHas('inventarislabsitohisto', function ($q) use ($query) {
+                $q->where('nama_barang', 'LIKE', '%' . $query . '%');
+            });
+
+        if ($start_date && $end_date) {
+            $queryBuilder->whereBetween('tanggal_keluar', [$start_date, $end_date]);
+        }
+
+        // Cek apakah tombol "Batal Filter" diklik
+        if ($request->has('cancel_filter')) {
+            // Hapus nilai filter dari session
+            session()->forget('filter_start_date');
+            session()->forget('filter_end_date');
+        }
+
+        $BarangKeluarSitohisto = $queryBuilder->paginate(10);
+
+        $data = InventarisLabSitohisto::all();
         // return view('rolekoorlabankes.contentkoorlab.labsitohisto.riwayatkeluar', compact('BarangKeluarSitohisto','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){
@@ -54,11 +104,31 @@ class BarangKeluarSitohistoController extends Controller
 
     public function store(Request $request)
     {
+        $messages = [
+            'jumlah_keluar.min' => 'Jumlah tidak boleh bilangan negatif.',
+            'jumlah_keluar.numeric' => 'Jumlah harus berupa angka.',
+            'jumlah_keluar.integer' => 'Jumlah harus berupa angka.',
+        ];
+
         $request->validate([
-            'jumlah_keluar'=>'required|integer',
+            'jumlah_keluar' => [
+                'required',
+                'numeric',
+                'min:0',
+                function ($attribute, $value, $fail) use ($request) {
+                    $inventaris = InventarisLabSitohisto::findOrFail($request->id_barang);
+                    $satuan = $inventaris->satuan;
+
+                    if (in_array($satuan, ['pcs', 'lembar'])) {
+                        if (strpos($value, '.') !== false) {
+                            $fail('Jumlah keluar tidak boleh mengandung angka desimal untuk satuan "' . $satuan . '".');
+                        }
+                    }
+                },
+            ],
             'tanggal_keluar' => 'required|date',
-            'keterangan_keluar' => 'required'
-        ]);
+            'keterangan_keluar' => 'required',
+        ], $messages);
 
         $id_barang = $request->id_barang;
         $barang = InventarisLabSitohisto::findOrFail($id_barang);

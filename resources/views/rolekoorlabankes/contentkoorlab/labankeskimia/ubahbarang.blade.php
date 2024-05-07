@@ -1,4 +1,4 @@
-@extends('rolekoorlabankes.layoutkoorlab.dashboard')
+@extends('rolekoorlabankes.layoutkoorlab.labankeskimia.databarang')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -45,16 +45,25 @@
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Jumlah*</span>
                 <input type="number" name="jumlah" value="{{ $labankeskimia->jumlah }}" readonly class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
-                <!-- @error('jumlah')
+                @error('jumlah')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror -->
+                @enderror
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Satuan*</span>
-                <input type="text" name="satuan" value="{{ $labankeskimia->satuan }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Satuan Barang" />
-                @error('satuan')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
+                <div class="relative text-left">
+                    <div class="group">
+                        <div class="inline-flex w-full justify-start mt-2 rounded-md bg-white px-3 py-2.5 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                            <select  name="satuan" id="satuan" class="form-control @error('satuan') is-invalid @enderror w-full" required>
+                                <option value="">Pilih Satuan</option>
+                                <option value="ml" {{ $labankeskimia->satuan == 'ml' ? 'selected' : '' }}>ml</option>
+                                <option value="gr" {{ $labankeskimia->satuan == 'gr' ? 'selected' : '' }}>gr</option>
+                                <option value="pcs" {{ $labankeskimia->satuan == 'pcs' ? 'selected' : '' }}>pcs</option>
+                                <option value="lembar" {{ $labankeskimia->satuan == 'lembar' ? 'selected' : '' }}>lembar</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Jumlah Minimal*</span>
@@ -65,11 +74,11 @@
             </label>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
-            <label class="block md:col-span-2">
+            <label class="block mt-4 md:col-span-2" id="tanggal_service_field" @if($labankeskimia->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input type="date" name="tanggal_service" value="{{ $labankeskimia->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" min="{{ now()->format('Y-m-d') }}"/>
+                <input type="date" name="tanggal_service" value="{{ $labankeskimia->tanggal_service }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" min="{{ now()->format('Y-m-d') }}" />
             </label>
-            <label class="block md:col-span-1">
+            <label class="block mt-4  md:col-span-1" id="periode_field" @if($labankeskimia->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
                     <input type="number" name="periode" value="{{ $labankeskimia->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
