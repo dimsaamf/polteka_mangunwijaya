@@ -23,6 +23,8 @@ class SesiController extends Controller
                 return redirect('/adminlabankes/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
+            } elseif(Auth::user()->role == 'adminprodankes'){
+                return redirect('/adminprodiankes/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return redirect('/adminlabfarmasi/dashboard');
             }
@@ -58,6 +60,8 @@ class SesiController extends Controller
                 return redirect('/adminlabankes/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
+            } elseif(Auth::user()->role == 'adminprodankes'){
+                return redirect('/adminprodiankes/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return redirect('/adminlabfarmasi/dashboard');
             }

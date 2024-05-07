@@ -26,6 +26,8 @@ class ProfileController extends Controller
                 return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return view('roleadminprodifarmasi.contentadminprodi.ubahprofil');
+            } elseif(Auth::user()->role == 'adminprodankes'){
+                return view('roleadminprodiankes.contentadminprodi.ubahprofil');
             }
         }
     }
@@ -86,6 +88,8 @@ class ProfileController extends Controller
                 return view('roleadminlabfarmasi.contentadminlab.ubahpassword');    
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return view('roleadminprodifarmasi.contentadminprodi.ubahpassword');
+            } elseif(Auth::user()->role == 'adminprodankes'){
+                return view('roleadminprodiankes.contentadminprodi.ubahpassword');
             }
         }
     }

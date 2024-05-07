@@ -6,7 +6,7 @@
         <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
-        <title>Ubah Gambar Profil Admin Laboratorium Analisis Kesehatan</title>
+        <title>Ubah Profile Admin Laboratorium Analisis Kesehatan</title>
     </head>
     <!-- END: Head -->
     <body class="py-5 bg-merah200-polteka text-putih-polteka font-polteka">
@@ -146,7 +146,7 @@
                 </li>
                 <li class="menu__devider my-6"></li>   
                 <li>
-                    <a href="{{ route('ubahpwadminlabankes') }}" class="flex hover:font-boldd">
+                    <a href="{{ route('ubahpwadminlabankes') }}" class="flex hover:font-bold">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z" />
@@ -208,7 +208,7 @@
                 </div>
                 <div class="my-7"></div>
                 <ul>
-                <li>
+                    <li>
                         <a href="{{ route('dashboardadminlabankes') }}" class="hidden xl:justify-start xl:flex pt-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:xl:ml-10 hover:lg:ml-10 hover:md:ml-6 w-full">
                             <div class="xl:ml-8 mb-3">
                                 <svg href="{{ route('dashboardadminlabankes') }}" xmlns="http://www.w3.org/2000/svg" class="xl:w-6 lg:w-8 md:w-8" viewBox="0 0 1024 1024"><path fill="currentColor" d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2M568 868H456V664h112zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7l23.1 23.1L882 542.3z"/></svg>
@@ -376,23 +376,25 @@
                                 Ubah Password
                             </div>
                         </a>
-                        <a href="{{ route('ubahpwadminlabankes') }}" class="xl:hidden justify-center hover:justify-start flex hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:mb-2 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
-                            <div class="xl:ml-8 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('ubahppadminlabankes') }}">
-                            <div class="hidden xl:block ml-8 mb-3 text-hitam-polteka bg-abu-polteka rounded-full w-full py-2 pl-5 font-semibold">
-                                Ubah Gambar Profil
-                            </div>
-                        </a>
-                        <a href="{{ route('ubahppadminlabankes') }}" class="xl:hidden justify-start flex pt-2 md:px-5 lg:px-7 text-hitam-polteka bg-abu-polteka rounded-full md:ml-6 lg:ml-10 w-full">
+                        <a href="{{ route('ubahpwadminlabankes') }}"  class="xl:hidden justify-center mt-2 hover:justify-start flex hover:pt-2 hover:md:px-5 hover:lg:px-7 hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:md:ml-6 hover:lg:ml-10 hover:w-full">
                             <div class="xl:ml-8 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8 md:mr-6 lg:mr-10 xl:mr-0" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
                             </div>
                         </a>
+                        <ul>
+                            <li>
+                                <a href="{{ route('ubahppadminlabankes') }}">
+                                    <div class="hidden xl:block ml-8 mb-3 text-hitam-polteka bg-abu-polteka rounded-full w-full py-2 pl-5 font-semibold"> 
+                                    Ubah Gambar Profil 
+                                    </div>
+                                </a>
+                                <a href="{{ route('ubahppadminlabankes') }}" class="xl:hidden justify-start flex pt-2 md:px-5 lg:px-7 text-hitam-polteka bg-abu-polteka rounded-full md:ml-6 lg:ml-10 w-full">
+                                    <div class="xl:ml-8 mb-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="block xl:hidden xl:w-6 lg:w-8 md:w-8" viewBox="0 0 256 256"><path fill="currentColor" d="M245 110.64a16 16 0 0 0-13-6.64h-16V88a16 16 0 0 0-16-16h-69.33l-27.73-20.8a16.14 16.14 0 0 0-9.6-3.2H40a16 16 0 0 0-16 16v144a8 8 0 0 0 8 8h179.1a8 8 0 0 0 7.59-5.47l28.49-85.47a16.05 16.05 0 0 0-2.18-14.42M93.34 64l27.73 20.8a16.12 16.12 0 0 0 9.6 3.2H200v16H69.77a16 16 0 0 0-15.18 10.94L40 158.7V64Z"/></svg>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="my-8"></li>
                     <li>
@@ -409,7 +411,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>adminlabankes/ubahprofilepicture
+            </nav>
             <!-- END: Side Menu -->
             <!-- BEGIN: Content -->
             @yield('content')
