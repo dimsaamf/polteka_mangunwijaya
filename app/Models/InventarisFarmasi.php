@@ -30,4 +30,9 @@ class InventarisFarmasi extends Model
     {
         return $value ? \Carbon\Carbon::parse($value)->format('Y-m-d') : null;
     }
+
+    public function riwayatServices()
+    {
+        return $this->hasMany(RiwayatServiceProdiFarmasi::class);
+    }
 }

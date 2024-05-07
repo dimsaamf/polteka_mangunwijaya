@@ -1,4 +1,4 @@
-@extends('rolekoorlabfarmasi.layoutkoorlab.dashboard')
+@extends('roleadminlabfarmasi.layoutadminlab.dashboard')
 @section('content')
 @include('sweetalert::alert')
 
@@ -7,12 +7,12 @@
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm"> 
-            <div class="text-hitam-polteka">Riwayat Service Barang</div>
+            <div class="text-hitam-polteka">Riwayat Service Lab Farmakognosi</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Farmakognosi</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Prodi Farmasi</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2 text-hitam-polteka">Riwayat Service Barang</div>
+            <div class="ml-2 text-hitam-polteka">Riwayat Service Lab Farmakognosi</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
@@ -32,19 +32,17 @@
     <!-- END: Top Bar -->
     <section class="text-hitam-polteka">
         <div>
-        <h2 class="text-xl font-semibold">Riwayat Service Barang</h2>
+        <h2 class="text-xl font-semibold">Riwayat Service Lab Farmakognosi</h2>
 
         <!-- BEGIN: Data List --> 
-        <div class="flex flex-col mt-8">
+        <div class="flex flex-col mt-5">
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                 <div class="overflow-hidden">
                     <div class="flex">
-                        <div class="flex w-1/2 justify-start mb-3">
-                        </div>
-                        <div class="flex w-1/2 justify-end mt-2">
+                        <div class="flex w-1/2 justify-start">
                             <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                <form action="{{ route('databarangkoorlabfarmakognosi') }}" method="GET" class="relative flex w-full">
+                                <form action="{{ route('riwayat.farmakognosi.adminlabfarmasi') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input
@@ -75,19 +73,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($labfarmakognosi->isEmpty())
+                        @if ($riwayats->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($labfarmakognosi as $data)
+                        @foreach($riwayats as $riwayat)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
                             <td class="px-6 py-2 whitespace-nowrap">{{$loop->iteration}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->kode_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                @foreach($data as $barang)
+                                @if($barang->id == $riwayat->inventaris_labfarmakognosis_id)
+                                    {{ $barang->nama_barang }}
+                                @endif
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                @foreach($data as $barang)
+                                @if($barang->id == $riwayat->inventaris_labfarmakognosis_id)
+                                    {{ $barang->kode_barang }}
+                                @endif
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                @foreach($data as $barang)
+                                @if($barang->id == $riwayat->inventaris_labfarmakognosis_id)
+                                    {{ \Carbon\Carbon::parse($barang->tanggal_service)->translatedFormat('d F Y') }}
+                                @endif
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                {{ $riwayat->keterangan }} {{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}
+                            </td>
                         </tr>
                         @endforeach
                         @endif
@@ -118,27 +136,27 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                @if ($labfarmakognosi->onFirstPage())
+                @if ($riwayats->onFirstPage())
                     <li>
                         <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $labfarmakognosi->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        <a href="{{ $riwayats->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                     </li>
                 @endif
         
-                @foreach ($labfarmakognosi->getUrlRange($labfarmakognosi->currentPage() - 2, $labfarmakognosi->currentPage() + 2) as $page => $url)
-                    @if ($page == $labfarmakognosi->currentPage())
+                @foreach ($riwayats->getUrlRange($riwayats->currentPage() - 2, $riwayats->currentPage() + 2) as $page => $url)
+                    @if ($page == $riwayats->currentPage())
                         <li>
                             <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach
         
-                @if ($labfarmakognosi->hasMorePages())
+                @if ($riwayats->hasMorePages())
                     <li>
-                        <a href="{{ $labfarmakognosi->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        <a href="{{ $riwayats->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
                     </li>
                 @else
                     <li>
@@ -252,57 +270,4 @@
             document.querySelector(".icon-container-prof").classList.remove("active");
         };
     </script>
-
-    <!-- Pastikan jQuery dimuat sebelum kode JavaScript -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Pastikan SweetAlert dimuat sebelum kode JavaScript -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('.btndelete').click(function (e){
-            e.preventDefault();
-
-            var deleteid = $(this).closest("tr").find('.delete_id').val();
-
-            swal({
-                title: "Apakah anda yakin?",
-                text: "Setelah dihapus, Anda tidak dapat memulihkan Tag ini lagi!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    var data = {
-                        "_token": $('input[name=_token]').val(),
-                        'id': deleteid,
-                    };
-                    $.ajax({
-                        type: "DELETE",
-                        url: '/koorlabfarmasi/labfarmakognosi/databarang/' + deleteid,
-                        data: data,
-                        success: function(response) {
-                            swal(response.status, {
-                                icon: "success",
-                            }).then((result) => {
-                                if (result) {
-                                    location.reload();
-                                }
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            swal("Oops!", "Terjadi kesalahan saat menghapus data.", "error");
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
-            });
-        });
-    });
-</script>
 @endsection

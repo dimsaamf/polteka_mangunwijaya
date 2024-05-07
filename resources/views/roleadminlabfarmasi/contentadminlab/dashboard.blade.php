@@ -80,15 +80,15 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="m15.5 17.125l4.95-4.95q.275-.275.7-.275t.7.275t.275.7t-.275.7l-5.65 5.65q-.3.3-.7.3t-.7-.3l-2.85-2.85q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h4.175q.275-.875 1.075-1.437T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v4q0 .425-.288.713T20 10t-.712-.288T19 9V5h-2v2q0 .425-.288.713T16 8H8q-.425 0-.712-.288T7 7V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm7-16q.425 0 .713-.288T13 4t-.288-.712T12 3t-.712.288T11 4t.288.713T12 5"/></svg>
                     </div>
                     <div class="box p-6">
-                        <div class="text-3xl font-medium">{{ $pengajuan}}</div>
+                        <div class="text-3xl font-medium">{{ $pengajuan }}</div>
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Pengajuan Barang</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="flex">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 w-full">
-                    <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-10 w-full">
+                    <div class="bg-white col-span-1 mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                     <div class=" p-6">
                             <div class="text-xl font-medium mb-1">Barang Hampir Habis</div>
                             @foreach($barangHabis as $barang)
@@ -128,6 +128,7 @@
                                             </li>
                                         @endif
                                     @endforeach
+                            
                                     @if ($barangHabis->hasMorePages())
                                         <li>
                                             <a href="{{ $barangHabis->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
@@ -141,69 +142,310 @@
                             </div>
                         <!-- END: Pagination -->
                     </div>
-                    <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                    <div class="bg-white col-span-1 lg:col-span-2 mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                         <div class="p-6">
-                            <div class="text-xl font-medium mb-1">Barang Perlu Diservice</div>
-                            @foreach ($notifications as $notification)
-                                <div class="w-full flex text-black border-b-2 py-3">
-                                    <div class="w-1/8">
-                                        <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
-                                                <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
-                                            </svg>
+                            <div class="flex w-full">
+                                <div class="flex w-1/2 justify-start text-xl font-medium mb-3">Barang Perlu Diservice</div>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-10 w-full">
+                                <div class="bg-abu-polteka shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                                    <div class="p-6">
+                                        <div class="flex w-full">
+                                            <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Farmasetika</div>
+                                            <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
+                                                <a href="{{ route('riwayat.farmasetika.adminlabfarmasi') }}" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="w-5/6 ml-2">
-                                        <div class="text-sm">{{ $notification->nama_barang }}</div>
-                                        <div class="text-xs text-slate-500">Service pada tanggal {{ $notification->tanggal_service }}</div>
-                                    </div>
-                                    <form action="{{ route('update.notification.adminlabfarmasi', $notification->id) }}" method="POST">
-                                        @csrf
-                                        @method('POST')
-                                        <div class="w-full mt-3 flex justify-end">
-                                            <input type="checkbox" name="sudah_dilayani[]" value="{{ $notification->id }}" onchange="this.form.submit()" {{ $notification->sudah_dilayani ? 'checked' : '' }}>
+                                        <form action="{{ route('reminder.updatefarmasetika.adminlabfarmasi') }}" method="post" id="reminderForm">
+                                            @csrf
+                                            @foreach ($farmasetikareminders as $reminder)
+                                                <div class="w-full flex text-black border-b-2 py-3">
+                                                    <div class="w-1/6">
+                                                        <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
+                                                                <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-4/6 ml-2">
+                                                        <div class="text-sm">{{ $reminder->nama_barang }}</div>
+                                                        <div class="text-xs text-slate-500">Service pada tanggal {{ $reminder->tanggal_service }}</div>
+                                                    </div>
+                                                    <div class="w-1/6 mt-3 flex justify-end">
+                                                        <input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}|{{ get_class($reminder) }}" class="reminderCheckbox">
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                    
+                                            @if ($farmasetikareminders->isEmpty())
+                                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
+                                            @endif
+                                            
+                                            <button type="submit" class="inline-flex w-32 justify-center mt-8 mb-3 rounded-md px-1 py-2 text-xs bg-merah200-polteka text-putih-polteka shadow-sm">
+                                                Update Reminder
+                                            </button> 
+                                        </form>
+                                        <!-- BEGIN: Pagination -->
+                                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                                            <ul class="inline-flex mx-autospace-x-2">
+                                                @if ($farmasetikareminders->onFirstPage())
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <a href="{{ $farmasetikareminders->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                                                    </li>
+                                                @endif
+                                        
+                                                @foreach ($farmasetikareminders->getUrlRange($farmasetikareminders->currentPage() - 2, $farmasetikareminders->currentPage() + 2) as $page => $url)
+                                                    @if ($page == $farmasetikareminders->currentPage())
+                                                        <li>
+                                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                        
+                                                @if ($farmasetikareminders->hasMorePages())
+                                                    <li>
+                                                        <a href="{{ $farmasetikareminders->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
                                         </div>
-                                    </form>
+                                        <!-- END: Pagination -->
+                                    </div>
                                 </div>
-                            @endforeach
-                    
-                            @if ($notifications->isEmpty())
-                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
-                            @endif
+                                <div class="bg-abu-polteka shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                                    <div class="p-6">
+                                        <div class="flex w-full">
+                                            <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Tek.Farmasi</div>
+                                            <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
+                                                <a href="{{ route('riwayat.tekfarmasi.adminlabfarmasi') }}" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <form action="{{ route('reminder.updatetekfarmasi.adminlabfarmasi') }}" method="post" id="reminderForm">
+                                            @csrf
+                                            @foreach ($tekfarmasireminders as $reminder)
+                                                <div class="w-full flex text-black border-b-2 py-3">
+                                                    <div class="w-1/6">
+                                                        <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
+                                                                <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-4/6 ml-2">
+                                                        <div class="text-sm">{{ $reminder->nama_barang }}</div>
+                                                        <div class="text-xs text-slate-500">Service pada tanggal {{ $reminder->tanggal_service }}</div>
+                                                    </div>
+                                                    <div class="w-1/6 mt-3 flex justify-end">
+                                                        <input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}|{{ get_class($reminder) }}" class="reminderCheckbox">
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                    
+                                            @if ($tekfarmasireminders->isEmpty())
+                                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
+                                            @endif
+                                            
+                                            <button type="submit" class="inline-flex w-32 justify-center mt-8 mb-3 rounded-md px-1 py-2 text-xs bg-merah200-polteka text-putih-polteka shadow-sm">
+                                                Update Reminder
+                                            </button> 
+                                        </form>
+                                        <!-- BEGIN: Pagination -->
+                                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                                            <ul class="inline-flex mx-autospace-x-2">
+                                                @if ($tekfarmasireminders->onFirstPage())
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <a href="{{ $tekfarmasireminders->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                                                    </li>
+                                                @endif
+                                        
+                                                @foreach ($tekfarmasireminders->getUrlRange($tekfarmasireminders->currentPage() - 2, $tekfarmasireminders->currentPage() + 2) as $page => $url)
+                                                    @if ($page == $tekfarmasireminders->currentPage())
+                                                        <li>
+                                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                        
+                                                @if ($tekfarmasireminders->hasMorePages())
+                                                    <li>
+                                                        <a href="{{ $tekfarmasireminders->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <!-- END: Pagination -->
+                                    </div>
+                                </div>
+                                <div class="bg-abu-polteka shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                                    <div class="p-6">
+                                        <div class="flex w-full">
+                                            <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Kimia</div>
+                                            <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
+                                                <a href="{{ route('riwayat.kimia.adminlabfarmasi') }}" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <form action="{{ route('reminder.updatekimia.adminlabfarmasi') }}" method="post" id="reminderForm">
+                                            @csrf
+                                            @foreach ($kimiareminders as $reminder)
+                                                <div class="w-full flex text-black border-b-2 py-3">
+                                                    <div class="w-1/6">
+                                                        <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
+                                                                <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-4/6 ml-2">
+                                                        <div class="text-sm">{{ $reminder->nama_barang }}</div>
+                                                        <div class="text-xs text-slate-500">Service pada tanggal {{ $reminder->tanggal_service }}</div>
+                                                    </div>
+                                                    <div class="w-1/6 mt-3 flex justify-end">
+                                                        <input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}|{{ get_class($reminder) }}" class="reminderCheckbox">
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                    
+                                            @if ($kimiareminders->isEmpty())
+                                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
+                                            @endif
+                                            
+                                            <button type="submit" class="inline-flex w-32 justify-center mt-8 mb-3 rounded-md px-1 py-2 text-xs bg-merah200-polteka text-putih-polteka shadow-sm">
+                                                Update Reminder
+                                            </button> 
+                                        </form>
+                                        <!-- BEGIN: Pagination -->
+                                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                                            <ul class="inline-flex mx-autospace-x-2">
+                                                @if ($kimiareminders->onFirstPage())
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <a href="{{ $kimiareminders->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                                                    </li>
+                                                @endif
+                                        
+                                                @foreach ($kimiareminders->getUrlRange($kimiareminders->currentPage() - 2, $kimiareminders->currentPage() + 2) as $page => $url)
+                                                    @if ($page == $kimiareminders->currentPage())
+                                                        <li>
+                                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                        
+                                                @if ($kimiareminders->hasMorePages())
+                                                    <li>
+                                                        <a href="{{ $kimiareminders->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <!-- END: Pagination -->
+                                    </div>
+                                </div>
+                                <div class="bg-abu-polteka shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                                    <div class="p-6">
+                                        <div class="flex w-full">
+                                            <div class="flex w-2/3 justify-start text-lg font-medium mb-3">Lab Farmakognosi</div>
+                                            <div class="flex w-1/3 justify-end text-xl font-medium mb-1">
+                                                <a href="{{ route('riwayat.farmakognosi.adminlabfarmasi') }}" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <form action="{{ route('reminder.updatefarmakognosi.adminlabfarmasi') }}" method="post" id="reminderForm">
+                                            @csrf
+                                            @foreach ($farmakognosireminders as $reminder)
+                                                <div class="w-full flex text-black border-b-2 py-3">
+                                                    <div class="w-1/6">
+                                                        <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
+                                                                <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-4/6 ml-2">
+                                                        <div class="text-sm">{{ $reminder->nama_barang }}</div>
+                                                        <div class="text-xs text-slate-500">Service pada tanggal {{ $reminder->tanggal_service }}</div>
+                                                    </div>
+                                                    <div class="w-1/6 mt-3 flex justify-end">
+                                                        <input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}|{{ get_class($reminder) }}" class="reminderCheckbox">
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                    
+                                            @if ($farmakognosireminders->isEmpty())
+                                                <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
+                                            @endif
+                                            
+                                            <button type="submit" class="inline-flex w-32 justify-center mt-8 mb-3 rounded-md px-1 py-2 text-xs bg-merah200-polteka text-putih-polteka shadow-sm">
+                                                Update Reminder
+                                            </button> 
+                                        </form>
+                                        <!-- BEGIN: Pagination -->
+                                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                                            <ul class="inline-flex mx-autospace-x-2">
+                                                @if ($farmakognosireminders->onFirstPage())
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <a href="{{ $farmakognosireminders->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                                                    </li>
+                                                @endif
+                                        
+                                                @foreach ($farmakognosireminders->getUrlRange($farmakognosireminders->currentPage() - 2, $farmakognosireminders->currentPage() + 2) as $page => $url)
+                                                    @if ($page == $farmakognosireminders->currentPage())
+                                                        <li>
+                                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                        
+                                                @if ($farmakognosireminders->hasMorePages())
+                                                    <li>
+                                                        <a href="{{ $farmakognosireminders->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <!-- END: Pagination -->
+                                    </div>
+                                </div>
+                            </div>  
                         </div>
-                        <!-- BEGIN: Pagination -->
-                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
-                            <ul class="inline-flex mx-autospace-x-2">
-                                @if ($notifications->onFirstPage())
-                                    <li>
-                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
-                                    </li>
-                                @else
-                                    <li>
-                                        <a href="{{ $notifications->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
-                                    </li>
-                                @endif
-                        
-                                @foreach ($notifications->getUrlRange($notifications->currentPage() - 2, $notifications->currentPage() + 2) as $page => $url)
-                                    @if ($page == $notifications->currentPage())
-                                        <li>
-                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
-                                        </li>
-                                    @endif
-                                @endforeach
-                        
-                                @if ($notifications->hasMorePages())
-                                    <li>
-                                        <a href="{{ $notifications->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
-                                    </li>
-                                @else
-                                    <li>
-                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    <!-- END: Pagination -->
                     </div>               
                 </div>
             </div>

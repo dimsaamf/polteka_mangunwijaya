@@ -136,7 +136,7 @@
                         <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
                             <div class="px-6 py-2 mt-4">
                                 <div class="text-xl font-medium mb-1">Barang Perlu Diservice</div>
-                                @foreach ($notifications as $notification)
+                                {{-- @foreach ($notifications as $notification)
                                     <div class="w-full flex text-black border-b-2 py-3">
                                         <div class="w-1/8">
                                             <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
@@ -161,10 +161,34 @@
                         
                                 @if ($notifications->isEmpty())
                                     <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
-                                @endif
+                                @endif --}}
+                            <h1>Reminder Service</h1>
+                            <form action="{{ route('reminder.update.adminprodifarmasi') }}" method="post" id="reminderForm">
+                                @csrf
+                                <table id="reminderTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Barang</th>
+                                            <th>Tanggal Service</th>
+                                            <th>Checkbox</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($reminders as $reminder)
+                                            <tr id="reminderRow_{{ $reminder->id }}">
+                                                <td>{{ $reminder->nama_barang }}</td>
+                                                <td>{{ $reminder->tanggal_service }}</td>
+                                                <td><input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}" class="reminderCheckbox"></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <button type="submit">Update Reminder</button>
+                            </form>
+    
                             </div>
                             <!-- BEGIN: Pagination -->
-                            <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                            {{-- <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
                                 <ul class="inline-flex mx-autospace-x-2">
                                     @if ($notifications->onFirstPage())
                                         <li>
@@ -194,7 +218,7 @@
                                         </li>
                                     @endif
                                 </ul>
-                            </div>
+                            </div> --}}
                         <!-- END: Pagination -->
                         </div>               
                     </div>
@@ -246,7 +270,7 @@
                     </div>
                 </div>
             </div>
-        </section>  
+        </section> 
         <!-- COPYRIGHT -->
         <footer class="block mt-6 sm:mt-44 md:mt-[350px] mb-6 text-center">
             <div class="text-biru160-polteka text-xs md:text-sm">
@@ -269,5 +293,7 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+
 
 @endsection

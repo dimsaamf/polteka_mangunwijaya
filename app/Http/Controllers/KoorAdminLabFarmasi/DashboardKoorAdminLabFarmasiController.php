@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\KoorAdminLabFarmasi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\RiwayatServiceLabFarmakognosi;
+use App\Models\RiwayatServiceLabFarmasetika;
+use App\Models\RiwayatServiceLabKimia;
+use App\Models\RiwayatServiceLabTekfarmasi;
 use App\Models\InventarisLabFarmakognosi;
 use App\Models\InventarisLabFarmasetika;
 use App\Models\InventarisLabKimia;
@@ -48,39 +52,41 @@ class DashboardKoorAdminLabFarmasiController extends Controller
         $total_masuk = $barangmasuklabfarmakognosi + $barangmasuklabfarmasetika + $barangmasuklabkimia + $barangmasuklabtekfarmasi;
         $total_keluar = $barangkeluarlabfarmakognosi + $barangkeluarlabfarmasetika + $barangkeluarlabkimia + $barangkeluarlabtekfarmasi;
 
-        $notifications = collect();
+        $farmakognosireminders = InventarisLabFarmakognosi::where('tanggal_service', '<=', now())->get();
 
-        // Daftar model yang ingin Anda periksa notifikasinya
-        $labModels = [
-            'App\Models\InventarisLabFarmakognosi',
-                    'App\Models\InventarisLabFarmasetika',
-                    'App\Models\InventarisLabKimia',
-                    'App\Models\InventarisLabTekfarmasi',
-        ];
-
-        // Loop melalui setiap model
-        foreach ($labModels as $labModel) {
-            // Ambil semua notifikasi yang sesuai dengan logika Anda dari model saat ini
-            $notificationsForLab = $labModel::where(function ($query) {
-                $query->whereDate('tanggal_service', Carbon::today())
-                    ->orWhere(function ($query) {
-                        $query->whereRaw('DATE_ADD(tanggal_service, INTERVAL periode MONTH) >= ?', [Carbon::today()])
-                            ->where('tanggal_service', '<', Carbon::today());
-                    });
-                $query->where('reminder', true);
-            })->where('sudah_dilayani', false)->get();
-
-            // Gabungkan notifikasi ke dalam koleksi utama
-            $notifications = $notifications->merge($notificationsForLab);
-        }
-
-        $perPage = 5;
-        $currentPage = Paginator::resolveCurrentPage() ?: 1;
-        $sliced = $notifications->slice(($currentPage - 1) * $perPage, $perPage)->all();
-        $notifications = new LengthAwarePaginator($sliced, $notifications->count(), $perPage, $currentPage, [
-            'path' => Paginator::resolveCurrentPath(),
+        $perPage = 4;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $farmakognosireminders->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $farmakognosireminders = new LengthAwarePaginator($currentItems, count($farmakognosireminders), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
 
+        $farmasetikareminders = InventarisLabFarmasetika::where('tanggal_service', '<=', now())->get();
+
+        $perPage = 4;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $farmasetikareminders->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $farmasetikareminders = new LengthAwarePaginator($currentItems, count($farmasetikareminders), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+
+        $kimiareminders = InventarisLabKimia::where('tanggal_service', '<=', now())->get();
+
+        $perPage = 4;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $kimiareminders->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $kimiareminders = new LengthAwarePaginator($currentItems, count($kimiareminders), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+
+        $tekfarmasireminders = InventarisLabTekfarmasi::where('tanggal_service', '<=', now())->get();
+
+        $perPage = 4;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $tekfarmasireminders->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $tekfarmasireminders = new LengthAwarePaginator($currentItems, count($tekfarmasireminders), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
 
         $barangHabis = collect();
         $inventarisModels = [
@@ -99,7 +105,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             }
         }
 
-        $perPage = 5;
+        $perPage = 10;
         $currentPage = Paginator::resolveCurrentPage() ?: 1;
         $sliced = $barangHabis->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $barangHabis = new LengthAwarePaginator($sliced, $barangHabis->count(), $perPage, $currentPage, [
@@ -108,50 +114,211 @@ class DashboardKoorAdminLabFarmasiController extends Controller
 
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('notifications', 'barangHabis', 'pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
+                return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('farmakognosireminders', 'farmasetikareminders', 'kimiareminders', 'tekfarmasireminders', 'barangHabis', 'pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return view('roleadminlabfarmasi.contentadminlab.dashboard', compact('notifications', 'barangHabis','pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
+                return view('roleadminlabfarmasi.contentadminlab.dashboard', compact('farmakognosireminders', 'farmasetikareminders', 'kimiareminders', 'tekfarmasireminders', 'barangHabis','pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
             }
         }
     }
 
-    public function history(Request $request)
+    public function updatefarmakognosi(Request $request)
     {
-        $query = $request->input('search');
-        $labfarmakognosi = InventarisLabFarmakognosi::query();
-        
-        if ($query) {
-            $labfarmakognosi->where('nama_barang', 'like', '%' . $query . '%');
+        foreach ($request->reminder_ids as $reminder_id) {
+            $barangfarmakognosi = InventarisLabFarmakognosi::findOrFail($reminder_id);
+            
+            $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangfarmakognosi->tanggal_service)
+                ->addDays($barangfarmakognosi->periode);
+
+            $barangfarmakognosi->tanggal_service = $nextServiceDate;
+            $barangfarmakognosi->save();
+    
+            RiwayatServiceLabFarmakognosi::create([
+                'inventaris_labfarmakognosis_id' => $barangfarmakognosi->id,
+                'tanggal_service' => $barangfarmakognosi->tanggal_service,
+                'keterangan' => 'Barang telah diservis pada ',
+            ]);
         }
-        
-        $labfarmakognosi = $labfarmakognosi->paginate(10);
+    
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return view('rolekoorlabfarmasi.contentkoorlab.riwayatservice', compact('labfarmakognosi'));
-            } else{
-                return view('roleadminlabfarmasi.contentadminlab.riwayatservice', compact('labfarmakognosi'));
+                return redirect()->route('dashboardkoorlabfarmasi');
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                return redirect()->route('dashboardadminlabfarmasi');
             }
         }
     }
 
-    public function updateNotification(Request $request)
+    public function updatefarmasetika(Request $request)
     {
-        if ($request->has('sudah_dilayani')) {
-            foreach ($request->sudah_dilayani as $notificationId) {
-                $notification = InventarisLabFarmakognosi::find($notificationId);
-                if ($notification) {
-                    $notification->sudah_dilayani = true;
-                    // Perbarui tanggal notifikasi hanya jika sudah dilayani
-                    $tanggalService = Carbon::parse($notification->tanggal_service);
-                    $periode = $notification->periode;
-                    $tanggalServiceTerbaru = $tanggalService->addMonths($periode);
-                    $notification->tanggal_service = $tanggalServiceTerbaru;
-                    $notification->save();
-                }
+        foreach ($request->reminder_ids as $reminder_id) {
+            $barangfarmasetika = InventarisLabFarmasetika::findOrFail($reminder_id);
+            
+            $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangfarmasetika->tanggal_service)
+                ->addDays($barangfarmasetika->periode);
+
+            $barangfarmasetika->tanggal_service = $nextServiceDate;
+            $barangfarmasetika->save();
+    
+            RiwayatServiceLabFarmasetika::create([
+                'inventaris_lab_farmasetikas_id' => $barangfarmasetika->id,
+                'tanggal_service' => $barangfarmasetika->tanggal_service,
+                'keterangan' => 'Barang telah diservis pada ',
+            ]);
+        }
+    
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('dashboardkoorlabfarmasi');
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                return redirect()->route('dashboardadminlabfarmasi');
             }
-            return redirect()->back()->with('success', 'Notifikasi berhasil diperbarui.');
-        } else {
-            return redirect()->back()->with('error', 'Tidak ada notifikasi yang dipilih.');
         }
     }
+
+    public function updatekimia(Request $request)
+    {
+        foreach ($request->reminder_ids as $reminder_id) {
+            $barangkimia = InventarisLabKimia::findOrFail($reminder_id);
+            
+            $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangkimia->tanggal_service)
+                ->addDays($barangkimia->periode);
+
+            $barangkimia->tanggal_service = $nextServiceDate;
+            $barangkimia->save();
+    
+            RiwayatServiceLabKimia::create([
+                'inventaris_lab_kimias_id' => $barangkimia->id,
+                'tanggal_service' => $barangkimia->tanggal_service,
+                'keterangan' => 'Barang telah diservis pada ',
+            ]);
+        }
+    
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('dashboardkoorlabfarmasi');
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                return redirect()->route('dashboardadminlabfarmasi');
+            }
+        }
+    }
+
+    public function updatetekfarmasi(Request $request)
+    {
+        foreach ($request->reminder_ids as $reminder_id) {
+            $barangtekfarmasi = InventarisLabTekfarmasi::findOrFail($reminder_id);
+            
+            $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangtekfarmasi->tanggal_service)
+                ->addDays($barangtekfarmasi->periode);
+
+            $barangtekfarmasi->tanggal_service = $nextServiceDate;
+            $barangtekfarmasi->save();
+    
+            RiwayatServiceLabTekfarmasi::create([
+                'inventaris_lab_tekfarmasis_id' => $barangtekfarmasi->id,
+                'tanggal_service' => $barangtekfarmasi->tanggal_service,
+                'keterangan' => 'Barang telah diservis pada ',
+            ]);
+        }
+    
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return redirect()->route('dashboardkoorlabfarmasi');
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                return redirect()->route('dashboardadminlabfarmasi');
+            }
+        }
+    }
+
+    public function historyfarmakognosi(Request $request)
+    {
+        $query = $request->input('search');
+
+        $data = InventarisLabFarmakognosi::query()
+            ->where('nama_barang', 'like', '%' . $query . '%')
+            ->paginate(10);
+
+        $riwayats = RiwayatServiceLabFarmakognosi::query()
+            ->whereHas('barangfarmakognosi', function ($q) use ($query) {
+                $q->where('nama_barang', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
+
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.riwayatservicefarmakognosi', compact('riwayats', 'data'));
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi') {
+                return view('roleadminlabfarmasi.contentadminlab.riwayatservicefarmakognosi', compact('riwayats', 'data'));
+            }
+        }
+    }
+
+    public function historyfarmasetika(Request $request)
+    {
+        $query = $request->input('search');
+
+        $data = InventarisLabFarmasetika::query()
+            ->where('nama_barang', 'like', '%' . $query . '%')
+            ->paginate(10);
+
+        $riwayats = RiwayatServiceLabFarmasetika::query()
+            ->whereHas('barangfarmasetika', function ($q) use ($query) {
+                $q->where('nama_barang', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
+
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.riwayatservicefarmasetika', compact('riwayats', 'data'));
+            } else {
+                return view('roleadminlabfarmasi.contentadminlab.riwayatservicefarmasetika', compact('riwayats', 'data'));
+            }
+        }
+    }
+
+    public function historykimia(Request $request)
+    {
+        $query = $request->input('search');
+
+        $data = InventarisLabKimia::query()
+            ->where('nama_barang', 'like', '%' . $query . '%')
+            ->paginate(10);
+
+        $riwayats = RiwayatServiceLabKimia::query()
+            ->whereHas('barangkimia', function ($q) use ($query) {
+                $q->where('nama_barang', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
+
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.riwayatservicekimia', compact('riwayats', 'data'));
+            } else {
+                return view('roleadminlabfarmasi.contentadminlab.riwayatservicekimia', compact('riwayats', 'data'));
+            }
+        }
+    }
+
+    public function historytekfarmasi(Request $request)
+    {
+        $query = $request->input('search');
+
+        $data = InventarisLabTekfarmasi::query()
+            ->where('nama_barang', 'like', '%' . $query . '%')
+            ->paginate(10);
+
+        $riwayats = RiwayatServiceLabTekfarmasi::query()
+            ->whereHas('barangtekfarmasi', function ($q) use ($query) {
+                $q->where('nama_barang', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
+
+        if(session('is_logged_in')) {
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                return view('rolekoorlabfarmasi.contentkoorlab.riwayatservicetekfarmasi', compact('riwayats', 'data'));
+            } else {
+                return view('roleadminlabfarmasi.contentadminlab.riwayatservicetekfarmasi', compact('riwayats', 'data'));
+            }
+        }
+    }
+
 }
