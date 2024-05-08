@@ -15,7 +15,7 @@ class RiwayatServiceProdiFarmasi extends Model
 
     public $timestamps = true;
 
-    public function barang()
+    public function barangfarmasi()
     {
         return $this->belongsTo(InventarisFarmasi::class,  'inventaris_farmasis_id');
     }

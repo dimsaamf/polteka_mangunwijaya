@@ -259,8 +259,7 @@ Route::middleware(['auth', 'user.role:adminlabprodfarmasi', 'revalidate'])->grou
 
 Route::middleware(['auth', 'user.role:adminprodfarmasi', 'revalidate'])->group(function (){
     Route::get('/adminprodifarmasi/dashboard',[DashboardFarmasiController::class, 'index'])->name('dashboardadminprodifarmasi');
-    Route::post('/adminprodifarmasi/dashboard', [DashboardFarmasiController::class, 'updateNotification'])->name('update.notification.adminprodifarmasi');
-    Route::get('/adminprodifarmasi/riwayat', [DashboardFarmasiController::class, 'getRiwayat'])->name('reminder.adminprodifarmasi');
+    Route::get('/adminprodifarmasi/riwayat', [DashboardFarmasiController::class, 'getRiwayatFarmasi'])->name('riwayat.adminprodifarmasi');
     Route::post('/adminprodifarmasi/dashboard', [DashboardFarmasiController::class, 'update'])->name('reminder.update.adminprodifarmasi');
 
     Route::get('/adminprodifarmasi/databarang', [InventarisFarmasiController::class, 'index'])->name('databarangadminprodifarmasi');
@@ -288,7 +287,14 @@ Route::middleware(['auth', 'user.role:adminprodfarmasi', 'revalidate'])->group(f
 
 Route::middleware(['auth', 'user.role:koorlabprodankes', 'revalidate'])->group(function (){
     Route::get('/koorlabankes/dashboard',[DashboardKoorAdminLabAnkesController::class, 'index'])->name('dashboardkoorlabankes');
-    Route::post('/koorlabankes/dashboard', [DashboardKoorAdminLabAnkesController::class, 'updateNotification'])->name('update.notification');
+    Route::post('/koorlabankes/dashboard/ankeskimia', [DashboardKoorAdminLabAnkesController::class, 'updateankeskimia'])->name('reminder.updateankeskimia');
+    Route::post('/koorlabankes/dashboard/medis', [DashboardKoorAdminLabAnkesController::class, 'updatemedis'])->name('reminder.updatemedis');
+    Route::post('/koorlabankes/dashboard/mikro', [DashboardKoorAdminLabAnkesController::class, 'updatemikro'])->name('reminder.updatemikro');
+    Route::post('/koorlabankes/dashboard/sitohisto', [DashboardKoorAdminLabAnkesController::class, 'updatesitohisto'])->name('reminder.updatesitohisto');
+    Route::get('/koorlabankes/riwayatservice/ankeskimia', [DashboardKoorAdminLabAnkesController::class, 'historyankeskimia'])->name('riwayat.ankeskimia');
+    Route::get('/koorlabankes/riwayatservice/medis', [DashboardKoorAdminLabAnkesController::class, 'historymedis'])->name('riwayat.medis');
+    Route::get('/koorlabankes/riwayatservice/mikro', [DashboardKoorAdminLabAnkesController::class, 'historymikro'])->name('riwayat.mikro');
+    Route::get('/koorlabankes/riwayatservice/sitohisto', [DashboardKoorAdminLabAnkesController::class, 'historysitohisto'])->name('riwayat.sitohisto');
 
     Route::get('/koorlabankes/labsitohisto/databarang', [InventarisLabSitohistoController::class, 'index'])->name('databarangkoorlabsitohisto');
     Route::delete('/koorlabankes/labsitohisto/databarang/{id}', [InventarisLabSitohistoController::class, 'destroy'])->name('hapusbarangsitohisto');
@@ -364,7 +370,14 @@ Route::middleware(['auth', 'user.role:koorlabprodankes', 'revalidate'])->group(f
 
 Route::middleware(['auth', 'user.role:adminlabprodankes', 'revalidate'])->group(function (){
     Route::get('/adminlabankes/dashboard',[DashboardKoorAdminLabAnkesController::class, 'index'])->name('dashboardadminlabankes');
-    Route::post('/adminlabankes/dashboard', [DashboardKoorAdminLabAnkesController::class, 'updateNotification'])->name('update.notification');
+    Route::post('/adminlabankes/dashboard/ankeskimia', [DashboardKoorAdminLabAnkesController::class, 'updateankeskimia'])->name('reminder.updateankeskimia.adminlabankes');
+    Route::post('/adminlabankes/dashboard/medis', [DashboardKoorAdminLabAnkesController::class, 'updatemedis'])->name('reminder.updatemedis.adminlabankes');
+    Route::post('/adminlabankes/dashboard/mikro', [DashboardKoorAdminLabAnkesController::class, 'updatemikro'])->name('reminder.updatemikro.adminlabankes');
+    Route::post('/adminlabankes/dashboard/sitohisto', [DashboardKoorAdminLabAnkesController::class, 'updatesitohisto'])->name('reminder.updatesitohisto.adminlabankes');
+    Route::get('/adminlabankes/riwayatservice/ankeskimia', [DashboardKoorAdminLabAnkesController::class, 'historyankeskimia'])->name('riwayat.ankeskimia.adminlabankes');
+    Route::get('/adminlabankes/riwayatservice/medis', [DashboardKoorAdminLabAnkesController::class, 'historymedis'])->name('riwayat.medis.adminlabankes');
+    Route::get('/adminlabankes/riwayatservice/mikro', [DashboardKoorAdminLabAnkesController::class, 'historymikro'])->name('riwayat.mikro.adminlabankes');
+    Route::get('/adminlabankes/riwayatservice/sitohisto', [DashboardKoorAdminLabAnkesController::class, 'historysitohisto'])->name('riwayat.sitohisto.adminlabankes');
 
     Route::get('/adminlabankes/labsitohisto/databarang', [InventarisLabSitohistoController::class, 'index'])->name('databarangadminlabsitohisto');
     Route::delete('/adminlabankes/labsitohisto/databarang/{id}', [InventarisLabSitohistoController::class, 'destroy'])->name('hapusbarangsitohisto');

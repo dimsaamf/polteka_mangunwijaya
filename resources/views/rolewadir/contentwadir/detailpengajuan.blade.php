@@ -28,6 +28,10 @@
                         <p>{{ $pengajuanBarang->no_surat }}</p>
                     </div>
                     <div class="mb-5">
+                        <p class="font-semibold">Unit:</p>
+                        <p>{{ $pengajuanBarang->prodi }}</p>
+                    </div>
+                    <div class="mb-5">
                         <p class="font-semibold">Tanggal:</p>
                         <p>{{ \Carbon\Carbon::parse($pengajuanBarang->tanggal)->translatedFormat('d F Y') }}</p>
                     </div>
@@ -58,7 +62,7 @@
                         <p class="font-semibold">Total Harga:</p>
                         <p>Rp {{ number_format($pengajuanBarang->total_harga, 0, ',', '.') }}</p>
                     </div>
-                    <form method="POST" action="{{ route('updatestatuskoorlabfarmasi', $pengajuanBarang->id) }}">
+                    <form method="POST" action="{{ route('updatestatuskoorlabfarmasi', $pengajuanBarang->kode_pengajuan) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-5">
@@ -91,11 +95,19 @@
                         </div>
                         <div class="mb-3">
                             <p class="font-semibold">Keterangan:</p>
-                            <label class="block mt-1">
-                                <textarea name="keterangan" rows="5" class="form-control @error('keterangan') is-invalid @enderror mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-start sm:text-sm focus:ring-1" placeholder="Keterangan">
-                                    {{ old('keterangan', $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->keterangan : '') }}
-                                </textarea>
-                            </label>
+                            @if ($pengajuanBarang->pengajuanWadir && in_array($pengajuanBarang->pengajuanWadir->status, ['Disetujui','Disetujui Sebagian']))
+                                <label class="block mt-1">
+                                    <textarea name="keterangan" rows="5" class="form-control @error('keterangan') is-invalid @enderror mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-start sm:text-sm focus:ring-1" placeholder="Keterangan" disabled>
+                                        {{ old('keterangan', $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->keterangan : '') }}
+                                    </textarea>
+                                </label>
+                            @else
+                                <label class="block mt-1">
+                                    <textarea name="keterangan" rows="5" class="form-control @error('keterangan') is-invalid @enderror mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md text-start sm:text-sm focus:ring-1" placeholder="Keterangan">
+                                        {{ old('keterangan', $pengajuanBarang->pengajuanWadir ? $pengajuanBarang->pengajuanWadir->keterangan : '') }}
+                                    </textarea>
+                                </label>
+                            @endif
                         </div>
                         <button type="submit" class="inline-flex w-20 justify-center mt-2 mb-5 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                             Update
@@ -104,9 +116,9 @@
                     <div>
                         <p class="font-semibold">File:</p>
                         @if (pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION) == 'pdf')
-                            <embed src="{{ route('preview.suratwadir', ['id' => $pengajuanBarang->id]) }}" type="application/pdf" width="100%" height="600px">
+                            <embed src="{{ route('preview.suratwadir', ['id' => $pengajuanBarang->kode_pengajuan]) }}" type="application/pdf" width="100%" height="600px">
                         @else
-                            <img src="{{ route('preview.suratwadir', ['id' => $pengajuanBarang->id]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
+                            <img src="{{ route('preview.suratwadir', ['id' => $pengajuanBarang->kode_pengajuan]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
                         @endif
                     </div>
         </div>

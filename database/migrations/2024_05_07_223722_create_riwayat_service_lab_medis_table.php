@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengajuan_barang_lab_ankes', function (Blueprint $table) {
+        Schema::create('riwayat_service_lab_medis', function (Blueprint $table) {
             $table->id();
-            $table->string('no_surat');
-            $table->date('tanggal')->default(now());
-            $table->text('detail_barang');
-            $table->integer('total_harga');
-            $table->string('file');
-            $table->string('status');
+            $table->foreignId('inventaris_lab_medis_id')->nullable()->constrained('inventaris_lab_medis')->onDelete('cascade')->index('riwayat_service_lab_ankeskimia_medis_foreign');
+            $table->date('tanggal_service');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengajuan_barang_lab_ankes');
+        Schema::dropIfExists('riwayat_service_lab_medis');
     }
 };

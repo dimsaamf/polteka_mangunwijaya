@@ -56,6 +56,8 @@ class PengajuanBarangLabFarmasiController extends Controller
             return redirect()->back()->withInput()->with('error', 'Semua kolom nama barang dan harga harus diisi.');
         }
     }
+
+    $kode_pengajuan = uniqid('FARMASI') . '_' . time();
     
     // Logika untuk menambahkan barang baru
     $tambahBarang = true;
@@ -70,6 +72,7 @@ class PengajuanBarangLabFarmasiController extends Controller
     $file_surat_path = $file_surat->store('surat', 'public');
     $statusDefault = 'Menunggu Konfirmasi';
     $keteranganDefault = 'Belum Ada';
+    $prodiDefault = 'Prodi Farmasi';
 
     $total_harga = 0; // Inisialisasi total harga
     if (!empty($request->harga)) { // Periksa apakah $request->harga tidak kosong
@@ -79,11 +82,13 @@ class PengajuanBarangLabFarmasiController extends Controller
         $harga = json_encode($request->harga);
 
         $pengajuan = PengajuanBarangLabFarmasi::create([
+            'kode_pengajuan' => $kode_pengajuan,
             'no_surat' => $request->no_surat,
             'tanggal' => Carbon::now('Asia/Jakarta'),
             'file' => $file_surat_path,
             'status' => $statusDefault,
             'keterangan' => $keteranganDefault,
+            'prodi' => $prodiDefault,
             'total_harga' => $total_harga,
             'nama_barang' => $nama_barang,
             'harga' => $harga,

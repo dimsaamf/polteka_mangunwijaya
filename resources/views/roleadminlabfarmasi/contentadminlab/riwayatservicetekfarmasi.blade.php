@@ -80,28 +80,18 @@
                         @else
                         @foreach($riwayats as $riwayat)
                         <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                            <td class="px-6 py-2 whitespace-nowrap">{{$loop->iteration}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">
-                                @foreach($data as $barang)
-                                @if($barang->id == $riwayat->inventaris_lab_tekfarmasis_id)
-                                    {{ $barang->nama_barang }}
-                                @endif
-                                @endforeach
+                                {{ ($riwayats->currentPage() - 1) * $riwayats->perPage() + $loop->index + 1 }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap">
-                                @foreach($data as $barang)
-                                @if($barang->id == $riwayat->inventaris_lab_tekfarmasis_id)
-                                    {{ $barang->kode_barang }}
-                                @endif
-                                @endforeach
+                                {{ $riwayat->barangtekfarmasi->nama_barang }}
+                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap">
+                                {{ $riwayat->barangtekfarmasi->kode_barang }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}</td>
                             <td class="px-6 py-2 whitespace-nowrap">
-                                @foreach($data as $barang)
-                                @if($barang->id == $riwayat->inventaris_lab_tekfarmasis_id)
-                                    {{ \Carbon\Carbon::parse($barang->tanggal_service)->translatedFormat('d F Y') }}
-                                @endif
-                                @endforeach
+                                {{ \Carbon\Carbon::parse($riwayat->barangtekfarmasi->tanggal_service)->translatedFormat('d F Y') }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap">
                                 {{ $riwayat->keterangan }} {{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pengajuan_barang_labfarmasis', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('kode_pengajuan')->unique();
             $table->string('no_surat');
             $table->date('tanggal')->default(now());
             $table->json('nama_barang');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->integer('total_harga');
             $table->string('file');
             $table->string('status');
+            $table->string('prodi');
             $table->timestamps();
         });
     }

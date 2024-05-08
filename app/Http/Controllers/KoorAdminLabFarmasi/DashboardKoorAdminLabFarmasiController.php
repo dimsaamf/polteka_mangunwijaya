@@ -127,7 +127,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             $barangfarmakognosi = InventarisLabFarmakognosi::findOrFail($reminder_id);
             
             $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangfarmakognosi->tanggal_service)
-                ->addDays($barangfarmakognosi->periode);
+                ->addMonths($barangfarmakognosi->periode);
 
             $barangfarmakognosi->tanggal_service = $nextServiceDate;
             $barangfarmakognosi->save();
@@ -154,7 +154,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             $barangfarmasetika = InventarisLabFarmasetika::findOrFail($reminder_id);
             
             $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangfarmasetika->tanggal_service)
-                ->addDays($barangfarmasetika->periode);
+                ->addMonths($barangfarmasetika->periode);
 
             $barangfarmasetika->tanggal_service = $nextServiceDate;
             $barangfarmasetika->save();
@@ -181,7 +181,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             $barangkimia = InventarisLabKimia::findOrFail($reminder_id);
             
             $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangkimia->tanggal_service)
-                ->addDays($barangkimia->periode);
+                ->addMonths($barangkimia->periode);
 
             $barangkimia->tanggal_service = $nextServiceDate;
             $barangkimia->save();
@@ -208,7 +208,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             $barangtekfarmasi = InventarisLabTekfarmasi::findOrFail($reminder_id);
             
             $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barangtekfarmasi->tanggal_service)
-                ->addDays($barangtekfarmasi->periode);
+                ->addMonths($barangtekfarmasi->periode);
 
             $barangtekfarmasi->tanggal_service = $nextServiceDate;
             $barangtekfarmasi->save();
@@ -238,6 +238,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ->paginate(10);
 
         $riwayats = RiwayatServiceLabFarmakognosi::query()
+            ->with('barangfarmakognosi') // Load relasi InventarisFarmasi
             ->whereHas('barangfarmakognosi', function ($q) use ($query) {
                 $q->where('nama_barang', 'like', '%' . $query . '%');
             })
@@ -260,7 +261,8 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ->where('nama_barang', 'like', '%' . $query . '%')
             ->paginate(10);
 
-        $riwayats = RiwayatServiceLabFarmasetika::query()
+            $riwayats = RiwayatServiceLabFarmasetika::query()
+            ->with('barangfarmasetika') // Load relasi InventarisFarmasi
             ->whereHas('barangfarmasetika', function ($q) use ($query) {
                 $q->where('nama_barang', 'like', '%' . $query . '%');
             })
@@ -283,7 +285,8 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ->where('nama_barang', 'like', '%' . $query . '%')
             ->paginate(10);
 
-        $riwayats = RiwayatServiceLabKimia::query()
+            $riwayats = RiwayatServiceLabKimia::query()
+            ->with('barangkimia') // Load relasi InventarisFarmasi
             ->whereHas('barangkimia', function ($q) use ($query) {
                 $q->where('nama_barang', 'like', '%' . $query . '%');
             })
@@ -306,7 +309,8 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ->where('nama_barang', 'like', '%' . $query . '%')
             ->paginate(10);
 
-        $riwayats = RiwayatServiceLabTekfarmasi::query()
+            $riwayats = RiwayatServiceLabTekfarmasi::query()
+            ->with('barangtekfarmasi') // Load relasi InventarisFarmasi
             ->whereHas('barangtekfarmasi', function ($q) use ($query) {
                 $q->where('nama_barang', 'like', '%' . $query . '%');
             })

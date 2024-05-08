@@ -43,6 +43,7 @@
                         <tr >
                             <th scope="col" class="px-6 py-3 text-center">No</th>
                             <th scope="col" class="px-6 py-3 text-center">No Surat</th>
+                            <th scope="col" class="px-6 py-3 text-center">Unit</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal</th>
                             <th scope="col" class="px-6 py-3 text-center">Total Harga</th>
                             <th scope="col" class="px-6 py-3 text-center">File</th>
@@ -52,19 +53,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($pengajuanBarangs->isEmpty())
+                        @if ($paginatedPengajuanBarangs->isEmpty())
                             <tr>
                                 <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
-                        @foreach($pengajuanBarangs as $pengajuanbarang)
+                        @foreach($paginatedPengajuanBarangs as $pengajuanbarang)
                             <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                                <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($pengajuanBarangs->currentPage() - 1) * $pengajuanBarangs->perPage() + $loop->index + 1 }}</td>
+                                <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($paginatedPengajuanBarangs->currentPage() - 1) * $paginatedPengajuanBarangs->perPage() + $loop->index + 1 }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">{{$pengajuanbarang->no_surat}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$pengajuanbarang->prodi}}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($pengajuanbarang->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">Rp {{ number_format($pengajuanbarang->total_harga, 0, ',', '.') }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">
-                                    <a href="{{ route('preview.suratsuperadmin', ['id' => $pengajuanbarang->id]) }}" target="_blank">
+                                    <a href="{{ route('preview.suratsuperadmin', ['id' => $pengajuanbarang->kode_pengajuan]) }}" target="_blank">
                                         @if (in_array(pathinfo($pengajuanbarang->file, PATHINFO_EXTENSION), ['pdf']))
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 15 15"><path fill="#e20808" d="M3.5 8H3V7h.5a.5.5 0 0 1 0 1M7 10V7h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/><path fill="#e20808" fill-rule="evenodd" d="M1 1.5A1.5 1.5 0 0 1 2.5 0h8.207L14 3.293V13.5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 1 13.5zM3.5 6H2v5h1V9h.5a1.5 1.5 0 1 0 0-3m4 0H6v5h1.5A1.5 1.5 0 0 0 9 9.5v-2A1.5 1.5 0 0 0 7.5 6m2.5 5V6h3v1h-2v1h1v1h-1v2z" clip-rule="evenodd"/></svg>
                                         @else
@@ -75,7 +77,7 @@
                                     </a>
                                 </td>
                                 <td class="px-3 py-2 whitespace-nowrap rounded-r-xl flex justify-center space-x-4">
-                                    <a href="{{ route('detailpengajuansuperadmin', ['id' => $pengajuanbarang->id]) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                    <a href="{{ route('detailpengajuansuperadmin', ['id' => $pengajuanbarang->kode_pengajuan]) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 24 24"><path fill="black" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75z"/></svg>
                                     </a>
                                 </td>
@@ -97,7 +99,7 @@
                                     @else
                                         Belum Ada
                                     @endif
-                                </td>
+                                </td>                                
                             </tr>
                         @endforeach
                         @endif
@@ -112,27 +114,27 @@
         <!-- BEGIN: Pagination -->
         <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
             <ul class="inline-flex mx-autospace-x-2">
-                @if ($pengajuanBarangs->onFirstPage())
+                @if ($paginatedPengajuanBarangs->onFirstPage())
                     <li>
                         <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $pengajuanBarangs->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        <a href="{{ $paginatedPengajuanBarangs->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                     </li>
                 @endif
         
-                @foreach ($pengajuanBarangs->getUrlRange($pengajuanBarangs->currentPage() - 2, $pengajuanBarangs->currentPage() + 2) as $page => $url)
-                    @if ($page == $pengajuanBarangs->currentPage())
+                @foreach ($paginatedPengajuanBarangs->getUrlRange($paginatedPengajuanBarangs->currentPage() - 2, $paginatedPengajuanBarangs->currentPage() + 2) as $page => $url)
+                    @if ($page == $paginatedPengajuanBarangs->currentPage())
                         <li>
                             <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach
         
-                @if ($pengajuanBarangs->hasMorePages())
+                @if ($paginatedPengajuanBarangs->hasMorePages())
                     <li>
-                        <a href="{{ $pengajuanBarangs->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        <a href="{{ $paginatedPengajuanBarangs->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
                     </li>
                 @else
                     <li>

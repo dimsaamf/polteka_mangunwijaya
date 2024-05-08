@@ -32,7 +32,7 @@
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
         <h2 class="text-xl font-medium">Ubah Pengajuan Barang</h2>
-        <form action="{{ route('updatepengajuankoorlabfarmasi', $pengajuanBarang->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updatepengajuankoorlabfarmasi', $pengajuanBarang->kode_pengajuan) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label class="block mt-4">
                 <span class="text-sm font-medium">Nomor Surat*</span>
@@ -159,68 +159,6 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
-
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const tambahBarangBtn = document.getElementById('tambah-barang');
-        const totalHargaInput = document.querySelector('input[name="total_harga"]');
-
-        // Fungsi untuk menghitung total harga
-        function hitungTotalHarga() {
-            let total = 0;
-            document.querySelectorAll('input[name="harga[]"]').forEach(input => {
-                if (input.value.trim() !== '') {
-                    total += parseFloat(input.value);
-                }
-            });
-            totalHargaInput.value = total;
-        }
-
-        // Event listener untuk setiap input harga barang
-        document.addEventListener('input', function (event) {
-            if (event.target && event.target.name === 'harga[]') {
-                hitungTotalHarga();
-            }
-        });
-
-        // Event listener untuk tombol tambah barang
-        tambahBarangBtn.addEventListener('click', function () {
-            const isAllFilled = Array.from(document.querySelectorAll('input[name="nama_barang[]"], input[name="harga[]"]')).every(input => input.value.trim() !== '');
-            if (isAllFilled) {
-                const barangContainer = document.createElement('div');
-                barangContainer.classList.add('barang-container', 'grid', 'grid-cols-1', 'md:grid-cols-4', 'md:gap-7', 'gap-4', 'mt-4', 'justify-center', 'items-center');
-                barangContainer.innerHTML = `
-                    <label class="block md:col-span-2">
-                        <span class="text-sm font-medium">Nama Barang*</span>
-                        <input type="text" name="nama_barang[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Nama Barang" />
-                    </label>
-                    <label class="block md:col-span-1">
-                        <span class="text-sm font-medium">Harga Barang*</span>
-                        <input type="text" name="harga[]" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
-                    </label>
-                    <!-- Tombol Hapus Barang -->
-                    <button type="button" class="hapus-barang md:col-span-1 mt-7 inline-flex w-6 h-6 justify-center items-center rounded-md text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="hapus-barang" width="1em" height="1em" viewBox="0 0 15 15"><path fill="white" d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"/></svg>
-                    </button>
-                `;
-                tambahBarangBtn.parentNode.insertBefore(barangContainer, tambahBarangBtn);
-                // Reset total harga
-                hitungTotalHarga();
-            } else {
-                alert('Isi terlebih dahulu kolom yang sudah ada sebelum menambah barang baru.');
-            }
-        });
-
-        // Event listener untuk tombol hapus barang
-        document.addEventListener('click', function (event) {
-            if (event.target && event.target.classList.contains('hapus-barang')) {
-                const container = event.target.closest('.barang-container');
-                container.parentNode.removeChild(container); // Menghapus elemen barang dari DOM
-                hitungTotalHarga(); // Menghitung ulang total harga setelah menghapus barang
-            }
-        });
-    });
-</script> --}}
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

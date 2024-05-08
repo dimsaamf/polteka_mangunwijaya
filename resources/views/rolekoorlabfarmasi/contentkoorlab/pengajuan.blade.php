@@ -49,6 +49,7 @@
                         <tr >
                             <th scope="col" class="px-6 py-3 text-center">No</th>
                             <th scope="col" class="px-6 py-3 text-center">No Surat</th>
+                            <th scope="col" class="px-6 py-3 text-center">Unit</th>
                             <th scope="col" class="px-6 py-3 text-center">Tanggal</th>
                             <th scope="col" class="px-6 py-3 text-center">Total Harga</th>
                             <th scope="col" class="px-6 py-3 text-center">File</th>
@@ -65,13 +66,14 @@
                         @else
                         @foreach($pengajuanBarangs as $pengajuanbarang)
                             <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
-                                <input type="hidden" class="delete_id" value="{{$pengajuanbarang->id}}">
+                                <input type="hidden" class="delete_id" value="{{$pengajuanbarang->kode_pengajuan}}">
                                 <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($pengajuanBarangs->currentPage() - 1) * $pengajuanBarangs->perPage() + $loop->index + 1 }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">{{$pengajuanbarang->no_surat}}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{$pengajuanbarang->prodi}}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($pengajuanbarang->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">Rp {{ number_format($pengajuanbarang->total_harga, 0, ',', '.') }}</td>
                                 <td class="px-6 py-2 whitespace-nowrap">
-                                    <a href="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" target="_blank">
+                                    <a href="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanbarang->kode_pengajuan]) }}" target="_blank">
                                         @if (in_array(pathinfo($pengajuanbarang->file, PATHINFO_EXTENSION), ['pdf']))
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" viewBox="0 0 15 15"><path fill="#e20808" d="M3.5 8H3V7h.5a.5.5 0 0 1 0 1M7 10V7h.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/><path fill="#e20808" fill-rule="evenodd" d="M1 1.5A1.5 1.5 0 0 1 2.5 0h8.207L14 3.293V13.5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 1 13.5zM3.5 6H2v5h1V9h.5a1.5 1.5 0 1 0 0-3m4 0H6v5h1.5A1.5 1.5 0 0 0 9 9.5v-2A1.5 1.5 0 0 0 7.5 6m2.5 5V6h3v1h-2v1h1v1h-1v2z" clip-rule="evenodd"/></svg>
                                         @else
@@ -100,7 +102,7 @@
                                     @endif
                                 </td>                                
                                 <td class="px-6 py-2 whitespace-nowrap rounded-r-xl flex justify-center space-x-4">
-                                    <a href="{{ route('detailpengajuankoorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
+                                    <a href="{{ route('detailpengajuankoorlabfarmasi', ['id' => $pengajuanbarang->kode_pengajuan]) }}" data-modal-target="default-modal" data-modal-toggle="default-modal" >
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4em" height="1.4em" viewBox="0 0 24 24"><path fill="black" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
                                     </a>
                                     @if ($pengajuanbarang->pengajuanWadir && in_array($pengajuanbarang->pengajuanWadir->status, ['Ditolak', 'Disetujui', 'Ditunda','Disetujui Sebagian']))
@@ -108,17 +110,23 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24" style="opacity: 0.5;"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
                                         </a>
                                     @else
-                                        <a href="{{ route('editpengajuankoorlabfarmasi', ['id' => $pengajuanbarang->id]) }}">
+                                        <a href="{{ route('editpengajuankoorlabfarmasi', ['id' => $pengajuanbarang->kode_pengajuan]) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
                                         </a>
                                     @endif
-                                    <form action="{{ route('hapuspengajuankoorlabfarmasi', ['id' => $pengajuanbarang->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btndelete">
+                                    @if ($pengajuanbarang->pengajuanWadir && in_array($pengajuanbarang->pengajuanWadir->status, ['Ditolak', 'Disetujui', 'Ditunda','Disetujui Sebagian']))
+                                        <a href="#" disabled>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto text-red-600" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
-                                        </button>
-                                    </form>
+                                        </a>
+                                    @else
+                                        <form action="{{ route('hapuspengajuankoorlabfarmasi', ['id' => $pengajuanbarang->kode_pengajuan]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btndelete">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto text-red-600" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

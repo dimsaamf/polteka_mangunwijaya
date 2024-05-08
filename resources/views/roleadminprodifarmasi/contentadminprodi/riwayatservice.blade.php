@@ -30,37 +30,146 @@
         </section>
         <!-- END: Top Bar -->
         <section class="text-hitam-polteka">
-            <h1>Riwayat Barang</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nama Barang</th>
-                        <th>Tanggal Service</th>
-                        <th>Tanggal Service Selanjutnya</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($riwayats as $riwayat)
-                        <tr>
-                            <td>
-                                @foreach($data as $barang)
-                                @if($barang->id == $riwayat->inventaris_farmasis_id)
-                                    {{ $barang->nama_barang }}
-                                @endif
-                                @endforeach</td>
-                            <td>{{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}</td>
-                            <td>
-                                @foreach($data as $barang)
-                                @if($barang->id == $riwayat->inventaris_farmasis_id)
-                                    {{ \Carbon\Carbon::parse($barang->tanggal_service)->translatedFormat('d F Y') }}
-                                @endif
-                                @endforeach</td>
-                            <td>{{ $riwayat->keterangan }} {{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}</td>
-                        </tr>
+            <div>
+            <h2 class="text-xl font-semibold">Riwayat Service Prodi Farmasi</h2>
+    
+            <!-- BEGIN: Data List --> 
+            <div class="flex flex-col mt-5">
+                <div class="-m-1.5 overflow-x-auto">
+                    <div class="p-1.5 min-w-full inline-block align-middle">
+                    <div class="overflow-hidden">
+                        <div class="flex">
+                            <div class="flex w-1/2 justify-start">
+                                <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
+                                    <form action="{{ route('riwayat.adminprodifarmasi') }}" method="GET" class="relative flex w-full">
+                                        <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
+                                            <div class="relative flex">   
+                                                <input
+                                                    type="text"
+                                                    name="search"
+                                                    class="relative m-0 block flex-auto rounded-l-full border border-none bg-transparent bg-clip-padding px-3 py-[0.25rem] text-md font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-hitam-polteka placeholder:text-opacity-30 focus:z-[3] focus:border-none focus:shadow-inset focus:outline-none motion-reduce:transition-none"
+                                                    placeholder="Cari barang"/>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="absolute right-0 top-0 bottom-0 flex items-center justify-center w-10 h-full rounded-r-full bg-merah180-polteka dark:bg-merah180-polteka dark:text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="mt-8 min-w-full text-sm text-hitam-polteka">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-center">No</th>
+                                <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
+                                <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
+                                <th scope="col" class="px-6 py-3 text-center">Tanggal Service</th>
+                                <th scope="col" class="px-6 py-3 text-center">Service Berikutnya</th>
+                                <th scope="col" class="px-6 py-3 text-center">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ($riwayats->isEmpty())
+                                <tr>
+                                    <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
+                                </tr>
+                            @else
+                            @foreach($riwayats as $riwayat)
+                            <tr class="text-center bg-putih-polteka border-y-8 border-abu-polteka">
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                    {{ ($riwayats->currentPage() - 1) * $riwayats->perPage() + $loop->index + 1 }}
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                    {{ $riwayat->barangfarmasi->nama_barang }}
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                    {{ $riwayat->barangfarmasi->kode_barang }}
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap">{{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}</td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                    {{ \Carbon\Carbon::parse($riwayat->barangfarmasi->tanggal_service)->translatedFormat('d F Y') }}
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap">
+                                    {{ $riwayat->keterangan }} {{ \Carbon\Carbon::parse($riwayat->updated_at)->translatedFormat('d F Y') }}
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="fixed inset-0 overflow-y-auto flex items-center justify-center z-50">
+                    <div class="fixed inset-0 bg-black opacity-25"></div>
+                    <div class="relative bg-white rounded-lg shadow">
+                        <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-4 md:p-5 text-center">
+                            <div id="barcodeContainer"></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- END: Data List -->
+            <!-- BEGIN: Pagination -->
+            <div class="flex flex-col my-12 py-4 items-center space-y-5 overflow-x-auto">
+                <ul class="inline-flex mx-autospace-x-2">
+                    @if ($riwayats->onFirstPage())
+                        <li>
+                            <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ $riwayats->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
+                        </li>
+                    @endif
+            
+                    @foreach ($riwayats->getUrlRange($riwayats->currentPage() - 2, $riwayats->currentPage() + 2) as $page => $url)
+                        @if ($page == $riwayats->currentPage())
+                            <li>
+                                <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                            </li>
+                        @endif
                     @endforeach
-                </tbody>
-            </table>
+            
+                    @if ($riwayats->hasMorePages())
+                        <li>
+                            <a href="{{ $riwayats->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                        </li>
+                    @else
+                        <li>
+                            <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+            <!-- END: Pagination -->
+            <!-- Add the modal code at the bottom of the blade file -->
+            <div id="popup-modal" class="fixed inset-0 overflow-y-auto overflow-x-hidden z-50 justify-center items-center hidden">
+                <div class="fixed inset-0 bg-black opacity-25"></div>
+                <div class="relative bg-white rounded-lg shadow">
+                    <button @click="open = false" type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-4 md:p-5 text-center">
+                        <img id="barcodeImage" src="" alt="Barcode" class="mx-auto">
+                    </div>
+                </div>
+            </div>
             <!-- Modal Profile -->
             <div id="modal2" class="fixed z-10 inset-0 hidden">
                 <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">

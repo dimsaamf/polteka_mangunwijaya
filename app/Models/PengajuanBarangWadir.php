@@ -10,7 +10,8 @@ class PengajuanBarangWadir extends Model
     use HasFactory;
 
     protected $fillable = [
-        'pengajuan_barang_labfarmasi_id',
+        'pengajuan_barang_labfarmasis_kode_pengajuan',
+        'pengajuan_barang_lab_ankes_kode_pengajuan',
         'status',
         'keterangan',
     ];
@@ -20,5 +21,10 @@ class PengajuanBarangWadir extends Model
     public function pengajuanBarangLabFarmasi()
     {
         return $this->belongsTo(PengajuanBarangLabFarmasi::class);
+    }
+
+    public function pengajuanBarangLabAnkes()
+    {
+        return $this->belongsTo(PengajuanBarangLabAnkes::class);
     }
 }

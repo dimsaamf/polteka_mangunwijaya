@@ -64,7 +64,7 @@ public function store(Request $request)
     ];
 
     $request->validate([
-        'nama_barang'=>'required|string|unique:inventaris_labmikros',
+        'nama_barang'=>'required|string|unique:inventaris_lab_mikros',
         'jumlah' => [
             'required',
             'numeric',

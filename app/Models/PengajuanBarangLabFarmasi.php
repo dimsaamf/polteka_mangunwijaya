@@ -10,7 +10,10 @@ class PengajuanBarangLabFarmasi extends Model
     use HasFactory;
 
     protected $table = 'pengajuan_barang_labfarmasis';
+    protected $primaryKey = 'kode_pengajuan'; // Set primary key to 'kode_pengajuan'
+    public $incrementing = false; // Indicate that primary key is not auto-incrementing
     protected $fillable = [
+        'kode_pengajuan', // Change 'id' to 'kode_pengajuan'
         'no_surat', 
         'tanggal',  
         'nama_barang',
@@ -18,11 +21,13 @@ class PengajuanBarangLabFarmasi extends Model
         'total_harga', 
         'file', 
         'status',
-        'keterangan'
+        'keterangan',
+        'prodi'
     ];
 
     public function pengajuanWadir()
     {
-        return $this->hasOne(PengajuanBarangWadir::class, 'pengajuan_barang_labfarmasi_id');
+        // Define the relationship using 'kode_pengajuan' as foreign key
+        return $this->hasOne(PengajuanBarangWadir::class, 'pengajuan_barang_labfarmasis_kode_pengajuan', 'kode_pengajuan');
     }
 }

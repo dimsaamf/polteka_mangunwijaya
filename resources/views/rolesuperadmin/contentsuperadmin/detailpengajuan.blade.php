@@ -28,6 +28,10 @@
                         <p>{{ $pengajuanBarang->no_surat }}</p>
                     </div>
                     <div class="mb-5">
+                        <p class="font-semibold">Unit:</p>
+                        <p>{{ $pengajuanBarang->prodi }}</p>
+                    </div>
+                    <div class="mb-5">
                         <p class="font-semibold">Tanggal:</p>
                         <p>{{ \Carbon\Carbon::parse($pengajuanBarang->tanggal)->translatedFormat('d F Y') }}</p>
                     </div>
@@ -58,7 +62,7 @@
                         <p class="font-semibold">Total Harga:</p>
                         <p>Rp {{ number_format($pengajuanBarang->total_harga, 0, ',', '.') }}</p>
                     </div>
-                    <form method="POST" action="{{ route('updatestatuskoorlabfarmasisuperadmin', $pengajuanBarang->id) }}">
+                    <form method="POST" action="{{ route('updatestatuskoorlabfarmasisuperadmin', $pengajuanBarang->kode_pengajuan) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-5">
@@ -79,9 +83,9 @@
                     <div>
                         <p class="font-semibold">File:</p>
                         @if (pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION) == 'pdf')
-                            <embed src="{{ route('preview.suratsuperadmin', ['id' => $pengajuanBarang->id]) }}" type="application/pdf" width="100%" height="600px">
+                            <embed src="{{ route('preview.suratsuperadmin', ['id' => $pengajuanBarang->kode_pengajuan]) }}" type="application/pdf" width="100%" height="600px">
                         @else
-                            <img src="{{ route('preview.suratsuperadmin', ['id' => $pengajuanBarang->id]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
+                            <img src="{{ route('preview.suratsuperadmin', ['id' => $pengajuanBarang->kode_pengajuan]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
                         @endif
                     </div>
         </div>

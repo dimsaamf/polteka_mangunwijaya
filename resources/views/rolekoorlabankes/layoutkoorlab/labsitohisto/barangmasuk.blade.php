@@ -483,6 +483,14 @@
             });
         });
         </script>
+
+        <script>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    alert('{{ $error }}');
+                @endforeach
+            @endif
+        </script>
        
         <!-- END: JS Assets-->
         

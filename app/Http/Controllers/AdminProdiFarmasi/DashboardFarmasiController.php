@@ -9,6 +9,7 @@ use App\Models\BarangKeluarFarmasi;
 use App\Models\RiwayatServiceProdiFarmasi;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DashboardFarmasiController extends Controller
 {
@@ -18,7 +19,7 @@ class DashboardFarmasiController extends Controller
         $jumlah_barang_masuk = BarangMasukFarmasi::count();
         $jumlah_barang_keluar = BarangKeluarFarmasi::count();
 
-        $reminders = InventarisFarmasi::where('tanggal_service', '<=', now())->get();
+        $reminders = InventarisFarmasi::where('tanggal_service', '<=', now())->paginate(5);
 
         $barangHabis = InventarisFarmasi::whereColumn('jumlah', '<', DB::raw('jumlah_min'))->paginate(5);
         
@@ -31,16 +32,12 @@ class DashboardFarmasiController extends Controller
     {
         foreach ($request->reminder_ids as $reminder_id) {
             $barang = InventarisFarmasi::findOrFail($reminder_id);
-            
-            // Calculate the next service date based on the current tanggal_service and periode
             $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barang->tanggal_service)
-                ->addDays($barang->periode);
-            
-            // Update the tanggal_service to the next service date
+                ->addMonths($barang->periode);
+
             $barang->tanggal_service = $nextServiceDate;
             $barang->save();
-    
-            // Create history record
+
             RiwayatServiceProdiFarmasi::create([
                 'inventaris_farmasis_id' => $barang->id,
                 'tanggal_service' => $barang->tanggal_service,
@@ -52,12 +49,22 @@ class DashboardFarmasiController extends Controller
     }
     
 
-public function getRiwayat()
-{
-    $data = InventarisFarmasi::all();
+    public function getRiwayatFarmasi(Request $request)
+    {
+        $query = $request->input('search');
 
-    $riwayats = RiwayatServiceProdiFarmasi::all();
-    return view('roleadminprodifarmasi.contentadminprodi.riwayatservice', compact('riwayats','data'));
-}
+        $data = InventarisFarmasi::query()
+            ->where('nama_barang', 'like', '%' . $query . '%')
+            ->paginate(10);
+
+            $riwayats = RiwayatServiceProdiFarmasi::query()
+            ->with('barangfarmasi') // Load relasi InventarisFarmasi
+            ->whereHas('barangfarmasi', function ($q) use ($query) {
+                $q->where('nama_barang', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
+            
+        return view('roleadminprodifarmasi.contentadminprodi.riwayatservice', compact('riwayats','data'));
+    }
     
 }

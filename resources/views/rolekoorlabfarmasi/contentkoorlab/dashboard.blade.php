@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                     <div class="w-7/8 ml-2">
-                                        <div class="text-sm">{{ $barang->nama_barang }}</div>
+                                        <div class="text-sm">{{ $barang->nama_barang }}  (Lab {{ str_replace('App\Models\InventarisLab', '', get_class($barang)) }})</div>
                                         <div class="text-xs text-slate-500">Stok saat ini {{ $barang->jumlah }}</div>
                                     </div>
                                 </div>

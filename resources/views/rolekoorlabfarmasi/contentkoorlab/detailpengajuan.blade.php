@@ -82,9 +82,9 @@
                     <div>
                         <p class="font-semibold">File:</p>
                         @if (pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION) == 'pdf')
-                            <embed src="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanBarang->id]) }}" type="application/pdf" width="100%" height="600px">
+                            <embed src="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanBarang->kode_pengajuan]) }}" type="application/pdf" width="100%" height="600px">
                         @else
-                            <img src="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanBarang->id]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
+                            <img src="{{ route('preview.surat.koorlabfarmasi', ['id' => $pengajuanBarang->kode_pengajuan]) }}" alt="Gambar Pengajuan" class="w-full h-auto">
                         @endif
                     </div>
         </div>

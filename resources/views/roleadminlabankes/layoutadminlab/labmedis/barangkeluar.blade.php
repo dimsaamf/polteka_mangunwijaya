@@ -3,7 +3,7 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="logo.png" rel="shortcut icon">
+        <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <title>Barang Keluar Admin Laboratorium Medis</title>
@@ -14,7 +14,7 @@
         <div class="block md:hidden bg-merah200-polteka text-putih-polteka">
             <div class="flex mr-auto">
                 <a href="#" class="ml-8 flex-grow">
-                    <img alt="Logo" class="w-10" src="logoputih.png">
+                    <img alt="Logo" class="w-10" src="{{ asset('logoputih.png') }}">
                 </a>
                 <a href="#" class="mr-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 buttonToogle" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1m0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1M3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1"/></svg>
@@ -204,7 +204,7 @@
             <!-- BEGIN: Side Menu -->
             <nav class="hidden md:block xl:w-[20%] lg:w-[12%] md:w-[12%]">
                 <div href="" class="intro-x flex xl:justify-start md:justify-center lg:justify-center xl:pl-5 pt-4">
-                    <img alt="Logo" class="xl:hidden lg:w-[50px] md:w-[50px] lg:mt-2" src="logoputih.png">
+                    <img alt="Logo" class="xl:hidden lg:w-[50px] md:w-[50px] lg:mt-2" src="{{ asset('logoputih.png') }}">
                     <span class="xl:block hidden text-putih-polteka text-lg ml-3 font-semibold text-[20px]"> Polteka <br>Mangunwijaya</br> </span> 
                 </div>
                 <div class="my-7"></div>
