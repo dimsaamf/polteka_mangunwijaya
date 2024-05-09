@@ -77,19 +77,27 @@
                 @enderror
             </label>
         </div>
+        <label class="block mt-4">
+            <span class="text-sm font-medium">Apakah perlu pengingat tanggal service?</span>
+            <select name="reminder" id="reminder" class="form-control">
+                <option value="1">Ya</option>
+                <option value="0" selected>Tidak</option>
+            </select>
+        </label>
+        
         <div id="tanggal_service_input" style="display: none;" class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
                 <input id="tanggal_service" type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
             </label>
-            <label class="block md:col-span-1">
+            <label id="periode_input" class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
-                    <input type="number" name="periode" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
+                    <input id="periode" type="number" name="periode" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
                     <span class="ml-2 mt-2 font-bold">bulan</span>
                 </div>
             </label>
-        </div>
+        </div>     
         <label class="block mt-4">
             <span class="text-sm font-medium">Harga*</span>
             <input type="number" name="harga" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Harga Barang" />
@@ -198,6 +206,19 @@
             document.getElementById('tanggal_service').removeAttribute('required');
         }
     });
+
+    document.getElementById('reminder').addEventListener('change', function() {
+        var isServiceNeeded = this.value;
+        var tanggalServiceInput = document.getElementById('periode_input');
+        
+        if (isServiceNeeded === '1') {
+            tanggalServiceInput.style.display = 'grid';
+            document.getElementById('periode').setAttribute('required', 'required');
+        } else {
+            tanggalServiceInput.style.display = 'none';
+            document.getElementById('periode').removeAttribute('required');
+        }
+    });
     
     // Set default value for tanggal service if needed
     window.onload = function() {
@@ -210,6 +231,17 @@
             tanggalServiceInput.style.display = 'none';
         }
     };
-    </script>
+
+    window.onload = function() {
+        var isServiceNeeded = document.getElementById('reminder').value;
+        var tanggalServiceInput = document.getElementById('periode_input');
     
+        if (isServiceNeeded === '1') {
+            tanggalServiceInput.style.display = 'grid';
+        } else {
+            tanggalServiceInput.style.display = 'none';
+        }
+    };
+    </script>
+
 @endsection
