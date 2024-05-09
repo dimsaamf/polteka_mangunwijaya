@@ -6,104 +6,63 @@ use Illuminate\Http\Request;
 use App\Models\InventarisAnkes;
 use App\Models\BarangMasukAnkes;
 use App\Models\BarangKeluarAnkes;
+use App\Models\RiwayatServiceProdiAnkes;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DashboardAnkesController extends Controller
 {
-    // public function index(Request $request)
-    // {
-    //      $jumlah_barang = InventarisAnkes::count();
-    //      $jumlah_barang_masuk = BarangMasukAnkes::count();
-    //      $jumlah_barang_keluar = BarangKeluarAnkes::count();
-
-    //     if ($request->has('sudah_dilayani')) {
-    //         foreach ($request->sudah_dilayani as $notificationId) {
-    //             $notification = InventarisAnkes::find($notificationId);
-    //             $notification->sudah_dilayani = true;
-    //             $notification->save();
-    //         }
-    //     }
-
-    //     $notifications = InventarisAnkes::where(function ($query) {
-    //         $query->whereDate('tanggal_service', Carbon::today())
-    //             ->orWhere(function ($query) {
-    //                 $query->whereRaw('DATE_ADD(tanggal_service, INTERVAL periode MONTH) >= ?', [Carbon::today()])
-    //                     ->where('tanggal_service', '<', Carbon::today());
-    //             });
-
-    //         $query->where('reminder', true);
-    //     })->where('sudah_dilayani', false)->get();
-
-    //     foreach ($notifications as $notification) {
-    //         if (!$notification->sudah_dilayani) {
-    //             $tanggalService = Carbon::parse($notification->tanggal_service);
-    //             $periode = $notification->periode;
-    //             $tanggalServiceTerbaru = $tanggalService->addMonths($periode);
-        
-    //             $notification->tanggal_service = $tanggalServiceTerbaru;
-    //             $notification->save();
-    //         }
-    //     }
-
-    //     $barangHampirHabis = $this->stokHampirHabis();
-
-    //     return view('roleadminprodiAnkes.contentadminprodi.dashboard', compact('barangHampirHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
-    // }
-
     public function index(Request $request)
     {
         $jumlah_barang = InventarisAnkes::count();
         $jumlah_barang_masuk = BarangMasukAnkes::count();
         $jumlah_barang_keluar = BarangKeluarAnkes::count();
-        
-        $notifications = InventarisAnkes::where(function ($query) {
-            $query->whereDate('tanggal_service', Carbon::today())
-                ->orWhere(function ($query) {
-                    $query->whereRaw('DATE_ADD(tanggal_service, INTERVAL periode MONTH) >= ?', [Carbon::today()])
-                        ->where('tanggal_service', '<', Carbon::today());
-                });
 
-            $query->where('reminder', true);
-        })->where('sudah_dilayani', false)->paginate(5);
-
-        // $barangHabis = collect();
-        // $inventarisModels = ['App\Models\InventarisAnkes'];
-
-        // foreach ($inventarisModels as $model) {
-        //     $inventaris = $model::all();
-        //     foreach ($inventaris as $barang) {
-        //         if ($barang->jumlah < $barang->jumlah_min) {
-        //             $barangHabis->push($barang);
-        //         }
-        //     }
-        // }
+        $reminders = InventarisAnkes::where('tanggal_service', '<=', now())->paginate(5);
 
         $barangHabis = InventarisAnkes::whereColumn('jumlah', '<', DB::raw('jumlah_min'))->paginate(5);
         
-        return view('roleadminprodiankes.contentadminprodi.dashboard', compact('barangHabis', 'notifications', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
+        return view('roleadminprodiankes.contentadminprodi.dashboard', compact('reminders', 'barangHabis', 'jumlah_barang', 'jumlah_barang_masuk', 'jumlah_barang_keluar'));
     }
 
 
-    public function updateNotification(Request $request)
+    public function update(Request $request)
     {
-        if ($request->has('sudah_dilayani')) {
-            foreach ($request->sudah_dilayani as $notificationId) {
-                $notification = InventarisAnkes::find($notificationId);
-                if ($notification) {
-                    $notification->sudah_dilayani = true;
-                    // Perbarui tanggal notifikasi hanya jika sudah dilayani
-                    $tanggalService = Carbon::parse($notification->tanggal_service);
-                    $periode = $notification->periode;
-                    $tanggalServiceTerbaru = $tanggalService->addMonths($periode);
-                    $notification->tanggal_service = $tanggalServiceTerbaru;
-                    $notification->save();
-                }
-            }
-            return redirect()->back()->with('success', 'Notifikasi berhasil diperbarui.');
-        } else {
-            return redirect()->back()->with('error', 'Tidak ada notifikasi yang dipilih.');
+        foreach ($request->reminder_ids as $reminder_id) {
+            $barang = InventarisAnkes::findOrFail($reminder_id);
+            $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barang->tanggal_service)
+                ->addMonths($barang->periode);
+
+            $barang->tanggal_service = $nextServiceDate;
+            $barang->save();
+
+            RiwayatServiceProdiAnkes::create([
+                'inventaris_ankes_id' => $barang->id,
+                'tanggal_service' => $barang->tanggal_service,
+                'keterangan' => 'Barang telah diservis pada ',
+            ]);
         }
+    
+        return redirect()->route('dashboardadminprodiankes');
+    }
+
+    public function getRiwayatAnkes(Request $request)
+    {
+        $query = $request->input('search');
+
+        $data = InventarisAnkes::query()
+            ->where('nama_barang', 'like', '%' . $query . '%')
+            ->paginate(10);
+
+            $riwayats = RiwayatServiceProdiAnkes::query()
+            ->with('barangankes')
+            ->whereHas('barangankes', function ($q) use ($query) {
+                $q->where('nama_barang', 'like', '%' . $query . '%');
+            })
+            ->paginate(10);
+            
+        return view('roleadminprodiankes.contentadminprodi.riwayatservice', compact('riwayats','data'));
     }
     
 }

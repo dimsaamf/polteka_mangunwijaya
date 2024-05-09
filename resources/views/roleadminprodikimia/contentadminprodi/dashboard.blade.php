@@ -1,4 +1,4 @@
-@extends('roleadminprodiankes.layoutadminprodi.dashboard')
+@extends('roleadminprodikimia.layoutadminprodi.dashboard')
 @section('content')
 @include('sweetalert::alert')
     @if(session('status'))
@@ -15,7 +15,7 @@
                 <div class="text-hitam-polteka">Dashboard</div>
             </div>
             <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-                <div class="mr-2 text-merah180-polteka">Hai, Admin Prodi Analisis Kesehatan</div>
+                <div class="mr-2 text-merah180-polteka">Hai, Admin Prodi Kimia</div>
                 <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
                 <div class="ml-2  text-hitam-polteka">Dashboard</div>
             </div>
@@ -42,7 +42,7 @@
                 <div class=" gap-6 mt-3">
                         <div class=" p-6">
                             <div class="text-xl font-medium">Selamat Datang, {{ Auth::user()->name }}!</div>
-                            <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Admin Program Studi Analisis Kesehatan Polteka Mangunwijaya</div>
+                            <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Admin Program Studi kimia Polteka Mangunwijaya</div>
                         </div>
                 </div>
             </div>
@@ -133,81 +133,81 @@
                             </div>
                         <!-- END: Pagination -->
                     </div>
-                    <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
-                        <div class="px-6 py-2 mt-4">
-                            <div class="flex w-full">
-                                <div class="flex w-1/2 justify-start text-xl font-medium mb-3">Barang Perlu Diservice</div>
-                                <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
-                                    <a href="{{ route('riwayat.adminprodiankes') }}" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
-                                    </a>
+                        <div class="bg-white mt-2 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg w-full">
+                            <div class="px-6 py-2 mt-4">
+                                <div class="flex w-full">
+                                    <div class="flex w-1/2 justify-start text-xl font-medium mb-3">Barang Perlu Diservice</div>
+                                    <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
+                                        <a href="{{ route('riwayat.adminprodikimia') }}" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <form action="{{ route('reminder.update.adminprodiankes') }}" method="post" id="reminderForm">
-                                @csrf
-                                @foreach($reminders as $reminder)
-                                    <div class="w-full flex text-black border-b-2 py-3">
-                                        <div class="w-1/8">
-                                            <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
-                                                    <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
-                                                </svg>
+                                <form action="{{ route('reminder.update.adminprodikimia') }}" method="post" id="reminderForm">
+                                    @csrf
+                                    @foreach($reminders as $reminder)
+                                        <div class="w-full flex text-black border-b-2 py-3">
+                                            <div class="w-1/8">
+                                                <div class="flex bg-[#FFCDCD] rounded-full w-[1.8rem] h-[1.8rem] m-auto mr-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" class="my-auto mx-auto" viewBox="0 0 24 24">
+                                                        <path fill="#620000" d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="w-5/6 ml-2">
+                                                <div class="text-sm">{{ $reminder->nama_barang }}</div>
+                                                <div class="text-xs text-slate-500">Service pada tanggal {{ $reminder->tanggal_service }}</div>
+                                            </div>
+                                            <div class="w-1/6 mt-3 flex justify-end">
+                                                <input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}|{{ get_class($reminder) }}" class="reminderCheckbox">
                                             </div>
                                         </div>
-                                        <div class="w-5/6 ml-2">
-                                            <div class="text-sm">{{ $reminder->nama_barang }}</div>
-                                            <div class="text-xs text-slate-500">Service pada tanggal {{ $reminder->tanggal_service }}</div>
-                                        </div>
-                                        <div class="w-1/6 mt-3 flex justify-end">
-                                            <input type="checkbox" name="reminder_ids[]" value="{{ $reminder->id }}|{{ get_class($reminder) }}" class="reminderCheckbox">
-                                        </div>
-                                    </div>
-                                @endforeach
-                    
-                                @if ($reminders->isEmpty())
-                                    <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
-                                @endif
-
-                                <button type="submit" class="inline-flex w-32 justify-center mt-8 mb-3 rounded-md px-1 py-2 text-xs bg-merah200-polteka text-putih-polteka shadow-sm">
-                                    Update Reminder
-                                </button> 
-                            </form>
-
-                        </div>
-                        <!-- BEGIN: Pagination -->
-                        <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
-                            <ul class="inline-flex mx-autospace-x-2">
-                                @if ($reminders->onFirstPage())
-                                    <li>
-                                        <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
-                                    </li>
-                                @else
-                                    <li>
-                                        <a href="{{ $reminders->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
-                                    </li>
-                                @endif
+                                    @endforeach
                         
-                                @foreach ($reminders->getUrlRange($reminders->currentPage() - 2, $reminders->currentPage() + 2) as $page => $url)
-                                    @if ($page == $reminders->currentPage())
+                                    @if ($reminders->isEmpty())
+                                        <div class="text-sm text-gray-500 mt-4">Tidak ada barang yang perlu diservice saat ini.</div>
+                                    @endif
+
+                                    <button type="submit" class="inline-flex w-32 justify-center mt-8 mb-3 rounded-md px-1 py-2 text-xs bg-merah200-polteka text-putih-polteka shadow-sm">
+                                        Update Reminder
+                                    </button> 
+                                </form>
+    
+                            </div>
+                            <!-- BEGIN: Pagination -->
+                            <div class="flex flex-col my-2 py-3 items-center space-y-5 overflow-x-auto mb-4">
+                                <ul class="inline-flex mx-autospace-x-2">
+                                    @if ($reminders->onFirstPage())
                                         <li>
-                                            <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                            <span class="px-4 py-2 text-gray-400 text-sm">Sebelumnya</span>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{ $reminders->previousPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold text-sm">Sebelumnya</a>
                                         </li>
                                     @endif
-                                @endforeach
-                        
-                                @if ($reminders->hasMorePages())
-                                    <li>
-                                        <a href="{{ $reminders->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
-                                    </li>
-                                @else
-                                    <li>
-                                        <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    <!-- END: Pagination -->
-                    </div>                
+                            
+                                    @foreach ($reminders->getUrlRange($reminders->currentPage() - 2, $reminders->currentPage() + 2) as $page => $url)
+                                        @if ($page == $reminders->currentPage())
+                                            <li>
+                                                <a href="{{ $url }}" class="px-4 py-2 text-putih-polteka bg-biru160-polteka hover:bg-biru100-polteka rounded-full text-sm">{{ $page }}</a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                            
+                                    @if ($reminders->hasMorePages())
+                                        <li>
+                                            <a href="{{ $reminders->nextPageUrl() }}" class="px-4 py-2 text-hitam-polteka hover:font-bold hover:text-hitam-polteka text-sm">Selanjutnya</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <span class="px-4 py-2 text-gray-400 text-sm">Selanjutnya</span>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        <!-- END: Pagination -->
+                        </div>               
                     </div>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                     </div>
                 </div>
             </div>
-        </section>  
+        </section> 
         <!-- COPYRIGHT -->
         <footer class="block mt-6 sm:mt-44 md:mt-[350px] mb-6 text-center">
             <div class="text-biru160-polteka text-xs md:text-sm">
@@ -280,5 +280,7 @@
         document.querySelector(".icon-container-prof").classList.remove("active");
     };
 </script>
+
+
 
 @endsection

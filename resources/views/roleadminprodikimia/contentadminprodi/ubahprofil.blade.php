@@ -1,17 +1,18 @@
-@extends('rolewadir.layoutwadir.laporanprodi')
+@extends('roleadminprodikimia.layoutadminprodi.ubahprofil')
 @section('content')
 @include('sweetalert::alert')
-<div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 overflow-x-auto">
+
+<div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
     <!-- BEGIN: Top Bar -->
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm">
-            <div class="text-hitam-polteka">Laporan Prodi</div>
+            <div class="text-hitam-polteka">Ubah Gambar Profil</div>
         </div> 
-        <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Wadir</div>
-            <svg class="my-1.5 text-hitam-polteka" xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2  text-hitam-polteka">Laporan Prodi</div>
+        <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Prodi Kimia</div>
+            <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
+            <div class="ml-2  text-hitam-polteka">Ubah Gambar Profil</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
@@ -31,63 +32,32 @@
     <!-- END: Top Bar -->
     <!-- Filter laporan -->
     <section class="text-hitam-polteka my-8  bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Filter Laporan Barang Masuk dan Barang Keluar</h2>
-        <form action="{{route('tampilkanLaporanProdi')}}" method="POST">
+        <h2 class="text-xl font-medium">Ubah Gambar Profil</h2>
+        <form method="POST" action="{{ route ('update.picture.adminprodikimia') }}" enctype="multipart/form-data">
             @csrf
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Mulai Tanggal</span>
-            <input type="date"  id="tgl_awal" name="tgl_awal" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
-        </label>   
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Sampai Tanggal</span>
-            <input type="date" id="tgl_akhir" name="tgl_akhir" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com" />
-        </label>
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Laporan</span>
-            <div class="relative text-left">
-                <div class="group">
-                    <div class="inline-flex w-[175px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        <select id="jenis_laporan" name="jenis_laporan" class="form-control">
-                            <option selected clas="py-5">Pilih Jenis Laporan</option>
-                            <option value="Barang Keluar">Barang Keluar</option>
-                            <option value="Barang Masuk">Barang Masuk</option>
-                        </select>
+            <div class="w-52 mt-6 mx-auto xl:mr-0 xl:ml-6">
+                <div class="border-2 border-dashed shadow-sm border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                    <div class="relative image-fit">
+                        @if (Auth::user()->avatar)
+                            <img id="preview-image" class="rounded-md" alt="foto-profil" src="{{ route('avatar', ['filename' => Auth::user()->avatar]) }}">
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="165px" height="165px" viewBox="0 0 20 20"><path fill="#d4d4d4" d="M10 11c-5.92 0-8 3-8 5v3h16v-3c0-2-2.08-5-8-5"/><circle cx="10" cy="5.5" r="4.5" fill="#d4d4d4"/></svg>
+                        @endif
                     </div>
                 </div>
             </div>
-        </label>  
-        <button type="submit" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-            Tampilkan
-        </button>    
-        </form>
-    </section> 
-    <!-- Filter Semua Barang  -->
-    <section class="text-hitam-polteka mt-8 mb-12 bg-white rounded-lg p-6">
-        <h2 class="text-xl font-medium">Filter Laporan Persediaan Barang</h2>
-        <form action="{{route('tampilkanLaporanDBProdi')}}" method="POST">
-            @csrf
-        <label class="block mt-4">
-            <span class="text-sm font-medium">Program Studi</span>
-            <div class="relative text-left">
-                <div class="group">
-                    <div class="inline-flex w-[200px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        <select id="prodi" name="prodi" class="form-control">
-                            <option selected class="py-5">Pilih Program Studi</option>
-                            <option value="Farmasi">Prodi Farmasi</option>
-                            <option value="Analisis Kesehatan">Prodi Analisis Kesehatan</option>
-                            <option value="Teknik Kimia">Prodi Teknik Kimia</option>
-                        </select>
-                    </div>
+            <div class="preview ml-5 mt-5">
+                <div>
+                    <input id="avatar" name="avatar" type="file" class="w-full bg-white rounded-sm @error('avatar') is-invalid @enderror" value="{{ old('avatar') }}" required autocomplete="avatar">
+                    @error('avatar')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
+                <button type="submit" class="inline-flex w-[160px] justify-center mt-8 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                {{ __('Ubah Gambar Profile') }}
+            </button> 
             </div>
-        </label>
-        <button type="submit" class="inline-flex w-[100px] justify-center mt-5 mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
-            Tampilkan
-        </button>
         </form>
-    </section>  
-
-    
         <!-- Modal Profile -->
         <div id="modal2" class="fixed z-10 inset-0 hidden">
             <div class="flex mr-16 mt-40 md:mr-16 md:mt-24 justify-end">
@@ -134,12 +104,30 @@
                 </div>
             </div>
         </div>
+    </section>
     <!-- COPYRIGHT -->
-    <footer class="block mt-6 sm:mt-20 md:mt-44 mb-6 text-center">
-      <div class="text-biru160-polteka text-xs md:text-sm">
-        © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
-      </div>
-    </footer>  
+    <footer class="block mt-6 sm:mt-20 lg:mt-28 xl:mt-20 mb-6 text-center">
+        <div class="text-biru160-polteka text-xs md:text-sm">
+            © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
+        </div>
+    </footer> 
+    <script>
+        function previewImage() {
+            const preview = document.getElementById('preview-image');
+            const file = document.getElementById('avatar').files[0];
+            const reader = new FileReader();
+    
+            reader.onloadend = function() {
+                preview.src = reader.result;
+            }
+    
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
 </div>
 
 <script>

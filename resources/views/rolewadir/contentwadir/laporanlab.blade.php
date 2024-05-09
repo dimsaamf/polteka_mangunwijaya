@@ -74,14 +74,14 @@
                     <div class="inline-flex w-[185px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         <select id="laboratorium" name="laboratorium" class="form-control">
                             <option selected class="py-5">Pilih Laboratorium</option>
-                            <option value="farmakognosi">Lab Farmakognosi</option>
-                            <option value="farmasetika">Lab Farmasetika</option>
-                            <option value="kimia">Lab Kimia (Farmasi)</option>
-                            <option value="tekfarmasi">Lab Tek. Farmasi</option>
-                            <option value="ankeskimia">Lab Kimia (Ankes)</option>
-                            <option value="medis">Lab Medis</option>
-                            <option value="mikro">Lab Mikro</option>
-                            <option value="sitohisto">Lab Sitohisto</option>
+                            <option value="Farmakognosi">Lab Farmakognosi</option>
+                            <option value="Farmasetika">Lab Farmasetika</option>
+                            <option value="Kimia (Farmasi)">Lab Kimia (Farmasi)</option>
+                            <option value="Teknologi Farmasi">Lab Tek. Farmasi</option>
+                            <option value="Kimia (Ankes)">Lab Kimia (Ankes)</option>
+                            <option value="Medis">Lab Medis</option>
+                            <option value="Mikro">Lab Mikro</option>
+                            <option value="Sitohisto">Lab Sitohisto</option>
                         </select>
                     </div>
                 </div>
