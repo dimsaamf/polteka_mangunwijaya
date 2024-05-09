@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('pengajuan_barang_labfarmasis_kode_pengajuan')->unique('uniq_labfarmasis_kode_pengajuan')->nullable();
             $table->string('pengajuan_barang_lab_ankes_kode_pengajuan')->unique('uniq_labankes_kode_pengajuan')->nullable();
+            $table->string('pengajuan_barang_lab_kimias_kode_pengajuan')->unique('uniq_labkimias_kode_pengajuan')->nullable();
             $table->foreign('pengajuan_barang_labfarmasis_kode_pengajuan', 'fk_labfarmasis_kode_pengajuan')
                   ->references('kode_pengajuan')
                   ->on('pengajuan_barang_labfarmasis')
@@ -22,6 +23,10 @@ return new class extends Migration
             $table->foreign('pengajuan_barang_lab_ankes_kode_pengajuan', 'fk_labankes_kode_pengajuan')
                   ->references('kode_pengajuan')
                   ->on('pengajuan_barang_lab_ankes')
+                  ->onDelete('cascade');
+            $table->foreign('pengajuan_barang_lab_kimias_kode_pengajuan', 'fk_labkimias_kode_pengajuan')
+                  ->references('kode_pengajuan')
+                  ->on('pengajuan_barang_lab_kimias')
                   ->onDelete('cascade');
             $table->enum('status', ['Disetujui', 'Ditunda', 'Ditolak','Disetujui Sebagian', 'Menunggu Konfirmasi']);
             $table->text('keterangan')->nullable();

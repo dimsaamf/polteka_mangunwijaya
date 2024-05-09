@@ -12,6 +12,7 @@ class PengajuanBarangWadir extends Model
     protected $fillable = [
         'pengajuan_barang_labfarmasis_kode_pengajuan',
         'pengajuan_barang_lab_ankes_kode_pengajuan',
+        'pengajuan_barang_lab_kimias_kode_pengajuan',
         'status',
         'keterangan',
     ];
@@ -26,5 +27,10 @@ class PengajuanBarangWadir extends Model
     public function pengajuanBarangLabAnkes()
     {
         return $this->belongsTo(PengajuanBarangLabAnkes::class);
+    }
+
+    public function pengajuanBarangLabKimia()
+    {
+        return $this->belongsTo(PengajuanBarangLabKimia::class);
     }
 }

@@ -32,6 +32,11 @@ use App\Http\Controllers\AdminProdiAnkes\BarangMasukAnkesController;
 use App\Http\Controllers\AdminProdiAnkes\BarangKeluarAnkesController;
 use App\Http\Controllers\AdminProdiAnkes\InventarisAnkesController;
 
+use App\Http\Controllers\AdminProdiKimia\DashboardKimiaController;
+use App\Http\Controllers\AdminProdiKimia\BarangMasukTekkimiaController;
+use App\Http\Controllers\AdminProdiKimia\BarangKeluarTekkimiaController;
+use App\Http\Controllers\AdminProdiKimia\InventarisKimiaController;
+
 use App\Http\Controllers\KoorAdminLabAnkes\DashboardKoorAdminLabAnkesController;
 use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukAnkeskimiaController;
 use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarAnkeskimiaController;
@@ -46,6 +51,27 @@ use App\Http\Controllers\KoorAdminLabAnkes\BarangMasukSitohistoController;
 use App\Http\Controllers\KoorAdminLabAnkes\BarangKeluarSitohistoController;
 use App\Http\Controllers\KoorAdminLabAnkes\InventarisLabSitohistoController;
 use App\Http\Controllers\KoorAdminLabAnkes\PengajuanBarangLabAnkesController;
+
+use App\Http\Controllers\KoorAdminLabKimia\DashboardKoorAdminLabKimiaController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangMasukKimiaAnalisaController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangKeluarKimiaAnalisaController;
+use App\Http\Controllers\KoorAdminLabKimia\InventarisLabKimiaAnalisaController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangMasukKimiaFisikaController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangKeluarKimiaFisikaController;
+use App\Http\Controllers\KoorAdminLabKimia\InventarisLabKimiaFisikaController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangMasukKimiaOrganikController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangKeluarKimiaOrganikController;
+use App\Http\Controllers\KoorAdminLabKimia\InventarisLabKimiaOrganikController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangMasukKimiaTerapanController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangKeluarKimiaTerapanController;
+use App\Http\Controllers\KoorAdminLabKimia\InventarisLabKimiaTerapanController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangMasukMikrobiologiController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangKeluarMikrobiologiController;
+use App\Http\Controllers\KoorAdminLabKimia\InventarisLabMikrobiologiController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangMasukOptekkimController;
+use App\Http\Controllers\KoorAdminLabKimia\BarangKeluarOptekkimController;
+use App\Http\Controllers\KoorAdminLabKimia\InventarisLabOptekkimController;
+use App\Http\Controllers\KoorAdminLabKimia\PengajuanBarangLabKimiaController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SesiController;
@@ -442,10 +468,230 @@ Route::middleware(['auth', 'user.role:adminlabprodankes', 'revalidate'])->group(
     Route::post('/adminlabankes/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.adminlabankes');
 });
 
+Route::middleware(['auth', 'user.role:koorlabprodkimia', 'revalidate'])->group(function (){
+    Route::get('/koorlabkimia/dashboard',[DashboardKoorAdminLabKimiaController::class, 'index'])->name('dashboardkoorlabkimia');
+    Route::post('/koorlabkimia/dashboard/kimiaorganik', [DashboardKoorAdminLabKimiaController::class, 'updatekimiaorganik'])->name('reminder.updatekimiaorganik');
+    Route::post('/koorlabkimia/dashboard/kimiaterapan', [DashboardKoorAdminLabKimiaController::class, 'updatekimiaterapan'])->name('reminder.updatekimiaterapan');
+    Route::post('/koorlabkimia/dashboard/kimiafisika', [DashboardKoorAdminLabKimiaController::class, 'updatekimiafisika'])->name('reminder.updatekimiafisika');
+    Route::post('/koorlabkimia/dashboard/kimiaanalisa', [DashboardKoorAdminLabKimiaController::class, 'updatekimiaanalisa'])->name('reminder.updatekimiaanalisa');
+    Route::post('/koorlabkimia/dashboard/mikrobiologi', [DashboardKoorAdminLabKimiaController::class, 'updatemikrobiologi'])->name('reminder.updatemikrobiologi');
+    Route::post('/koorlabkimia/dashboard/optekkim', [DashboardKoorAdminLabKimiaController::class, 'updateoptekkim'])->name('reminder.updateoptekkim');
+    Route::get('/koorlabkimia/riwayatservice/kimiaorganik', [DashboardKoorAdminLabKimiaController::class, 'historykimiaorganik'])->name('riwayat.kimiaorganik');
+    Route::get('/koorlabkimia/riwayatservice/kimiaterapan', [DashboardKoorAdminLabKimiaController::class, 'historykimiaterapan'])->name('riwayat.kimiaterapan');
+    Route::get('/koorlabkimia/riwayatservice/kimiafisika', [DashboardKoorAdminLabKimiaController::class, 'historykimiafisika'])->name('riwayat.kimiafisika');
+    Route::get('/koorlabkimia/riwayatservice/kimiaanalisa', [DashboardKoorAdminLabKimiaController::class, 'historykimiaanalisa'])->name('riwayat.kimiaanalisa');
+    Route::get('/koorlabkimia/riwayatservice/mikrobiologi', [DashboardKoorAdminLabKimiaController::class, 'historymikrobiologi'])->name('riwayat.mikrobiologi');
+    Route::get('/koorlabkimia/riwayatservice/optekkim', [DashboardKoorAdminLabKimiaController::class, 'historyoptekkim'])->name('riwayat.optekkim');
+
+    Route::get('/koorlabkimia/labkimiaanalisa/databarang', [InventarisLabKimiaAnalisaController::class, 'index'])->name('databarangkoorlabkimiaanalisa');
+    Route::delete('/koorlabkimia/labkimiaanalisa/databarang/{id}', [InventarisLabKimiaAnalisaController::class, 'destroy'])->name('hapusbarangkimiaanalisa');
+    Route::get('/koorlabkimia/labkimiaanalisa/tambahbarang', [InventarisLabKimiaAnalisaController::class, 'create'])->name('tambahbarangkoorlabkimiaanalisa');
+    Route::post('/koorlabkimia/labkimiaanalisa/tambahbarang', [InventarisLabKimiaAnalisaController::class, 'store'])->name('tambahbarangkoorlabkimiaanalisa.store');
+    Route::get('/koorlabkimia/labkimiaanalisa/ubahbarang/{id}', [InventarisLabKimiaAnalisaController::class, 'edit'])->name('ubahbarangkoorlabkimiaanalisa');
+    Route::post('/koorlabkimia/labkimiaanalisa/ubahbarang/{id}', [InventarisLabKimiaAnalisaController::class, 'update'])->name('updatebarangkoorlabkimiaanalisa');
+    Route::get('/koorlabkimia/labkimiaanalisa/gambar/{id}', [InventarisLabKimiaAnalisaController::class, 'getGambar'])->name('get.gambar.invlabkimiaanalisa');
+    Route::get('/koorlabkimia/labkimiaanalisa/riwayatbarangmasuk', [BarangMasukKimiaAnalisaController::class, 'index'])->name('riwayatbarangmasukkoorlabkimiaanalisa');
+    Route::get('/koorlabkimia/labkimiaanalisa/riwayatbarangkeluar', [BarangKeluarKimiaAnalisaController::class, 'index'])->name('riwayatbarangkeluarkoorlabkimiaanalisa');
+    Route::get('/koorlabkimia/labkimiaanalisa/barangmasuk', [BarangMasukKimiaAnalisaController::class, 'tabel'])->name('barangmasukkoorlabkimiaanalisa');
+    Route::get('/koorlabkimia/labkimiaanalisa/barangkeluar', [BarangKeluarKimiaAnalisaController::class, 'tabel'])->name('barangkeluarkoorlabkimiaanalisa');
+    Route::post('/koorlabkimia/labkimiaanalisa/barangmasuk', [BarangMasukKimiaAnalisaController::class, 'store'])->name('barangmasukkoorlabkimiaanalisa.store');
+    Route::post('/koorlabkimia/labkimiaanalisa/barangkeluar', [BarangKeluarKimiaAnalisaController::class, 'store'])->name('barangkeluarkoorlabkimiaanalisa.store');
+
+    Route::get('/koorlabkimia/labkimiafisika/databarang', [InventarisLabKimiaFisikaController::class, 'index'])->name('databarangkoorlabkimiafisika');
+    Route::delete('/koorlabkimia/labkimiafisika/databarang/{id}', [InventarisLabKimiaFisikaController::class, 'destroy'])->name('hapusbarangkimiafisika');
+    Route::get('/koorlabkimia/labkimiafisika/tambahbarang', [InventarisLabKimiaFisikaController::class, 'create'])->name('tambahbarangkoorlabkimiafisika');
+    Route::post('/koorlabkimia/labkimiafisika/tambahbarang', [InventarisLabKimiaFisikaController::class, 'store'])->name('tambahbarangkoorlabkimiafisika.store');
+    Route::get('/koorlabkimia/labkimiafisika/ubahbarang/{id}', [InventarisLabKimiaFisikaController::class, 'edit'])->name('ubahbarangkoorlabkimiafisika');
+    Route::post('/koorlabkimia/labkimiafisika/ubahbarang/{id}', [InventarisLabKimiaFisikaController::class, 'update'])->name('updatebarangkoorlabkimiafisika');
+    Route::get('/koorlabkimia/labkimiafisika/riwayatbarangmasuk', [BarangMasukKimiaFisikaController::class, 'index'])->name('riwayatbarangmasukkoorlabkimiafisika');
+    Route::get('/koorlabkimia/labkimiafisika/riwayatbarangkeluar', [BarangKeluarKimiaFisikaController::class, 'index'])->name('riwayatbarangkeluarkoorlabkimiafisika');
+    Route::get('/koorlabkimia/labkimiafisika/barangmasuk', [BarangMasukKimiaFisikaController::class, 'tabel'])->name('barangmasukkoorlabkimiafisika');
+    Route::get('/koorlabkimia/labkimiafisika/barangkeluar', [BarangKeluarKimiaFisikaController::class, 'tabel'])->name('barangkeluarkoorlabkimiafisika');
+    Route::post('/koorlabkimia/labkimiafisika/barangmasuk', [BarangMasukKimiaFisikaController::class, 'store'])->name('barangmasukkoorlabkimiafisika.store');
+    Route::post('/koorlabkimia/labkimiafisika/barangkeluar', [BarangKeluarKimiaFisikaController::class, 'store'])->name('barangkeluarkoorlabkimiafisika.store');
+    Route::get('/koorlabkimia/labkimiafisika/gambar/{id}', [InventarisLabKimiaFisikaController::class, 'getGambar'])->name('get.gambar.invlabkimiafisika');
+
+    Route::get('/koorlabkimia/labkimiaorganik/databarang', [InventarisLabKimiaOrganikController::class, 'index'])->name('databarangkoorlabkimiaorganik');
+    Route::delete('/koorlabkimia/labkimiaorganik/databarang/{id}', [InventarisLabKimiaOrganikController::class, 'destroy'])->name('hapusbarangkimiaorganik');
+    Route::get('/koorlabkimia/labkimiaorganik/tambahbarang', [InventarisLabKimiaOrganikController::class, 'create'])->name('tambahbarangkoorlabkimiaorganik');
+    Route::post('/koorlabkimia/labkimiaorganik/tambahbarang', [InventarisLabKimiaOrganikController::class, 'store'])->name('tambahbarangkoorlabkimiaorganik.store');
+    Route::get('/koorlabkimia/labkimiaorganik/ubahbarang/{id}', [InventarisLabKimiaOrganikController::class, 'edit'])->name('ubahbarangkoorlabkimiaorganik');
+    Route::post('/koorlabkimia/labkimiaorganik/ubahbarang/{id}', [InventarisLabKimiaOrganikController::class, 'update'])->name('updatebarangkoorlabkimiaorganik');
+    Route::get('/koorlabkimia/labkimiaorganik/riwayatbarangmasuk', [BarangMasukKimiaOrganikController::class, 'index'])->name('riwayatbarangmasukkoorlabkimiaorganik');
+    Route::get('/koorlabkimia/labkimiaorganik/riwayatbarangkeluar', [BarangKeluarKimiaOrganikController::class, 'index'])->name('riwayatbarangkeluarkoorlabkimiaorganik');
+    Route::get('/koorlabkimia/labkimiaorganik/barangmasuk', [BarangMasukKimiaOrganikController::class, 'tabel'])->name('barangmasukkoorlabkimiaorganik');
+    Route::get('/koorlabkimia/labkimiaorganik/barangkeluar', [BarangKeluarKimiaOrganikController::class, 'tabel'])->name('barangkeluarkoorlabkimiaorganik');
+    Route::post('/koorlabkimia/labkimiaorganik/barangmasuk', [BarangMasukKimiaOrganikController::class, 'store'])->name('barangmasukkoorlabkimiaorganik.store');
+    Route::post('/koorlabkimia/labkimiaorganik/barangkeluar', [BarangKeluarKimiaOrganikController::class, 'store'])->name('barangkeluarkoorlabkimiaorganik.store');
+    Route::get('/koorlabkimia/gambar/{id}', [InventarisLabKimiaOrganikController::class, 'getGambar'])->name('get.gambar.invlabkimiaorganik');
+
+    Route::get('/koorlabkimia/labkimiaterapan/databarang', [InventarisLabKimiaTerapanController::class, 'index'])->name('databarangkoorlabkimiaterapan');
+    Route::delete('/koorlabkimia/labkimiaterapan/databarang/{id}', [InventarisLabKimiaTerapanController::class, 'destroy'])->name('hapusbarangkimiaterapan');
+    Route::get('/koorlabkimia/labkimiaterapan/tambahbarang', [InventarisLabKimiaTerapanController::class, 'create'])->name('tambahbarangkoorlabkimiaterapan');
+    Route::post('/koorlabkimia/labkimiaterapan/tambahbarang', [InventarisLabKimiaTerapanController::class, 'store'])->name('tambahbarangkoorlabkimiaterapan.store');
+    Route::get('/koorlabkimia/labkimiaterapan/ubahbarang/{id}', [InventarisLabKimiaTerapanController::class, 'edit'])->name('ubahbarangkoorlabkimiaterapan');
+    Route::post('/koorlabkimia/labkimiaterapan/ubahbarang/{id}', [InventarisLabKimiaTerapanController::class, 'update'])->name('updatebarangkoorlabkimiaterapan');
+    Route::get('/koorlabkimia/labkimiaterapan/riwayatbarangmasuk', [BarangMasukKimiaTerapanController::class, 'index'])->name('riwayatbarangmasukkoorlabkimiaterapan');
+    Route::get('/koorlabkimia/labkimiaterapan/riwayatbarangkeluar', [BarangKeluarKimiaTerapanController::class, 'index'])->name('riwayatbarangkeluarkoorlabkimiaterapan');
+    Route::get('/koorlabkimia/labkimiaterapan/barangmasuk', [BarangMasukKimiaTerapanController::class, 'tabel'])->name('barangmasukkoorlabkimiaterapan');
+    Route::get('/koorlabkimia/labkimiaterapan/barangkeluar', [BarangKeluarKimiaTerapanController::class, 'tabel'])->name('barangkeluarkoorlabkimiaterapan');
+    Route::post('/koorlabkimia/labkimiaterapan/barangmasuk', [BarangMasukKimiaTerapanController::class, 'store'])->name('barangmasukkoorlabkimiaterapan.store');
+    Route::post('/koorlabkimia/labkimiaterapan/barangkeluar', [BarangKeluarKimiaTerapanController::class, 'store'])->name('barangkeluarkoorlabkimiaterapan.store');
+    Route::get('/koorlabkimia/labkimiaterapan/gambar/{id}', [InventarisLabKimiaTerapanController::class, 'getGambar'])->name('get.gambar.invlabkimiaterapan');
+
+    Route::get('/koorlabkimia/labmikrobiologi/databarang', [InventarisLabMikrobiologiController::class, 'index'])->name('databarangkoorlabmikrobiologi');
+    Route::delete('/koorlabkimia/labmikrobiologi/databarang/{id}', [InventarisLabMikrobiologiController::class, 'destroy'])->name('hapusbarangmikrobiologi');
+    Route::get('/koorlabkimia/labmikrobiologi/tambahbarang', [InventarisLabMikrobiologiController::class, 'create'])->name('tambahbarangkoorlabmikrobiologi');
+    Route::post('/koorlabkimia/labmikrobiologi/tambahbarang', [InventarisLabMikrobiologiController::class, 'store'])->name('tambahbarangkoorlabmikrobiologi.store');
+    Route::get('/koorlabkimia/labmikrobiologi/ubahbarang/{id}', [InventarisLabMikrobiologiController::class, 'edit'])->name('ubahbarangkoorlabmikrobiologi');
+    Route::post('/koorlabkimia/labmikrobiologi/ubahbarang/{id}', [InventarisLabMikrobiologiController::class, 'update'])->name('updatebarangkoorlabmikrobiologi');
+    Route::get('/koorlabkimia/labmikrobiologi/riwayatbarangmasuk', [BarangMasukMikrobiologiController::class, 'index'])->name('riwayatbarangmasukkoorlabmikrobiologi');
+    Route::get('/koorlabkimia/labmikrobiologi/riwayatbarangkeluar', [BarangKeluarMikrobiologiController::class, 'index'])->name('riwayatbarangkeluarkoorlabmikrobiologi');
+    Route::get('/koorlabkimia/labmikrobiologi/barangmasuk', [BarangMasukMikrobiologiController::class, 'tabel'])->name('barangmasukkoorlabmikrobiologi');
+    Route::get('/koorlabkimia/labmikrobiologi/barangkeluar', [BarangKeluarMikrobiologiController::class, 'tabel'])->name('barangkeluarkoorlabmikrobiologi');
+    Route::post('/koorlabkimia/labmikrobiologi/barangmasuk', [BarangMasukMikrobiologiController::class, 'store'])->name('barangmasukkoorlabmikrobiologi.store');
+    Route::post('/koorlabkimia/labmikrobiologi/barangkeluar', [BarangKeluarMikrobiologiController::class, 'store'])->name('barangkeluarkoorlabmikrobiologi.store');
+    Route::get('/koorlabkimia/labmikrobiologi/gambar/{id}', [InventarisLabMikrobiologiController::class, 'getGambar'])->name('get.gambar.invlabmikrobiologi');
+
+    Route::get('/koorlabkimia/laboptekkim/databarang', [InventarisLabOptekkimController::class, 'index'])->name('databarangkoorlaboptekkim');
+    Route::delete('/koorlabkimia/laboptekkim/databarang/{id}', [InventarisLabOptekkimController::class, 'destroy'])->name('hapusbarangoptekkim');
+    Route::get('/koorlabkimia/laboptekkim/tambahbarang', [InventarisLabOptekkimController::class, 'create'])->name('tambahbarangkoorlaboptekkim');
+    Route::post('/koorlabkimia/laboptekkim/tambahbarang', [InventarisLabOptekkimController::class, 'store'])->name('tambahbarangkoorlaboptekkim.store');
+    Route::get('/koorlabkimia/laboptekkim/ubahbarang/{id}', [InventarisLabOptekkimController::class, 'edit'])->name('ubahbarangkoorlaboptekkim');
+    Route::post('/koorlabkimia/laboptekkim/ubahbarang/{id}', [InventarisLabOptekkimController::class, 'update'])->name('updatebarangkoorlaboptekkim');
+    Route::get('/koorlabkimia/laboptekkim/riwayatbarangmasuk', [BarangMasukOptekkimController::class, 'index'])->name('riwayatbarangmasukkoorlaboptekkim');
+    Route::get('/koorlabkimia/laboptekkim/riwayatbarangkeluar', [BarangKeluarOptekkimController::class, 'index'])->name('riwayatbarangkeluarkoorlaboptekkim');
+    Route::get('/koorlabkimia/laboptekkim/barangmasuk', [BarangMasukOptekkimController::class, 'tabel'])->name('barangmasukkoorlaboptekkim');
+    Route::get('/koorlabkimia/laboptekkim/barangkeluar', [BarangKeluarOptekkimController::class, 'tabel'])->name('barangkeluarkoorlaboptekkim');
+    Route::post('/koorlabkimia/laboptekkim/barangmasuk', [BarangMasukOptekkimController::class, 'store'])->name('barangmasukkoorlaboptekkim.store');
+    Route::post('/koorlabkimia/laboptekkim/barangkeluar', [BarangKeluarOptekkimController::class, 'store'])->name('barangkeluarkoorlaboptekkim.store');
+    Route::get('/koorlabkimia/laboptekkim/gambar/{id}', [InventarisLabOptekkimController::class, 'getGambar'])->name('get.gambar.invlaboptekkim');
+
+    Route::get('/koorlabkimia/pengajuanbarang', [PengajuanBarangLabKimiaController::class, 'index'])->name('pengajuanbarangkoorlabkimia');
+    Route::get('/koorlabkimia/tambahpengajuanbarang', [PengajuanBarangLabKimiaController::class, 'create'])->name('tambahpengajuankoorlabkimia');
+    Route::post('/koorlabkimia/tambahpengajuanbarang', [PengajuanBarangLabKimiaController::class, 'store'])->name('tambahpengajuankoorlabkimia.store');
+    Route::get('/preview-suratankes/{id}', [PengajuanBarangLabKimiaController::class, 'previewSurat'])->name('preview.surat.koorlabkimia');
+    Route::get('/koorlabkimia/detailpengajuanbarang/{id}', [PengajuanBarangLabKimiaController::class, 'show'])->name('detailpengajuankoorlabkimia');
+    Route::get('/koorlabkimia/pengajuanbarang/edit/{id}', [PengajuanBarangLabKimiaController::class, 'edit'])->name('editpengajuankoorlabkimia');
+    Route::post('/koorlabkimia/pengajuanbarang/update/{id}', [PengajuanBarangLabKimiaController::class, 'update'])->name('updatepengajuankoorlabkimia');
+    Route::delete('/koorlabkimia/hapuspengajuan/{id}', [PengajuanBarangLabKimiaController::class, 'destroy'])->name('hapuspengajuankoorlabkimia');
+
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/koorlabkimia/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppkoorlabkimia');
+    Route::post('/koorlabkimia/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.koorlabkimia");
+    Route::get('/koorlabkimia/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwkoorlabkimia');
+    Route::post('/koorlabkimia/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.koorlabkimia');
+});
+
+Route::middleware(['auth', 'user.role:adminlabprodkimia', 'revalidate'])->group(function (){
+    Route::get('/adminlabkimia/dashboard',[DashboardKoorAdminLabKimiaController::class, 'index'])->name('dashboardadminlabkimia');
+    Route::post('/adminlabkimia/dashboard/kimiaorganik', [DashboardKoorAdminLabKimiaController::class, 'updatekimiaorganik'])->name('reminder.updatekimiaorganik.adminlabkimia');
+    Route::post('/adminlabkimia/dashboard/kimiaterapan', [DashboardKoorAdminLabKimiaController::class, 'updatekimiaterapan'])->name('reminder.updatekimiaterapan.adminlabkimia');
+    Route::post('/adminlabkimia/dashboard/kimiafisika', [DashboardKoorAdminLabKimiaController::class, 'updatekimiafisika'])->name('reminder.updatekimiafisika.adminlabkimia');
+    Route::post('/adminlabkimia/dashboard/kimiaanalisa', [DashboardKoorAdminLabKimiaController::class, 'updatekimiaanalisa'])->name('reminder.updatekimiaanalisa.adminlabkimia');
+    Route::post('/adminlabkimia/dashboard/mikrobiologi', [DashboardKoorAdminLabKimiaController::class, 'updatemikrobiologi'])->name('reminder.updatemikrobiologi.adminlabkimia');
+    Route::post('/adminlabkimia/dashboard/optekkim', [DashboardKoorAdminLabKimiaController::class, 'updateoptekkim'])->name('reminder.updateoptekkim.adminlabkimia');
+    Route::get('/adminlabkimia/riwayatservice/kimiaorganik', [DashboardKoorAdminLabKimiaController::class, 'historykimiaorganik'])->name('riwayat.kimiaorganik.adminlabkimia');
+    Route::get('/adminlabkimia/riwayatservice/kimiaterapan', [DashboardKoorAdminLabKimiaController::class, 'historykimiaterapan'])->name('riwayat.kimiaterapan.adminlabkimia');
+    Route::get('/adminlabkimia/riwayatservice/kimiafisika', [DashboardKoorAdminLabKimiaController::class, 'historykimiafisika'])->name('riwayat.kimiafisika.adminlabkimia');
+    Route::get('/adminlabkimia/riwayatservice/kimiaanalisa', [DashboardKoorAdminLabKimiaController::class, 'historykimiaanalisa'])->name('riwayat.kimiaanalisa.adminlabkimia');
+    Route::get('/adminlabkimia/riwayatservice/mikrobiologi', [DashboardKoorAdminLabKimiaController::class, 'historymikrobiologi'])->name('riwayat.mikrobiologi.adminlabkimia');
+    Route::get('/adminlabkimia/riwayatservice/optekkim', [DashboardKoorAdminLabKimiaController::class, 'historyoptekkim'])->name('riwayat.optekkim.adminlabkimia');
+
+    Route::get('/adminlabkimia/labkimiaanalisa/databarang', [InventarisLabKimiaAnalisaController::class, 'index'])->name('databarangadminlabkimiaanalisa');
+    Route::delete('/adminlabkimia/labkimiaanalisa/databarang/{id}', [InventarisLabKimiaAnalisaController::class, 'destroy'])->name('hapusbarangkimiaanalisa');
+    Route::get('/adminlabkimia/labkimiaanalisa/tambahbarang', [InventarisLabKimiaAnalisaController::class, 'create'])->name('tambahbarangadminlabkimiaanalisa');
+    Route::post('/adminlabkimia/labkimiaanalisa/tambahbarang', [InventarisLabKimiaAnalisaController::class, 'store'])->name('tambahbarangadminlabkimiaanalisa.store');
+    Route::get('/adminlabkimia/labkimiaanalisa/ubahbarang/{id}', [InventarisLabKimiaAnalisaController::class, 'edit'])->name('ubahbarangadminlabkimiaanalisa');
+    Route::post('/adminlabkimia/labkimiaanalisa/ubahbarang/{id}', [InventarisLabKimiaAnalisaController::class, 'update'])->name('updatebarangadminlabkimiaanalisa');
+    Route::get('/adminlabkimia/labkimiaanalisa/gambar/{id}', [InventarisLabKimiaAnalisaController::class, 'getGambar'])->name('get.gambar.invlabkimiaanalisa');
+    Route::get('/adminlabkimia/labkimiaanalisa/riwayatbarangmasuk', [BarangMasukKimiaAnalisaController::class, 'index'])->name('riwayatbarangmasukadminlabkimiaanalisa');
+    Route::get('/adminlabkimia/labkimiaanalisa/riwayatbarangkeluar', [BarangKeluarKimiaAnalisaController::class, 'index'])->name('riwayatbarangkeluaradminlabkimiaanalisa');
+    Route::get('/adminlabkimia/labkimiaanalisa/barangmasuk', [BarangMasukKimiaAnalisaController::class, 'tabel'])->name('barangmasukadminlabkimiaanalisa');
+    Route::get('/adminlabkimia/labkimiaanalisa/barangkeluar', [BarangKeluarKimiaAnalisaController::class, 'tabel'])->name('barangkeluaradminlabkimiaanalisa');
+    Route::post('/adminlabkimia/labkimiaanalisa/barangmasuk', [BarangMasukKimiaAnalisaController::class, 'store'])->name('barangmasukadminlabkimiaanalisa.store');
+    Route::post('/adminlabkimia/labkimiaanalisa/barangkeluar', [BarangKeluarKimiaAnalisaController::class, 'store'])->name('barangkeluaradminlabkimiaanalisa.store');
+
+    Route::get('/adminlabkimia/labkimiafisika/databarang', [InventarisLabKimiaFisikaController::class, 'index'])->name('databarangadminlabkimiafisika');
+    Route::delete('/adminlabkimia/labkimiafisika/databarang/{id}', [InventarisLabKimiaFisikaController::class, 'destroy'])->name('hapusbarangkimiafisika');
+    Route::get('/adminlabkimia/labkimiafisika/tambahbarang', [InventarisLabKimiaFisikaController::class, 'create'])->name('tambahbarangadminlabkimiafisika');
+    Route::post('/adminlabkimia/labkimiafisika/tambahbarang', [InventarisLabKimiaFisikaController::class, 'store'])->name('tambahbarangadminlabkimiafisika.store');
+    Route::get('/adminlabkimia/labkimiafisika/ubahbarang/{id}', [InventarisLabKimiaFisikaController::class, 'edit'])->name('ubahbarangadminlabkimiafisika');
+    Route::post('/adminlabkimia/labkimiafisika/ubahbarang/{id}', [InventarisLabKimiaFisikaController::class, 'update'])->name('updatebarangadminlabkimiafisika');
+    Route::get('/adminlabkimia/labkimiafisika/riwayatbarangmasuk', [BarangMasukKimiaFisikaController::class, 'index'])->name('riwayatbarangmasukadminlabkimiafisika');
+    Route::get('/adminlabkimia/labkimiafisika/riwayatbarangkeluar', [BarangKeluarKimiaFisikaController::class, 'index'])->name('riwayatbarangkeluaradminlabkimiafisika');
+    Route::get('/adminlabkimia/labkimiafisika/barangmasuk', [BarangMasukKimiaFisikaController::class, 'tabel'])->name('barangmasukadminlabkimiafisika');
+    Route::get('/adminlabkimia/labkimiafisika/barangkeluar', [BarangKeluarKimiaFisikaController::class, 'tabel'])->name('barangkeluaradminlabkimiafisika');
+    Route::post('/adminlabkimia/labkimiafisika/barangmasuk', [BarangMasukKimiaFisikaController::class, 'store'])->name('barangmasukadminlabkimiafisika.store');
+    Route::post('/adminlabkimia/labkimiafisika/barangkeluar', [BarangKeluarKimiaFisikaController::class, 'store'])->name('barangkeluaradminlabkimiafisika.store');
+    Route::get('/adminlabkimia/labkimiafisika/gambar/{id}', [InventarisLabKimiaFisikaController::class, 'getGambar'])->name('get.gambar.invlabkimiafisika');
+
+    Route::get('/adminlabkimia/labkimiaorganik/databarang', [InventarisLabKimiaOrganikController::class, 'index'])->name('databarangadminlabkimiaorganik');
+    Route::delete('/adminlabkimia/labkimiaorganik/databarang/{id}', [InventarisLabKimiaOrganikController::class, 'destroy'])->name('hapusbarangkimiaorganik');
+    Route::get('/adminlabkimia/labkimiaorganik/tambahbarang', [InventarisLabKimiaOrganikController::class, 'create'])->name('tambahbarangadminlabkimiaorganik');
+    Route::post('/adminlabkimia/labkimiaorganik/tambahbarang', [InventarisLabKimiaOrganikController::class, 'store'])->name('tambahbarangadminlabkimiaorganik.store');
+    Route::get('/adminlabkimia/labkimiaorganik/ubahbarang/{id}', [InventarisLabKimiaOrganikController::class, 'edit'])->name('ubahbarangadminlabkimiaorganik');
+    Route::post('/adminlabkimia/labkimiaorganik/ubahbarang/{id}', [InventarisLabKimiaOrganikController::class, 'update'])->name('updatebarangadminlabkimiaorganik');
+    Route::get('/adminlabkimia/labkimiaorganik/riwayatbarangmasuk', [BarangMasukKimiaOrganikController::class, 'index'])->name('riwayatbarangmasukadminlabkimiaorganik');
+    Route::get('/adminlabkimia/labkimiaorganik/riwayatbarangkeluar', [BarangKeluarKimiaOrganikController::class, 'index'])->name('riwayatbarangkeluaradminlabkimiaorganik');
+    Route::get('/adminlabkimia/labkimiaorganik/barangmasuk', [BarangMasukKimiaOrganikController::class, 'tabel'])->name('barangmasukadminlabkimiaorganik');
+    Route::get('/adminlabkimia/labkimiaorganik/barangkeluar', [BarangKeluarKimiaOrganikController::class, 'tabel'])->name('barangkeluaradminlabkimiaorganik');
+    Route::post('/adminlabkimia/labkimiaorganik/barangmasuk', [BarangMasukKimiaOrganikController::class, 'store'])->name('barangmasukadminlabkimiaorganik.store');
+    Route::post('/adminlabkimia/labkimiaorganik/barangkeluar', [BarangKeluarKimiaOrganikController::class, 'store'])->name('barangkeluaradminlabkimiaorganik.store');
+    Route::get('/adminlabkimia/gambar/{id}', [InventarisLabKimiaOrganikController::class, 'getGambar'])->name('get.gambar.invlabkimiaorganik');
+
+    Route::get('/adminlabkimia/labkimiaterapan/databarang', [InventarisLabKimiaTerapanController::class, 'index'])->name('databarangadminlabkimiaterapan');
+    Route::delete('/adminlabkimia/labkimiaterapan/databarang/{id}', [InventarisLabKimiaTerapanController::class, 'destroy'])->name('hapusbarangkimiaterapan');
+    Route::get('/adminlabkimia/labkimiaterapan/tambahbarang', [InventarisLabKimiaTerapanController::class, 'create'])->name('tambahbarangadminlabkimiaterapan');
+    Route::post('/adminlabkimia/labkimiaterapan/tambahbarang', [InventarisLabKimiaTerapanController::class, 'store'])->name('tambahbarangadminlabkimiaterapan.store');
+    Route::get('/adminlabkimia/labkimiaterapan/ubahbarang/{id}', [InventarisLabKimiaTerapanController::class, 'edit'])->name('ubahbarangadminlabkimiaterapan');
+    Route::post('/adminlabkimia/labkimiaterapan/ubahbarang/{id}', [InventarisLabKimiaTerapanController::class, 'update'])->name('updatebarangadminlabkimiaterapan');
+    Route::get('/adminlabkimia/labkimiaterapan/riwayatbarangmasuk', [BarangMasukKimiaTerapanController::class, 'index'])->name('riwayatbarangmasukadminlabkimiaterapan');
+    Route::get('/adminlabkimia/labkimiaterapan/riwayatbarangkeluar', [BarangKeluarKimiaTerapanController::class, 'index'])->name('riwayatbarangkeluaradminlabkimiaterapan');
+    Route::get('/adminlabkimia/labkimiaterapan/barangmasuk', [BarangMasukKimiaTerapanController::class, 'tabel'])->name('barangmasukadminlabkimiaterapan');
+    Route::get('/adminlabkimia/labkimiaterapan/barangkeluar', [BarangKeluarKimiaTerapanController::class, 'tabel'])->name('barangkeluaradminlabkimiaterapan');
+    Route::post('/adminlabkimia/labkimiaterapan/barangmasuk', [BarangMasukKimiaTerapanController::class, 'store'])->name('barangmasukadminlabkimiaterapan.store');
+    Route::post('/adminlabkimia/labkimiaterapan/barangkeluar', [BarangKeluarKimiaTerapanController::class, 'store'])->name('barangkeluaradminlabkimiaterapan.store');
+    Route::get('/adminlabkimia/labkimiaterapan/gambar/{id}', [InventarisLabKimiaTerapanController::class, 'getGambar'])->name('get.gambar.invlabkimiaterapan');
+
+    Route::get('/adminlabkimia/labmikrobiologi/databarang', [InventarisLabMikrobiologiController::class, 'index'])->name('databarangadminlabmikrobiologi');
+    Route::delete('/adminlabkimia/labmikrobiologi/databarang/{id}', [InventarisLabMikrobiologiController::class, 'destroy'])->name('hapusbarangmikrobiologi');
+    Route::get('/adminlabkimia/labmikrobiologi/tambahbarang', [InventarisLabMikrobiologiController::class, 'create'])->name('tambahbarangadminlabmikrobiologi');
+    Route::post('/adminlabkimia/labmikrobiologi/tambahbarang', [InventarisLabMikrobiologiController::class, 'store'])->name('tambahbarangadminlabmikrobiologi.store');
+    Route::get('/adminlabkimia/labmikrobiologi/ubahbarang/{id}', [InventarisLabMikrobiologiController::class, 'edit'])->name('ubahbarangadminlabmikrobiologi');
+    Route::post('/adminlabkimia/labmikrobiologi/ubahbarang/{id}', [InventarisLabMikrobiologiController::class, 'update'])->name('updatebarangadminlabmikrobiologi');
+    Route::get('/adminlabkimia/labmikrobiologi/riwayatbarangmasuk', [BarangMasukMikrobiologiController::class, 'index'])->name('riwayatbarangmasukadminlabmikrobiologi');
+    Route::get('/adminlabkimia/labmikrobiologi/riwayatbarangkeluar', [BarangKeluarMikrobiologiController::class, 'index'])->name('riwayatbarangkeluaradminlabmikrobiologi');
+    Route::get('/adminlabkimia/labmikrobiologi/barangmasuk', [BarangMasukMikrobiologiController::class, 'tabel'])->name('barangmasukadminlabmikrobiologi');
+    Route::get('/adminlabkimia/labmikrobiologi/barangkeluar', [BarangKeluarMikrobiologiController::class, 'tabel'])->name('barangkeluaradminlabmikrobiologi');
+    Route::post('/adminlabkimia/labmikrobiologi/barangmasuk', [BarangMasukMikrobiologiController::class, 'store'])->name('barangmasukadminlabmikrobiologi.store');
+    Route::post('/adminlabkimia/labmikrobiologi/barangkeluar', [BarangKeluarMikrobiologiController::class, 'store'])->name('barangkeluaradminlabmikrobiologi.store');
+    Route::get('/adminlabkimia/gambar/{id}', [InventarisLabMikrobiologiController::class, 'getGambar'])->name('get.gambar.invlabmikrobiologi');
+
+    Route::get('/adminlabkimia/laboptekkim/databarang', [InventarisLabOptekkimController::class, 'index'])->name('databarangadminlaboptekkim');
+    Route::delete('/adminlabkimia/laboptekkim/databarang/{id}', [InventarisLabOptekkimController::class, 'destroy'])->name('hapusbarangoptekkim');
+    Route::get('/adminlabkimia/laboptekkim/tambahbarang', [InventarisLabOptekkimController::class, 'create'])->name('tambahbarangadminlaboptekkim');
+    Route::post('/adminlabkimia/laboptekkim/tambahbarang', [InventarisLabOptekkimController::class, 'store'])->name('tambahbarangadminlaboptekkim.store');
+    Route::get('/adminlabkimia/laboptekkim/ubahbarang/{id}', [InventarisLabOptekkimController::class, 'edit'])->name('ubahbarangadminlaboptekkim');
+    Route::post('/adminlabkimia/laboptekkim/ubahbarang/{id}', [InventarisLabOptekkimController::class, 'update'])->name('updatebarangadminlaboptekkim');
+    Route::get('/adminlabkimia/laboptekkim/riwayatbarangmasuk', [BarangMasukOptekkimController::class, 'index'])->name('riwayatbarangmasukadminlaboptekkim');
+    Route::get('/adminlabkimia/laboptekkim/riwayatbarangkeluar', [BarangKeluarOptekkimController::class, 'index'])->name('riwayatbarangkeluaradminlaboptekkim');
+    Route::get('/adminlabkimia/laboptekkim/barangmasuk', [BarangMasukOptekkimController::class, 'tabel'])->name('barangmasukadminlaboptekkim');
+    Route::get('/adminlabkimia/laboptekkim/barangkeluar', [BarangKeluarOptekkimController::class, 'tabel'])->name('barangkeluaradminlaboptekkim');
+    Route::post('/adminlabkimia/laboptekkim/barangmasuk', [BarangMasukOptekkimController::class, 'store'])->name('barangmasukadminlaboptekkim.store');
+    Route::post('/adminlabkimia/laboptekkim/barangkeluar', [BarangKeluarOptekkimController::class, 'store'])->name('barangkeluaradminlaboptekkim.store');
+    Route::get('/adminlabkimia/laboptekkim/gambar/{id}', [InventarisLabOptekkimController::class, 'getGambar'])->name('get.gambar.invlaboptekkim');
+
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/adminlabkimia/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppadminlabkimia');
+    Route::post('/adminlabkimia/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.adminlabkimia");
+    Route::get('/adminlabkimia/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwadminlabkimia');
+    Route::post('/adminlabkimia/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.adminlabkimia');
+});
+
 Route::middleware(['auth', 'user.role:adminprodankes', 'revalidate'])->group(function (){
     Route::get('/adminprodiankes/dashboard',[DashboardAnkesController::class, 'index'])->name('dashboardadminprodiankes');
-    Route::post('/adminprodiankes/dashboard', [DashboardAnkesController::class, 'updateNotification'])->name('update.notification.adminprodiankes');
-    Route::get('/adminprodiankes/riwayat', [DashboardAnkesController::class, 'getRiwayat'])->name('reminder.adminprodiankes');
+    Route::get('/adminprodiankes/riwayat', [DashboardAnkesController::class, 'getRiwayatAnkes'])->name('riwayat.adminprodiankes');
     Route::post('/adminprodiankes/dashboard', [DashboardAnkesController::class, 'update'])->name('reminder.update.adminprodiankes');
 
     Route::get('/adminprodiankes/databarang', [InventarisAnkesController::class, 'index'])->name('databarangadminprodiankes');
@@ -468,4 +714,31 @@ Route::middleware(['auth', 'user.role:adminprodankes', 'revalidate'])->group(fun
     Route::get('/adminprodiankes/barangkeluar', [BarangKeluarAnkesController::class, 'tabel'])->name('barangkeluaradminprodiankes');
     Route::post('/adminprodiankes/barangmasuk', [BarangMasukAnkesController::class, 'store'])->name('barangmasukadminprodiankes.store');
     Route::post('/adminprodiankes/barangkeluar', [BarangKeluarAnkesController::class, 'store'])->name('barangkeluaradminprodiankes.store');
+});
+
+Route::middleware(['auth', 'user.role:adminprodkimia', 'revalidate'])->group(function (){
+    Route::get('/adminprodikimia/dashboard',[DashboardKimiaController::class, 'index'])->name('dashboardadminprodikimia');
+    Route::get('/adminprodikimia/riwayat', [DashboardKimiaController::class, 'getRiwayatKimia'])->name('riwayat.adminprodikimia');
+    Route::post('/adminprodikimia/dashboard', [DashboardKimiaController::class, 'update'])->name('reminder.update.adminprodikimia');
+
+    Route::get('/adminprodikimia/databarang', [InventarisKimiaController::class, 'index'])->name('databarangadminprodikimia');
+    Route::delete('/adminprodikimia/databarang/{id}', [InventarisKimiaController::class, 'destroy'])->name('hapusbarangkimia');
+    Route::get('/adminprodikimia/tambahbarang', [InventarisKimiaController::class, 'create'])->name('tambahbarangadminprodikimia');
+    Route::post('/adminprodikimia/tambahbarang', [InventarisKimiaController::class, 'store'])->name('tambahbarangadminprodikimia.store');
+    Route::get('/adminprodikimia/ubahbarang/{id}', [InventarisKimiaController::class, 'edit'])->name('ubahbarangadminprodikimia');
+    Route::post('/adminprodikimia/ubahbarang/{id}', [InventarisKimiaController::class, 'update'])->name('updatebarangadminprodikimia');
+    Route::get('/adminprodikimia/gambar/{id}', [InventarisKimiaController::class, 'getGambar'])->name('get.gambar.invkimia');
+
+    Route::get('/avatars/{filename}', [ProfileController::class, 'getAvatar'])->name('avatar');
+    Route::get('/adminprodikimia/ubahprofilepicture',[ProfileController::class, 'EditProfilePic'])->name('ubahppadminprodikimia');
+    Route::post('/adminprodikimia/ubahprofilepicture', [ProfileController::class, 'EditProfilePicture'])->name("update.picture.adminprodikimia");
+    Route::get('/adminprodikimia/ubahpassword', [ProfileController::class, 'ChangePassword'])->name('ubahpwadminprodikimia');
+    Route::post('/adminprodikimia/ubahpassword', [ProfileController::class, 'UpdatePassword'])->name('update.password.adminprodikimia');
+    
+    Route::get('/adminprodikimia/riwayatbarangmasuk', [BarangMasukTekkimiaController::class, 'index'])->name('riwayatbarangmasukadminprodikimia');
+    Route::get('/adminprodikimia/riwayatbarangkeluar', [BarangKeluarTekkimiaController::class, 'index'])->name('riwayatbarangkeluaradminprodikimia');
+    Route::get('/adminprodikimia/barangmasuk', [BarangMasukTekkimiaController::class, 'tabel'])->name('barangmasukadminprodikimia');
+    Route::get('/adminprodikimia/barangkeluar', [BarangKeluarTekkimiaController::class, 'tabel'])->name('barangkeluaradminprodikimia');
+    Route::post('/adminprodikimia/barangmasuk', [BarangMasukTekkimiaController::class, 'store'])->name('barangmasukadminprodikimia.store');
+    Route::post('/adminprodikimia/barangkeluar', [BarangKeluarTekkimiaController::class, 'store'])->name('barangkeluaradminprodikimia.store');
 });

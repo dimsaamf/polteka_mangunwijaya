@@ -19,12 +19,18 @@ class SesiController extends Controller
                 return redirect('/koorlabfarmasi/dashboard');
             } elseif(Auth::user()->role == 'koorlabprodankes'){
                 return redirect('/koorlabankes/dashboard');
+            } elseif(Auth::user()->role == 'koorlabprodkimia'){
+                return redirect('/koorlabkimia/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodankes'){
                 return redirect('/adminlabankes/dashboard');
+            } elseif(Auth::user()->role == 'adminlabprodkimia'){
+                return redirect('/adminlabkimia/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
             } elseif(Auth::user()->role == 'adminprodankes'){
                 return redirect('/adminprodiankes/dashboard');
+            } elseif(Auth::user()->role == 'adminprodkimia'){
+                return redirect('/adminprodikimia/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return redirect('/adminlabfarmasi/dashboard');
             }
@@ -56,12 +62,18 @@ class SesiController extends Controller
                 return redirect('/koorlabfarmasi/dashboard');
             } elseif(Auth::user()->role == 'koorlabprodankes'){
                 return redirect('/koorlabankes/dashboard');
+            } elseif(Auth::user()->role == 'koorlabprodkimia'){
+                return redirect('/koorlabkimia/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodankes'){
                 return redirect('/adminlabankes/dashboard');
+            } elseif(Auth::user()->role == 'adminlabprodkimia'){
+                return redirect('/adminlabkimia/dashboard');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return redirect('/adminprodifarmasi/dashboard');
             } elseif(Auth::user()->role == 'adminprodankes'){
                 return redirect('/adminprodiankes/dashboard');
+            } elseif(Auth::user()->role == 'adminprodkimia'){
+                return redirect('/adminprodikimia/dashboard');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return redirect('/adminlabfarmasi/dashboard');
             }

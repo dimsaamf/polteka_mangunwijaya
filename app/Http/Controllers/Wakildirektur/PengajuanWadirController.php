@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Wakildirektur;
 use App\Models\PengajuanBarangLabFarmasi;
 use App\Models\PengajuanBarangLabAnkes;
+use App\Models\PengajuanBarangLabKimia;
 use App\Http\Controllers\Controller;
 use App\Models\PengajuanBarangWadir;
 use Illuminate\Http\Request;
@@ -18,9 +19,16 @@ class PengajuanWadirController extends Controller
     {
         $pengajuanBarangsFarmasi = PengajuanBarangLabFarmasi::with('pengajuanWadir')->get();
         $pengajuanBarangsAnkes = PengajuanBarangLabAnkes::with('pengajuanWadir')->get();
+        $pengajuanBarangsKimia = PengajuanBarangLabKimia::with('pengajuanWadir')->get();
     
-        $pengajuanBarangs = $pengajuanBarangsFarmasi->merge($pengajuanBarangsAnkes);
-    
+        // $pengajuanBarangs = $pengajuanBarangsFarmasi->merge($pengajuanBarangsAnkes);
+        // $pengajuanBarangs = $pengajuanBarangs->merge($pengajuanBarangsFarmasi)
+        //                                     ->merge($pengajuanBarangsAnkes)
+        //                                     ->merge($pengajuanBarangsKimia);
+
+        $pengajuanBarangs = $pengajuanBarangsFarmasi->merge($pengajuanBarangsAnkes)
+                                                ->merge($pengajuanBarangsKimia);
+
         $sortedPengajuanBarangs = $pengajuanBarangs->sortByDesc('created_at');
     
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -52,11 +60,14 @@ class PengajuanWadirController extends Controller
         // Cek apakah kode pengajuan terkait dengan pengajuan dari lab farmasi atau ankes
         $pengajuanFarmasi = PengajuanBarangLabFarmasi::where('kode_pengajuan', $kode_pengajuan)->first();
         $pengajuanAnkes = PengajuanBarangLabAnkes::where('kode_pengajuan', $kode_pengajuan)->first();
+        $pengajuanKimia = PengajuanBarangLabKimia::where('kode_pengajuan', $kode_pengajuan)->first();
     
         if ($pengajuanFarmasi) {
             $pengajuanBarangWadir = PengajuanBarangWadir::firstOrNew(['pengajuan_barang_labfarmasis_kode_pengajuan' => $kode_pengajuan]);
         } elseif ($pengajuanAnkes) {
             $pengajuanBarangWadir = PengajuanBarangWadir::firstOrNew(['pengajuan_barang_lab_ankes_kode_pengajuan' => $kode_pengajuan]);
+        } elseif ($pengajuanKimia) {
+            $pengajuanBarangWadir = PengajuanBarangWadir::firstOrNew(['pengajuan_barang_lab_kimias_kode_pengajuan' => $kode_pengajuan]);
         } else {
             return redirect()->back()->with('error', 'Pengajuan tidak ditemukan');
         }
@@ -79,12 +90,15 @@ class PengajuanWadirController extends Controller
     {
         $pengajuanBarangFarmasi = PengajuanBarangLabFarmasi::where('kode_pengajuan', $kode_pengajuan)->first();
         $pengajuanBarangAnkes = PengajuanBarangLabAnkes::where('kode_pengajuan', $kode_pengajuan)->first();
+        $pengajuanBarangKimia = PengajuanBarangLabKimia::where('kode_pengajuan', $kode_pengajuan)->first();
         
         // Pastikan kode_pengajuan ada di salah satu dari kedua jenis pengajuan
         if ($pengajuanBarangFarmasi) {
             $pengajuanBarang = $pengajuanBarangFarmasi;
         } elseif ($pengajuanBarangAnkes) {
             $pengajuanBarang = $pengajuanBarangAnkes;
+        } elseif ($pengajuanBarangKimia) {
+            $pengajuanBarang = $pengajuanBarangKimia;
         } else {
             return redirect()->back()->with('error', 'Pengajuan tidak ditemukan');
         }
@@ -102,12 +116,15 @@ class PengajuanWadirController extends Controller
     {
         $pengajuanBarangFarmasi = PengajuanBarangLabFarmasi::where('kode_pengajuan', $kode_pengajuan)->first();
         $pengajuanBarangAnkes = PengajuanBarangLabAnkes::where('kode_pengajuan', $kode_pengajuan)->first();
+        $pengajuanBarangKimia = PengajuanBarangLabKimia::where('kode_pengajuan', $kode_pengajuan)->first();
         
         // Pastikan kode_pengajuan ada di salah satu dari kedua jenis pengajuan
         if ($pengajuanBarangFarmasi) {
             $pengajuanBarang = $pengajuanBarangFarmasi;
         } elseif ($pengajuanBarangAnkes) {
             $pengajuanBarang = $pengajuanBarangAnkes;
+        } elseif ($pengajuanBarangKimia) {
+            $pengajuanBarang = $pengajuanBarangKimia;
         } else {
             return redirect()->back()->with('error', 'Pengajuan tidak ditemukan');
         }

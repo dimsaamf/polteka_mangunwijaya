@@ -111,17 +111,17 @@
                     </a>
                     <ul class="desplegable hidden mt-3 ml-10">
                             <li class="py-2 xl:py-0 hover:font-bold">
-                                <a href="{{ route('databarangkoorlabankeskimia') }}">
+                                <a href="{{ route('databarangkoorlabkimiaorganik') }}">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0 hover:font-bold">
-                                <a href="{{ route('barangmasukkoorlabankeskimia') }}">
+                                <a href="{{ route('barangmasukkoorlabkimiaorganik') }}">
                                     Barang Masuk
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0 hover:font-bold">
-                                <a href="{{ route('barangkeluarkoorlabankeskimia') }}">
+                                <a href="{{ route('barangkeluarkoorlabkimiaorganik') }}">
                                     Barang Keluar
                                 </a>
                             </li>
@@ -333,17 +333,17 @@
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('databarangkoorlabankeskimia') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('databarangkoorlabkimiaorganik') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('barangmasukkoorlabankeskimia') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('barangmasukkoorlabkimiaorganik') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Barang Masuk
                                 </a>
                             </li>
                             <li class="py-2 xl:py-0">
-                                <a href="{{ route('barangkeluarkoorlabankeskimia') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
+                                <a href="{{ route('barangkeluarkoorlabkimiaorganik') }}" class="xl:hover:text-hitam-polteka xl:hover:bg-abu-polteka xl:hover:rounded-full w-[500px] xl:hover:ml-4 xl:py-2 xl:pl-5 xl:block">
                                     Barang Keluar
                                 </a>
                             </li>

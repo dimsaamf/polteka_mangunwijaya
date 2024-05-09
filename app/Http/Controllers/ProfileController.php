@@ -20,15 +20,22 @@ class ProfileController extends Controller
                 return view('rolekoorlabfarmasi.contentkoorlab.ubahprofil');
             } elseif(Auth::user()->role == 'koorlabprodankes'){
                 return view('rolekoorlabankes.contentkoorlab.ubahprofil');
+            } elseif(Auth::user()->role == 'koorlabprodkimia'){
+                return view('rolekoorlabkimia.contentkoorlab.ubahprofil');
             } elseif(Auth::user()->role == 'adminlabprodankes'){
                 return view('roleadminlabankes.contentadminlab.ubahprofil');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
                 return view('roleadminlabfarmasi.contentadminlab.ubahprofil');
+            } elseif(Auth::user()->role == 'adminlabprodkimia'){
+                return view('roleadminlabkimia.contentadminlab.ubahprofil');
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return view('roleadminprodifarmasi.contentadminprodi.ubahprofil');
             } elseif(Auth::user()->role == 'adminprodankes'){
                 return view('roleadminprodiankes.contentadminprodi.ubahprofil');
+            } elseif(Auth::user()->role == 'adminprodkimia'){
+                return view('roleadminprodikimia.contentadminprodi.ubahprofil');
             }
+            
         }
     }
 
@@ -82,14 +89,20 @@ class ProfileController extends Controller
                 return view('rolekoorlabfarmasi.contentkoorlab.ubahpassword');
             } elseif(Auth::user()->role == 'koorlabprodankes'){
                 return view('rolekoorlabankes.contentkoorlab.ubahpassword');
+            } elseif(Auth::user()->role == 'koorlabprodkimia'){
+                return view('rolekoorlabkimia.contentkoorlab.ubahpassword');
             } elseif(Auth::user()->role == 'adminlabprodankes'){
                 return view('roleadminlabankes.contentadminlab.ubahpassword');
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return view('roleadminlabfarmasi.contentadminlab.ubahpassword');    
+                return view('roleadminlabfarmasi.contentadminlab.ubahpassword');
+            } elseif(Auth::user()->role == 'adminlabprodkimia'){
+                return view('roleadminlabkimia.contentadminlab.ubahpassword');    
             } elseif(Auth::user()->role == 'adminprodfarmasi'){
                 return view('roleadminprodifarmasi.contentadminprodi.ubahpassword');
             } elseif(Auth::user()->role == 'adminprodankes'){
                 return view('roleadminprodiankes.contentadminprodi.ubahpassword');
+            } elseif(Auth::user()->role == 'adminprodkimia'){
+                return view('roleadminprodikimia.contentadminprodi.ubahpassword');
             }
         }
     }
