@@ -82,6 +82,12 @@
                             <option value="Medis">Lab Medis</option>
                             <option value="Mikro">Lab Mikro</option>
                             <option value="Sitohisto">Lab Sitohisto</option>
+                            <option value="Kimia Analisa">Lab Kimia Analisa</option>
+                            <option value="Kimia Fisika">Lab Kimia Fisika</option>
+                            <option value="Kimia Organik">Lab Kimia Organik</option>
+                            <option value="Kimia Terapan">Lab Kimia Terapan</option>
+                            <option value="Mikrobiologi">Lab Mikrobiologi</option>
+                            <option value="Operasi Teknik Kimia">Lab Operasi Teknik Kimia</option>
                         </select>
                     </div>
                 </div>

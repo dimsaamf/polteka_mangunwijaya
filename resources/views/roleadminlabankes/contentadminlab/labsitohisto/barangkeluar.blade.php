@@ -1,4 +1,4 @@
-@extends('rolekoorlabankes.layoutkoorlab.labsitohisto.barangkeluar')
+@extends('roleadminlabankes.layoutadminlab.labsitohisto.barangkeluar')
 @section('content')
 @include('sweetalert::alert')
 
@@ -10,7 +10,7 @@
             <div class="text-hitam-polteka">Barang Keluar</div>
         </div>
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Sitohisto</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Sitohisto</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Barang Keluar</div>
         </div> 
@@ -40,13 +40,13 @@
                 <div class="overflow-hidden">
                 <div class="flex">
                     <div class="flex w-1/2 justify-start mb-3">
-                        <a href="{{ route('riwayatbarangkeluarkoorlabsitohisto') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                        <a href="{{ route('riwayatbarangkeluaradminlabsitohisto') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                             Riwayat Barang
                         </a>
                     </div>
                     <div class="flex w-1/2 justify-end mb-3">
                                     <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                    <form action="{{ route('barangkeluarkoorlabsitohisto') }}" method="GET" class="relative flex w-full">
+                                    <form action="{{ route('barangkeluaradminlabsitohisto') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input
@@ -91,7 +91,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">
                                     <div class="flex justify-center">
                                         @if($item->gambar)
-                                            <a href="{{ route('get.gambar.invlabsitohisto', ['id' => $item->id]) }}" target="_blank">
+                                            <a href="{{ route('get.gambar.invlabsitohisto.adminlab', ['id' => $item->id]) }}" target="_blank">
                                                 <img src="{{ asset('storage/gambars/' . $item->gambar) }}" alt="Gambar Barang" class="w-10">
                                             </a>
                                         @else
@@ -139,7 +139,7 @@
                     </div>
                     <!-- Modal body -->
                     <div class="px-8">
-                    <form action="{{ route('barangkeluarkoorlabsitohisto.store') }}" method="POST" enctype="multipart/form-data">  
+                    <form action="{{ route('barangkeluaradminlabsitohisto.store') }}" method="POST" enctype="multipart/form-data">  
                     @csrf
                         <label class="block mt-4">
                             <span class="text-sm font-medium">Jumlah Barang Keluar</span>

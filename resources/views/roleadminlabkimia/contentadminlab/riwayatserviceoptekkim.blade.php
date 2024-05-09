@@ -7,12 +7,12 @@
     <section class="w-full mt-2  mb-5 h-14 border-b border-slate-300">
         <div class= "flex">
         <div class="flex md:hidden my-4 w-1/2 justify-start text-sm"> 
-            <div class="text-hitam-polteka">Riwayat Service Lab Operasi Teknik Kimia</div>
+            <div class="text-hitam-polteka">Riwayat Service Lab Operasi Tekkim</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
             <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Operasi T. Kimia</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
-            <div class="ml-2 text-hitam-polteka">Riwayat Service Lab Operasi Teknik Kimia</div>
+            <div class="ml-2 text-hitam-polteka">Riwayat Service Lab Operasi Tekkim</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-end text-hitam-polteka">
             <button id="open-modal-btn2">
@@ -42,7 +42,7 @@
                     <div class="flex">
                         <div class="flex w-1/2 justify-start">
                             <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                <form action="{{ route('riwayat.optekkim') }}" method="GET" class="relative flex w-full">
+                                <form action="{{ route('riwayat.optekkim.adminlabkimia') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input

@@ -1,4 +1,4 @@
-@extends('rolekoorlabkimia.layoutkoorlab.datailpengajuan')
+@extends('rolekoorlabkimia.layoutkoorlab.detailpengajuan')
 @section('content')
 
 <div class="bg-abu-polteka w-full min-h-[500px] px-9 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8">
@@ -70,14 +70,14 @@
                         <p>
                             @if ($pengajuanBarang->pengajuanWadir)
                                 @if (!empty($pengajuanBarang->pengajuanWadir->keterangan))
-                                    {!! nl2br(e($pengajuanBarang->pengajuanWadir->keterangan)) !!}
+                                    {!! nl2br($pengajuanBarang->pengajuanWadir->keterangan) !!}
                                 @else
                                     Belum Ada
                                 @endif
                             @else
                                 Belum Ada
                             @endif
-                        </p>                        
+                        </p>                             
                     </div>                    
                     <div>
                         <p class="font-semibold">File:</p>
@@ -96,5 +96,6 @@
         </div>
     </footer> 
 </div>
+
 
 @endsection

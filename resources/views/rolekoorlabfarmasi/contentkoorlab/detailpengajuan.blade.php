@@ -70,14 +70,14 @@
                         <p>
                             @if ($pengajuanBarang->pengajuanWadir)
                                 @if (!empty($pengajuanBarang->pengajuanWadir->keterangan))
-                                    {!! nl2br(e($pengajuanBarang->pengajuanWadir->keterangan)) !!}
+                                    {!! nl2br($pengajuanBarang->pengajuanWadir->keterangan) !!}
                                 @else
                                     Belum Ada
                                 @endif
                             @else
                                 Belum Ada
                             @endif
-                        </p>                        
+                        </p>                         
                     </div>                    
                     <div>
                         <p class="font-semibold">File:</p>

@@ -154,9 +154,9 @@ class PengajuanBarangLabAnkesController extends Controller
         return redirect()->route('pengajuanbarangkoorlabankes');
     }
 
-    public function previewSurat($kode_pengajuan)
+    public function previewSurat($id)
     {
-        $pengajuanBarang = PengajuanBarangLabAnkes::findOrFail($kode_pengajuan);
+        $pengajuanBarang = PengajuanBarangLabAnkes::findOrFail($id);
 
         $fileExtension = pathinfo($pengajuanBarang->file, PATHINFO_EXTENSION);
 

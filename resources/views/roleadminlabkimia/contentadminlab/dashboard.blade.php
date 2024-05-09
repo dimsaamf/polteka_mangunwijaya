@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="flex">
-            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-8 w-full mb-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-8 w-full mb-5">
                 <div class="bg-white flex mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg justify-center items-center">
                     <div class="box py-6 px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="M22 3H2v6h1v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9h1zM4 5h16v2H4zm15 15H5V9h14zM9 11h6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2"/></svg>
@@ -73,15 +73,6 @@
                     <div class="box p-6">
                         <div class="text-3xl font-medium">{{ $total_keluar }}</div>
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Keluar</div>
-                    </div>
-                </div>
-                <div class="bg-white flex mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg justify-center items-center">
-                    <div class="box py-6 px-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="m15.5 17.125l4.95-4.95q.275-.275.7-.275t.7.275t.275.7t-.275.7l-5.65 5.65q-.3.3-.7.3t-.7-.3l-2.85-2.85q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h4.175q.275-.875 1.075-1.437T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v4q0 .425-.288.713T20 10t-.712-.288T19 9V5h-2v2q0 .425-.288.713T16 8H8q-.425 0-.712-.288T7 7V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm7-16q.425 0 .713-.288T13 4t-.288-.712T12 3t-.712.288T11 4t.288.713T12 5"/></svg>
-                    </div>
-                    <div class="box p-6">
-                        <div class="text-3xl font-medium">{{ $pengajuan }}</div>
-                        <div class="text-sm text-slate-500 mt-1 font-semibold">Pengajuan Barang</div>
                     </div>
                 </div>
             </div>
@@ -153,7 +144,7 @@
                                         <div class="flex w-full">
                                             <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Kimia Analisa</div>
                                             <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
-                                                <a href="{{ route('riwayat.kimiaanalisa') }}" >
+                                                <a href="{{ route('riwayat.kimiaanalisa.adminlabkimia') }}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                                                 </a>
                                             </div>
@@ -227,7 +218,7 @@
                                         <div class="flex w-full">
                                             <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Kimia Fisika</div>
                                             <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
-                                                <a href="{{ route('riwayat.kimiafisika') }}" >
+                                                <a href="{{ route('riwayat.kimiafisika.adminlabkimia') }}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                                                 </a>
                                             </div>
@@ -301,7 +292,7 @@
                                         <div class="flex w-full">
                                             <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Kimia Organik</div>
                                             <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
-                                                <a href="{{ route('riwayat.kimiaorganik') }}" >
+                                                <a href="{{ route('riwayat.kimiaorganik.adminlabkimia') }}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                                                 </a>
                                             </div>
@@ -375,7 +366,7 @@
                                         <div class="flex w-full">
                                             <div class="flex w-2/3 justify-start text-lg font-medium mb-3">Lab Kimia Terapan</div>
                                             <div class="flex w-1/3 justify-end text-xl font-medium mb-1">
-                                                <a href="{{ route('riwayat.kimiaterapan') }}" >
+                                                <a href="{{ route('riwayat.kimiaterapan.adminlabkimia') }}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                                                 </a>
                                             </div>
@@ -449,7 +440,7 @@
                                         <div class="flex w-full">
                                             <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Mikrobiologi</div>
                                             <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
-                                                <a href="{{ route('riwayat.mikrobiologi') }}" >
+                                                <a href="{{ route('riwayat.mikrobiologi.adminlabkimia') }}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                                                 </a>
                                             </div>
@@ -523,7 +514,7 @@
                                         <div class="flex w-full">
                                             <div class="flex w-1/2 justify-start text-lg font-medium mb-3">Lab Operasi Teknik Kimia</div>
                                             <div class="flex w-1/2 justify-end text-xl font-medium mb-1">
-                                                <a href="{{ route('riwayat.optekkim') }}" >
+                                                <a href="{{ route('riwayat.optekkim.adminlabkimia') }}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="black" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89l.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18m-1 5v5l4.28 2.54l.72-1.21l-3.5-2.08V8z"/></svg>
                                                 </a>
                                             </div>

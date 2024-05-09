@@ -2,51 +2,184 @@
 
 namespace App\Http\Controllers\Wakildirektur;
 use App\Http\Controllers\Controller;
-use App\Models\PengajuanBarangWadir;
-use App\Models\InventarisFarmasi;
-use App\Models\InventarisLabFarmakognosi;
-use App\Models\InventarisLabFarmasetika;
-use App\Models\InventarisLabKimia;
-use App\Models\InventarisLabTekfarmasi;
-use App\Models\BarangMasukFarmasi;
-use App\Models\BarangMasukFarmakognosi;
-use App\Models\BarangMasukFarmasetika;
-use App\Models\BarangMasukKimia;
-use App\Models\BarangMasukTekfarmasi;
-use App\Models\BarangKeluarFarmasi;
+use App\Models\InventarisLabfarmakognosi;
 use App\Models\BarangKeluarFarmakognosi;
+use App\Models\BarangMasukFarmakognosi;
+use App\Models\InventarisLabFarmasetika;
 use App\Models\BarangKeluarFarmasetika;
+use App\Models\BarangMasukFarmasetika;
+use App\Models\InventarisLabKimia;
 use App\Models\BarangKeluarKimia;
+use App\Models\BarangMasukKimia;
+use App\Models\InventarisLabTekfarmasi;
 use App\Models\BarangKeluarTekfarmasi;
+use App\Models\BarangMasukTekfarmasi;
+use App\Models\InventarisLabAnkeskimia;
+use App\Models\BarangKeluarAnkeskimia;
+use App\Models\BarangMasukAnkeskimia;
+use App\Models\InventarisLabMedis;
+use App\Models\BarangKeluarMedis;
+use App\Models\BarangMasukMedis;
+use App\Models\InventarisLabMikro;
+use App\Models\BarangKeluarMikro;
+use App\Models\BarangMasukMikro;
+use App\Models\InventarisLabSitohisto;
+use App\Models\BarangKeluarSitohisto;
+use App\Models\BarangMasukSitohisto;
+use App\Models\InventarisFarmasi;
+use App\Models\BarangKeluarFarmasi;
+use App\Models\BarangMasukFarmasi;
+use App\Models\InventarisAnkes;
+use App\Models\BarangKeluarAnkes;
+use App\Models\BarangMasukAnkes;
+use App\Models\InventarisKimia;
+use App\Models\BarangKeluarTekkimia;
+use App\Models\BarangMasukTekkimia;
+use App\Models\InventarisLabKimiaAnalisa;
+use App\Models\InventarisLabKimiaFisika;
+use App\Models\InventarisLabKimiaOrganik;
+use App\Models\InventarisLabKimiaTerapan;
+use App\Models\InventarisLabMikrobiologi;
+use App\Models\InventarisLabOptekkim;
+use App\Models\BarangMasukKimiaAnalisa;
+use App\Models\BarangMasukKimiaFisika;
+use App\Models\BarangMasukKimiaOrganik;
+use App\Models\BarangMasukKimiaTerapan;
+use App\Models\BarangMasukMikrobiologi;
+use App\Models\BarangMasukOptekkim;
+use App\Models\BarangKeluarKimiaAnalisa;
+use App\Models\BarangKeluarKimiaFisika;
+use App\Models\BarangKeluarKimiaOrganik;
+use App\Models\BarangKeluarKimiaTerapan;
+use App\Models\BarangKeluarMikrobiologi;
+use App\Models\BarangKeluarOptekkim;
+use App\Models\PengajuanBarangLabKimia;
+use App\Models\PengajuanBarangLabFarmasi;
+use App\Models\PengajuanBarangLabAnkes;
 use Illuminate\Http\Request;
 
 class DashboardWadirController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $pengajuanFarmasi = PengajuanBarangLabFarmasi::count();
+        $pengajuanAnkes = PengajuanBarangLabAnkes::count();
+        $pengajuanKimia = PengajuanBarangLabKimia::count();
 
-        $pengajuan = PengajuanBarangWadir::count();
+        $dataInventarisFarmakognosi = InventarisLabFarmakognosi::count();
+        $dataInventarisFarmasetika = InventarisLabFarmasetika::count();
+        $dataInventarisLabKimia = InventarisLabKimia::count();
+        $dataInventarisTekfarmasi = InventarisLabTekfarmasi::count();
+        $dataInventarisAnkeskimia = InventarisLabAnkeskimia::count();
+        $dataInventarisMedis = InventarisLabMedis::count();
+        $dataInventarisMikro = InventarisLabMikro::count();
+        $dataInventarisSitohisto = InventarisLabSitohisto::count();
+        $dataInventarisKimiaAnalisa = InventarisLabKimiaAnalisa::count();
+        $dataInventarisKimiaFisika = InventarisLabKimiaFisika::count();
+        $dataInventarisKimiaOrganik = InventarisLabKimiaOrganik::count();
+        $dataInventarisKimiaTerapan = InventarisLabKimiaTerapan::count();
+        $dataInventarisMikrobiologi = InventarisLabMikrobiologi::count();
+        $dataInventarisOptekkim = InventarisLabOptekkim::count();
+        $dataInventarisFarmasi = InventarisFarmasi::count();
+        $dataInventarisAnkes = InventarisAnkes::count();
+        $dataInventarisKimia = InventarisKimia::count();
 
-        $baranglabfarmakognosi = InventarisLabFarmakognosi::count();
-        $baranglabfarmasetika = InventarisLabFarmasetika::count();
-        $baranglabkimia = InventarisLabKimia::count();
-        $baranglabtekfarmasi = InventarisLabTekfarmasi::count();
-        $barangprodifarmasi = InventarisFarmasi::count();
+        $BarangMasukFarmakognosi = BarangMasukFarmakognosi::count();
+        $BarangMasukFarmasetika = BarangMasukFarmasetika::count();
+        $BarangMasukKimia = BarangMasukKimia::count();
+        $BarangMasukTekfarmasi = BarangMasukTekfarmasi::count();
+        $BarangMasukAnkeskimia = BarangMasukAnkeskimia::count();
+        $BarangMasukMedis = BarangMasukMedis::count();
+        $BarangMasukMikro = BarangMasukMikro::count();
+        $BarangMasukSitohisto = BarangMasukSitohisto::count();
+        $BarangMasukKimiaAnalisa = BarangMasukKimiaAnalisa::count();
+        $BarangMasukKimiaFisika = BarangMasukKimiaFisika::count();
+        $BarangMasukKimiaOrganik = BarangMasukKimiaOrganik::count();
+        $BarangMasukKimiaTerapan = BarangMasukKimiaTerapan::count();
+        $BarangMasukMikrobiologi = BarangMasukMikrobiologi::count();
+        $BarangMasukOptekkim = BarangMasukOptekkim::count();
+        $BarangMasukFarmasi = BarangMasukFarmasi::count();
+        $BarangMasukAnkes = BarangMasukAnkes::count();
+        $BarangMasukTekkimia = BarangMasukTekkimia::count();
 
-        $barangmasuklabfarmakognosi = BarangMasukFarmakognosi::count();
-        $barangmasuklabfarmasetika = BarangMasukFarmasetika::count();
-        $barangmasuklabkimia = BarangMasukKimia::count();
-        $barangmasuklabtekfarmasi = BarangMasukTekfarmasi::count();
-        $barangmasukprodifarmasi = BarangMasukFarmasi::count();
+        $BarangKeluarFarmakognosi = BarangKeluarFarmakognosi::count();
+        $BarangKeluarFarmasetika = BarangKeluarFarmasetika::count();
+        $BarangKeluarKimia = BarangKeluarKimia::count();
+        $BarangKeluarTekfarmasi = BarangKeluarTekfarmasi::count();
+        $BarangKeluarAnkeskimia = BarangKeluarAnkeskimia::count();
+        $BarangKeluarMedis = BarangKeluarMedis::count();
+        $BarangKeluarMikro = BarangKeluarMikro::count();
+        $BarangKeluarSitohisto = BarangKeluarSitohisto::count();
+        $BarangKeluarKimiaAnalisa = BarangKeluarKimiaAnalisa::count();
+        $BarangKeluarKimiaFisika = BarangKeluarKimiaFisika::count();
+        $BarangKeluarKimiaOrganik = BarangKeluarKimiaOrganik::count();
+        $BarangKeluarKimiaTerapan = BarangKeluarKimiaTerapan::count();
+        $BarangKeluarMikrobiologi = BarangKeluarMikrobiologi::count();
+        $BarangKeluarOptekkim = BarangKeluarOptekkim::count();
+        $BarangKeluarFarmasi = BarangKeluarFarmasi::count();
+        $BarangKeluarAnkes = BarangKeluarAnkes::count();
+        $BarangKeluarTekkimia = BarangKeluarTekkimia::count();
+        
+        $total_barang = $dataInventarisFarmakognosi 
+        + $dataInventarisFarmasetika 
+        + $dataInventarisLabKimia 
+        + $dataInventarisTekfarmasi 
+        + $dataInventarisAnkeskimia 
+        + $dataInventarisMedis 
+        + $dataInventarisMikro 
+        + $dataInventarisSitohisto 
+        + $dataInventarisKimiaAnalisa 
+        + $dataInventarisKimiaFisika 
+        + $dataInventarisKimiaOrganik 
+        + $dataInventarisKimiaTerapan 
+        + $dataInventarisMikrobiologi 
+        + $dataInventarisOptekkim
+        + $dataInventarisFarmasi
+        + $dataInventarisAnkes 
+        + $dataInventarisKimia; 
 
-        $barangkeluarlabfarmakognosi = BarangKeluarFarmakognosi::count();
-        $barangkeluarlabfarmasetika = BarangKeluarFarmasetika::count();
-        $barangkeluarlabkimia = BarangKeluarKimia::count();
-        $barangkeluarlabtekfarmasi = BarangKeluarTekfarmasi::count();
-        $barangkeluarprodifarmasi = BarangKeluarFarmasi::count();
+        $total_masuk = $BarangMasukFarmakognosi
+        + $BarangMasukFarmasetika
+        + $BarangMasukKimia
+        + $BarangMasukTekfarmasi
+        + $BarangMasukAnkeskimia
+        + $BarangMasukMedis
+        + $BarangMasukMikro
+        + $BarangMasukSitohisto
+        + $BarangMasukKimiaAnalisa
+        + $BarangMasukKimiaFisika
+        + $BarangMasukKimiaOrganik
+        + $BarangMasukKimiaTerapan
+        + $BarangMasukMikrobiologi
+        + $BarangMasukOptekkim
+        + $BarangMasukFarmasi
+        + $BarangMasukAnkes
+        + $BarangMasukTekkimia;
 
-        $total_barang = $baranglabfarmakognosi +  $baranglabfarmasetika + $baranglabkimia + $baranglabtekfarmasi + $barangprodifarmasi;
-        $total_masuk = $barangmasuklabfarmakognosi + $barangmasuklabfarmasetika + $barangmasuklabkimia + $barangmasuklabtekfarmasi + $barangmasukprodifarmasi;
-        $total_keluar = $barangkeluarlabfarmakognosi + $barangkeluarlabfarmasetika + $barangkeluarlabkimia + $barangkeluarlabtekfarmasi + $barangkeluarprodifarmasi;
+
+        $total_keluar =
+        + $BarangMasukFarmakognosi
+        + $BarangMasukFarmasetika
+        + $BarangMasukKimia
+        + $BarangMasukTekfarmasi
+        + $BarangMasukAnkeskimia
+        + $BarangMasukMedis
+        + $BarangMasukMikro
+        + $BarangMasukSitohisto
+        + $BarangMasukKimiaAnalisa
+        + $BarangMasukKimiaFisika
+        + $BarangMasukKimiaOrganik
+        + $BarangMasukKimiaTerapan
+        + $BarangMasukMikrobiologi
+        + $BarangMasukOptekkim
+        + $BarangKeluarFarmasi
+        + $BarangKeluarAnkes
+        + $BarangKeluarTekkimia;
+
+        $pengajuan =
+        + $pengajuanFarmasi
+        + $pengajuanAnkes
+        + $pengajuanKimia;
 
         return view('rolewadir.contentwadir.dashboard', compact('pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
     }

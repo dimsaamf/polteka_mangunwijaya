@@ -42,7 +42,7 @@
                     <div class="flex">
                         <div class="flex w-1/2 justify-start">
                             <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                <form action="{{ route('riwayat.kimiafisika') }}" method="GET" class="relative flex w-full">
+                                <form action="{{ route('riwayat.kimiafisika.adminlabkimia') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input

@@ -1,4 +1,4 @@
-@extends('rolekoorlabankes.layoutkoorlab.labsitohisto.databarang')
+@extends('roleadminlabankes.layoutadminlab.labsitohisto.databarang')
 @section('content')
 @include('sweetalert::alert')
 
@@ -10,7 +10,7 @@
             <div class="text-hitam-polteka">Data Barang</div>
         </div> 
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Sitohisto</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Sitohisto</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2 text-hitam-polteka">Data Barang</div>
         </div> 
@@ -41,13 +41,13 @@
                 <div class="overflow-hidden">
                     <div class="flex">
                         <div class="flex w-1/2 justify-start mb-3">
-                            <a href="{{ route('tambahbarangkoorlabsitohisto') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
+                            <a href="{{ route('tambahbarangadminlabsitohisto') }}" type="button" class="w-[130px] mb-3 rounded-md px-3 py-2 text-sm bg-merah200-polteka text-putih-polteka shadow-sm">
                                 Tambah Barang
                             </a>
                         </div>
                         <div class="flex w-1/2 justify-end mt-2">
                             <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                <form action="{{ route('databarangkoorlabsitohisto') }}" method="GET" class="relative flex w-full">
+                                <form action="{{ route('databarangadminlabsitohisto') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input
@@ -109,7 +109,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">
                                     <div class="flex justify-center">
                                         @if($data->gambar)
-                                            <a href="{{ route('get.gambar.invlabsitohisto', ['id' => $data->id]) }}" target="_blank">
+                                            <a href="{{ route('get.gambar.invlabsitohisto.adminlab', ['id' => $data->id]) }}" target="_blank">
                                                 <img src="{{ asset('storage/gambars/' . $data->gambar) }}" alt="Gambar Barang" class="w-10">
                                             </a>
                                         @else
@@ -118,7 +118,7 @@
                                     </div>
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap rounded-r-xl">
-                                <a href="{{ route('ubahbarangkoorlabsitohisto', $data->id) }}" >
+                                <a href="{{ route('ubahbarangadminlabsitohisto', $data->id) }}" >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mx-auto" width="1.4rem" height="1.4rem" viewBox="0 0 24 24"><path fill="black" d="m18.988 2.012l3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287l-3-3L8 13z"/><path fill="black" d="M19 19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2z"/></svg>
                                 </a>
                             </td>
@@ -328,7 +328,7 @@
                     };
                     $.ajax({
                         type: "DELETE",
-                        url: '/koorlabankes/labsitohisto/databarang/' + deleteid,
+                        url: '/adminlabankes/labsitohisto/databarang/' + deleteid,
                         data: data,
                         success: function(response) {
                             swal(response.status, {

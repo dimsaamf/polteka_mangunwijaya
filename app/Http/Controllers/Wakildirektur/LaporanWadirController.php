@@ -35,22 +35,33 @@ use App\Models\BarangMasukAnkes;
 use App\Models\InventarisKimia;
 use App\Models\BarangKeluarTekkimia;
 use App\Models\BarangMasukTekkimia;
+use App\Models\InventarisLabKimiaAnalisa;
+use App\Models\InventarisLabKimiaFisika;
+use App\Models\InventarisLabKimiaOrganik;
+use App\Models\InventarisLabKimiaTerapan;
+use App\Models\InventarisLabMikrobiologi;
+use App\Models\InventarisLabOptekkim;
+use App\Models\BarangMasukKimiaAnalisa;
+use App\Models\BarangMasukKimiaFisika;
+use App\Models\BarangMasukKimiaOrganik;
+use App\Models\BarangMasukKimiaTerapan;
+use App\Models\BarangMasukMikrobiologi;
+use App\Models\BarangMasukOptekkim;
+use App\Models\BarangKeluarKimiaAnalisa;
+use App\Models\BarangKeluarKimiaFisika;
+use App\Models\BarangKeluarKimiaOrganik;
+use App\Models\BarangKeluarKimiaTerapan;
+use App\Models\BarangKeluarMikrobiologi;
+use App\Models\BarangKeluarOptekkim;
+use App\Models\PengajuanBarangLabKimia;
+use App\Models\PengajuanBarangLabFarmasi;
+use App\Models\PengajuanBarangLabAnkes;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanWadirController extends Controller
 {
-    // public function index()
-    // {
-    //     $barangfarmakognosi = InventarisLabFarmakognosi::count('id');
-    //     $barang_masuk_farmakognosi = BarangMasukFarmakognosi::count('id');
-    //     $barang_keluar_farmakognosi = BarangKeluarFarmakognosi::count('id');
-    //     $barangfarmasi = InventarisFarmasi::count('id');
-    //     $barang_masuk_farmasi = BarangMasukFarmasi::count('id');
-    //     $barang_keluar_farmasi = BarangKeluarFarmasi::count('id');
-    //     return view('dashboard', compact('barangfarmakognosi', 'barang_masuk_farmakognosi', 'barang_keluar_farmakognosi', 'barangfarmasi', 'barang_masuk_farmasi', 'barang_keluar_farmasi'));
-    // }
 
     public function laporanlab()
     {
@@ -105,6 +116,13 @@ class LaporanWadirController extends Controller
         $BarangMasukMikro = BarangMasukMikro::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
         $BarangMasukSitohisto = BarangMasukSitohisto::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
 
+        $BarangMasukKimiaAnalisa = BarangMasukKimiaAnalisa::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukKimiaFisika = BarangMasukKimiaFisika::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukKimiaOrganik = BarangMasukKimiaOrganik::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukKimiaTerapan = BarangMasukKimiaTerapan::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukMikrobiologi = BarangMasukMikrobiologi::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+        $BarangMasukOptekkim = BarangMasukOptekkim::whereBetween('tanggal_masuk', [$dari, $sampai])->get();
+
         $semuaBarangMasuk = $semuaBarangMasuk->merge($BarangMasukFarmakognosi)
                                             ->merge($BarangMasukFarmasetika)
                                             ->merge($BarangMasukKimia)
@@ -112,7 +130,13 @@ class LaporanWadirController extends Controller
                                             ->merge($BarangMasukAnkeskimia)
                                             ->merge($BarangMasukMedis)
                                             ->merge($BarangMasukMikro)
-                                            ->merge($BarangMasukSitohisto);
+                                            ->merge($BarangMasukSitohisto)
+                                            ->merge($BarangMasukKimiaAnalisa)
+                                            ->merge($BarangMasukKimiaFisika)
+                                            ->merge($BarangMasukKimiaOrganik)
+                                            ->merge($BarangMasukKimiaTerapan)
+                                            ->merge($BarangMasukMikrobiologio)
+                                            ->merge($BarangMasukOptekkim);
                                             
         $semuaBarangMasuk = $semuaBarangMasuk->sortBy('tanggal_masuk');
 
@@ -128,6 +152,13 @@ class LaporanWadirController extends Controller
         $BarangKeluarMikro = BarangKeluarMikro::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
         $BarangKeluarSitohisto = BarangKeluarSitohisto::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
 
+        $BarangKeluarKimiaAnalisa = BarangKeluarKimiaAnalisa::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarKimiaFisika = BarangKeluarKimiaFisika::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarKimiaOrganik = BarangKeluarKimiaOrganik::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarKimiaTerapan = BarangKeluarKimiaTerapan::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarMikrobiologi = BarangKeluarMikrobiologi::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+        $BarangKeluarOptekkim = BarangKeluarOptekkim::whereBetween('tanggal_keluar', [$dari, $sampai])->get();
+
         $semuaBarangKeluar = $semuaBarangKeluar->merge($BarangKeluarFarmakognosi)
                                             ->merge($BarangKeluarFarmasetika)
                                             ->merge($BarangKeluarKimia)
@@ -135,7 +166,13 @@ class LaporanWadirController extends Controller
                                             ->merge($BarangMasukAnkeskimia)
                                             ->merge($BarangMasukMedis)
                                             ->merge($BarangMasukMikro)
-                                            ->merge($BarangMasukSitohisto);
+                                            ->merge($BarangMasukSitohisto)
+                                            ->merge($BarangKeluarKimiaAnalisa)
+                                            ->merge($BarangKeluarKimiaFisika)
+                                            ->merge($BarangKeluarKimiaOrganik)
+                                            ->merge($BarangKeluarKimiaTerapan)
+                                            ->merge($BarangKeluarMikrobiologi)
+                                            ->merge($BarangKeluarOptekkim);
                                             
         $semuaBarangKeluar = $semuaBarangKeluar->sortBy('tanggal_keluar');
 
@@ -149,15 +186,29 @@ class LaporanWadirController extends Controller
         $dataInventarisMikro = InventarisLabMikro::all();
         $dataInventarisSitohisto = InventarisLabSitohisto::all();
 
+        $dataInventarisKimiaAnalisa = InventarisLabKimiaAnalisa::all();
+        $dataInventarisKimiaFisika = InventarisLabKimiaFisika::all();
+        $dataInventarisKimiaOrganik = InventarisLabKimiaOrganik::all();
+        $dataInventarisKimiaTerapan = InventarisLabKimiaTerapan::all();
+        $dataInventarisMikrobiologi = InventarisLabMikrobiologi::all();
+        $dataInventarisOptekkim = InventarisLabOptekkim::all();
+
         $dataInventaris = collect()
             ->merge($dataInventarisFarmakognosi)
             ->merge($dataInventarisFarmasetika)
             ->merge($dataInventarisKimia)
             ->merge($dataInventarisTekfarmasi)
-            ->merge($BarangMasukAnkeskimia)
-            ->merge($BarangMasukMedis)
-            ->merge($BarangMasukMikro)
-            ->merge($BarangMasukSitohisto);
+            ->merge($dataInventarisAnkeskimia)
+            ->merge($dataInventarisMedis)
+            ->merge($dataInventarisMikro)
+            ->merge($dataInventarisSitohisto)
+
+            ->merge($dataInventarisKimiaAnalisa)
+            ->merge($dataInventarisKimiaFisika)
+            ->merge($dataInventarisKimiaOrganik)
+            ->merge($dataInventarisKimiaTerapan)
+            ->merge($dataInventarisMikrobiologi)
+            ->merge($dataInventarisOptekkim);
 
         if ($jenis == 'Barang Masuk') {
             foreach ($semuaBarangMasuk as $barangMasuk) {
@@ -186,6 +237,24 @@ class LaporanWadirController extends Controller
                         break;
                     case 'barang_masuk_sitohistos':
                         $inventaris = $dataInventarisSitohisto->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_kimia_analisas':
+                        $inventaris = $dataInventarisKimiaAnalisa->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_kimia_fisikas':
+                        $inventaris = $dataInventarisKimiaFisika->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_kimia_organiks':
+                        $inventaris = $dataInventarisKimiaOrganik->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_kimia_terapans':
+                        $inventaris = $dataInventarisKimiaTerapan->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_mikrobiologis':
+                        $inventaris = $dataInventarisMikrobiologi->where('id', $barangMasuk->id_barang)->first();
+                        break;
+                    case 'barang_masuk_optekkims':
+                        $inventaris = $dataInventarisOptekkim->where('id', $barangMasuk->id_barang)->first();
                         break;
                     default:
                         break;
@@ -227,6 +296,24 @@ class LaporanWadirController extends Controller
                         break;
                     case 'barang_keluar_sitohistos':
                         $inventaris = $dataInventarisSitohisto->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_kimia_analisas':
+                        $inventaris = $dataInventarisKimiaAnalisa->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_kimia_fisikas':
+                        $inventaris = $dataInventarisKimiaFisika->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_kimia_organiks':
+                        $inventaris = $dataInventarisKimiaOrganik->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_kimia_terapans':
+                        $inventaris = $dataInventarisKimiaTerapan->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_mikrobiologis':
+                        $inventaris = $dataInventarisMikrobiologi->where('id', $barangKeluar->id_barang)->first();
+                        break;
+                    case 'barang_keluar_optekkims':
+                        $inventaris = $dataInventarisOptekkim->where('id', $barangKeluar->id_barang)->first();
                         break;
                     default:
                         break;
@@ -394,6 +481,25 @@ class LaporanWadirController extends Controller
             case 'Sitohisto':
                 $semuaData = InventarisLabSitohisto::all();
                 break;
+            case 'Kimia Analisa':
+                $semuaData = InventarisLabKimiaAnalisa::all();
+                break;
+            case 'Kimia Fisika':
+                $semuaData = InventarisLabKimiaFisika::all();
+                break;
+            case 'Kimia Organik':
+                $semuaData = InventarisLabKimiaOrganik::all();
+                break;
+            case 'Kimia Terapan':
+                $semuaData = InventarisLabKimiaTerapan::all();
+                break;
+            case 'Mikrobiologi':
+                $semuaData = InventarisLabMikrobiologi::all();
+                break;
+            case 'Operasi Teknik Kimia':
+                $semuaData = InventarisLabOptekkim::all();
+                break;
+            
             default:
                 alert()->error('Data Gagal Dicetak.','Laboratorium tidak valid.');
                 return back();

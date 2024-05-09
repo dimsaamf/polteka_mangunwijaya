@@ -1,4 +1,4 @@
-@extends('rolekoorlabankes.layoutkoorlab.labsitohisto.barangmasuk')
+@extends('roleadminlabankes.layoutadminlab.labsitohisto.barangmasuk')
 @section('content')
 @include('sweetalert::alert')
 <div class="bg-abu-polteka font-polteka w-full min-h-[500px] px-8 md:rounded-xl rounded-[30px] md:mt-0 md:ml-0 md:mr-0 mt-6 ml-8 mr-8 mb-0 overflow-x-auto">
@@ -9,7 +9,7 @@
             <div class="text-hitam-polteka">Riwayat Barang Masuk</div>
         </div>
         <div class="hidden md:flex my-4 w-1/2 justify-start text-xs sm:text-md md:text-[13px] lg:text-lg">
-            <div class="mr-2 text-merah180-polteka">Hai, Koor Lab Sitohisto</div>
+            <div class="mr-2 text-merah180-polteka">Hai, Admin Lab Sitohisto</div>
             <svg class="my-1.5 text-hitam-polteka md:w-[9px] md:h-[9px] lg:w-[12px] lg:h-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="currentColor" d="M7 1L5.6 2.5L13 10l-7.4 7.5L7 19l9-9z"/></svg>
             <div class="ml-2  text-hitam-polteka">Riwayat Barang Masuk</div>
         </div> 
@@ -40,7 +40,7 @@
                 <div class="flex">
                     <!-- filter tanggal -->
                     <div class="flex w-1/2 justify-start mb-3 items-center">
-                        <form action="{{ route('riwayatbarangmasukkoorlabsitohisto') }}" method="GET" class="items-center flex gap-3 my-auto">
+                        <form action="{{ route('riwayatbarangmasukadminlabsitohisto') }}" method="GET" class="items-center flex gap-3 my-auto">
                             <label for="start_date" class="block">
                                 <span class="text-sm font-xs">Tanggal Awal</span>
                                 <input type="date" name="start_date" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" value="{{ session('filter_start_date') }}" />
@@ -53,7 +53,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 20 20"><path fill="white" d="M8.6 3.4L14.2 9H2v2h12.2l-5.6 5.6L10 18l8-8l-8-8z"/></svg>
                             </button>
                         </form>
-                        <form action="{{ route('riwayatbarangmasukkoorlabsitohisto') }}" method="GET">
+                        <form action="{{ route('riwayatbarangmasukadminlabsitohisto') }}" method="GET">
                             <button type="submit" class="btn btn-secondary ml-1 mt-7 w-[25px] h-[24px] rounded-md px-[3px] bg-merah200-polteka text-putih-polteka shadow-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24"><path fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"/></svg>
                             </button>
@@ -64,7 +64,7 @@
                     <!-- search -->
                     <div class="flex w-1/2 justify-end mt-5 mb-3">
                                     <div class ="bg-merah180-polteka w-2/3 h-10 flex items-center rounded-l-full rounded-r-full">
-                                    <form action="{{ route('riwayatbarangmasukkoorlabsitohisto') }}" method="GET" class="relative flex w-full">
+                                    <form action="{{ route('riwayatbarangmasukadminlabsitohisto') }}" method="GET" class="relative flex w-full">
                                     <div class ="bg-abu-polteka w-11/12 h-9 ml-0.5 rounded-l-full"> 
                                         <div class="relative flex">   
                                             <input
@@ -154,7 +154,7 @@
                     </div>
                     <!-- Modal body -->
                     <div class="px-8">
-                    <form action="{{ route('barangmasukkoorlabsitohisto.store') }}" method="POST" enctype="multipart/form-data">  
+                    <form action="{{ route('barangmasukadminlabsitohisto.store') }}" method="POST" enctype="multipart/form-data">  
                     @csrf
                         <label class="block mt-4">
                             <span class="text-sm font-medium">Jumlah Barang Masuk</span>

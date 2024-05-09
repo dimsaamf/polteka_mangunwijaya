@@ -3,7 +3,7 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="{{ asset('logop.png') }}" rel="shortcut icon">
+        <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <title>Barang Keluar Koor Laboratorium Kimia</title>

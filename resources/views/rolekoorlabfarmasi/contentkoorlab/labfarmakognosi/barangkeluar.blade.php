@@ -91,7 +91,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">
                                     <div class="flex justify-center">
                                         @if($item->gambar)
-                                            <a href="{{ route('get.gambar.invlabfarmakognosi', ['id' => $item->id]) }}" target="_blank">
+                                            <a href="{{ route('get.gambar.invlabfarmakognosi.koor', ['id' => $item->id]) }}" target="_blank">
                                                 <img src="{{ asset('storage/gambars/' . $item->gambar) }}" alt="Gambar Barang" class="w-10">
                                             </a>
                                         @else

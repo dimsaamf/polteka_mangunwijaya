@@ -109,7 +109,7 @@
                             <td class="px-6 py-2 whitespace-nowrap">
                                     <div class="flex justify-center">
                                         @if($data->gambar)
-                                            <a href="{{ route('get.gambar.invlabmikro', ['id' => $data->id]) }}" target="_blank">
+                                            <a href="{{ route('get.gambar.invlabmikro.koor', ['id' => $data->id]) }}" target="_blank">
                                                 <img src="{{ asset('storage/gambars/' . $data->gambar) }}" alt="Gambar Barang" class="w-10">
                                             </a>
                                         @else

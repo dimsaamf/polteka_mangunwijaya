@@ -89,6 +89,7 @@ class SesiController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+        Alert::success('Data Sistem', 'Berhasil Logout');
 
         return redirect('/login');
     }

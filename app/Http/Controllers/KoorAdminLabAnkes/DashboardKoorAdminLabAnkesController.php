@@ -238,8 +238,8 @@ class DashboardKoorAdminLabAnkesController extends Controller
             ->paginate(10);
 
             $riwayats = RiwayatServiceLabAnkeskimia::query()
-            ->with('barangankes') // Load relasi InventarisFarmasi
-            ->whereHas('barangankes', function ($q) use ($query) {
+            ->with('barangankeskimia') // Load relasi InventarisFarmasi
+            ->whereHas('barangankeskimia', function ($q) use ($query) {
                 $q->where('nama_barang', 'like', '%' . $query . '%');
             })
             ->paginate(10);
