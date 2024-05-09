@@ -328,7 +328,7 @@
                     };
                     $.ajax({
                         type: "DELETE",
-                        url: '/adminlabfarmasi/labmikro/databarang/' + deleteid,
+                        url: '/adminlabankes/labmikro/databarang/' + deleteid,
                         data: data,
                         success: function(response) {
                             swal(response.status, {
