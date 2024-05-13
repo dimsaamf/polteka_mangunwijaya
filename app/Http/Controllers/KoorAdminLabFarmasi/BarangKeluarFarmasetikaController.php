@@ -108,7 +108,7 @@ class BarangKeluarFarmasetikaController extends Controller
         $messages = [
             'jumlah_keluar.min' => 'Jumlah tidak boleh bilangan negatif.',
             'jumlah_keluar.numeric' => 'Jumlah harus berupa angka.',
-            'jumlah_keluar.integer' => 'Jumlah harus berupa angka.',
+            'jumlah_keluar.float' => 'Jumlah harus berupa angka.',
         ];
 
         $request->validate([

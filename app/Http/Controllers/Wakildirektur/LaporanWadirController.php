@@ -135,7 +135,7 @@ class LaporanWadirController extends Controller
                                             ->merge($BarangMasukKimiaFisika)
                                             ->merge($BarangMasukKimiaOrganik)
                                             ->merge($BarangMasukKimiaTerapan)
-                                            ->merge($BarangMasukMikrobiologio)
+                                            ->merge($BarangMasukMikrobiologi)
                                             ->merge($BarangMasukOptekkim);
                                             
         $semuaBarangMasuk = $semuaBarangMasuk->sortBy('tanggal_masuk');
