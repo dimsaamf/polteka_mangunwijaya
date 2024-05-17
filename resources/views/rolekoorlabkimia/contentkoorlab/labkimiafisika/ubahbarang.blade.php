@@ -67,7 +67,7 @@
             </label>
             <label class="block md:col-span-1">
                 <span class="text-sm font-medium">Jumlah Minimal*</span>
-                <input type="number" name="jumlah_min" value="{{ $labkimiafisika->jumlah_min }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
+                <input name="jumlah_min" value="{{ $labkimiafisika->jumlah_min }}" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Minimal" />
                 @error('jumlah_min')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
@@ -81,7 +81,7 @@
             <label class="block mt-4  md:col-span-1" id="periode_field" @if($labkimiafisika->tanggal_service) style="display:block;" @else style="display:none;" @endif>
                 <span class="text-sm font-medium">Periode Service</span>
                 <div class="flex mt-2">
-                    <input type="number" name="periode" value="{{ $labkimiafisika->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" />
+                    <input type="number" name="periode" value="{{ $labkimiafisika->periode }}" class="px-3 py-[9px] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Periode Service" min="0" max="12" />
                     <span class="ml-2 mt-2 font-bold">bulan</span>
                 </div>
             </label>

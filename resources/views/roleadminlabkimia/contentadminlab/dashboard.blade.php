@@ -637,7 +637,7 @@
         </div>
     </section>  
     <!-- COPYRIGHT -->
-    <footer class="block mt-6 sm:mt-44 md:mt-[350px] mb-6 text-center">
+    <footer class="block mt-4 sm:mt-24 mb-6 text-center">
         <div class="text-biru160-polteka text-xs md:text-sm">
             © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
         </div>

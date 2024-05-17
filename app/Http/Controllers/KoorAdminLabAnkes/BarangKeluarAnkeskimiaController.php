@@ -39,17 +39,17 @@ class BarangKeluarAnkeskimiaController extends Controller
         $hari_ini = $cek->toDateString();
 
         if ($start_date > $end_date) {
-            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            alert()->error('Data Gagal Ditampilkan','Tanggal Akhir Melebihi Tanggal Awal.');
             return back();
         }
 
         if ($start_date > $hari_ini) {
-            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            alert()->error('Data Gagal Ditampilkan.','Tanggal Awal Melebihi Hari Ini.');
             return back();
         }
 
         if ( $end_date > $hari_ini) {
-            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            alert()->error('Data Gagal Ditampilkan.','Tanggal Akhir Melebihi Hari Ini.');
             return back();
         }
 
@@ -108,6 +108,7 @@ class BarangKeluarAnkeskimiaController extends Controller
             'jumlah_keluar.min' => 'Jumlah tidak boleh bilangan negatif.',
             'jumlah_keluar.numeric' => 'Jumlah harus berupa angka.',
             'jumlah_keluar.integer' => 'Jumlah harus berupa angka.',
+            'keterangan_keluar' => 'Keterangan harus diisi (contoh: barang rusak, barang dipakai praktikum)',
         ];
 
         $request->validate([
@@ -121,7 +122,7 @@ class BarangKeluarAnkeskimiaController extends Controller
 
                     if (in_array($satuan, ['pcs', 'lembar'])) {
                         if (strpos($value, '.') !== false) {
-                            $fail('Jumlah keluar tidak boleh mengandung angka desimal untuk satuan "' . $satuan . '".');
+                            $fail('Jumlah masuk tidak boleh mengandung angka desimal untuk satuan pcs dan lembar');
                         }
                     }
                 },

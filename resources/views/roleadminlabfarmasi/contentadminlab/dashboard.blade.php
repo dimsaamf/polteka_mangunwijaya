@@ -75,15 +75,6 @@
                         <div class="text-sm text-slate-500 mt-1 font-semibold">Barang Keluar</div>
                     </div>
                 </div>
-                <!-- <div class="bg-white flex mt-6 shadow-[rgba(0,0,15,0.5)_2px_2px_2px_0px] shadow-slate-300 rounded-lg justify-center items-center">
-                    <div class="box py-6 px-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16" viewBox="0 0 24 24"><path fill="black" d="m15.5 17.125l4.95-4.95q.275-.275.7-.275t.7.275t.275.7t-.275.7l-5.65 5.65q-.3.3-.7.3t-.7-.3l-2.85-2.85q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h4.175q.275-.875 1.075-1.437T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v4q0 .425-.288.713T20 10t-.712-.288T19 9V5h-2v2q0 .425-.288.713T16 8H8q-.425 0-.712-.288T7 7V5H5v14h5q.425 0 .713.288T11 20t-.288.713T10 21zm7-16q.425 0 .713-.288T13 4t-.288-.712T12 3t-.712.288T11 4t.288.713T12 5"/></svg>
-                    </div>
-                    <div class="box p-6">
-                        <div class="text-3xl font-medium">{{ $pengajuan }}</div>
-                        <div class="text-sm text-slate-500 mt-1 font-semibold">Pengajuan Barang</div>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="flex">
@@ -498,7 +489,7 @@
         </div>
     </section>  
     <!-- COPYRIGHT -->
-    <footer class="block mt-6 sm:mt-44 md:mt-[350px] mb-6 text-center">
+    <footer class="block mt-4 sm:mt-24 mb-6 text-center">
         <div class="text-biru160-polteka text-xs md:text-sm">
             © 2024 Tim Capstone 07 Teknik Komputer Universitas Diponegoro
         </div>

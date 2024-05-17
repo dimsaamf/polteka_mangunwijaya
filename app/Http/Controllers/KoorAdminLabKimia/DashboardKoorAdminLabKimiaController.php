@@ -38,7 +38,11 @@ class DashboardKoorAdminLabKimiaController extends Controller
 {
     public function index(Request $request)
     {
-        $pengajuan = PengajuanBarangLabKimia::count();
+        $tanggal_hari_ini = Carbon::now();
+        $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
+        $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+        
+        $pengajuan = PengajuanBarangLabKimia::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
 
         $baranglabkimiaanalisa = InventarisLabKimiaAnalisa::count();
         $baranglabkimiafisika = InventarisLabKimiaFisika::count();
@@ -149,7 +153,7 @@ class DashboardKoorAdminLabKimiaController extends Controller
             if(Auth::user()->role == 'koorlabprodkimia'){
                 return view('rolekoorlabkimia.contentkoorlab.dashboard', compact('kimiaanalisareminders', 'kimiafisikareminders', 'kimiaorganikreminders', 'kimiaterapanreminders', 'mikrobiologireminders', 'optekkimreminders', 'barangHabis', 'pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
             } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return view('roleadminlabkimia.contentadminlab.dashboard', compact('kimiaanalisareminders', 'kimiafisikareminders', 'kimiaorganikreminders', 'kimiaterapanreminders', 'mikrobiologireminders', 'optekkimreminders', 'barangHabis','pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
+                return view('roleadminlabkimia.contentadminlab.dashboard', compact('kimiaanalisareminders', 'kimiafisikareminders', 'kimiaorganikreminders', 'kimiaterapanreminders', 'mikrobiologireminders', 'optekkimreminders', 'barangHabis', 'total_barang', 'total_masuk', 'total_keluar'));
             }
         }
     }
@@ -220,7 +224,7 @@ class DashboardKoorAdminLabKimiaController extends Controller
             $barangkimiaorganik->save();
     
             RiwayatServiceLabKimiaOrganik::create([
-                'inventaris_lab_kimias_id' => $barangkimiaorganik->id,
+                'inventaris_lab_kimia_organiks_id' => $barangkimiaorganik->id,
                 'tanggal_service' => $barangkimiaorganik->tanggal_service,
                 'keterangan' => 'Barang telah diservis pada ',
             ]);

@@ -142,19 +142,19 @@
                     <form action="{{ route('barangmasukkoorlabmedis.store') }}" method="POST" enctype="multipart/form-data">  
                     @csrf
                         <label class="block mt-4">
-                            <span class="text-sm font-medium">Jumlah Barang Masuk</span>
+                            <span class="text-sm font-medium">Jumlah Barang Masuk*</span>
                             <input type="text" name="jumlah_masuk" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Jumlah Barang" />
                         </label>
                     </div>
                     <div class="px-8">
                         <label class="block mt-4">
-                            <span class="text-sm font-medium">Tanggal Barang Masuk</span>
-                            <input type="date" name="tanggal_masuk" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" />
+                            <span class="text-sm font-medium">Tanggal Barang Masuk*</span>
+                            <input type="date" name="tanggal_masuk" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Lorem ipsum" max="<?php echo date('Y-m-d'); ?>"/>
                         </label>
                     </div>
                     <div class="px-8">
                         <label class="block mt-4">
-                            <span class="text-sm font-medium">Keterangan</span>
+                            <span class="text-sm font-medium">Keterangan*</span>
                             <input type="text" name="keterangan_masuk" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Keterangan Penggunaan" />
                         </label>
                     </div>

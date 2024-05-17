@@ -90,17 +90,17 @@ class LaporanWadirController extends Controller
         $hari_ini = $cek->toDateString();
 
         if ($dari > $sampai) {
-            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            alert()->error('Data Gagal Ditampilkan','Tanggal Akhir Melebihi Tanggal Awal.');
             return back();
         }
 
         if ($dari > $hari_ini) {
-            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            alert()->error('Data Gagal Ditampilkan.','Tanggal Awal Melebihi Hari Ini.');
             return back();
         }
 
         if ( $sampai > $hari_ini) {
-            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            alert()->error('Data Gagal Ditampilkan.','Tanggal Akhir Melebihi Hari Ini.');
             return back();
         }
 
@@ -163,10 +163,10 @@ class LaporanWadirController extends Controller
                                             ->merge($BarangKeluarFarmasetika)
                                             ->merge($BarangKeluarKimia)
                                             ->merge($BarangKeluarTekfarmasi)
-                                            ->merge($BarangMasukAnkeskimia)
-                                            ->merge($BarangMasukMedis)
-                                            ->merge($BarangMasukMikro)
-                                            ->merge($BarangMasukSitohisto)
+                                            ->merge($BarangKeluarAnkeskimia)
+                                            ->merge($BarangKeluarMedis)
+                                            ->merge($BarangKeluarMikro)
+                                            ->merge($BarangKeluarSitohisto)
                                             ->merge($BarangKeluarKimiaAnalisa)
                                             ->merge($BarangKeluarKimiaFisika)
                                             ->merge($BarangKeluarKimiaOrganik)
@@ -346,17 +346,17 @@ class LaporanWadirController extends Controller
         $hari_ini = $cek->toDateString();
 
         if ($dari > $sampai) {
-            alert()->error('Data Gagal Dicetak','Tanggal Akhir Melebihi Tanggal Awal.');
+            alert()->error('Data Gagal Ditampilkan','Tanggal Akhir Melebihi Tanggal Awal.');
             return back();
         }
 
         if ($dari > $hari_ini) {
-            alert()->error('Data Gagal Dicetak.','Tanggal Awal Melebihi Hari Ini.');
+            alert()->error('Data Gagal Ditampilkan.','Tanggal Awal Melebihi Hari Ini.');
             return back();
         }
 
         if ( $sampai > $hari_ini) {
-            alert()->error('Data Gagal Dicetak.','Tanggal Akhir Melebihi Hari Ini.');
+            alert()->error('Data Gagal Ditampilkan.','Tanggal Akhir Melebihi Hari Ini.');
             return back();
         }
 
@@ -501,12 +501,12 @@ class LaporanWadirController extends Controller
                 break;
             
             default:
-                alert()->error('Data Gagal Dicetak.','Laboratorium tidak valid.');
+                alert()->error('Data Gagal Ditampilkan.','Laboratorium tidak valid.');
                 return back();
                 break;
         }
 
-        $pdf = PDF::loadView('rolewadir.laporanDB', compact('semuaData', 'laboratorium'))->setPaper('A4', 'potrait');
+        $pdf = PDF::loadView('rolewadir.laporanDB', compact('semuaData', 'laboratorium'))->setPaper('A4', 'landscape');
             return $pdf->stream('Laporan Barang Laboratorium.pdf');
     }
 
@@ -529,12 +529,12 @@ class LaporanWadirController extends Controller
                 $semuaData = InventarisKimia::all();
                 break;
             default:
-                alert()->error('Data Gagal Dicetak.','Program Studi tidak valid.');
+                alert()->error('Data Gagal Ditampilkan.','Program Studi tidak valid.');
                 return back();
                 break;
         }
 
-        $pdf = PDF::loadView('rolewadir.laporanDBProdi', compact('semuaData', 'prodi'))->setPaper('A4', 'potrait');
+        $pdf = PDF::loadView('rolewadir.laporanDBProdi', compact('semuaData', 'prodi'))->setPaper('A4', 'landscape');
             return $pdf->stream('Laporan Barang Prodi.pdf');
     }
 }

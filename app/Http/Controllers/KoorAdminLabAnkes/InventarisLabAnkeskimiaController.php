@@ -58,7 +58,7 @@ public function store(Request $request)
         'jumlah_min.numeric' => 'Jumlah Minimal harus berupa angka.',
         'jumlah_min.integer' => 'Jumlah Minimal harus berupa angka.',
         'satuan.required' => 'Satuan harus diisi.',
-        'harga.required' => 'Harga harus dipilih.',
+        'harga.required' => 'Harga harus diisi.',
         'gambar.image' => 'Gambar harus berupa gambar.',
         'gambar.max' => 'Ukuran gambar tidak boleh melebihi 2MB.',
     ];

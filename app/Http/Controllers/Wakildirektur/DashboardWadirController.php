@@ -57,15 +57,20 @@ use App\Models\PengajuanBarangLabKimia;
 use App\Models\PengajuanBarangLabFarmasi;
 use App\Models\PengajuanBarangLabAnkes;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DashboardWadirController extends Controller
 {
     public function index()
     {
-        $pengajuanFarmasi = PengajuanBarangLabFarmasi::count();
-        $pengajuanAnkes = PengajuanBarangLabAnkes::count();
-        $pengajuanKimia = PengajuanBarangLabKimia::count();
+        $tanggal_hari_ini = Carbon::now();
+        $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
+        $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
 
+        $pengajuanFarmasi = PengajuanBarangLabFarmasi::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
+        $pengajuanAnkes = PengajuanBarangLabAnkes::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
+        $pengajuanKimia = PengajuanBarangLabKimia::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
+        
         $dataInventarisFarmakognosi = InventarisLabFarmakognosi::count();
         $dataInventarisFarmasetika = InventarisLabFarmasetika::count();
         $dataInventarisLabKimia = InventarisLabKimia::count();

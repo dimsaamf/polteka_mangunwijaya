@@ -30,7 +30,11 @@ class DashboardKoorAdminLabAnkesController extends Controller
 {
     public function index(Request $request)
     {
-        $pengajuan = PengajuanBarangLabAnkes::count();
+        $tanggal_hari_ini = Carbon::now();
+        $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
+        $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+        
+        $pengajuan = PengajuanBarangLabAnkes::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
 
         $baranglabankeskimia = InventarisLabAnkeskimia::count();
         $baranglabmedia = InventarisLabMedis::count();
@@ -116,7 +120,7 @@ class DashboardKoorAdminLabAnkesController extends Controller
             if(Auth::user()->role == 'koorlabprodankes'){
                 return view('rolekoorlabankes.contentkoorlab.dashboard', compact('ankeskimiareminders', 'medisreminders', 'mikroreminders', 'sitohistoreminders', 'barangHabis', 'pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
             } else{
-                return view('roleadminlabankes.contentadminlab.dashboard', compact('ankeskimiareminders', 'medisreminders', 'mikroreminders', 'sitohistoreminders', 'barangHabis', 'pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
+                return view('roleadminlabankes.contentadminlab.dashboard', compact('ankeskimiareminders', 'medisreminders', 'mikroreminders', 'sitohistoreminders', 'barangHabis', 'total_barang', 'total_masuk', 'total_keluar'));
             }
         }
     }

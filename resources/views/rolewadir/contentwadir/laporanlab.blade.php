@@ -71,7 +71,7 @@
             <span class="text-sm font-medium">Laboratorium</span>
             <div class="relative text-left">
                 <div class="group">
-                    <div class="inline-flex w-[185px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <div class="inline-flex w-[200px] justify-start mt-2 rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         <select id="laboratorium" name="laboratorium" class="form-control">
                             <option selected class="py-5">Pilih Laboratorium</option>
                             <option value="Farmakognosi">Lab Farmakognosi</option>

@@ -30,19 +30,11 @@ class DashboardKoorAdminLabFarmasiController extends Controller
 {
     public function index(Request $request)
     {
-        // $pengajuan = PengajuanBarangLabFarmasi::count();
-
-        // $tanggal_awal = Carbon::now()->subMonth()->startOfMonth();
-        // $tanggal_akhir = Carbon::now()->endOfDay();
-        // $pengajuan = PengajuanBarangLabFarmasi::whereBetween('tanggal', [$tanggal_awal, $tanggal_akhir])->count();
-
         $tanggal_hari_ini = Carbon::now();
-        $tanggal_awal_satu_bulan_sebelumnya = Carbon::now()->subMonth()->startOfMonth();
-        if ($tanggal_hari_ini->lt($tanggal_awal_satu_bulan_sebelumnya)) {
-            $tanggal_awal_satu_bulan_sebelumnya = $tanggal_hari_ini->copy()->subMonth()->startOfMonth();
-        }
+        $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
         $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
-        $pengajuan = PengajuanBarangLabFarmasi::whereBetween('tanggal', [$tanggal_awal_satu_bulan_sebelumnya, $tanggal_akhir_hari_ini])->count();
+        
+        $pengajuan = PengajuanBarangLabFarmasi::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
 
         $baranglabfarmakognosi = InventarisLabFarmakognosi::count();
         $baranglabfarmasetika = InventarisLabFarmasetika::count();
@@ -128,7 +120,7 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             if(Auth::user()->role == 'koorlabprodfarmasi'){
                 return view('rolekoorlabfarmasi.contentkoorlab.dashboard', compact('farmakognosireminders', 'farmasetikareminders', 'kimiareminders', 'tekfarmasireminders', 'barangHabis', 'pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return view('roleadminlabfarmasi.contentadminlab.dashboard', compact('farmakognosireminders', 'farmasetikareminders', 'kimiareminders', 'tekfarmasireminders', 'barangHabis','pengajuan', 'total_barang', 'total_masuk', 'total_keluar'));
+                return view('roleadminlabfarmasi.contentadminlab.dashboard', compact('farmakognosireminders', 'farmasetikareminders', 'kimiareminders', 'tekfarmasireminders', 'barangHabis', 'total_barang', 'total_masuk', 'total_keluar'));
             }
         }
     }
