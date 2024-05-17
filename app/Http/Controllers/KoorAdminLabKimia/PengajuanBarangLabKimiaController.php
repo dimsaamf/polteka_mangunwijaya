@@ -146,9 +146,13 @@ public function update(Request $request, $id)
     $pengajuanBarang->nama_barang = json_encode($request->nama_barang);
     $pengajuanBarang->harga = json_encode($request->harga);
 
-    $pengajuanBarang->save();
+    if ($pengajuanBarang->isDirty()) {
+        $pengajuanBarang->save();
+        alert()->success('Berhasil', 'Pengajuan Barang berhasil diperbarui.');
+    } else {
+        alert()->info('Tidak Ada Perubahan', 'Tidak ada yang diupdate.');
+    }
 
-    alert()->success('Berhasil', 'Pengajuan Barang berhasil diperbarui.');
     return redirect()->route('pengajuanbarangkoorlabkimia');
 }
 

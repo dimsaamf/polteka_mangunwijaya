@@ -148,10 +148,14 @@ class PengajuanBarangLabAnkesController extends Controller
     $pengajuanBarang->nama_barang = json_encode($request->nama_barang);
     $pengajuanBarang->harga = json_encode($request->harga);
 
-    $pengajuanBarang->save();
+    if ($pengajuanBarang->isDirty()) {
+        $pengajuanBarang->save();
+        alert()->success('Berhasil', 'Pengajuan Barang berhasil diperbarui.');
+    } else {
+        alert()->info('Tidak Ada Perubahan', 'Tidak ada yang diupdate.');
+    }
 
-    alert()->success('Berhasil', 'Pengajuan Barang berhasil diperbarui.');
-        return redirect()->route('pengajuanbarangkoorlabankes');
+    return redirect()->route('pengajuanbarangkoorlabankes');
     }
 
     public function previewSurat($id)
