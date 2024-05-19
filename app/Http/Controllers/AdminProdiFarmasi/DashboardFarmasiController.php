@@ -30,6 +30,12 @@ class DashboardFarmasiController extends Controller
 
     public function update(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route('dashboardadminprodifarmasi');
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barang = InventarisFarmasi::findOrFail($reminder_id);
             $nextServiceDate = Carbon::createFromFormat('Y-m-d', $barang->tanggal_service)
@@ -45,6 +51,7 @@ class DashboardFarmasiController extends Controller
             ]);
         }
     
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
         return redirect()->route('dashboardadminprodifarmasi');
     }
     

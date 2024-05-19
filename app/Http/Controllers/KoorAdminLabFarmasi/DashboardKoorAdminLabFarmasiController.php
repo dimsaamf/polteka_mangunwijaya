@@ -127,6 +127,19 @@ class DashboardKoorAdminLabFarmasiController extends Controller
 
     public function updatefarmakognosi(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                $redirectRoute = 'dashboardkoorlabfarmasi';
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                $redirectRoute = 'dashboardadminlabfarmasi';
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangfarmakognosi = InventarisLabFarmakognosi::findOrFail($reminder_id);
             
@@ -143,17 +156,34 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return redirect()->route('dashboardkoorlabfarmasi');
+                $redirectRoute = 'dashboardkoorlabfarmasi';
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return redirect()->route('dashboardadminlabfarmasi');
+                $redirectRoute = 'dashboardadminlabfarmasi';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatefarmasetika(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                $redirectRoute = 'dashboardkoorlabfarmasi';
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                $redirectRoute = 'dashboardadminlabfarmasi';
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangfarmasetika = InventarisLabFarmasetika::findOrFail($reminder_id);
             
@@ -170,17 +200,34 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return redirect()->route('dashboardkoorlabfarmasi');
+                $redirectRoute = 'dashboardkoorlabfarmasi';
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return redirect()->route('dashboardadminlabfarmasi');
+                $redirectRoute = 'dashboardadminlabfarmasi';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatekimia(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                $redirectRoute = 'dashboardkoorlabfarmasi';
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                $redirectRoute = 'dashboardadminlabfarmasi';
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangkimia = InventarisLabKimia::findOrFail($reminder_id);
             
@@ -197,17 +244,34 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return redirect()->route('dashboardkoorlabfarmasi');
+                $redirectRoute = 'dashboardkoorlabfarmasi';
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return redirect()->route('dashboardadminlabfarmasi');
+                $redirectRoute = 'dashboardadminlabfarmasi';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatetekfarmasi(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if(Auth::user()->role == 'koorlabprodfarmasi'){
+                $redirectRoute = 'dashboardkoorlabfarmasi';
+            } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
+                $redirectRoute = 'dashboardadminlabfarmasi';
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangtekfarmasi = InventarisLabTekfarmasi::findOrFail($reminder_id);
             
@@ -224,13 +288,17 @@ class DashboardKoorAdminLabFarmasiController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
-                return redirect()->route('dashboardkoorlabfarmasi');
+                $redirectRoute = 'dashboardkoorlabfarmasi';
             } elseif(Auth::user()->role == 'adminlabprodfarmasi'){
-                return redirect()->route('dashboardadminlabfarmasi');
+                $redirectRoute = 'dashboardadminlabfarmasi';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function historyfarmakognosi(Request $request)

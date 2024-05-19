@@ -149,7 +149,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <form action="{{ route('reminder.updatekimiaanalisa') }}" method="post" id="reminderForm">
+                                        <form action="{{ route('reminder.updatekimiaanalisa.adminlabkimia') }}" method="post" id="reminderForm">
                                             @csrf
                                             @foreach ($kimiaanalisareminders as $reminder)
                                                 <div class="w-full flex text-black border-b-2 py-3">
@@ -223,7 +223,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <form action="{{ route('reminder.updatekimiafisika') }}" method="post" id="reminderForm">
+                                        <form action="{{ route('reminder.updatekimiafisika.adminlabkimia') }}" method="post" id="reminderForm">
                                             @csrf
                                             @foreach ($kimiafisikareminders as $reminder)
                                                 <div class="w-full flex text-black border-b-2 py-3">
@@ -297,7 +297,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <form action="{{ route('reminder.updatekimiaorganik') }}" method="post" id="reminderForm">
+                                        <form action="{{ route('reminder.updatekimiaorganik.adminlabkimia') }}" method="post" id="reminderForm">
                                             @csrf
                                             @foreach ($kimiaorganikreminders as $reminder)
                                                 <div class="w-full flex text-black border-b-2 py-3">
@@ -371,7 +371,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <form action="{{ route('reminder.updatekimiaterapan') }}" method="post" id="reminderForm">
+                                        <form action="{{ route('reminder.updatekimiaterapan.adminlabkimia') }}" method="post" id="reminderForm">
                                             @csrf
                                             @foreach ($kimiaterapanreminders as $reminder)
                                                 <div class="w-full flex text-black border-b-2 py-3">
@@ -445,7 +445,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <form action="{{ route('reminder.updatemikrobiologi') }}" method="post" id="reminderForm">
+                                        <form action="{{ route('reminder.updatemikrobiologi.adminlabkimia') }}" method="post" id="reminderForm">
                                             @csrf
                                             @foreach ($mikrobiologireminders as $reminder)
                                                 <div class="w-full flex text-black border-b-2 py-3">
@@ -519,7 +519,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <form action="{{ route('reminder.updateoptekkim') }}" method="post" id="reminderForm">
+                                        <form action="{{ route('reminder.updateoptekkim.adminlabkimia') }}" method="post" id="reminderForm">
                                             @csrf
                                             @foreach ($optekkimreminders as $reminder)
                                                 <div class="w-full flex text-black border-b-2 py-3">

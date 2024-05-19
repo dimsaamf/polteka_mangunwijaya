@@ -127,6 +127,21 @@ class DashboardKoorAdminLabAnkesController extends Controller
 
     public function updateankeskimia(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodankes'){
+                    $redirectRoute = 'dashboardkoorlabankes';
+                } else{
+                    $redirectRoute = 'dashboardadminlabankes';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangankeskimia = InventarisLabAnkeskimia::findOrFail($reminder_id);
             
@@ -143,17 +158,36 @@ class DashboardKoorAdminLabAnkesController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){
-                return redirect()->route('dashboardkoorlabankes');
+                $redirectRoute = 'dashboardkoorlabankes';
             } else{
-                return redirect()->route('dashboardadminlabankes');
+                $redirectRoute = 'dashboardadminlabankes';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatemedis(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodankes'){
+                    $redirectRoute = 'dashboardkoorlabankes';
+                } else{
+                    $redirectRoute = 'dashboardadminlabankes';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangmedis = InventarisLabMedis::findOrFail($reminder_id);
             
@@ -170,17 +204,36 @@ class DashboardKoorAdminLabAnkesController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){
-                return redirect()->route('dashboardkoorlabankes');
+                $redirectRoute = 'dashboardkoorlabankes';
             } else{
-                return redirect()->route('dashboardadminlabankes');
+                $redirectRoute = 'dashboardadminlabankes';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatemikro(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodankes'){
+                    $redirectRoute = 'dashboardkoorlabankes';
+                } else{
+                    $redirectRoute = 'dashboardadminlabankes';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangmikro = InventarisLabMikro::findOrFail($reminder_id);
             
@@ -197,17 +250,36 @@ class DashboardKoorAdminLabAnkesController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){
-                return redirect()->route('dashboardkoorlabankes');
+                $redirectRoute = 'dashboardkoorlabankes';
             } else{
-                return redirect()->route('dashboardadminlabankes');
+                $redirectRoute = 'dashboardadminlabankes';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatesitohisto(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if(Auth::user()->role == 'koorlabprodankes'){
+                    $redirectRoute = 'dashboardkoorlabankes';
+                } else{
+                    $redirectRoute = 'dashboardadminlabankes';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangsitohisto = InventarisLabSitohisto::findOrFail($reminder_id);
             
@@ -224,13 +296,17 @@ class DashboardKoorAdminLabAnkesController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){
-                return redirect()->route('dashboardkoorlabankes');
+                $redirectRoute = 'dashboardkoorlabankes';
             } else{
-                return redirect()->route('dashboardadminlabankes');
+                $redirectRoute = 'dashboardadminlabankes';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function historyankeskimia(Request $request)

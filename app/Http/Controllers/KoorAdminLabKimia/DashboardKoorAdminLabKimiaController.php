@@ -160,6 +160,21 @@ class DashboardKoorAdminLabKimiaController extends Controller
 
     public function updatekimiaanalisa(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if (Auth::user()->role == 'koorlabprodkimia') {
+                    $redirectRoute = 'dashboardkoorlabkimia';
+                } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                    $redirectRoute = 'dashboardadminlabkimia';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangkimiaanalisa = InventarisLabKimiaAnalisa::findOrFail($reminder_id);
             
@@ -175,18 +190,37 @@ class DashboardKoorAdminLabKimiaController extends Controller
                 'keterangan' => 'Barang telah diservis pada ',
             ]);
         }
-    
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodkimia'){
-                return redirect()->route('dashboardkoorlabkimia');
-            } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return redirect()->route('dashboardadminlabkimia');
+
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
+            if (Auth::user()->role == 'koorlabprodkimia') {
+                $redirectRoute = 'dashboardkoorlabkimia';
+            } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                $redirectRoute = 'dashboardadminlabkimia';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatekimiafisika(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if (Auth::user()->role == 'koorlabprodkimia') {
+                    $redirectRoute = 'dashboardkoorlabkimia';
+                } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                    $redirectRoute = 'dashboardadminlabkimia';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangkimiafisika = InventarisLabKimiaFisika::findOrFail($reminder_id);
             
@@ -203,17 +237,36 @@ class DashboardKoorAdminLabKimiaController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodkimia'){
-                return redirect()->route('dashboardkoorlabkimia');
-            } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return redirect()->route('dashboardadminlabkimia');
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
+            if (Auth::user()->role == 'koorlabprodkimia') {
+                $redirectRoute = 'dashboardkoorlabkimia';
+            } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                $redirectRoute = 'dashboardadminlabkimia';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatekimiaorganik(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if (Auth::user()->role == 'koorlabprodkimia') {
+                    $redirectRoute = 'dashboardkoorlabkimia';
+                } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                    $redirectRoute = 'dashboardadminlabkimia';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangkimiaorganik = InventarisLabKimiaOrganik::findOrFail($reminder_id);
             
@@ -230,17 +283,36 @@ class DashboardKoorAdminLabKimiaController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodkimia'){
-                return redirect()->route('dashboardkoorlabkimia');
-            } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return redirect()->route('dashboardadminlabkimia');
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
+            if (Auth::user()->role == 'koorlabprodkimia') {
+                $redirectRoute = 'dashboardkoorlabkimia';
+            } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                $redirectRoute = 'dashboardadminlabkimia';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatekimiaterapan(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if (Auth::user()->role == 'koorlabprodkimia') {
+                    $redirectRoute = 'dashboardkoorlabkimia';
+                } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                    $redirectRoute = 'dashboardadminlabkimia';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangkimiaterapan = InventarisLabKimiaTerapan::findOrFail($reminder_id);
             
@@ -257,17 +329,36 @@ class DashboardKoorAdminLabKimiaController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodkimia'){
-                return redirect()->route('dashboardkoorlabkimia');
-            } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return redirect()->route('dashboardadminlabkimia');
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
+            if (Auth::user()->role == 'koorlabprodkimia') {
+                $redirectRoute = 'dashboardkoorlabkimia';
+            } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                $redirectRoute = 'dashboardadminlabkimia';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updatemikrobiologi(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if (Auth::user()->role == 'koorlabprodkimia') {
+                    $redirectRoute = 'dashboardkoorlabkimia';
+                } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                    $redirectRoute = 'dashboardadminlabkimia';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangmikrobiologi = InventarisLabMikrobiologi::findOrFail($reminder_id);
             
@@ -284,17 +375,36 @@ class DashboardKoorAdminLabKimiaController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodkimia'){
-                return redirect()->route('dashboardkoorlabkimia');
-            } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return redirect()->route('dashboardadminlabkimia');
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
+            if (Auth::user()->role == 'koorlabprodkimia') {
+                $redirectRoute = 'dashboardkoorlabkimia';
+            } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                $redirectRoute = 'dashboardadminlabkimia';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function updateoptekkim(Request $request)
     {
+        $reminderIds = $request->input('reminder_ids');
+        if (empty($reminderIds)) {
+            $redirectRoute = 'dashboard';
+            if (Auth::check() && session('is_logged_in')) {
+                if (Auth::user()->role == 'koorlabprodkimia') {
+                    $redirectRoute = 'dashboardkoorlabkimia';
+                } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                    $redirectRoute = 'dashboardadminlabkimia';
+                }
+            }
+
+            alert()->info('Tidak Ada Perubahan', 'Tidak Ada Reminder yang Diperbarui.');
+            return redirect()->route($redirectRoute);
+        }
+
         foreach ($request->reminder_ids as $reminder_id) {
             $barangoptekkim = InventarisLabOptekkim::findOrFail($reminder_id);
             
@@ -311,13 +421,17 @@ class DashboardKoorAdminLabKimiaController extends Controller
             ]);
         }
     
-        if(session('is_logged_in')) {
-            if(Auth::user()->role == 'koorlabprodkimia'){
-                return redirect()->route('dashboardkoorlabkimia');
-            } elseif(Auth::user()->role == 'adminlabprodkimia'){
-                return redirect()->route('dashboardadminlabkimia');
+        $redirectRoute = 'dashboard';
+        if (Auth::check() && session('is_logged_in')) {
+            if (Auth::user()->role == 'koorlabprodkimia') {
+                $redirectRoute = 'dashboardkoorlabkimia';
+            } elseif (Auth::user()->role == 'adminlabprodkimia') {
+                $redirectRoute = 'dashboardadminlabkimia';
             }
         }
+
+        alert()->success('Berhasil', 'Reminder Berhasil Diperbarui.');
+        return redirect()->route($redirectRoute);
     }
 
     public function historykimiaanalisa(Request $request)
