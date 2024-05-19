@@ -42,7 +42,7 @@
             <div class=" gap-6 mt-3">
                     <div class=" p-6">
                         <div class="text-xl font-medium">Selamat Datang, {{ Auth::user()->name }}!</div>
-                        <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Koor Laboratorium Prodi Analisis Kesehatan Polteka Mangunwijaya</div>
+                        <div class="text-md text-slate-500 mt-1 font-normal text-justify">Anda Login sebagai Koor Laboratorium Prodi Teknik Kimia Polteka Mangunwijaya</div>
                     </div>
             </div>
         </div>
