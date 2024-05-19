@@ -3,7 +3,7 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="logo.png" rel="shortcut icon">
+        <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="LEFT4CODE">
         <title>Page Not Found</title>
@@ -12,38 +12,22 @@
         <!-- END: CSS Assets-->
     </head>
     <body>
-    <div class="fixed bg-putih-polteka w-full max-h-screen">
-      <div class="lg:flex lg:grid-cols-2">
-        <div class="w-auto h-auto mt-28 lg:h-auto lg:w-[460px] lg:ml-[300px] lg:mt-48 lg:items-start flex flex-col items-center">
-          <p class="text-[25px] md:text-[45px] md:h-[35px] sm:text-[45px] sm:h-[30px] h-[15px] lg:text-[56px] lg:h-[40px] font-medium font-polteka text-biru160-polteka">
-            ERROR
-          </p>
-          <p class="text-[70px] md:text-[130px] md:h-[160px] sm:text-[100px] sm:h-[120px] h-[85px] lg:text-[150px] lg:h-[190px] font-bold font-polteka text-merah200-polteka">
-            404
-          </p>
-          <p class="text-[20px] md:text-[30px] sm:text-[30px] lg:text-[40px] font-medium font-polteka text-biru160-polteka">
-            PAGE NOT FOUND
-          </p>
-          <!-- <a href="/">
-                            <div class="xl:block ml-8 mb-3 bg-merah200-polteka text-white hover:text-hitam-polteka hover:bg-abu-polteka hover:rounded-full hover:ml-10 hover:w-full hover:py-2 hover:pl-5">
-                                Return Home
-                            </div>
-                        </a> -->
-          <a href="/">
-            <img
-              src="buttonhome.png"
-              class="hover:scale-75 duration-200 w-auto h-[40px] md:w-[120px] md:h-auto sm:w-[120px] sm:h-auto mt-5 lg:h-auto lg:w-[170px] lg:mt-7 md:h-[330px]"></img>
-          </a>
+    <div class="fixed bg-putih-polteka w-full max-h-screen font-polteka">
+      <div class="w-full h-screen flex flex-col items-center justify-center">
+        <div class="w-1/2 md:1/3 lg:w-96 text-merah200-polteka">
+          <img alt="Not Found"  src="{{ asset('notfound2.svg') }}">
         </div>
-        <div class="flex items-center justify-center">
-          <img
-            src="notfound.png"
-            class="w-auto h-[250px] lg:h-auto lg:w-[540px] lg:mr-[130px] lg:ml-[100px] lg:mt-[130px] md:h-[330px]"
-            alt="Not Found Image"
-          />
+        <div class="flex flex-col items-center justify-center font-polteka">
+            <p class="text-3xl md:text-4xl lg:text-5xl text-gray-800 mt-3 font-semibold">Page Not Found</p>
+            <p class="mx-5 text-center text-md md:text-lg lg:text-xl text-gray-600 mt-8">Sorry, the page you are looking for could not be found.</p>
+            <a href="javascript:history.back()" class="flex items-center space-x-2 bg-biru160-polteka hover:bg-blue-700 text-gray-100 px-4 py-2 mt-12 rounded transition duration-150" title="Return Home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Return Back</span>
+            </a>
         </div>
       </div>
-      <svg class="scale-150 sm:-mt-10 md:-mt-16 lg:-mt-20 "xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#060A6B" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,181.3C960,171,1200,117,1320,90.7L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
     </div>
     </body>
 </html>

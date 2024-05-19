@@ -3,7 +3,7 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="logo.png" rel="shortcut icon">
+        <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="LEFT4CODE">
         <title>Login</title>
@@ -17,7 +17,7 @@
             <div class="xl:grid xl:px-20 xl:grid-cols-2 xl:gap-10 lg:grid lg:px-20 lg:grid-cols-2 lg:gap-10">
                 <div class="hidden xl:flex xl:flex-col lg:flex lg:flex-col min-h-screen">
                     <div class="my-auto">
-                        <img alt="Logo" class="w-80 -mt-16" src="illustration.svg">
+                        <img alt="Logo" class="w-80 -mt-16" src="{{ asset('illustration.svg') }}">
                         <div class="text-putih-polteka font-polteka font-bold xl:text-3xl leading-tight xl:mt-14 lg:text-3xl lg:mt-14">
                             Sistem Informasi 
                             <br>
@@ -30,9 +30,9 @@
                 </div>
                 <div class="h-screen lg:h-auto flex py-0 xl:py-0 lg:py-0 my-0 xl:my-auto lg:my-0">
                     <div class="xl:bg-none xl:shadow-none xl:mt-0 xl:w-[400px] lg:bg-none lg:shadow-none lg:mt-20 lg:w-[400px] w-[360px] sm:w-[500px] md:w-[650px] bg-white rounded-3xl shadow-md shadow-black mx-auto my-auto ">
-                        <img alt="Logo" class="hidden xl:block xl:w-[80px] xl:mx-auto xl:mt-0 lg:block lg:w-[80px] lg:mx-auto lg:mt-2" src="logo.png">
+                        <img alt="Logo" class="hidden xl:block xl:w-[80px] xl:mx-auto xl:mt-0 lg:block lg:w-[80px] lg:mx-auto lg:mt-2" src="{{ asset('logo.png') }}">
                         <div class="xl:mt-14">
-                            <img alt="Logo" class="xl:hidden lg:hidden w-[80px] mx-auto mt-10 " src="logo.png">
+                            <img alt="Logo" class="xl:hidden lg:hidden w-[80px] mx-auto mt-10 " src="{{ asset('logo.png') }}">
                             <h2 class="font-polteka font-bold text-biru160-polteka xl:text-3xl xl:text-left xl:mt-0 lg:text-3xl lg:text-left lg:mt-10 text-center text-[24px] mt-10">
                                 Masuk
                             </h2>
