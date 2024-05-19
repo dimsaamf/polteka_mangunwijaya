@@ -62,6 +62,20 @@
                         <p class="font-semibold">Total Harga:</p>
                         <p>Rp {{ number_format($pengajuanBarang->total_harga, 0, ',', '.') }}</p>
                     </div>
+                    <div class="mb-5">
+                        <p class="font-semibold">Keterangan:</p>
+                        <p>
+                            @if ($pengajuanBarang->pengajuanWadir)
+                                @if (!empty($pengajuanBarang->pengajuanWadir->keterangan))
+                                    {!! nl2br($pengajuanBarang->pengajuanWadir->keterangan) !!}
+                                @else
+                                    Belum Ada
+                                @endif
+                            @else
+                                Belum Ada
+                            @endif
+                        </p>                         
+                    </div>     
                     <form method="POST" action="{{ route('updatestatuskoorlabfarmasisuperadmin', $pengajuanBarang->kode_pengajuan) }}">
                         @csrf
                         @method('PUT')
