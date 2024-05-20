@@ -13,6 +13,6 @@ class UserAksesMiddleware
         if(auth()->user()->role == $role){
             return $next($request);
         }
-        abort(401);
+        return response()->view('unauthorized', [], 401);
     }
 }

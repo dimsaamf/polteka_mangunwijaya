@@ -122,8 +122,6 @@ Route::middleware(['auth', 'user.role:wakildirektur', 'revalidate'])->group(func
     Route::post('/wakildirektur/laporandatabarang/laboratorium', [LaporanWadirController::class, 'cetakSemuaData'])->name('tampilkanLaporanDBLab');
     Route::post('/wakildirektur/laporandatabarang/prodi', [LaporanWadirController::class, 'cetakSemuaDataProdi'])->name('tampilkanLaporanDBProdi');
     Route::get('/wakildirektur/get-barcode/{id}', [InventarisLabfarmakognosiController::class, 'getBarcode'])->name('get.barcode.invlabfarmakognosi');
-
-
 });
 
 Route::middleware(['auth', 'user.role:koorlabprodfarmasi', 'revalidate'])->group(function (){
