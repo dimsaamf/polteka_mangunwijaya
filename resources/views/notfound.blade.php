@@ -8,7 +8,7 @@
         <meta name="author" content="LEFT4CODE">
         <title>Page Not Found</title>
         <!-- BEGIN: CSS Assets-->
-        @vite('resources/css/app.css')
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <!-- END: CSS Assets-->
     </head>
     <body>

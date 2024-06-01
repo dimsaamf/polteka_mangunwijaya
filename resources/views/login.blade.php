@@ -8,7 +8,9 @@
         <meta name="author" content="LEFT4CODE">
         <title>Login</title>
         <!-- BEGIN: CSS Assets-->
-        @vite('resources/css/loginapp.css')
+        {{-- @vite('resources/css/loginapp.css') --}}
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/loginapp.css') }}" rel="stylesheet" />
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->

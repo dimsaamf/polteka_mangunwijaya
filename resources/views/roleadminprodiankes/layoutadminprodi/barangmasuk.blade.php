@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <link href="{{ asset('logo.png') }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        @vite('resources/css/app.css')
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <title>Barang Masuk Admin Prodi Analisis Kesehatan</title>
     </head>
     <!-- END: Head -->
