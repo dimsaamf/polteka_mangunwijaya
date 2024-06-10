@@ -51,6 +51,12 @@ class PengajuanBarangLabFarmasiController extends Controller
         'harga.*' => 'required|integer',
     ], $messages);
 
+    if (empty($request->nama_barang)) {
+        alert()->error('Gagal', 'Tidak ada barang yang diajukan.');
+            return redirect()->route('pengajuanbarangkoorlabfarmasi');
+    }
+    
+    // Memeriksa jika ada nama barang atau harga yang kosong
     foreach ($request->nama_barang as $key => $namaBarang) {
         if (empty($namaBarang) || empty($request->harga[$key])) {
             return redirect()->back()->withInput()->with('error', 'Semua kolom nama barang dan harga harus diisi.');

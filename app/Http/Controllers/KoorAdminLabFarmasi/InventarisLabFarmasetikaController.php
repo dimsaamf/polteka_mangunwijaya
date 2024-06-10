@@ -127,7 +127,7 @@ public function store(Request $request)
     $barcodeContent = $labfarmasetika->kode_barang;
     $barcodeStorageDirectory = storage_path('app/public/barcodes');
     $barcodePublicDirectory = 'public/barcodes';
-    $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . '.png';
+    $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . 'qrcode.png';
 
     if (!Storage::exists($barcodePath)) {
         if (!Storage::exists($barcodeStorageDirectory)) {
