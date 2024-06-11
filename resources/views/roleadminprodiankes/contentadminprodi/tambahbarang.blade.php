@@ -87,7 +87,7 @@
         <div id="tanggal_service_input" style="display: none;" class="grid grid-cols-1 md:grid-cols-3 md:gap-7 gap-4 mt-4">
             <label class="block md:col-span-2">
                 <span class="text-sm font-medium">Tanggal Service</span>
-                <input id="tanggal_service" type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
+                <input id="tanggal_service" type="date" name="tanggal_service" class="mt-2 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 " min="{{ now()->format('Y-m-d') }}"/>
             </label>
             <label id="periode_input" class="block md:col-span-1">
                 <span class="text-sm font-medium">Periode Service</span>

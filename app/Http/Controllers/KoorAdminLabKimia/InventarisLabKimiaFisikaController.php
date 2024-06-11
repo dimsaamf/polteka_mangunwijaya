@@ -93,7 +93,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'K-KIM-FI-';
+    $var = 'k-kim-fi-';
     $bms = InventarisLabKimiaFisika::count();
     if ($bms == 0) {
         $awal = 10001;

@@ -78,7 +78,7 @@ class SesiController extends Controller
                 return redirect('/adminlabfarmasi/dashboard');
             }
         } else {
-            return redirect('/login')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();
+            return redirect('/')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();
         }
     }
     
@@ -91,6 +91,6 @@ class SesiController extends Controller
         request()->session()->regenerateToken();
         Alert::success('Data Sistem', 'Berhasil Logout');
 
-        return redirect('/login');
+        return redirect('/');
     }
 }

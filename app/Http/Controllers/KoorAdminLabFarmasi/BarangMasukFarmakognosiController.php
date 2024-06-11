@@ -4,7 +4,7 @@ namespace App\Http\Controllers\KoorAdminLabFarmasi;
 use App\Http\Controllers\Controller;
 use App\Account;
 use Illuminate\Http\Request;
-use App\Models\InventarisLabfarmakognosi;
+use App\Models\InventarisLabFarmakognosi;
 use App\Models\BarangMasukFarmakognosi;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;

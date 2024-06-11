@@ -93,7 +93,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'F-TEK-FM-';
+    $var = 'f-tek-fm-';
     $bms = InventarisLabTekfarmasi::count();
     if ($bms == 0) {
         $awal = 10001;

@@ -6,11 +6,11 @@ use App\Account;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Models\InventarisLabfarmakognosi;
+use App\Models\InventarisLabFarmakognosi;
 use Milon\Barcode\DNS2D;
 use Illuminate\Support\Facades\Auth;
 
-class InventarisLabfarmakognosiController extends Controller
+class InventarisLabFarmakognosiController extends Controller
 {
     public function index(Request $request)
     {
@@ -91,7 +91,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'F-FARM-KN-';
+    $var = 'f-farm-kn-';
     $bms = InventarisLabFarmakognosi::count();
     if ($bms == 0) {
         $awal = 10001;
@@ -150,7 +150,7 @@ public function store(Request $request)
 
 
     public function edit($id){
-        $labfarmakognosi = InventarisLabfarmakognosi::findOrFail($id);
+        $labfarmakognosi = InventarisLabFarmakognosi::findOrFail($id);
         // return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.ubahbarang', compact('labfarmakognosi'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){
@@ -205,7 +205,7 @@ public function store(Request $request)
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
-        $labfarmakognosi = Inventarislabfarmakognosi::findOrFail($id);
+        $labfarmakognosi = InventarisLabFarmakognosi::findOrFail($id);
 
         $isUpdated = false;
         if ($labfarmakognosi->nama_barang !== $request->nama_barang){
@@ -272,7 +272,7 @@ public function store(Request $request)
 
     public function destroy($id)
     {
-        $labfarmakognosi = Inventarislabfarmakognosi::findOrFail($id);
+        $labfarmakognosi = InventarisLabFarmakognosi::findOrFail($id);
         $labfarmakognosi->delete();
         return response()->json(['status'=>'Data Barang Berhasil Dihapus']);
     }
@@ -280,7 +280,7 @@ public function store(Request $request)
 
     public function getGambar($id)
 {
-    $labfarmakognosi =  Inventarislabfarmakognosi::findOrFail($id);
+    $labfarmakognosi =  InventarisLabFarmakognosi::findOrFail($id);
 
     $gambarPath = storage_path('app/public/gambars/' . $labfarmakognosi->gambar);
 

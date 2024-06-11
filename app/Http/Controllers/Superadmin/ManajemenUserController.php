@@ -46,7 +46,7 @@ class ManajemenUserController extends Controller
             'name' => 'required|string|max:20|regex:/^[^\s]+$/',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'role' => 'required|in:wakildirektur,superadmin,adminprodfarmasi,adminprodkimia,adminproddankes,adminlabprodfarmasi,adminlabprodkimia,adminlabprodankes,koorlabprodfarmasi,koorlabprodkimia,koorlabprodankes',
+            'role' => 'required|in:wakildirektur,superadmin,adminprodfarmasi,adminprodkimia,adminprodankes,adminlabprodfarmasi,adminlabprodkimia,adminlabprodankes,koorlabprodfarmasi,koorlabprodkimia,koorlabprodankes',
             'avatar' => 'nullable|image|max:2048',
         ], $messages);
 
@@ -98,7 +98,7 @@ class ManajemenUserController extends Controller
             'name' => 'string|max:20|regex:/^[^\s]+$/',
             'email' => 'string|email|max:255',
             'password' => 'nullable|string|min:8',
-            'role' => 'in:wakildirektur,superadmin,adminprodfarmasi,adminprodkimia,adminproddankes,adminlabprodfarmasi,adminlabprodkimia,adminlabprodankes,koorlabprodfarmasi,koorlabprodkimia,koorlabprodankes',
+            'role' => 'in:wakildirektur,superadmin,adminprodfarmasi,adminprodkimia,adminprodankes,adminlabprodfarmasi,adminlabprodkimia,adminlabprodankes,koorlabprodfarmasi,koorlabprodkimia,koorlabprodankes',
             'avatar' => 'nullable|image|max:2048',
         ], $messages);
     

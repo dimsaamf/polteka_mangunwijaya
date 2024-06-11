@@ -94,7 +94,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'A-MED-';
+    $var = 'a-med-';
     $bms = InventarisLabMedis::count();
     if ($bms == 0) {
         $awal = 10001;

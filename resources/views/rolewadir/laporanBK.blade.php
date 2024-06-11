@@ -35,7 +35,7 @@
         <tbody>
             @if($semuaBarangKeluar->isEmpty())
                 <tr>
-                    <td colspan="5" class="border border-gray-200 px-4 py-2 text-center">Tidak Ada Data Barang Keluar</td>
+                    <td colspan="6" class="border border-gray-200 px-4 py-2 text-center">Tidak Ada Data Barang Keluar</td>
                 </tr>
             @else
                 @foreach($semuaBarangKeluar as $barangKeluar)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Wakildirektur;
 use App\Http\Controllers\Controller;
-use App\Models\InventarisLabfarmakognosi;
+use App\Models\InventarisLabFarmakognosi;
 use App\Models\BarangKeluarFarmakognosi;
 use App\Models\BarangMasukFarmakognosi;
 use App\Models\InventarisLabFarmasetika;

@@ -93,7 +93,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'K-MKR-BI-';
+    $var = 'k-mkr-bi-';
     $bms = InventarisLabMikrobiologi::count();
     if ($bms == 0) {
         $awal = 10001;

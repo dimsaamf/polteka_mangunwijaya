@@ -93,7 +93,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'F-FARM-ST-';
+    $var = 'f-farm-st-';
     $bms = InventarisLabFarmasetika::count();
     if ($bms == 0) {
         $awal = 10001;
@@ -127,7 +127,7 @@ public function store(Request $request)
     $barcodeContent = $labfarmasetika->kode_barang;
     $barcodeStorageDirectory = storage_path('app/public/barcodes');
     $barcodePublicDirectory = 'public/barcodes';
-    $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . 'qrcode.png';
+    $barcodePath = $barcodePublicDirectory . '/' . $barcodeContent . '.png';
 
     if (!Storage::exists($barcodePath)) {
         if (!Storage::exists($barcodeStorageDirectory)) {
@@ -207,7 +207,7 @@ public function store(Request $request)
             'gambar'=>'nullable|image|mimes:jpg,jpeg,png',
         ], $messages);
 
-        $labfarmasetika = InventarislabFarmasetika::findOrFail($id);
+        $labfarmasetika = InventarisLabFarmasetika::findOrFail($id);
 
         $isUpdated = false;
         if ($labfarmasetika->nama_barang !== $request->nama_barang){
@@ -274,7 +274,7 @@ public function store(Request $request)
 
     public function destroy($id)
     {
-        $labfarmasetika = InventarislabFarmasetika::findOrFail($id);
+        $labfarmasetika = InventarisLabFarmasetika::findOrFail($id);
         $labfarmasetika->delete();
         return response()->json(['status'=>'Data Barang Berhasil Dihapus']);
     }
@@ -282,7 +282,7 @@ public function store(Request $request)
 
     public function getGambar($id)
 {
-    $labfarmasetika =  InventarislabFarmasetika::findOrFail($id);
+    $labfarmasetika =  InventarisLabFarmasetika::findOrFail($id);
 
     $gambarPath = storage_path('app/public/gambars/' . $labfarmasetika->gambar);
 

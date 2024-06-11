@@ -79,7 +79,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'ANKE-';
+    $var = 'anke-';
     $bms = InventarisAnkes::count();
     if ($bms == 0) {
         $awal = 10001;

@@ -2,8 +2,12 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <link href="{{ asset('login.png') }}" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Rekapitulasi</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 </head>
 
 <body class="bg-gray-100">
@@ -31,7 +35,7 @@
         <tbody>
             @if($semuaBarangMasuk->isEmpty())
                 <tr>
-                    <td colspan="5" class="border border-gray-200 px-4 py-2 text-center">Tidak Ada Data Barang Masuk</td>
+                    <td colspan="6" class="border border-gray-200 px-4 py-2 text-center">Tidak Ada Data Barang Masuk</td>
                 </tr>
             @else
                 @foreach($semuaBarangMasuk as $barangMasuk)

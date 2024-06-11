@@ -102,7 +102,7 @@
                             {{-- </td> --}}
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->nama_barang}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">{{$data->kode_barang}}</td>
-                            <td class="px-6 py-2 whitespace-nowrap">{{ rtrim(rtrim(sprintf('%.2f', $data->jumlah), '0'), '.') }}</td>
+                            <td class="px-6 py-2 whitespace-nowrap">{{$data->jumlah}} {{$data->satuan}}</td>
                             <td class="px-6 py-2 whitespace-nowrap">Rp {{ number_format($data->harga, 0, ',', '.') }}</td>
                             <td class="px-6 py-2 whitespace-nowrap">
                                     <div class="flex justify-center">
