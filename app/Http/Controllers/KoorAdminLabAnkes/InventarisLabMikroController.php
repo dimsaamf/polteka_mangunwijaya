@@ -94,7 +94,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'a-mik-';
+    $var = 'A-MIK-';
     $bms = InventarisLabMikro::count();
     if ($bms == 0) {
         $awal = 10001;

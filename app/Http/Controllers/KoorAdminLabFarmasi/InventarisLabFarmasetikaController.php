@@ -93,7 +93,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'f-farm-st-';
+    $var = 'F-FARM-ST-';
     $bms = InventarisLabFarmasetika::count();
     if ($bms == 0) {
         $awal = 10001;

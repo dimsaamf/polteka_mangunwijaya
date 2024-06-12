@@ -93,7 +93,7 @@ public function store(Request $request)
     ], $messages);
 
     $thn = Carbon::now()->year;
-    $var = 'k-opt-ki-';
+    $var = 'K-OPT-KI-';
     $bms = InventarisLabOptekkim::count();
     if ($bms == 0) {
         $awal = 10001;
