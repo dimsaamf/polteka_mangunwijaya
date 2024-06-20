@@ -20,6 +20,7 @@ class BarangKeluarOptekkim extends Model
 
     public function inventarislaboptekkim()
     {
-        return $this->belongsTo(InventarisLabOptekkim::class, 'id_barang');
+        return $this->belongsTo(InventarisLabOptekkim::class, 'id_barang')
+        ->withTrashed();
     }
 }

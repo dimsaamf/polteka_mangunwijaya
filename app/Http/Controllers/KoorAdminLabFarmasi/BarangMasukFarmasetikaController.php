@@ -64,6 +64,8 @@ class BarangMasukFarmasetikaController extends Controller
         $BarangMasukFarmasetika = $queryBuilder->paginate(10);
 
         $data = InventarisLabFarmasetika::all();
+        $data = InventarisLabFarmasetika::withTrashed()->get();
+
         // return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.riwayatmasuk', compact('barangmasukfarmasetika','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodfarmasi'){

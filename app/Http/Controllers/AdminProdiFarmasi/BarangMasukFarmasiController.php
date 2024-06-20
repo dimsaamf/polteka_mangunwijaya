@@ -58,8 +58,8 @@ class BarangMasukFarmasiController extends Controller
         }
     
         $BarangMasukFarmasi = $queryBuilder->paginate(10);
-    
-        $data = InventarisFarmasi::all();
+
+        $data = InventarisFarmasi::withTrashed()->get();
 
         return view('roleadminprodifarmasi.contentadminprodi.riwayatmasuk', compact('BarangMasukFarmasi','data'));
     }

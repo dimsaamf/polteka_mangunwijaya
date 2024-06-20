@@ -20,6 +20,7 @@ class BarangKeluarTekkimia extends Model
 
     public function inventariskimia()
     {
-        return $this->belongsTo(InventarisKimia::class, 'id_barang');
+        return $this->belongsTo(InventarisKimia::class, 'id_barang')
+        ->withTrashed();
     }
 }

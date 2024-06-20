@@ -19,6 +19,7 @@ class BarangMasukSitohisto extends Model
 
     public function inventarislabsitohisto()
     {
-        return $this->belongsTo(InventarisLabSitohisto::class, 'id_barang');
+        return $this->belongsTo(InventarisLabSitohisto::class, 'id_barang')
+        ->withTrashed();
     }
 }

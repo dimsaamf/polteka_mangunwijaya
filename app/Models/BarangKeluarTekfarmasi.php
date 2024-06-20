@@ -19,6 +19,7 @@ class BarangKeluarTekfarmasi extends Model
 
     public function inventarislabtekfarmasi()
     {
-        return $this->belongsTo(InventarisLabTekfarmasi::class, 'id_barang');
+        return $this->belongsTo(InventarisLabTekfarmasi::class, 'id_barang')
+        ->withTrashed();
     }
 }

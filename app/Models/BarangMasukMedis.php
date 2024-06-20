@@ -19,6 +19,7 @@ class BarangMasukMedis extends Model
 
     public function inventarislabmedis()
     {
-        return $this->belongsTo(InventarisLabMedis::class, 'id_barang');
+        return $this->belongsTo(InventarisLabMedis::class, 'id_barang')
+        ->withTrashed();
     }
 }

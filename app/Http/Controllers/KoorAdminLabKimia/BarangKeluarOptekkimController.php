@@ -80,7 +80,7 @@ class BarangKeluarOptekkimController extends Controller
 
         $BarangKeluarOptekkim = $queryBuilder->paginate(10);
 
-        $data = InventarisLabOptekkim::all();
+        $data = InventarisLabOptekkim::withTrashed()->get();
         // return view('rolekoorlabkimia.contentkoorlab.laboptekkim.riwayatkeluar', compact('BarangKeluarOptekkim','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodkimia'){

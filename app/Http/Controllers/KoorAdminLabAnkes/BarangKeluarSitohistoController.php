@@ -80,7 +80,7 @@ class BarangKeluarSitohistoController extends Controller
 
         $BarangKeluarSitohisto = $queryBuilder->paginate(10);
 
-        $data = InventarisLabSitohisto::all();
+        $data = InventarisLabSitohisto::withTrashed()->get();
         // return view('rolekoorlabankes.contentkoorlab.labsitohisto.riwayatkeluar', compact('BarangKeluarSitohisto','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){

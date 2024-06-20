@@ -63,7 +63,7 @@ class BarangMasukKimiaTerapanController extends Controller
 
         $BarangMasukKimiaTerapan = $queryBuilder->paginate(10);
 
-        $data = InventarisLabKimiaTerapan::all();
+        $data = InventarisLabKimiaTerapan::withTrashed()->get();
         // return view('rolekoorlabkimia.contentkoorlab.labkimiaterapan.riwayatmasuk', compact('BarangMasukKimiaTerapan','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodkimia'){

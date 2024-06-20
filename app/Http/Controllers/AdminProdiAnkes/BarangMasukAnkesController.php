@@ -58,8 +58,8 @@ class BarangMasukAnkesController extends Controller
         }
     
         $BarangMasukAnkes = $queryBuilder->paginate(10);
-    
-        $data = InventarisAnkes::all();
+
+        $data = InventarisAnkes::withTrashed()->get();
 
         return view('roleadminprodiankes.contentadminprodi.riwayatmasuk', compact('BarangMasukAnkes','data'));
     }

@@ -62,7 +62,7 @@ class BarangMasukKimiaController extends Controller
 
     $BarangMasukKimia = $queryBuilder->paginate(10);
 
-    $data = InventarisLabKimia::all();
+    $data = InventarisLabKimia::withTrashed()->get();
 
     if (session('is_logged_in')) {
         if (Auth::user()->role == 'koorlabprodfarmasi') {

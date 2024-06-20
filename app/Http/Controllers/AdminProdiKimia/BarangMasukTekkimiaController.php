@@ -58,8 +58,8 @@ class BarangMasukTekkimiaController extends Controller
         }
     
         $BarangMasukTekkimia = $queryBuilder->paginate(10);
-    
-        $data = InventarisKimia::all();
+
+        $data = InventarisKimia::withTrashed()->get();
 
         return view('roleadminprodikimia.contentadminprodi.riwayatmasuk', compact('BarangMasukTekkimia','data'));
     }

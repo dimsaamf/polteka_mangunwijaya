@@ -20,6 +20,7 @@ class BarangMasukKimiaOrganik extends Model
 
     public function inventarislabkimiaorganik()
     {
-        return $this->belongsTo(InventarisLabKimiaOrganik::class, 'id_barang');
+        return $this->belongsTo(InventarisLabKimiaOrganik::class, 'id_barang')
+        ->withTrashed();
     }
 }

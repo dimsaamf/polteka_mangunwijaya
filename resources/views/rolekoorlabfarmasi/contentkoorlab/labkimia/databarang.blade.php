@@ -69,6 +69,7 @@
                     <table class="mt-8 min-w-full text-sm text-hitam-polteka">
                     <thead>
                         <tr>
+                            <th scope="col" class="px-6 py-3 text-center">No</th>
                             <th scope="col" class="px-6 py-3 text-center">Barcode</th>
                             <th scope="col" class="px-6 py-3 text-center">Nama Barang</th>
                             <th scope="col" class="px-6 py-3 text-center">ID Barang</th>
@@ -82,7 +83,7 @@
                     <tbody>
                         @if ($labkimia->isEmpty())
                             <tr>
-                                <td colspan="8" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
+                                <td colspan="9" class="px-6 py-4 text-center">Tidak ada data yang tersedia.</td>
                             </tr>
                         @else
                         @foreach($labkimia as $data)
@@ -94,6 +95,7 @@
                                     <img src="{{ asset($data->kode_barang . 'qrcode.png') }}" alt="Barcode">
                                 </button> --}}
                                 <!-- Di dalam loop foreach -->
+                                <td class="px-6 py-2 whitespace-nowrap rounded-l-xl">{{ ($labkimia->currentPage() - 1) * $labkimia->perPage() + $loop->index + 1 }}</td>
                             <td class="px-6 py-2 whitespace-nowrap text-center flex justify-center items-center rounded-l-xl">
                                 <button data-modal-toggle="popup-modal" data-src="{{ asset('storage/barcodes/' . $data->kode_barang . 'qrcode.png') }}">
                                     {{-- <img src="{{ asset($data->kode_barang . 'qrcode.png') }}" alt="Barcode"> --}}

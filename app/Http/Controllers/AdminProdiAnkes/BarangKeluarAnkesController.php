@@ -70,7 +70,7 @@ class BarangKeluarAnkesController extends Controller
 
         $BarangKeluarAnkes = $queryBuilder->paginate(10);
 
-        $data = InventarisAnkes::all();
+        $data = InventarisAnkes::withTrashed()->get();
         return view('roleadminprodiankes.contentadminprodi.riwayatkeluar', compact('BarangKeluarAnkes','data'));
     }
 

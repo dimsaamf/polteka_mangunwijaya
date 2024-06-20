@@ -70,7 +70,7 @@ class BarangKeluarTekkimiaController extends Controller
 
         $BarangKeluarTekkimia = $queryBuilder->paginate(10);
 
-        $data = InventarisKimia::all();
+        $data = InventarisKimia::withTrashed()->get();
         return view('roleadminprodikimia.contentadminprodi.riwayatkeluar', compact('BarangKeluarTekkimia','data'));
     }
 

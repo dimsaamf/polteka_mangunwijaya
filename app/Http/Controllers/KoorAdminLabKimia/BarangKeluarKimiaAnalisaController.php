@@ -80,7 +80,7 @@ class BarangKeluarKimiaAnalisaController extends Controller
 
         $BarangKeluarKimiaAnalisa = $queryBuilder->paginate(10);
 
-        $data = InventarisLabKimiaAnalisa::all();
+        $data = InventarisLabKimiaAnalisa::withTrashed()->get();
         // return view('rolekoorlabkimia.contentkoorlab.labkimiaanalisa.riwayatkeluar', compact('BarangKeluarKimiaAnalisa','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodkimia'){

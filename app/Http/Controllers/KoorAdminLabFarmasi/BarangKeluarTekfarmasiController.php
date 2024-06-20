@@ -80,7 +80,7 @@ class BarangKeluarTekfarmasiController extends Controller
 
         $BarangKeluarTekfarmasi = $queryBuilder->paginate(10);
 
-        $data = InventarisLabTekfarmasi::all();
+        $data = InventarisLabTekfarmasi::withTrashed()->get();
 
         // return view('rolekoorlabfarmasi.contentkoorlab.labtekfarmasi.riwayatkeluar', compact('BarangKeluarTekfarmasi','data'));
         if(session('is_logged_in')) {

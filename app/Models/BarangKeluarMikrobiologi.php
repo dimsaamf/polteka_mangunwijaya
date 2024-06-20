@@ -20,6 +20,7 @@ class BarangKeluarMikrobiologi extends Model
 
     public function inventarislabmikrobiologi()
     {
-        return $this->belongsTo(InventarisLabMikrobiologi::class, 'id_barang');
+        return $this->belongsTo(InventarisLabMikrobiologi::class, 'id_barang')
+        ->withTrashed();
     }
 }

@@ -70,7 +70,7 @@ class BarangKeluarFarmasiController extends Controller
 
         $BarangKeluarFarmasi = $queryBuilder->paginate(10);
 
-        $data = InventarisFarmasi::all();
+        $data = InventarisFarmasi::withTrashed()->get();
         return view('roleadminprodifarmasi.contentadminprodi.riwayatkeluar', compact('BarangKeluarFarmasi','data'));
     }
 

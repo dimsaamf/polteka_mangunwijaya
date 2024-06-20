@@ -18,12 +18,9 @@ class BarangKeluarFarmasi extends Model
         'keterangan_keluar',
     ];
 
-    // public function inventarislabfarmakognosi()
-    // {
-    //     return $this->belongsTo(InventarislabFarmakognosi::class, 'id_barang');
-    // }
     public function inventarisfarmasi()
     {
-        return $this->belongsTo(InventarisFarmasi::class, 'id_barang');
+        return $this->belongsTo(InventarisFarmasi::class, 'id_barang')
+        ->withTrashed();
     }
 }

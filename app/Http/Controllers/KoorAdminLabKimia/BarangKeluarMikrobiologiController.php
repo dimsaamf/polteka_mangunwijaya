@@ -80,7 +80,7 @@ class BarangKeluarMikrobiologiController extends Controller
 
         $BarangKeluarMikrobiologi = $queryBuilder->paginate(10);
 
-        $data = InventarisLabMikrobiologi::all();
+        $data = InventarisLabMikrobiologi::withTrashed()->get();
         // return view('rolekoorlabkimia.contentkoorlab.labmikrobiologi.riwayatkeluar', compact('BarangKeluarMikrobiologi','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodkimia'){

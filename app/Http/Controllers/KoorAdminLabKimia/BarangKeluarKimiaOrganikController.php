@@ -80,7 +80,7 @@ class BarangKeluarKimiaOrganikController extends Controller
 
         $BarangKeluarKimiaOrganik = $queryBuilder->paginate(10);
 
-        $data = InventarisLabKimiaOrganik::all();
+        $data = InventarisLabKimiaOrganik::withTrashed()->get();
         // return view('rolekoorlabkimia.contentkoorlab.labkimiaorganik.riwayatkeluar', compact('BarangKeluarKimiaOrganik','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodkimia'){

@@ -80,7 +80,7 @@ class BarangKeluarMikroController extends Controller
 
         $BarangKeluarMikro = $queryBuilder->paginate(10);
 
-        $data = InventarisLabMikro::all();
+        $data = InventarisLabMikro::withTrashed()->get();
         // return view('rolekoorlabankes.contentkoorlab.labmikro.riwayatkeluar', compact('BarangKeluarMikro','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){

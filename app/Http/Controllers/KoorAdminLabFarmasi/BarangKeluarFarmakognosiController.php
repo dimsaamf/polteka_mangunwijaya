@@ -80,7 +80,7 @@ class BarangKeluarFarmakognosiController extends Controller
 
         $BarangKeluarFarmakognosi = $queryBuilder->paginate(10);
 
-        $data = InventarisLabFarmakognosi::all();
+        $data = InventarisLabFarmakognosi::withTrashed()->get();
 
         // return view('rolekoorlabfarmasi.contentkoorlab.labfarmakognosi.riwayatkeluar', compact('barangkeluarfarmakognosi','data'));
         if(session('is_logged_in')) {

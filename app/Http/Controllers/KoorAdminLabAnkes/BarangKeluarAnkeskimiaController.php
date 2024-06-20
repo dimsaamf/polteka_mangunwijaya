@@ -80,7 +80,7 @@ class BarangKeluarAnkeskimiaController extends Controller
 
         $BarangKeluarAnkeskimia = $queryBuilder->paginate(10);
 
-        $data = InventarisLabAnkeskimia::all();
+        $data = InventarisLabAnkeskimia::withTrashed()->get();
         // return view('rolekoorlabankes.contentkoorlab.labankeskimia.riwayatkeluar', compact('BarangKeluarAnkeskimia','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){

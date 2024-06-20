@@ -80,7 +80,7 @@ class BarangKeluarFarmasetikaController extends Controller
 
         $BarangKeluarFarmasetika = $queryBuilder->paginate(10);
 
-        $data = InventarisLabFarmasetika::all();
+        $data = InventarisLabFarmasetika::withTrashed()->get();
 
         // return view('rolekoorlabfarmasi.contentkoorlab.labfarmasetika.riwayatkeluar', compact('BarangKeluarFarmasetika','data'));
         if(session('is_logged_in')) {

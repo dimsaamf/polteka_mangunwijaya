@@ -20,6 +20,7 @@ class BarangMasukAnkes extends Model
 
     public function inventarisankes()
     {
-        return $this->belongsTo(InventarisAnkes::class, 'id_barang');
+        return $this->belongsTo(InventarisAnkes::class, 'id_barang')
+        ->withTrashed();
     }
 }

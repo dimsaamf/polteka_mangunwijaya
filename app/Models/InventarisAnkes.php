@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class InventarisAnkes extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
+    protected $dates = ['deleted_at'];
     protected $table = 'inventaris_ankes';
     protected $primaryKey = 'id';
     protected $fillable = [

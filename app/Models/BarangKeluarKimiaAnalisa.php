@@ -20,6 +20,7 @@ class BarangKeluarKimiaAnalisa extends Model
 
     public function inventarislabkimiaanalisa()
     {
-        return $this->belongsTo(InventarisLabKimiaAnalisa::class, 'id_barang');
+        return $this->belongsTo(InventarisLabKimiaAnalisa::class, 'id_barang')
+        ->withTrashed();
     }
 }

@@ -63,7 +63,7 @@ class BarangMasukMedisController extends Controller
 
         $BarangMasukMedis = $queryBuilder->paginate(10);
 
-        $data = InventarisLabMedis::all();
+        $data = InventarisLabMedis::withTrashed()->get();
         // return view('rolekoorlabankes.contentkoorlab.labmedis.riwayatmasuk', compact('BarangMasukMedis','data'));
         if(session('is_logged_in')) {
             if(Auth::user()->role == 'koorlabprodankes'){

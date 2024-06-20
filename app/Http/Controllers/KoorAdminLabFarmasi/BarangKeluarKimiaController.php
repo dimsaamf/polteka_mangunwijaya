@@ -76,7 +76,7 @@ class BarangKeluarKimiaController extends Controller
 
         $BarangKeluarKimia = $queryBuilder->paginate(10);
 
-        $data = InventarisLabKimia::all();
+        $data = InventarisLabKimia::withTrashed()->get();
 
         // return view('rolekoorlabfarmasi.contentkoorlab.labkimia.riwayatkeluar', compact('BarangKeluarKimia','data'));
         if(session('is_logged_in')) {

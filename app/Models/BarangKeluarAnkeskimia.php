@@ -19,6 +19,7 @@ class BarangKeluarAnkeskimia extends Model
 
     public function inventarislabankeskimia()
     {
-        return $this->belongsTo(InventarisLabAnkeskimia::class, 'id_barang');
+        return $this->belongsTo(InventarisLabAnkeskimia::class, 'id_barang')
+        ->withTrashed();
     }
 }
