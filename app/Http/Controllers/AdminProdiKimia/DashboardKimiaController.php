@@ -15,9 +15,13 @@ class DashboardKimiaController extends Controller
 {
     public function index(Request $request)
     {
-        $jumlah_barang = InventarisKimia::count();
-        $jumlah_barang_masuk = BarangMasukTekkimia::count();
-        $jumlah_barang_keluar = BarangKeluarTekkimia::count();
+        $tanggal_hari_ini = Carbon::now();
+        $tanggal_awal_tahun_ini = Carbon::now()->startOfYear();
+        $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+
+        $jumlah_barang = InventarisKimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $jumlah_barang_masuk = BarangMasukTekkimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $jumlah_barang_keluar = BarangKeluarTekkimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
         $reminders = InventarisKimia::where('tanggal_service', '<=', now())->paginate(5);
 

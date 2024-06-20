@@ -33,23 +33,24 @@ class DashboardKoorAdminLabFarmasiController extends Controller
         $tanggal_hari_ini = Carbon::now();
         $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
         $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+        $tanggal_awal_tahun_ini = Carbon::now()->startOfYear();
         
         $pengajuan = PengajuanBarangLabFarmasi::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
 
-        $baranglabfarmakognosi = InventarisLabFarmakognosi::count();
-        $baranglabfarmasetika = InventarisLabFarmasetika::count();
-        $baranglabkimia = InventarisLabKimia::count();
-        $baranglabtekfarmasi = InventarisLabTekfarmasi::count();
+        $baranglabfarmakognosi = InventarisLabFarmakognosi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabfarmasetika = InventarisLabFarmasetika::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabkimia = InventarisLabKimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabtekfarmasi = InventarisLabTekfarmasi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        $barangmasuklabfarmakognosi = BarangMasukFarmakognosi::count();
-        $barangmasuklabfarmasetika = BarangMasukFarmasetika::count();
-        $barangmasuklabkimia = BarangMasukKimia::count();
-        $barangmasuklabtekfarmasi = BarangMasukTekfarmasi::count();
+        $barangmasuklabfarmakognosi = BarangMasukFarmakognosi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabfarmasetika = BarangMasukFarmasetika::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabkimia = BarangMasukKimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabtekfarmasi = BarangMasukTekfarmasi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        $barangkeluarlabfarmakognosi = BarangKeluarFarmakognosi::count();
-        $barangkeluarlabfarmasetika = BarangKeluarFarmasetika::count();
-        $barangkeluarlabkimia = BarangKeluarKimia::count();
-        $barangkeluarlabtekfarmasi = BarangKeluarTekfarmasi::count();
+        $barangkeluarlabfarmakognosi = BarangKeluarFarmakognosi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabfarmasetika = BarangKeluarFarmasetika::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabkimia = BarangKeluarKimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabtekfarmasi = BarangKeluarTekfarmasi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
         
         $total_barang = $baranglabfarmakognosi +  $baranglabfarmasetika + $baranglabkimia + $baranglabtekfarmasi;

@@ -15,9 +15,13 @@ class DashboardAnkesController extends Controller
 {
     public function index(Request $request)
     {
-        $jumlah_barang = InventarisAnkes::count();
-        $jumlah_barang_masuk = BarangMasukAnkes::count();
-        $jumlah_barang_keluar = BarangKeluarAnkes::count();
+        $tanggal_hari_ini = Carbon::now();
+        $tanggal_awal_tahun_ini = Carbon::now()->startOfYear();
+        $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+
+        $jumlah_barang = InventarisAnkes::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $jumlah_barang_masuk = BarangMasukAnkes::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $jumlah_barang_keluar = BarangKeluarAnkes::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
         $reminders = InventarisAnkes::where('tanggal_service', '<=', now())->paginate(5);
 

@@ -15,9 +15,13 @@ class DashboardFarmasiController extends Controller
 {
     public function index(Request $request)
     {
-        $jumlah_barang = InventarisFarmasi::count();
-        $jumlah_barang_masuk = BarangMasukFarmasi::count();
-        $jumlah_barang_keluar = BarangKeluarFarmasi::count();
+        $tanggal_hari_ini = Carbon::now();
+        $tanggal_awal_tahun_ini = Carbon::now()->startOfYear();
+        $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+
+        $jumlah_barang = InventarisFarmasi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $jumlah_barang_masuk = BarangMasukFarmasi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $jumlah_barang_keluar = BarangKeluarFarmasi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
         $reminders = InventarisFarmasi::where('tanggal_service', '<=', now())->paginate(5);
 

@@ -41,29 +41,30 @@ class DashboardKoorAdminLabKimiaController extends Controller
         $tanggal_hari_ini = Carbon::now();
         $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
         $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
+        $tanggal_awal_tahun_ini = Carbon::now()->startOfYear();
         
         $pengajuan = PengajuanBarangLabKimia::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
 
-        $baranglabkimiaanalisa = InventarisLabKimiaAnalisa::count();
-        $baranglabkimiafisika = InventarisLabKimiaFisika::count();
-        $baranglabkimiaorganik = InventarisLabKimiaOrganik::count();
-        $baranglabkimiaterapan = InventarisLabKimiaTerapan::count();
-        $baranglabmikrobiologi = InventarisLabMikrobiologi::count();
-        $baranglaboptekkim = InventarisLabOptekkim::count();
+        $baranglabkimiaanalisa = InventarisLabKimiaAnalisa::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabkimiafisika = InventarisLabKimiaFisika::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabkimiaorganik = InventarisLabKimiaOrganik::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabkimiaterapan = InventarisLabKimiaTerapan::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabmikrobiologi = InventarisLabMikrobiologi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglaboptekkim = InventarisLabOptekkim::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        $barangmasuklabkimiaanalisa = BarangMasukKimiaAnalisa::count();
-        $barangmasuklabkimiafisika = BarangMasukKimiaFisika::count();
-        $barangmasuklabkimiaorganik = BarangMasukKimiaOrganik::count();
-        $barangmasuklabkimiaterapan = BarangMasukKimiaTerapan::count();
-        $barangmasuklabmikrobiologi = BarangMasukMikrobiologi::count();
-        $barangmasuklaboptekkim = BarangMasukOptekkim::count();
+        $barangmasuklabkimiaanalisa = BarangMasukKimiaAnalisa::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabkimiafisika = BarangMasukKimiaFisika::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabkimiaorganik = BarangMasukKimiaOrganik::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabkimiaterapan = BarangMasukKimiaTerapan::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabmikrobiologi = BarangMasukMikrobiologi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklaboptekkim = BarangMasukOptekkim::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        $barangkeluarlabkimiaanalisa = BarangKeluarKimiaAnalisa::count();
-        $barangkeluarlabkimiafisika = BarangKeluarKimiaFisika::count();
-        $barangkeluarlabkimiaorganik = BarangKeluarKimiaOrganik::count();
-        $barangkeluarlabkimiaterapan = BarangKeluarKimiaTerapan::count();
-        $barangkeluarlabmikrobiologi = BarangKeluarMikrobiologi::count();
-        $barangkeluarlaboptekkim = BarangKeluarOptekkim::count();
+        $barangkeluarlabkimiaanalisa = BarangKeluarKimiaAnalisa::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabkimiafisika = BarangKeluarKimiaFisika::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabkimiaorganik = BarangKeluarKimiaOrganik::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabkimiaterapan = BarangKeluarKimiaTerapan::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabmikrobiologi = BarangKeluarMikrobiologi::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlaboptekkim = BarangKeluarOptekkim::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
         
         $total_barang = $baranglabkimiaanalisa + $baranglabkimiafisika + $baranglabkimiaorganik + $baranglabkimiaterapan + $baranglabmikrobiologi + $baranglaboptekkim;
         $total_masuk = $barangmasuklabkimiaanalisa + $barangmasuklabkimiafisika+ $barangmasuklabkimiaorganik + $barangmasuklabkimiaterapan + $barangmasuklabmikrobiologi + $barangmasuklaboptekkim;

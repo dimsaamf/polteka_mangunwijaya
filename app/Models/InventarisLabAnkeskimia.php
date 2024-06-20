@@ -29,6 +29,8 @@ class InventarisLabAnkeskimia extends Model
         'sudah_dilayani',
     ];
 
+    public $timestamps = true;
+    
     public function getTanggalServiceAttribute($value)
     {
         return $value ? \Carbon\Carbon::parse($value)->format('Y-m-d') : null;

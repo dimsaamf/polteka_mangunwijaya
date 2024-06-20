@@ -33,28 +33,28 @@ class DashboardKoorAdminLabAnkesController extends Controller
         $tanggal_hari_ini = Carbon::now();
         $tanggal_awal_bulan_ini = Carbon::now()->startOfMonth();
         $tanggal_akhir_hari_ini = $tanggal_hari_ini->endOfDay();
-        
+        $tanggal_awal_tahun_ini = Carbon::now()->startOfYear();
+
         $pengajuan = PengajuanBarangLabAnkes::whereBetween('tanggal', [$tanggal_awal_bulan_ini, $tanggal_akhir_hari_ini])->count();
 
-        $baranglabankeskimia = InventarisLabAnkeskimia::count();
-        $baranglabmedia = InventarisLabMedis::count();
-        $baranglabmikro = InventarisLabMikro::count();
-        $baranglabsitohisto = InventarisLabSitohisto::count();
+        $baranglabankeskimia = InventarisLabAnkeskimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabmedia = InventarisLabMedis::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabmikro = InventarisLabMikro::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $baranglabsitohisto = InventarisLabSitohisto::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        $barangmasuklabankeskimia = BarangMasukAnkeskimia::count();
-        $barangmasuklabmedia = BarangMasukMedis::count();
-        $barangmasuklabmikro = BarangMasukMikro::count();
-        $barangmasuklabsitohisto = BarangMasukSitohisto::count();
+        $barangmasuklabankeskimia = BarangMasukAnkeskimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabmedia = BarangMasukMedis::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabmikro = BarangMasukMikro::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangmasuklabsitohisto = BarangMasukSitohisto::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        $barangkeluarlabankeskimia = BarangKeluarAnkeskimia::count();
-        $barangkeluarlabmedia = BarangKeluarMedis::count();
-        $barangkeluarlabmikro = BarangKeluarMikro::count();
-        $barangkeluarlabsitohisto = BarangKeluarSitohisto::count();
+        $barangkeluarlabankeskimia = BarangKeluarAnkeskimia::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabmedia = BarangKeluarMedis::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabmikro = BarangKeluarMikro::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
+        $barangkeluarlabsitohisto = BarangKeluarSitohisto::whereBetween('created_at', [$tanggal_awal_tahun_ini, $tanggal_akhir_hari_ini])->count();
 
-        
         $total_barang = $baranglabankeskimia + $baranglabmedia + $baranglabmikro + $baranglabsitohisto;
         $total_masuk = $barangmasuklabankeskimia + $barangmasuklabmedia + $barangmasuklabmikro + $barangmasuklabsitohisto;
-        $total_keluar =  $barangkeluarlabankeskimia + $barangkeluarlabmedia + $barangkeluarlabmikro + $barangkeluarlabsitohisto;
+        $total_keluar = $barangkeluarlabankeskimia + $barangkeluarlabmedia + $barangkeluarlabmikro + $barangkeluarlabsitohisto;
 
         $ankeskimiareminders = InventarisLabAnkeskimia::where('tanggal_service', '<=', now())->get();
 

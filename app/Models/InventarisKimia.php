@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class InventarisKimia extends Model
@@ -27,6 +28,8 @@ class InventarisKimia extends Model
         'reminder',
         'sudah_dilayani',
     ];
+
+    public $timestamps = true;
 
     public function getTanggalServiceAttribute($value)
     {
